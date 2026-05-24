@@ -1,9 +1,9 @@
 # Customer Support Guide: AI Architecture Weekly
 
 **Project ID**: knowledge-subscription  
-**Task ID**: 96cae9d2  
+**Task ID**: ab047a39  
 **Type**: monitoring (ops-support)  
-**Last Updated**: 2026-05-21  
+**Last Updated**: 2026-05-24  
 **Owner**: dev-optimizer (profitability-analyst)
 
 ---
@@ -73,6 +73,18 @@ We are a tiny team. We cannot offer 24/7 live chat. But we can be fast, personal
 **Answer**: Thanks for flagging this! We're currently migrating our landing page to a new host and it may be briefly offline. If you're seeing a 404 or timeout, it should be resolved within a few hours. In the meantime, you can browse our content directly on Substack (link) or add me on WeChat for direct access. Apologies for the friction — here's a 20% off code for the inconvenience: `COMEBACK20`.
 
 > **Internal note**: If sales page is offline due to deployment blocker, do NOT offer discounts until the page is live. Reply with expected fix time and direct user to Substack or WeChat as fallback.
+
+### Q12: "我怎么付款？安全吗？"
+**Answer**: 你直接微信/支付宝转我就行，¥29，确认后我秒发资料。不放心的话，我先发你一半试读，看完觉得值再付。
+
+### Q13: "付了款没收到怎么办？"
+**Answer**: 抱歉！有时候消息多会漏掉。你把付款截图发我，我立刻补发，再送你一份额外的模板作为补偿。
+
+### Q14: "能不能便宜点？"
+**Answer**: 这次早鸟价¥29已经是底价了，后面会涨到¥99。如果你觉得不值，我可以先发你一份免费资料，看完再决定。
+
+### Q15: "我可以转发给朋友吗？"
+**Answer**: 免费的内容随便转。付费资料仅限你自己用，朋友想要可以推我微信，我给他们同样的早鸟价。
 
 ---
 

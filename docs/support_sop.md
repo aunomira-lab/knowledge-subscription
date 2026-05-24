@@ -1,9 +1,9 @@
 # Support SOP: AI Architecture Weekly
 
 **Project ID**: knowledge-subscription  
-**Task ID**: 96cae9d2  
+**Task ID**: ab047a39  
 **Type**: monitoring (ops-support)  
-**Last Updated**: 2026-05-21  
+**Last Updated**: 2026-05-24  
 **Owner**: dev-optimizer (profitability-analyst)
 
 ---
@@ -221,6 +221,36 @@ When `docs/deployment_blockers.md` is in BLOCKED_BY_USER state:
 
 ---
 
+## 10. Manual Revenue Operations SOP (Phase 2 — WeChat-native MVP)
+
+Phase 2 does not use Stripe, 小报童, or any automated payment platform. All revenue is captured manually via WeChat/Alipay QR codes.
+
+### 10.1 When a Payment Arrives
+1. **Immediately** — Screenshot the payment notification (微信服务通知 / 支付宝到账通知)
+2. **Within 5 minutes** — Reply: "收到！马上给你发资料。"
+3. **Within 30 minutes** — Deliver the promised product (PDF, 拉群, 发送模板)
+4. **Within 1 hour** — Log in `metrics/experiment_tracker.csv` AND save screenshot to `reports/payments/YYYYMMDD_HHMM_amount.png`
+5. **Within 24 hours** — Follow-up message: "资料收到了吗？有不懂的直接问我。"
+
+### 10.2 When a User Asks "How do I pay?"
+1. Do NOT send QR code in group chat (会被踢/举报)
+2. Reply in private chat: "加我微信/已经加了的直接私聊我，我给你发收款方式"
+3. In private chat, send QR code image + text: "¥29，确认后马上发你"
+4. Wait for payment screenshot from user before delivering
+
+### 10.3 Refund Policy (Manual)
+- 用户付款后 24 小时内要求退款：无条件退，退后拉黑不纠缠
+- 用户看完内容后要求退款：询问原因，若合理则退 50%；若无理取闹则退全并拉黑
+- 所有退款记录到 `metrics/experiment_tracker.csv` 并标注 "refund"
+
+### 10.4 WeChat Group Management
+- 付费用户拉入 VIP 小群（< 50 人）
+- 群内每天发 1 条独家内容（比公开平台早 24 小时）
+- 群规：禁止广告，禁止政治，禁止人身攻击
+- 违规 1 次警告，2 次移除不退费
+
+---
+
 ## 9. Escalation Rules
 
 || Situation | Escalate To | Method | Response Expected |
@@ -236,5 +266,5 @@ When `docs/deployment_blockers.md` is in BLOCKED_BY_USER state:
 ---
 
 **Next Review**: 2026-06-21  
-**Version**: 1.0  
+**Version**: 1.1  
 **Owner**: dev-optimizer

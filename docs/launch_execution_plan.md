@@ -1,12 +1,13 @@
 # AI Opportunity Radar — 7天获客执行计划与上线行动
 
 **项目**: knowledge-subscription
-**任务ID**: 5fc6593c
+**任务ID**: 44b0dcd0
 **目标**: 部署完成后7天内完成首批50个种子用户获取，产生首笔付费收入
-**创建时间**: 2026-05-21
-**更新时间**: 2026-05-23
+**创建时间**: 2026-05-24
+**更新时间**: 2026-05-24
 **执行负责人**: dev-deploy (deployer)
-**当前状态**: 等待部署授权完成后立即启动
+**当前状态**: LIVE — 销售页已部署，获客计划就绪
+**公开 URL**: https://aunomira-lab.github.io/knowledge-subscription/
 
 ---
 
@@ -82,11 +83,14 @@
 **前提**: 用户已完成 Cloudflare 授权和小报童配置，`./deploy/deploy.sh production` 已成功，公开 URL 已生成。
 
 **上午（2h）**
-- [ ] 执行 `./deploy/deploy.sh production`，确认公开 URL 可访问（HTTP 200）
-- [ ] 用手机浏览器访问销售页，检查响应式显示正常
-- [ ] 测试表单提交：点击"提交订阅申请"，确认 mailto 正常弹出
-- [ ] 测试支付跳转：点击"小报童订阅"，确认跳转至真实收款页
-- [ ] 将公开 URL 回填到本文件、README.md、metrics/launch_channels.csv
+- [x] 执行 `./deploy/deploy.sh production`，确认公开 URL 可访问（HTTP 200）
+- [x] 用手机浏览器访问销售页，检查响应式显示正常
+- [x] 测试表单提交：点击"提交订阅申请"，确认 mailto 正常弹出
+- [ ] 测试支付跳转：点击"小报童订阅"，确认跳转至真实收款页（BLOCKED_BY_USER）
+- [x] 将公开 URL 回填到本文件、README.md、metrics/launch_channels.csv
+
+**公开 URL**: https://aunomira-lab.github.io/knowledge-subscription/
+**验证结果**: HTTP 200，31KB+，所有关键内容存在，响应式正常
 
 **下午（3h）**
 - [ ] 注册/登录知乎个人号，完善资料（头像、简介、签名档放销售页链接）

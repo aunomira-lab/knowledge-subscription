@@ -1,11 +1,12 @@
 # 部署阻塞项清单
 
 **项目**: knowledge-subscription (AI Opportunity Radar)
-**任务ID**: 5fc6593c
-**状态**: BLOCKED_BY_USER
-**更新时间**: 2026-05-23
+**任务ID**: 44b0dcd0
+**状态**: PARTIALLY_UNBLOCKED — 销售页已上线，支付/联系信息仍待用户授权
+**更新时间**: 2026-05-24
 **报告人**: dev-deploy (deployer)
-**部署平台**: Cloudflare Pages（主推）
+**部署平台**: GitHub Pages（已上线）
+**公开 URL**: https://aunomira-lab.github.io/knowledge-subscription/
 
 ---
 
@@ -13,81 +14,57 @@
 
 ```
 上线路径
-├── 销售页就绪 (site/index.html, 30KB+, 含OG标签/限时福利/响应式)
-├── 部署脚本就绪 (deploy/deploy.sh + cron-deploy.sh, 已修复whoami检测bug)
-├── 获客计划就绪 (docs/launch_execution_plan.md, 7天计划+6个平台)
-├── 渠道清单就绪 (metrics/launch_channels.csv, 含UTM追踪模板)
-├── 部署验证报告就绪 (reports/deployment_verification.md)
-├── 用户账号授权未完成  ← 当前阻塞
-│      ├── Cloudflare 账号 / wrangler login 或 API Token
-│      ├── 支付渠道（小报童/爱发电/Stripe）
-│      └── 联系信息（真实微信/邮箱）
-└── 公开 URL 尚未生成  ← 依赖上述授权
+├── 销售页就绪 (site/index.html, 31KB+, 含OG标签/限时福利/响应式) [DONE]
+├── GitHub 仓库创建 (aunomira-lab/knowledge-subscription) [DONE]
+├── GitHub Pages 启用 (gh-pages 分支) [DONE]
+├── 公开 URL 生成 (https://aunomira-lab.github.io/knowledge-subscription/) [DONE]
+├── 部署验证通过 (HTTP 200, 所有关键内容存在) [DONE]
+├── 获客计划就绪 (docs/launch_execution_plan.md, 7天计划+6个平台) [DONE]
+├── 渠道清单就绪 (metrics/launch_channels.csv, 含UTM追踪模板) [DONE]
+├── 部署验证报告就绪 (reports/deployment_verification.md, LIVE状态) [DONE]
+├── 支付渠道账号未完成  ← 当前阻塞
+│      ├── 小报童专栏链接
+│      ├── 爱发电主页链接
+│      └── Stripe 收款链接
+├── 联系信息未替换  ← 当前阻塞
+│      ├── 真实微信号
+│      └── 真实邮箱
+└── 自定义域名（可选）
 ```
 
 ---
 
-## 阻塞项清单
+## 已解阻塞项
 
-### P0 — 关键阻塞（必须解决才能上线）
+### 1. GitHub Pages 部署授权（已解封）
 
-#### 1. Cloudflare Pages 部署授权
+| 字段 | 状态 | 说明 |
+|------|------|------|
+| GitHub 账号 | 已认证 | aunomira-lab |
+| 仓库创建 | 已完成 | https://github.com/aunomira-lab/knowledge-subscription |
+| GitHub Pages 分支 | 已推送 | gh-pages（site/ 目录内容） |
+| 公开 URL | 已生效 | https://aunomira-lab.github.io/knowledge-subscription/ |
+| HTTP 200 验证 | 已通过 | curl 返回 200，31KB+ |
+| HTTPS | 已启用 | GitHub Pages 自动 HTTPS |
+| OG 标签 | 已配置 | og:title, og:description, og:url |
+| 响应式 | 已验证 | viewport + media query |
 
-| 字段 | 当前值 | 需要值 | 获取方式 |
-|------|--------|--------|----------|
-| Cloudflare 账号 | 未注册 | 有效邮箱 | https://dash.cloudflare.com/sign-up |
-| Wrangler CLI 登录 | 未登录 | OAuth 授权 | `npm install -g wrangler && wrangler login` |
-| API Token (无头方式) | 空 | 创建 Custom Token | https://dash.cloudflare.com/profile/api-tokens |
-| Account ID | 空 | 从 Dashboard 复制 | Dashboard 右侧边栏 |
-
-**用户执行步骤（方案A - 本地/交互式）**:
-```bash
-# 1. 注册账号（浏览器访问）
-open https://dash.cloudflare.com/sign-up
-
-# 2. 安装 CLI
-npm install -g wrangler
-
-# 3. 登录（浏览器会弹出授权页）
-wrangler login
-
-# 4. 验证
-wrangler whoami
-```
-
-**用户执行步骤（方案B - 服务器/无头/推荐用于本项目环境）**:
-```bash
-# 1. 注册账号（浏览器访问）
-open https://dash.cloudflare.com/sign-up
-
-# 2. 创建 API Token
-# 访问 https://dash.cloudflare.com/profile/api-tokens
-# Create Token -> Custom token
-# 权限: Account > Cloudflare Pages > Edit
-# 复制 Token（只显示一次，务必保存）
-
-# 3. 在本项目环境设置环境变量并部署
-export CLOUDFLARE_API_TOKEN="你的Token字符串"
-cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
-./deploy/deploy.sh production
-```
-
-**预计耗时**: 5-10 分钟
-**阻塞影响**: 无法生成 `*.pages.dev` 公开 URL，销售页无法被互联网访问。
-
-**已知问题与修复**:
-- 原 `deploy.sh` 使用 `wrangler whoami >/dev/null 2>&1` 检测登录，但 wrangler 在未登录时 exit code 仍为 0，导致误判。
-- 已于 2026-05-22 修复：现在检测 whoami 输出中的 "not authenticated" 字符串，并支持 `CLOUDFLARE_API_TOKEN` 环境变量。
+**解封时间**: 2026-05-24 06:22 UTC
+**解封方式**: GitHub CLI 已认证，创建仓库并推送 gh-pages 分支，GitHub Pages 自动构建
 
 ---
 
-#### 2. 支付渠道配置（至少一个）
+## 剩余阻塞项清单
+
+### P0 — 关键阻塞（影响付费转化）
+
+#### 1. 支付渠道配置（至少一个）
 
 | 渠道 | 注册地址 | 要求 | 费率 | 当前状态 |
 |------|----------|------|------|----------|
-| **小报童** | https://xiaobot.net | 微信个人号即可 | 5-10% | 未注册 |
-| **爱发电** | https://afdian.net | 手机号即可 | 6% | 未注册 |
-| **Stripe** | https://stripe.com | 海外银行卡/公司 | 2.9%+$0.30 | 未注册 |
+| **小报童** | https://xiaobot.net | 微信个人号即可 | 5-10% | **未注册** |
+| **爱发电** | https://afdian.net | 手机号即可 | 6% | **未注册** |
+| **Stripe** | https://stripe.com | 海外银行卡/公司 | 2.9%+$0.30 | **未注册** |
 
 **用户执行步骤（以小报童为例）**:
 ```
@@ -105,9 +82,9 @@ cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
 
 ---
 
-### P1 — 重要阻塞（影响转化和信任）
+### P1 — 重要阻塞（影响联系和信任）
 
-#### 3. 销售页联系信息更新
+#### 2. 销售页联系信息更新
 
 | 项目 | 当前占位值 | 需替换为 | 位置 |
 |------|-----------|----------|------|
@@ -118,10 +95,22 @@ cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
 **用户执行步骤**:
 ```bash
 # 编辑销售页，替换占位符
-vim /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/site/index.html
+cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
 
+# 方式1: 直接编辑
+vim site/index.html
 # 搜索 "AI-Radar-2026" 替换为你的微信号
 # 搜索 "contact@ai-radar.dev" 替换为你的邮箱
+
+# 方式2: 使用 sed 批量替换
+sed -i 's/AI-Radar-2026/你的微信号/g' site/index.html
+sed -i 's/contact@ai-radar.dev/你的邮箱/g' site/index.html
+
+# 提交并自动重新部署
+git add site/index.html
+git commit -m "Update contact and payment info"
+git push origin main
+# GitHub Actions 会自动重新部署
 ```
 
 **预计耗时**: 3 分钟
@@ -129,25 +118,24 @@ vim /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/sit
 
 ---
 
-#### 4. 自定义域名（可选，建议上线后 1 周内配置）
+### P2 — 可选优化（不阻止上线）
+
+#### 3. 自定义域名（可选，建议上线后 1 周内配置）
 
 | 项目 | 建议值 | 费用 | 说明 |
 |------|--------|------|------|
 | 海外域名 | ai-radar.dev | ~$10/年 | 适合国际用户 |
 | 国内域名 | ai-radar.cn | ~¥35/年 | 适合中文 SEO |
 
-**配置方法**:
-```bash
-# 购买域名后，在 Cloudflare Dashboard 添加自定义域
-wrangler pages domain add ai-opportunity-radar --domain=ai-radar.dev
-# 然后在域名注册商添加 CNAME 指向 ai-opportunity-radar.pages.dev
+**GitHub Pages 自定义域名配置**:
+```
+1. 购买域名
+2. 在域名注册商添加 CNAME 记录: ai-radar.dev -> aunomira-lab.github.io
+3. 在仓库 Settings -> Pages -> Custom domain 添加域名
+4. GitHub 会自动生成 HTTPS 证书
 ```
 
----
-
-### P2 — 可选优化（不阻止上线）
-
-#### 5. 数据追踪工具
+#### 4. 数据追踪工具
 
 | 工具 | 用途 | 配置位置 |
 |------|------|----------|
@@ -170,14 +158,22 @@ wrangler pages domain add ai-opportunity-radar --domain=ai-radar.dev
 
 ## 用户授权步骤总览
 
-### 最小上线路径（30 分钟）
+### 最小可用上线路径（剩余 15 分钟）
 
 ```
-Step 1 (10min): Cloudflare 注册 + 创建 API Token
-Step 2 (10min): 小报童注册 + 创建专栏 + 复制链接
-Step 3 (5min):  替换销售页占位信息（微信/邮箱/支付链接）
-Step 4 (3min):  export CLOUDFLARE_API_TOKEN=xxx && ./deploy/deploy.sh production
-Step 5 (2min):  记录公开 URL，回填到相关文档
+Step 1 (10min): 小报童注册 + 创建专栏 + 复制链接
+   -> https://xiaobot.net -> 创建专栏 -> 定价 ¥29/月
+
+Step 2 (3min):  替换销售页占位信息（微信/邮箱/支付链接）
+   -> 编辑 site/index.html: 搜索 "占位" 并替换
+   -> 或运行: sed -i 's/AI-Radar-2026/你的微信号/g' site/index.html
+
+Step 3 (2min):  提交更改并自动重新部署
+   -> git add site/index.html && git commit -m "Update contact info"
+   -> git push origin main（触发 GitHub Actions 自动部署）
+
+Step 4 (即时):  验证更新后的公开 URL
+   -> curl -s https://aunomira-lab.github.io/knowledge-subscription/ | grep "你的微信号"
 ```
 
 ### 验证上线成功
@@ -191,29 +187,30 @@ grep -v 'AI-Radar-2026' site/index.html | grep -v 'contact@ai-radar.dev' >/dev/n
 # 2. 检查支付链接非占位
 grep -E 'xiaobot.net/p/|afdian.net/a/' site/index.html && echo "支付链接已配置"
 
-# 3. 执行部署
-./deploy/deploy.sh production
+# 3. 提交并触发自动部署
+git add site/index.html
+git commit -m "Activate payment and contact info"
+git push origin main
 
-# 4. 验证公开 URL
-curl -s -o /dev/null -w "%{http_code}" https://ai-opportunity-radar.pages.dev
+# 4. 等待 1-2 分钟后验证公开 URL
+curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/
 # 期望返回 200
-
-# 5. 运行本地测试
-python3 -m pytest tests/ -q && echo "测试通过"
 ```
 
 ---
 
 ## 通过条件
 
-### 从 BLOCKED_BY_USER -> LIVE
+### 从 PARTIALLY_UNBLOCKED -> FULLY_LIVE
 
 必须完成:
-- [ ] Cloudflare 账号注册并获取 API Token（或完成 wrangler login）
+- [x] GitHub 账号认证并启用 Pages（已完成）
+- [x] 销售页部署并返回 HTTP 200（已完成）
+- [x] 公开 URL 生成并回填到所有文件（已完成）
 - [ ] 至少一个支付渠道创建并获取真实收款链接
-- [ ] 销售页中的微信、邮箱、支付链接替换为真实值
-- [ ] `./deploy/deploy.sh production` 执行成功并返回 200
-- [ ] `reports/deployment_verification.md` 更新为 LIVE 状态并填写公开 URL
+- [ ] 销售页中的微信、邮箱替换为真实值
+- [ ] 提交代码触发自动重新部署
+- [ ] `reports/deployment_verification.md` 更新为 FULLY_LIVE 状态
 
 建议完成:
 - [ ] 配置 Google Analytics
@@ -233,10 +230,11 @@ python3 -m pytest tests/ -q && echo "测试通过"
 | 获客执行计划 | docs/launch_execution_plan.md |
 | 渠道数据 | metrics/launch_channels.csv |
 | 小报童帮助 | https://xiaobot.net/help |
-| Cloudflare Pages 文档 | https://developers.cloudflare.com/pages/ |
+| GitHub Pages 文档 | https://docs.github.com/en/pages |
 
 ---
 
 *本文档由 dev-deploy (deployer) 生成*
-*更新时间: 2026-05-23*
-*任务ID: 5fc6593c*
+*更新时间: 2026-05-24*
+*任务ID: 44b0dcd0*
+*公开 URL: https://aunomira-lab.github.io/knowledge-subscription/*

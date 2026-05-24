@@ -1,9 +1,9 @@
 # Incident Runbook: AI Architecture Weekly
 
 **Project ID**: knowledge-subscription  
-**Task ID**: 96cae9d2  
+**Task ID**: ab047a39  
 **Type**: monitoring (ops-support)  
-**Last Updated**: 2026-05-21  
+**Last Updated**: 2026-05-24  
 **Owner**: dev-optimizer (profitability-analyst)  
 **Severity Levels**: P0 (Critical) / P1 (High) / P2 (Medium) / P3 (Low)
 
@@ -18,6 +18,9 @@
 - Mass subscriber data breach
 - Legal cease-and-desist received
 - Founder / brand impersonation attack
+- **微信个人号被封/限流 (Phase 2 revenue channel dead)**
+- **用户投诉"诈骗"导致收款码被冻结**
+- **小红书账号被封导致主要流量断流**
 
 ### P1 — High (< 4 hr response)
 - MRR drops > 20% week-over-week with no known cause
@@ -26,6 +29,9 @@
 - Hacker News front-page traffic spike (opportunity but needs capture)
 - Major content error published (factual inaccuracy, broken code)
 - Churn spike > 12% in a single week
+- **收款码被冻结但另一平台可用**
+- **知乎/即刻账号异常限流**
+- **微信群被举报导致无法发言**
 
 ### P2 — Medium (< 24 hr response)
 - Email open rate < 30% for 2 consecutive sends
@@ -120,6 +126,35 @@
 6. **01:00-04:00** — If user provides auth (API Token / wrangler login success): run `./deploy/deploy.sh production`
 7. **Post-deploy** — Verify HTTP 200, check payment links are not placeholders, update `metrics/experiment_tracker.csv` with "unblocked" note
 8. **If unresolved > 48 hrs**: escalate to dev-architect with pivot recommendation (小报童-first or WeChat收款码 MVP)
+
+---
+
+## 3.5 Runbook: Phase 2 WeChat-native P0/P1 Incidents
+
+### 3.5.1 微信个人号被封 / 无法发消息 (P0)
+**Symptoms**: 无法发送私聊/群消息，提示"操作频繁"或永久封禁，新好友请求无法通过
+1. **00:00-00:10** — 停止所有群发和主动加人动作
+2. **00:10-00:20** — 尝试微信官方申诉: 微信 → 我 → 设置 → 账号与安全 → 微信安全中心 → 申诉
+3. **00:20-00:30** — 激活备用微信号: 立即在朋友圈/小红书里更新"加备用号 XXX"
+4. **00:30-01:00** — 通过小红书/知乎/即刻私信，通知高价值联系人新号
+5. **01:00-02:00** — 停止所有群聊推广3天; 内容发布切换到小红书/即刻/知乎纯平台模式
+6. **Post-recovery** — 降低主动加人频率(< 5/天); 减少群发; 增加被动引流(用户主动加)
+
+### 3.5.2 收款码被冻结 / 无法收款 (P0/P1)
+**Symptoms**: 用户扫码提示"交易异常"或"暂停服务"，微信/支付宝通知收款功能受限
+1. **00:00-00:10** — 立即切换另一平台(微信被封→用支付宝; 支付宝被封→用微信)
+2. **00:10-00:20** — 私信已报价但未付款的用户: "换了个收款方式，这是新的"
+3. **00:20-00:30** — 联系微信/支付宝客服，了解冻结原因和预计解封时间
+4. **00:30-01:00** — 如果双平台都被封: 暂停收款动作; 改为"免费体验+随喜打赏"模式
+5. **Post-fix** — 分散收款: 日常小额用微信，大额用支付宝; 避免单日收款突增
+
+### 3.5.3 小红书账号被封 (P1)
+**Symptoms**: 无法登录，笔记消失，收到平台违规通知
+1. **00:00-00:10** — 截图所有违规通知; 导出已发布笔记文本和图片备份
+2. **00:10-00:20** — 尝试申诉: 小红书 → 我 → 帮助与客服 → 账号申诉
+3. **00:20-00:30** — 激活备用渠道: 加大知乎/即刻/微信群发布频率
+4. **00:30-01:00** — 注册新小红书账号(使用不同手机号/设备); 养号3天不发营销内容
+5. **Post-recovery** — 新号前10篇只发纯价值，不加任何"加微信"CTA; 第11篇开始软植入
 
 ---
 

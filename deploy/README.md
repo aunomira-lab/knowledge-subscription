@@ -2,88 +2,52 @@
 
 **项目**: AI Opportunity Radar / 知识付费订阅
 **项目ID**: knowledge-subscription
-**任务ID**: 5fc6593c
-**部署平台**: Cloudflare Pages（主推）/ Vercel / GitHub Pages
-**当前状态**: BLOCKED_BY_USER — 需用户完成账号授权后方可上线
-**更新日期**: 2026-05-23
+**任务ID**: 44b0dcd0
+**部署平台**: GitHub Pages（已上线）
+**当前状态**: LIVE — 销售页已公开访问
+**公开 URL**: https://aunomira-lab.github.io/knowledge-subscription/
+**更新日期**: 2026-05-24
 **负责人**: dev-deploy (deployer)
 
 ---
 
-## 一、部署平台选择（三选一，推荐 Cloudflare Pages）
+## 一、部署平台选择
 
-| 平台 | 国内速度 | HTTPS | 自定义域名 | 后端支持 | 费用 | 推荐度 |
-|------|----------|-------|-----------|---------|------|--------|
-| **Cloudflare Pages** | 快 | 自动 | 免费支持 | Workers/KV | 免费 | 首推 |
-| **Vercel** | 一般 | 自动 | 免费支持 | Serverless | 免费 | 海外用户为主 |
-| **GitHub Pages** | 不稳定 | 自动 | 支持 | 无 | 免费 | 纯静态备选 |
+| 平台 | 国内速度 | HTTPS | 自定义域名 | 后端支持 | 费用 | 状态 |
+|------|----------|-------|-----------|---------|------|------|
+| **GitHub Pages** | 一般 | 自动 | 支持 | 无 | 免费 | **已上线** |
+| **Cloudflare Pages** | 快 | 自动 | 免费支持 | Workers/KV | 免费 | 备选（需 API Token） |
+| **Vercel** | 一般 | 自动 | 免费支持 | Serverless | 免费 | 备选 |
 
-**结论**: 选择 Cloudflare Pages。国内访问体验最佳，支持 Workers 做表单后端，且免费额度充足。
+**当前选择**: GitHub Pages。
+- 优点: 无需额外账号授权（GitHub 已认证），零成本，自动 HTTPS
+- 缺点: 国内访问速度一般，无后端支持（可用 GitHub Actions 补充）
+- 后续可迁移至 Cloudflare Pages 提升国内速度
 
 ---
 
-## 二、用户账号授权步骤（必须完成）
+## 二、用户账号授权步骤（已完成/待完成）
 
-### 2.1 Cloudflare 账号注册与授权（两种模式）
+### 2.1 GitHub Pages 部署授权（已完成）
 
-#### 模式 A：OAuth 交互登录（推荐用于本地开发）
+| 字段 | 状态 | 说明 |
+|------|------|------|
+| GitHub 账号 | 已认证 | aunomira-lab |
+| 仓库创建 | 已完成 | https://github.com/aunomira-lab/knowledge-subscription |
+| GitHub Pages 启用 | 已完成 | 从 gh-pages 分支部署 |
+| 公开 URL 生成 | 已完成 | https://aunomira-lab.github.io/knowledge-subscription/ |
 
-```bash
-# 步骤1: 注册账号
-# 访问 https://dash.cloudflare.com/sign-up
-# 需要：邮箱 + 密码 + 手机验证（部分区域）
+### 2.2 支付渠道账号（收款用，BLOCKED_BY_USER）
 
-# 步骤2: 安装 Wrangler CLI
-npm install -g wrangler
-
-# 步骤3: 登录授权（浏览器会弹出 OAuth 页面）
-wrangler login
-
-# 步骤4: 验证登录
-wrangler whoami
-# 期望输出: 你的邮箱 + Account ID
-
-# 步骤5: 记录 Account ID（部署和配置域名时需要）
-# 在 Cloudflare Dashboard 右侧边栏复制
-```
-
-#### 模式 B：API Token 无头登录（推荐用于 CI/服务器/无浏览器环境）
-
-```bash
-# 步骤1: 在 Cloudflare Dashboard 创建 API Token
-# 访问: https://dash.cloudflare.com/profile/api-tokens
-# 点击 "Create Token" -> "Custom token"
-# 权限设置:
-#   - Account: Cloudflare Pages: Edit
-#   - Zone: (如使用自定义域名) Zone: Read
-# 账户资源: 包含你的账户
-# 然后 "Continue to summary" -> "Create Token"
-# 复制生成的 Token（只显示一次）
-
-# 步骤2: 设置环境变量（当前终端会话）
-export CLOUDFLARE_API_TOKEN="你的Token字符串"
-
-# 步骤3: 验证 Token 有效
-wrangler whoami
-# 期望输出包含你的邮箱和 Account ID
-
-# 步骤4: 执行部署（无需浏览器交互）
-./deploy/deploy.sh production
-```
-
-**注意**: 模式 B 是服务器/CI 环境的唯一可行方式。本项目当前环境没有浏览器，必须使用模式 B 或用户手动 OAuth 后返回继续。
-
-### 2.2 支付渠道账号（收款用，至少配置一个）
-
-| 渠道 | 注册地址 | 要求 | 费率 | 适合阶段 |
+| 渠道 | 注册地址 | 要求 | 费率 | 当前状态 |
 |------|----------|------|------|----------|
-| **小报童** | https://xiaobot.net | 微信个人号即可 | 5-10% | 首推，内容付费专用 |
-| **爱发电** | https://afdian.net | 手机号即可 | 6% | 备选，创作者支持 |
-| **Stripe** | https://stripe.com | 海外银行卡/公司 | 2.9%+$0.30 | 海外用户 |
+| **小报童** | https://xiaobot.net | 微信个人号即可 | 5-10% | **未注册** |
+| **爱发电** | https://afdian.net | 手机号即可 | 6% | **未注册** |
+| **Stripe** | https://stripe.com | 海外银行卡/公司 | 2.9%+$0.30 | **未注册** |
 
 > 第一阶段建议：先开小报童专栏，0 成本启动，有收入后再升级正式支付。
 
-### 2.3 联系信息填充（销售页必填）
+### 2.3 联系信息填充（销售页必填，BLOCKED_BY_USER）
 
 编辑 `site/index.html`，搜索以下占位符并替换为真实信息：
 
@@ -97,40 +61,38 @@ wrangler whoami
 
 ---
 
-## 三、可执行部署脚本
+## 三、可执行部署/定时脚本
 
-### 3.1 一键部署脚本（已就绪）
+### 3.1 一键部署脚本
 
-文件: `deploy/deploy.sh`
+文件: `deploy/deploy.sh`（Cloudflare Pages 方案）
 
-**使用方法**:
+使用方法:
 
 ```bash
-# 进入项目目录
 cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
-
-# 赋予执行权限（首次）
 chmod +x deploy/deploy.sh
-
-# 部署到测试环境
-./deploy/deploy.sh staging
-
-# 部署到生产环境
 ./deploy/deploy.sh production
 ```
 
-**脚本行为**:
-1. 检查 Node.js 和 Wrangler 是否安装
-2. 检查 Cloudflare 登录状态（支持 OAuth 和 API Token 两种模式）
-3. 检查 `site/index.html` 是否存在
-4. 自动创建 Cloudflare Pages 项目（如果不存在）
-5. 执行部署并返回公开 URL
-6. 部署后自动 curl 验证 HTTP 200
-7. 生成部署记录到 `reports/deploy_YYYYMMDD_HHMMSS.log`
+### 3.2 GitHub Pages 自动部署脚本（已配置）
 
-### 3.2 定时自动部署脚本（内容更新后自动重新部署）
+GitHub Actions workflow 文件: `.github/workflows/deploy.yml`
 
-文件: `deploy/cron-deploy.sh`（已就绪）
+行为:
+1. 每次 push 到 main 分支时自动触发
+2. 上传 `site/` 目录为 artifact
+3. 部署到 GitHub Pages
+4. 公开 URL: https://aunomira-lab.github.io/knowledge-subscription/
+
+**手动触发**:
+```bash
+gh workflow run deploy.yml --repo aunomira-lab/knowledge-subscription
+```
+
+### 3.3 定时自动部署脚本（内容更新后自动重新部署）
+
+文件: `deploy/cron-deploy.sh`
 
 ```bash
 #!/bin/bash
@@ -153,13 +115,16 @@ if [ -f "$LAST_DEPLOY_FILE" ] && [ "$CURRENT_HASH" == "$(cat $LAST_DEPLOY_FILE)"
     exit 0
 fi
 
-# 执行部署
-bash deploy/deploy.sh production
+# 重新推送触发 GitHub Actions 部署
+cd "$PROJECT_DIR"
+git add site/
+git commit -m "Auto-deploy: update sales page $(date '+%Y-%m-%d %H:%M')" || true
+git push origin main
 
 # 记录哈希
 echo "$CURRENT_HASH" > "$LAST_DEPLOY_FILE"
 
-echo "[$(date)] 自动部署完成"
+echo "[$(date)] 自动部署触发完成"
 ```
 
 **赋予权限并加入 crontab**:
@@ -170,88 +135,28 @@ chmod +x deploy/cron-deploy.sh
 # 编辑 crontab
 crontab -e
 
-# 添加以下行（每天早8点自动部署）
+# 添加以下行（每天早8点自动检查并部署）
 0 8 * * * /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/deploy/cron-deploy.sh >> /tmp/cron-deploy.log 2>&1
 
 # 查看 crontab 是否添加成功
 crontab -l | grep cron-deploy
 ```
 
-### 3.3 GitHub Actions CI/CD 自动部署
-
-创建 `.github/workflows/deploy.yml`:
-
-```yaml
-name: Deploy to Cloudflare Pages
-
-on:
-  push:
-    branches: [main]
-  schedule:
-    # 每天 UTC 00:00 执行（北京时间 08:00）
-    - cron: '0 0 * * *'
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install Wrangler
-        run: npm install -g wrangler
-
-      - name: Deploy to Cloudflare Pages
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: |
-          wrangler pages deploy site --project-name=ai-opportunity-radar
-
-      - name: Notify on success
-        run: echo "Deployment completed at $(date)"
-```
-
-**配置 Secrets**:
-1. GitHub Repo -> Settings -> Secrets and variables -> Actions
-2. 添加 `CLOUDFLARE_API_TOKEN`（从 Cloudflare Dashboard -> My Profile -> API Tokens 创建）
-3. 添加 `CLOUDFLARE_ACCOUNT_ID`
-
 ---
 
 ## 四、公开 URL 回填位置
 
-部署成功后，Cloudflare 会输出类似 `https://ai-opportunity-radar.pages.dev` 的 URL。
+部署成功后，公开 URL 为: `https://aunomira-lab.github.io/knowledge-subscription/`
 
-必须回填到以下文件（否则获客链接会 404）:
+已回填到以下文件:
 
-| 文件 | 回填内容示例 | 说明 |
-|------|-------------|------|
-| `site/index.html` | 页脚链接、OG url、表单 action | 所有外部链接需要真实域名 |
-| `reports/deployment_verification.md` | 验证结果 + 公开 URL | 本任务强制产出文件 |
-| `docs/launch_execution_plan.md` | 获客计划中的网站地址 | 否则宣传时没有落地页 |
-| `README.md` | 项目主页链接 | 方便 GitHub 访问者 |
-| `metrics/launch_channels.csv` | 渠道跟踪参数 | 用于区分各渠道流量来源 |
-
-**回填命令示例**:
-
-```bash
-# 假设部署后 URL 为 https://ai-opportunity-radar.pages.dev
-URL="https://ai-opportunity-radar.pages.dev"
-
-# 1. 回填到 launch_execution_plan.md
-sed -i "s|your-actual-domain.com|$URL|g" docs/launch_execution_plan.md
-
-# 2. 回填到 README.md
-sed -i "s|your-actual-domain.com|$URL|g" README.md
-
-# 3. 回填到 metrics/launch_channels.csv（utm_source 参数）
-# CSV 中已预留占位，替换为真实域名即可
-```
+| 文件 | 回填内容 | 状态 |
+|------|---------|------|
+| `site/index.html` | OG url、页脚链接 | 已回填 |
+| `reports/deployment_verification.md` | 验证结果 + 公开 URL | 已更新 |
+| `docs/launch_execution_plan.md` | 获客计划中的网站地址 | 已回填 |
+| `metrics/launch_channels.csv` | 渠道跟踪参数（UTM） | 已回填 |
+| `deploy/README.md` | 部署说明中的 URL | 已回填 |
 
 ---
 
@@ -265,7 +170,7 @@ sed -i "s|your-actual-domain.com|$URL|g" README.md
 | 专业版 CTA | 按钮 | 占位 | 同上 |
 | 定制版 CTA | 按钮 | 跳转至表单 | 可直接使用 |
 | 联系表单 | mailto | 可用 | 用户提交后打开邮件客户端发送申请 |
-| 支付链接 | 外部链接 | 占位 | 指向 xiaobot.net / afdian.net / stripe.com，需替换 |
+| 支付链接 | 外部链接 | 占位 | 指向 xiaobot.net / afdian.net / stripe.com 首页，需替换为具体收款页 |
 
 ### 5.2 最小可用收款方案（无需后端，1 小时上线）
 
@@ -274,32 +179,11 @@ sed -i "s|your-actual-domain.com|$URL|g" README.md
 - 优点: 零成本、零配置、立即可用
 - 缺点: 需要用户有邮件客户端
 
-**方案 B: Tally.so 表单（推荐作为下一步）**
-
-```html
-<!-- 在 site/index.html 的 #contact 区域替换原有 form -->
-<iframe
-  src="https://tally.so/embed/your-form-id?alignLeft=1&hideTitle=1&transparentBackground=1"
-  width="100%"
-  height="500"
-  frameborder="0"
-  marginheight="0"
-  marginwidth="0"
-  title="订阅申请">
-</iframe>
-```
-
-步骤:
-1. 注册 https://tally.so（免费额度 1000 条/月）
-2. 创建表单：姓名、联系方式、方案选择、来源
-3. 设置通知：表单提交后邮件/Slack 通知你
-4. 复制嵌入代码替换 site/index.html 中的 form
-
-**方案 C: 小报童直接收款（目标状态）**
+**方案 B: 小报童直接收款（目标状态）**
 1. 注册小报童 -> 创建专栏 -> 设置价格（¥29/月）
 2. 获取专栏链接: `https://xiaobot.net/p/xxx`
-3. 替换 site/index.html 中所有指向 xiaobot.net 的占位链接
-4. 用户点击"立即订阅" -> 直接跳转小报童 -> 微信支付 -> 完成
+3. 替换 site/index.html 中占位链接
+4. 用户点击"立即订阅" -> 直接跳转 -> 微信支付 -> 完成
 
 ---
 
@@ -307,14 +191,14 @@ sed -i "s|your-actual-domain.com|$URL|g" README.md
 
 已规划 6 个核心宣传平台，覆盖中文和海外流量：
 
-| 优先级 | 平台 | 获客成本 | 预期日流量 | 转化率预估 | 内容形式 | 启动日期 |
-|--------|------|----------|-----------|-----------|----------|----------|
-| **P0** | **知乎** | ¥0-10 | 100-300 | 2% | 深度回答+专栏 | Day 1 |
-| **P0** | **小红书** | ¥0-5 | 200-500 | 1.5% | 图文笔记+短视频 | Day 1 |
-| **P0** | **即刻** | ¥0 | 50-150 | 3% | 动态+圈子+AMA | Day 1 |
-| **P1** | **Twitter/X** | ¥0-20 | 50-200 | 2% | Thread+互动 | Day 2 |
-| **P1** | **V2EX** | ¥0 | 30-100 | 5% | 项目分享 | Day 2 |
-| **P1** | **微信社群** | ¥0 | 20-50 | 5% | 价值输出 | Day 2 |
+| 优先级 | 平台 | 获客成本 | 预期日流量 | 转化率预估 | 内容形式 | 启动日期 | 状态 |
+|--------|------|----------|-----------|-----------|----------|----------|------|
+| **P0** | **知乎** | ¥0-10 | 100-300 | 2% | 深度回答+专栏 | Day 1 | 待启动 |
+| **P0** | **小红书** | ¥0-5 | 200-500 | 1.5% | 图文笔记+短视频 | Day 1 | 待启动 |
+| **P0** | **即刻** | ¥0 | 50-150 | 3% | 动态+圈子+AMA | Day 1 | 待启动 |
+| **P1** | **Twitter/X** | ¥0-20 | 50-200 | 2% | Thread+互动 | Day 2 | 待启动 |
+| **P1** | **V2EX** | ¥0 | 30-100 | 5% | 项目分享 | Day 2 | 待启动 |
+| **P1** | **微信社群** | ¥0 | 20-50 | 5% | 价值输出 | Day 2 | 待启动 |
 
 详细获客策略、每日执行计划、风险预案见 `docs/launch_execution_plan.md`。
 渠道 UTM 追踪链接见 `metrics/launch_channels.csv`。
@@ -342,8 +226,8 @@ sed -i "s|your-actual-domain.com|$URL|g" README.md
 
 | 条件 | 状态 | 说明 | 责任人 | 截止日 |
 |------|------|------|--------|--------|
-| 公开可访问的网站 | 等待授权 | 部署到 Cloudflare Pages，有 HTTPS | 用户 | Day 0 |
-| 支付通道 | 等待授权 | 小报童专栏链接就绪 | 用户 | Day 1 |
+| 公开可访问的网站 | **已完成** | GitHub Pages 已上线，HTTPS 就绪 | dev-deploy | Day 0 |
+| 支付通道 | BLOCKED_BY_USER | 小报童专栏链接待创建 | 用户 | Day 1 |
 | 转化追踪 | 建议配置 | Google Analytics 或百度统计 | dev-monitor | Day 2 |
 | 广告素材 | 模板已就绪 | 3-5 套图文素材（小红书 3:4） | dev-deploy | Day 4 |
 | 日预算 | 已确定 | ¥50-100/天测试 | dev-deploy | — |
@@ -410,11 +294,10 @@ python3 -m http.server 8080 --directory site &
 # 打开浏览器访问 http://localhost:8080
 ```
 
-### 9.2 部署后验证
+### 9.2 部署后验证（已执行，结果见 reports/deploy_verify_44b0dcd0.txt）
 
 ```bash
-# 假设部署后的 URL
-URL="https://ai-opportunity-radar.pages.dev"
+URL="https://aunomira-lab.github.io/knowledge-subscription/"
 
 # 1. HTTP 200 检查
 curl -s -o /dev/null -w "%{http_code}\n" "$URL"
@@ -428,11 +311,11 @@ curl -s "$URL" | grep -o 'handleSubmit' | head -1
 # 3. 移动端 viewport 检查
 curl -s "$URL" | grep -q 'viewport' && echo '移动端适配: 通过'
 
-# 4. 响应头检查（确认 HTTPS + Cloudflare）
-curl -I "$URL" 2>/dev/null | grep -E '(HTTP/2|cloudflare|cf-ray)'
+# 4. 响应头检查（确认 HTTPS + GitHub Pages）
+curl -I "$URL" 2>/dev/null | grep -E '(HTTP/2|GitHub)'
 
 # 5. 端到端转化测试
-URL_WITH_UTM="https://ai-opportunity-radar.pages.dev?utm_source=zhihu&utm_medium=answer&utm_campaign=launch"
+URL_WITH_UTM="${URL}?utm_source=zhihu&utm_medium=answer&utm_campaign=launch"
 curl -s "$URL_WITH_UTM" | grep -q 'AI Opportunity Radar' && echo 'UTM 链接落地正常: 通过'
 
 # 6. 表单字段存在性检查
@@ -446,50 +329,38 @@ curl -s "$URL" | grep -o '<input' | wc -l
 
 | 检查项 | 状态 | 说明 |
 |--------|------|------|
-| 销售页 HTML | 就绪 | site/index.html (30KB+)，含定价/表单/FAQ/CTA/OG标签/响应式 |
-| 部署脚本 | 就绪 | deploy/deploy.sh (4.8KB)，可执行，已修复 whoami 检测bug |
+| 销售页 HTML | 已上线 | site/index.html (31KB+)，含定价/表单/FAQ/CTA/OG标签/响应式 |
+| 部署脚本 | 就绪 | deploy/deploy.sh (Cloudflare 方案) |
+| GitHub Actions 部署 | 已上线 | `.github/workflows/deploy.yml` 自动触发 |
 | 定时脚本 | 就绪 | deploy/cron-deploy.sh，待加入 crontab |
-| CI/CD 配置 | 待配置 | .github/workflows/deploy.yml 模板已提供 |
-| Cloudflare 账号 | 未授权 | 需用户执行 `wrangler login` 或提供 API Token |
-| 支付渠道 | 未配置 | 需用户注册小报童/爱发电并替换链接 |
+| GitHub Pages 域名 | 已生成 | https://aunomira-lab.github.io/knowledge-subscription/ |
+| 公开 URL 验证 | 通过 | HTTP 200，所有关键内容存在 |
+| 支付渠道 | BLOCKED_BY_USER | 需用户注册小报童/爱发电并替换链接 |
 | 联系信息 | 占位符 | 微信/邮箱为占位，需替换为真实信息 |
-| 公开 URL | 未生成 | 部署成功后自动生成 .pages.dev 域名 |
 | 自定义域名 | 可选 | 建议后续购买 .com/.cn 域名 |
 | 部署验证报告 | 已更新 | 见 reports/deployment_verification.md |
 | 获客计划 | 已就绪 | 见 docs/launch_execution_plan.md |
 | 渠道清单 | 已就绪 | 见 metrics/launch_channels.csv |
 
-**已知问题修复**:
-- 2026-05-22: 修复 deploy.sh 中 `wrangler whoami` 在未登录时返回 exit 0 导致误判为已登录的 bug。现在同时检测 API Token 环境变量和 whoami 输出中的 "not authenticated" 字符串。
-
-**结论**: 技术层面全部就绪，BLOCKED_BY_USER 等待账号授权。用户完成授权后 5 分钟内可上线。
-
 ---
 
-## 十一、快速上线 checklist（用户侧）
+## 十一、快速上线 checklist（用户侧 — 剩余 BLOCKED 项）
 
-用户按以下步骤操作，预计 30 分钟可完成上线：
+用户按以下步骤操作，预计 20 分钟可完成剩余配置：
 
 ```
-1. 注册 Cloudflare 账号 (5min)
-   -> https://dash.cloudflare.com/sign-up
-
-2. 安装 Wrangler 并登录 (5min)
-   -> npm install -g wrangler && wrangler login
-
-3. 注册小报童专栏（至少一个支付渠道）(10min)
+Step 1 (10min): 注册小报童专栏（至少一个支付渠道）
    -> https://xiaobot.net -> 创建专栏 -> 定价 ¥29/月
 
-4. 替换销售页占位信息 (5min)
-   -> 编辑 site/index.html: 微信、邮箱、支付链接
+Step 2 (5min):  替换销售页占位信息（微信/邮箱/支付链接）
+   -> 编辑 site/index.html: 搜索 "占位" 并替换
+   -> 或运行: sed -i 's/AI-Radar-2026/你的微信号/g' site/index.html
 
-5. 运行部署脚本 (3min)
-   -> ./deploy/deploy.sh production
+Step 3 (3min):  提交更改并自动重新部署
+   -> git add site/index.html && git commit -m "Update contact info"
+   -> git push origin main（触发 GitHub Actions 自动部署）
 
-6. 记录公开 URL 并回填 (2min)
-   -> 更新 launch_execution_plan.md、README.md
-
-7. 验证部署 (5min)
+Step 4 (2min):  验证部署
    -> curl 检查 + 浏览器访问 + 手机端检查
 ```
 
@@ -499,16 +370,12 @@ curl -s "$URL" | grep -o '<input' | wc -l
 
 | 问题 | 原因 | 解决方案 |
 |------|------|----------|
-| `wrangler: command not found` | Node.js 或 wrangler 未安装 | `npm install -g wrangler` |
-| `wrangler login` 无反应 | 终端不支持浏览器弹出 | 复制输出的 URL 手动在浏览器打开 |
-| 部署后 404 | 项目名已存在但属于其他账号 | 换一个 PROJECT_NAME 或删除旧项目 |
-| 页面中文乱码 | HTML 未指定 charset | 确认 `<meta charset="UTF-8">` 存在 |
-| 表单提交无反应 | mailto 被浏览器阻止 | 检查用户是否安装了邮件客户端；或改用 Tally.so |
-| 支付链接跳转后 404 | 占位链接未替换 | 按 2.3 节替换为真实小报童/爱发电链接 |
-| `not authenticated` 错误 | API Token 无效或过期 | 重新在 Dashboard 创建 Token 并 export |
+| 网站 404 | gh-pages 分支未生成或构建中 | 等待 1-2 分钟，或检查 GitHub Actions 状态 |
+| 样式不生效 | GitHub Pages CDN 缓存 | 强制刷新 (Ctrl+Shift+R) 或加 `?v=2` |
+| 支付链接无效 | 未替换占位链接 | 编辑 site/index.html 替换为小报童真实链接 |
+| 邮件无法发送 | 用户无邮件客户端 | 改用微信/表单联系 |
+| 国内访问慢 | GitHub Pages 服务器在海外 | 后续可迁移至 Cloudflare Pages |
 
 ---
 
-**文档维护**: dev-deploy
-**下次更新时机**: 用户完成授权并首次部署后，更新此文件中的状态和 URL。
-**任务ID**: 5fc6593c
+**结论**: 销售页已上线并可公开访问。剩余 BLOCKED_BY_USER 项：支付渠道配置、联系信息替换。用户完成替换后，提交代码即可自动重新部署。

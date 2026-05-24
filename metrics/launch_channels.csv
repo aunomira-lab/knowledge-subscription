@@ -1,29 +1,29 @@
 平台,渠道类型,获客成本_CAC,预期日流量,转化率_预估,优先级,执行状态,账号要求,启动日期,负责人,备注,内容形式,投放预算_日,UTM追踪链接模板
-知乎,内容平台,0-10,100-300,2%,P0,待启动,个人号即可,Day 1,dev-deploy,回答热门问题+专栏文章,深度回答,0,https://ai-opportunity-radar.pages.dev/?utm_source=zhihu&utm_medium=answer&utm_campaign=launch
-小红书,内容平台,0-5,200-500,1.5%,P0,待启动,个人号即可,Day 1,dev-deploy,图文+短视频,图文笔记,50,https://ai-opportunity-radar.pages.dev/?utm_source=xiaohongshu&utm_medium=note&utm_campaign=launch
-即刻,社群平台,0,50-150,3%,P0,待启动,邀请码注册,Day 1,dev-deploy,动态+圈子+AMA,短动态+讨论,0,https://ai-opportunity-radar.pages.dev/?utm_source=jike&utm_medium=post&utm_campaign=launch
-Twitter_X,社交媒体,0-20,50-200,2%,P1,待启动,国际网络,Day 2,dev-deploy,Thread+互动,英文内容,0,https://ai-opportunity-radar.pages.dev/?utm_source=twitter&utm_medium=thread&utm_campaign=launch
-V2EX,技术社区,0,30-100,5%,P1,待启动,注册7天以上,Day 2,dev-deploy,分享项目+技术文章,技术分享,0,https://ai-opportunity-radar.pages.dev/?utm_source=v2ex&utm_medium=post&utm_campaign=launch
-微信群,社群,0,20-50,5%,P1,待启动,已有群资源,Day 2,dev-deploy,价值输出不硬广,群内分享,0,https://ai-opportunity-radar.pages.dev/?utm_source=wechat_group&utm_medium=share&utm_campaign=launch
-GitHub,开发者社区,0,20-80,4%,P1,待启动,账号即可,Day 3,dev-deploy,开源部分代码,README+代码,0,https://ai-opportunity-radar.pages.dev/?utm_source=github&utm_medium=readme&utm_campaign=launch
-掘金,技术社区,0,40-120,3%,P1,待启动,账号即可,Day 3,dev-deploy,技术博客,技术文章,0,https://ai-opportunity-radar.pages.dev/?utm_source=juejin&utm_medium=article&utm_campaign=launch
-微信公众号,内容平台,0-50,50-200,2%,P2,待启动,需注册+认证,Day 5,dev-deploy,长期运营,长文章,0,https://ai-opportunity-radar.pages.dev/?utm_source=wechat_mp&utm_medium=article&utm_campaign=launch
-知乎知+,付费广告,10-30,200-500,1.5%,P2,待启动,实名认证+充值,Day 4,dev-deploy,内容加热,回答推广,100,https://ai-opportunity-radar.pages.dev/?utm_source=zhihu_plus&utm_medium=ad&utm_campaign=launch
-小红书薯条,付费广告,5-20,300-800,1%,P2,待启动,充值100起,Day 4,dev-deploy,笔记推广,图文推广,50,https://ai-opportunity-radar.pages.dev/?utm_source=xiaohongshu_ads&utm_medium=ad&utm_campaign=launch
-Discord,社群,0,10-30,4%,P2,待启动,账号即可,Day 3,dev-deploy,海外用户,英文社群,0,https://ai-opportunity-radar.pages.dev/?utm_source=discord&utm_medium=invite&utm_campaign=launch
-Telegram,社群,0,15-40,3%,P2,待启动,账号即可,Day 3,dev-deploy,海外用户,频道+群组,0,https://ai-opportunity-radar.pages.dev/?utm_source=telegram&utm_medium=post&utm_campaign=launch
-Indie_Hackers,社区,0,10-25,6%,P2,待启动,英文内容,Day 4,dev-deploy,英文销售页,案例分享,0,https://ai-opportunity-radar.pages.dev/?utm_source=indiehackers&utm_medium=post&utm_campaign=launch
-Product_Hunt,产品发布,0,50-200,2%,P2,待启动,需准备,Day 7,dev-deploy,MVP完成后发布,产品页,0,https://ai-opportunity-radar.pages.dev/?utm_source=producthunt&utm_medium=launch&utm_campaign=launch
-Hacker_News,社区,0,30-100,3%,P2,待启动,Show_HN,Day 3,dev-deploy,技术向内容,Show HN,0,https://ai-opportunity-radar.pages.dev/?utm_source=hackernews&utm_medium=showhn&utm_campaign=launch
-B站,视频平台,0-10,100-300,1%,P2,待启动,账号即可,Day 5,dev-deploy,后期视频内容,视频,0,https://ai-opportunity-radar.pages.dev/?utm_source=bilibili&utm_medium=video&utm_campaign=launch
-抖音,短视频,0-15,200-600,0.8%,P2,待启动,账号即可,Day 6,dev-deploy,短视频引流,短视频,0,https://ai-opportunity-radar.pages.dev/?utm_source=douyin&utm_medium=video&utm_campaign=launch
-邮件营销,私域,0,50-150,4%,P1,待启动,邮件列表,Day 4,dev-deploy,已有用户二次触达,邮件,0,https://ai-opportunity-radar.pages.dev/?utm_source=email&utm_medium=newsletter&utm_campaign=launch
-SEO自然流量,搜索,0,10-50,3%,P3,待启动,长期优化,持续,dev-deploy,内容SEO优化,文章,0,https://ai-opportunity-radar.pages.dev/?utm_source=organic&utm_medium=search&utm_campaign=launch
-KOL合作,合作,0-50,100-500,2%,P1,待启动,需洽谈,Day 5,dev-deploy,微型KOL置换,推荐,0,https://ai-opportunity-radar.pages.dev/?utm_source=kol&utm_medium=referral&utm_campaign=launch
-友链交换,合作,0,20-60,2%,P2,待启动,需洽谈,Day 6,dev-deploy,同类站点,链接,0,https://ai-opportunity-radar.pages.dev/?utm_source=referral&utm_medium=link&utm_campaign=launch
-线下活动,活动,50-200,30-100,8%,P3,待启动,需组织,后期,dev-deploy,AI创业者聚会,活动,200,https://ai-opportunity-radar.pages.dev/?utm_source=offline&utm_medium=event&utm_campaign=launch
-播客/采访,内容,0,20-80,4%,P3,待启动,需邀约,后期,dev-deploy,做客相关播客,音频,0,https://ai-opportunity-radar.pages.dev/?utm_source=podcast&utm_medium=interview&utm_campaign=launch
-免费工具引流,产品,0,50-200,3%,P2,待启动,开发成本,Day 7,dev-deploy,提供限免工具,工具,0,https://ai-opportunity-radar.pages.dev/?utm_source=tool&utm_medium=free&utm_campaign=launch
+知乎,内容平台,0-10,100-300,2%,P0,待启动,个人号即可,Day 1,dev-deploy,回答热门问题+专栏文章,深度回答,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=zhihu&utm_medium=answer&utm_campaign=launch
+小红书,内容平台,0-5,200-500,1.5%,P0,待启动,个人号即可,Day 1,dev-deploy,图文+短视频,图文笔记,50,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=xiaohongshu&utm_medium=note&utm_campaign=launch
+即刻,社群平台,0,50-150,3%,P0,待启动,邀请码注册,Day 1,dev-deploy,动态+圈子+AMA,短动态+讨论,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=jike&utm_medium=post&utm_campaign=launch
+Twitter_X,社交媒体,0-20,50-200,2%,P1,待启动,国际网络,Day 2,dev-deploy,Thread+互动,英文内容,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=twitter&utm_medium=thread&utm_campaign=launch
+V2EX,技术社区,0,30-100,5%,P1,待启动,注册7天以上,Day 2,dev-deploy,分享项目+技术文章,技术分享,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=v2ex&utm_medium=post&utm_campaign=launch
+微信群,社群,0,20-50,5%,P1,待启动,已有群资源,Day 2,dev-deploy,价值输出不硬广,群内分享,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=wechat_group&utm_medium=share&utm_campaign=launch
+GitHub,开发者社区,0,20-80,4%,P1,待启动,账号即可,Day 3,dev-deploy,开源部分代码,README+代码,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=github&utm_medium=readme&utm_campaign=launch
+掘金,技术社区,0,40-120,3%,P1,待启动,账号即可,Day 3,dev-deploy,技术博客,技术文章,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=juejin&utm_medium=article&utm_campaign=launch
+微信公众号,内容平台,0-50,50-200,2%,P2,待启动,需注册+认证,Day 5,dev-deploy,长期运营,长文章,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=wechat_mp&utm_medium=article&utm_campaign=launch
+知乎知+,付费广告,10-30,200-500,1.5%,P2,待启动,实名认证+充值,Day 4,dev-deploy,内容加热,回答推广,100,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=zhihu_plus&utm_medium=ad&utm_campaign=launch
+小红书薯条,付费广告,5-20,300-800,1%,P2,待启动,充值100起,Day 4,dev-deploy,笔记推广,图文推广,50,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=xiaohongshu_ads&utm_medium=ad&utm_campaign=launch
+Discord,社群,0,10-30,4%,P2,待启动,账号即可,Day 3,dev-deploy,海外用户,英文社群,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=discord&utm_medium=invite&utm_campaign=launch
+Telegram,社群,0,15-40,3%,P2,待启动,账号即可,Day 3,dev-deploy,海外用户,频道+群组,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=telegram&utm_medium=post&utm_campaign=launch
+Indie_Hackers,社区,0,10-25,6%,P2,待启动,英文内容,Day 4,dev-deploy,英文销售页,案例分享,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=indiehackers&utm_medium=post&utm_campaign=launch
+Product_Hunt,产品发布,0,50-200,2%,P2,待启动,需准备,Day 7,dev-deploy,MVP完成后发布,产品页,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=producthunt&utm_medium=launch&utm_campaign=launch
+Hacker_News,社区,0,30-100,3%,P2,待启动,Show_HN,Day 3,dev-deploy,技术向内容,Show HN,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=hackernews&utm_medium=showhn&utm_campaign=launch
+B站,视频平台,0-10,100-300,1%,P2,待启动,账号即可,Day 5,dev-deploy,后期视频内容,视频,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=bilibili&utm_medium=video&utm_campaign=launch
+抖音,短视频,0-15,200-600,0.8%,P2,待启动,账号即可,Day 6,dev-deploy,短视频引流,短视频,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=douyin&utm_medium=video&utm_campaign=launch
+邮件营销,私域,0,50-150,4%,P1,待启动,邮件列表,Day 4,dev-deploy,已有用户二次触达,邮件,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=email&utm_medium=newsletter&utm_campaign=launch
+SEO自然流量,搜索,0,10-50,3%,P3,待启动,长期优化,持续,dev-deploy,内容SEO优化,文章,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=organic&utm_medium=search&utm_campaign=launch
+KOL合作,合作,0-50,100-500,2%,P1,待启动,需洽谈,Day 5,dev-deploy,微型KOL置换,推荐,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=kol&utm_medium=referral&utm_campaign=launch
+友链交换,合作,0,20-60,2%,P2,待启动,需洽谈,Day 6,dev-deploy,同类站点,链接,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=referral&utm_medium=link&utm_campaign=launch
+线下活动,活动,50-200,30-100,8%,P3,待启动,需组织,后期,dev-deploy,AI创业者聚会,活动,200,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=offline&utm_medium=event&utm_campaign=launch
+播客/采访,内容,0,20-80,4%,P3,待启动,需邀约,后期,dev-deploy,做客相关播客,音频,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=podcast&utm_medium=interview&utm_campaign=launch
+免费工具引流,产品,0,50-200,3%,P2,待启动,开发成本,Day 7,dev-deploy,提供限免工具,工具,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=tool&utm_medium=free&utm_campaign=launch
 
 # 平台详细说明与执行要点
 # =====================================
