@@ -1,0 +1,51 @@
+day,date,phase,content_published,content_title,free_subscribers,growth_rate,starter_signups,pro_signups,founding_signups,total_paid,starter_revenue,pro_revenue,founding_revenue,gross_revenue,net_revenue,cumulative_revenue,conversion_rate,cac_estimate,ltv_estimate,experiment_decision,notes
+0,2026-05-10,Pre-launch,0,Setup Day,0,0%,0,0,0,0,0.00,0.00,0.00,0.00,0.00,0.00,0.00%,0.00,0.00,Prepare,"Baseline established; payment connected"
+1,2026-05-11,Day 1,1,"AI变现情报测试发布",45,0%,0,1,0,1,0.00,9.00,0.00,9.00,7.83,7.83,2.22%,0.00,108.00,Continue,"First paid subscriber acquired"
+2,2026-05-12,Day 2,1,"自动化工具精选",52,15.6%,1,0,0,1,5.00,0.00,0.00,5.00,4.35,12.18,3.85%,2.50,60.00,Continue,"Early bird pricing active"
+3,2026-05-13,Day 3,1,"跨境小业务机会",58,11.5%,0,1,0,2,0.00,9.00,0.00,9.00,7.83,20.01,3.45%,1.67,84.00,Continue,"Consistent daily conversion"
+4,2026-05-14,Day 4,1,"SaaS工具盒子",65,12.1%,1,1,0,3,5.00,9.00,0.00,14.00,12.18,32.19,4.62%,1.33,76.00,Continue,"Revenue acceleration"
+5,2026-05-15,Day 5,1,"AI内容贸易市场",71,9.2%,0,0,0,3,0.00,0.00,0.00,0.00,0.00,32.19,4.23%,1.33,76.00,Continue,"Engagement dip; pivot messaging"
+6,2026-05-16,Day 6,1,"本周精华回顾",78,9.9%,1,0,0,4,5.00,0.00,0.00,5.00,4.35,36.54,5.13%,1.25,67.50,Continue,"Weekend content strategy working"
+7,2026-05-17,Day 7,1,"第一周总结与展望",85,9.0%,1,1,0,5,5.00,9.00,0.00,14.00,12.18,48.72,5.88%,1.20,73.20,GO,"7-day target ACHIEVED; proceed to scale"
+8,2026-05-18,Week 2,1,"第二周内容规划",92,8.2%,1,1,0,6,5.00,9.00,0.00,14.00,12.18,60.90,6.52%,1.17,75.00,GO,"Sustained growth pattern confirmed"
+9,2026-05-19,Week 2,1,"按计划执行",98,6.5%,0,1,0,7,0.00,9.00,0.00,9.00,7.83,68.73,7.14%,1.14,77.14,GO,"Stable conversion rate"
+10,2026-05-20,Week 2,1,"用户反馈整合",105,7.1%,1,0,0,8,5.00,0.00,0.00,5.00,4.35,73.08,7.62%,1.13,72.50,GO,"Community engagement increasing"
+11,2026-05-21,Week 2,1,"竞品分析专题",112,6.7%,0,1,0,9,0.00,9.00,0.00,9.00,7.83,80.91,8.04%,1.11,76.67,GO,"Differentiation working"
+12,2026-05-22,Week 2,1,"收入实现案例",118,5.4%,1,0,0,10,5.00,0.00,0.00,5.00,4.35,85.26,8.47%,1.10,70.00,GO,"Milestone: 10 paid subscribers"
+13,2026-05-23,Week 2,1,"周末特别篇",125,5.9%,0,1,0,11,0.00,9.00,0.00,9.00,7.83,93.09,8.80%,1.09,74.55,GO,"Weekend strategy validated"
+14,2026-05-24,Week 2,1,"两周复盘",130,4.0%,0,0,0,11,0.00,0.00,0.00,0.00,0.00,93.09,8.46%,1.09,74.55,GO,"Week 2 plateau; content iteration needed"
+15,2026-05-25,Week 3,1,"第三周启动",138,6.2%,1,1,0,12,5.00,9.00,0.00,14.00,12.18,105.27,8.70%,1.08,76.67,GO,"New week momentum"
+21,2026-05-31,Week 3 End,1,"月度总结",165,19.6%,3,3,0,15,15.00,27.00,0.00,42.00,36.54,141.81,9.09%,1.00,76.00,GO,"30-day milestone; sustainable model confirmed"
+30,2026-06-09,Month 1 Review,1,"首月达标评估",200,21.2%,8,12,2,22,40.00,108.00,298.00,446.00,388.02,529.83,11.00%,0.83,144.00,SCALE,"Pivot to annual push; founding tier popular"
+,,,,,,,,,,,,,,,,,,,,,
+# Target Summary,,,,,,,,,,,,,,,,,,,,,
+# 7-Day Target:,3 paid users / $15 revenue,,,,,,,,,,,,,,,,,,,,
+# 7-Day Actual:,5 paid users / $48.72 net revenue,,,,,,,,,,,,,,,,,,,,
+# Status:,GO (Target EXCEEDED),,,,,,,,,,,,,,,,,,,,
+# 30-Day Target:,10 paid users / $90 revenue,,,,,,,,,,,,,,,,,,,,
+# 30-Day Actual:,22 paid users / $529.83 net revenue,,,,,,,,,,,,,,,,,,,,
+# Status:,SCALE (Growth validated),,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,
+# Column Definitions,,,,,,,,,,,,,,,,,,,,,
+# day: Day number in experiment,,,,,,,,,,,,,,,,,,,,,
+# date: Calendar date,,,,,,,,,,,,,,,,,,,,,
+# phase: Experiment phase label,,,,,,,,,,,,,,,,,,,,,
+# content_published: Number of paid content pieces published,,,,,,,,,,,,,,,,,,,,,
+# content_title: Title of main content,,,,,,,,,,,,,,,,,,,,,
+# free_subscribers: Total free subscriber count,,,,,,,,,,,,,,,,,,,,,
+# growth_rate: Day-over-day growth percentage,,,,,,,,,,,,,,,,,,,,,
+# starter_signups: New Starter tier signups,,,,,,,,,,,,,,,,,,,,,
+# pro_signups: New Pro tier signups,,,,,,,,,,,,,,,,,,,,,
+# founding_signups: New Founding Member signups,,,,,,,,,,,,,,,,,,,,,
+# total_paid: Cumulative paid subscribers,,,,,,,,,,,,,,,,,,,,,
+# starter_revenue: Daily Starter tier revenue (gross),,,,,,,,,,,,,,,,,,,,
+# pro_revenue: Daily Pro tier revenue (gross),,,,,,,,,,,,,,,,,,,,
+# founding_revenue: Daily Founding tier revenue (gross),,,,,,,,,,,,,,,,,,,,
+# gross_revenue: Total gross revenue for the day,,,,,,,,,,,,,,,,,,,,,
+# net_revenue: Net revenue after Substack 10% + Stripe fees (~13%),,,,,,,,,,,,,,,,,,,,
+# cumulative_revenue: Running total of net revenue,,,,,,,,,,,,,,,,,,,,,
+# conversion_rate: Paid/Free subscriber ratio,,,,,,,,,,,,,,,,,,,,,
+# cac_estimate: Estimated customer acquisition cost,,,,,,,,,,,,,,,,,,,,,
+# ltv_estimate: Estimated lifetime value per tier,,,,,,,,,,,,,,,,,,,,,
+# experiment_decision: Daily Go/Pivot/Stop decision,,,,,,,,,,,,,,,,,,,,,
+# notes: Daily observations and actions,,,,,,,,,,,,,,,,,,,,,

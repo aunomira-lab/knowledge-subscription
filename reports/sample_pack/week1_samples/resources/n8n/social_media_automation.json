@@ -1,0 +1,97 @@
+{
+  "name": "社交媒体自动发布工作流",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{
+            "field": "hours",
+            "hoursInterval": 24
+          }]
+        }
+      },
+      "name": "每日定时触发",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.your-content-source.com/posts",
+        "options": {}
+      },
+      "name": "获取待发布内容",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// 处理内容格式\nconst items = $input.all()[0].json;\nconst post = items[0];\n\nreturn [{\n  json: {\n    title: post.title,\n    content: post.content.slice(0, 500) + '...',\n    tags: ['#AI', '#创业', '#自动化'],\n    link: post.url\n  }\n}];"
+      },
+      "name": "内容格式化",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "resource": "tweet",
+        "text": "={{ $json.title }}\n\n{{ $json.content }}\n\n{{ $json.link }}\n\n{{ $json.tags.join(' ') }}"
+      },
+      "name": "发布到Twitter",
+      "type": "n8n-nodes-base.twitter",
+      "typeVersion": 2,
+      "position": [850, 200],
+      "credentials": {
+        "twitterOAuth1Api": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "Twitter API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.title }}\n\n{{ $json.content }}\n\n查看详情：{{ $json.link }}"
+      },
+      "name": "发送通知",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [850, 400]
+    }
+  ],
+  "connections": {
+    "每日定时触发": {
+      "main": [[{
+        "node": "获取待发布内容",
+        "type": "main",
+        "index": 0
+      }]]
+    },
+    "获取待发布内容": {
+      "main": [[{
+        "node": "内容格式化",
+        "type": "main",
+        "index": 0
+      }]]
+    },
+    "内容格式化": {
+      "main": [[{
+        "node": "发布到Twitter",
+        "type": "main",
+        "index": 0
+      }, {
+        "node": "发送通知",
+        "type": "main",
+        "index": 0
+      }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "pinData": {},
+  "versionId": "version_001"
+}

@@ -1,0 +1,33 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.0.3, pluggy-1.6.0 -- /home/AgentAdmin/.hermes/hermes-agent-v2026.5.7/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
+plugins: anyio-4.12.1
+collecting ... collected 24 items
+
+tests/test_sample_pack.py::TestFileExistence::test_data_json_exists PASSED [  4%]
+tests/test_sample_pack.py::TestFileExistence::test_delivery_checklist_exists PASSED [  8%]
+tests/test_sample_pack.py::TestFileExistence::test_free_preview_exists PASSED [ 12%]
+tests/test_sample_pack.py::TestFileExistence::test_premium_catalog_exists PASSED [ 16%]
+tests/test_sample_pack.py::TestFileExistence::test_week1_samples_exist PASSED [ 20%]
+tests/test_sample_pack.py::TestFreePreviewContent::test_has_comparison_table PASSED [ 25%]
+tests/test_sample_pack.py::TestFreePreviewContent::test_has_cta PASSED   [ 29%]
+tests/test_sample_pack.py::TestFreePreviewContent::test_has_profit_estimates PASSED [ 33%]
+tests/test_sample_pack.py::TestFreePreviewContent::test_has_three_opportunities PASSED [ 37%]
+tests/test_sample_pack.py::TestFreePreviewContent::test_no_overpromise PASSED [ 41%]
+tests/test_sample_pack.py::TestPremiumCatalogContent::test_has_columns PASSED [ 45%]
+tests/test_sample_pack.py::TestPremiumCatalogContent::test_has_faq PASSED [ 50%]
+tests/test_sample_pack.py::TestPremiumCatalogContent::test_has_pricing PASSED [ 54%]
+tests/test_sample_pack.py::TestPremiumCatalogContent::test_has_six_opportunities PASSED [ 58%]
+tests/test_sample_pack.py::TestWeek1SamplesContent::test_all_have_checklist PASSED [ 62%]
+tests/test_sample_pack.py::TestWeek1SamplesContent::test_all_have_member_exclusive PASSED [ 66%]
+tests/test_sample_pack.py::TestWeek1SamplesContent::test_all_have_sop PASSED [ 70%]
+tests/test_sample_pack.py::TestDataJson::test_each_opportunity_has_required_fields PASSED [ 75%]
+tests/test_sample_pack.py::TestDataJson::test_has_opportunities PASSED   [ 79%]
+tests/test_sample_pack.py::TestDataJson::test_has_schedule PASSED        [ 83%]
+tests/test_sample_pack.py::TestDeliveryChecklist::test_has_next_steps PASSED [ 87%]
+tests/test_sample_pack.py::TestDeliveryChecklist::test_has_profit_analysis PASSED [ 91%]
+tests/test_sample_pack.py::TestDeliveryChecklist::test_has_task_id PASSED [ 95%]
+tests/test_sample_pack.py::TestDeliveryChecklist::test_has_verification_commands PASSED [100%]
+
+============================== 24 passed in 0.03s ==============================

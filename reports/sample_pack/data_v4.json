@@ -1,0 +1,210 @@
+{
+  "meta": {
+    "task_id": "e648389a",
+    "project_id": "knowledge-subscription",
+    "version": "v4.0",
+    "generated_at": "2026-05-23T06:19:49.290212"
+  },
+  "opportunities": [
+    {
+      "id": "opp-001",
+      "title": "MCP Server 电商数据查询服务",
+      "category": "AI基础设施",
+      "difficulty": 3,
+      "launch_days": "7-14天",
+      "revenue": "$500-3,000/月",
+      "margin": ">85%",
+      "summary": "为跨境电商卖家开发MCP Server，支持Temu/Shein/淘宝店铺数据实时查询与分析。",
+      "tags": [
+        "MCP",
+        "跨境电商",
+        "API",
+        "AI工具"
+      ],
+      "source_urls": [
+        "https://github.com/modelcontextprotocol/servers",
+        "https://www.temu.com/open-platform/"
+      ]
+    },
+    {
+      "id": "opp-002",
+      "title": "AI Newsletter 代运营服务",
+      "category": "B2B内容服务",
+      "difficulty": 2,
+      "launch_days": "5-7天",
+      "revenue": "¥3,000-15,000/月/客户",
+      "margin": ">80%",
+      "summary": "为中小企业创始人提供AI驱动的Newsletter代运营，AI完成选题->草稿->排版->发送。",
+      "tags": [
+        "Newsletter",
+        "内容运营",
+        "B2B服务",
+        "AI"
+      ],
+      "source_urls": [
+        "https://on.substack.com/about",
+        "https://xiaobot.net/"
+      ]
+    },
+    {
+      "id": "opp-003",
+      "title": "Chrome扩展微SaaS: 网页高亮+AI笔记",
+      "category": "独立开发者",
+      "difficulty": 3,
+      "launch_days": "2-4周",
+      "revenue": "$1,000-8,000/月",
+      "margin": ">90%",
+      "summary": "浏览器扩展支持网页高亮、AI自动摘要、笔记同步到Notion/Obsidian。",
+      "tags": [
+        "Chrome扩展",
+        "微SaaS",
+        "笔记工具",
+        "AI"
+      ],
+      "source_urls": [
+        "https://chrome.google.com/webstore/category/extensions",
+        "https://www.plasmo.com/"
+      ]
+    },
+    {
+      "id": "opp-004",
+      "title": "n8n自动化工作流模板商店",
+      "category": "自动化/效率",
+      "difficulty": 2,
+      "launch_days": "3-5天",
+      "revenue": "$300-1,500/月",
+      "margin": ">95%",
+      "summary": "制作高价值n8n工作流模板，覆盖小红书内容矩阵、私域引流等场景，双渠道销售。",
+      "tags": [
+        "n8n",
+        "自动化",
+        "模板",
+        "小红书"
+      ],
+      "source_urls": [
+        "https://n8n.io/workflows",
+        "https://gumroad.com/"
+      ]
+    },
+    {
+      "id": "opp-005",
+      "title": "小红书AI时尚穿搭账号矩阵",
+      "category": "社媒变现",
+      "difficulty": 2,
+      "launch_days": "1-2周",
+      "revenue": "¥5,000-30,000/月",
+      "margin": ">70%",
+      "summary": "用AI生成虚拟时尚博主穿搭内容，运营3-5个小红书账号矩阵，接品牌广告+引流私域。",
+      "tags": [
+        "小红书",
+        "AI生成",
+        "时尚",
+        "社媒变现"
+      ],
+      "source_urls": [
+        "https://www.xiaohongshu.com/",
+        "https://www.midjourney.com/"
+      ]
+    },
+    {
+      "id": "opp-006",
+      "title": "AI实时语音翻译耳机配件App",
+      "category": "硬件+软件",
+      "difficulty": 4,
+      "launch_days": "4-8周",
+      "revenue": "$2,000-15,000/月",
+      "margin": ">85%",
+      "summary": "为跨境商务/旅游人群开发TWS耳机配对的实时翻译App，Whisper本地识别+LLM翻译。",
+      "tags": [
+        "AI翻译",
+        "硬件",
+        "跨境",
+        "App"
+      ],
+      "source_urls": [
+        "https://github.com/openai/whisper",
+        "https://reactnative.dev/"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "day": "周一",
+      "theme": "新机会首发",
+      "title": "首发独占: MCP Server 电商数据查询服务深度解析",
+      "opportunity": "opp-001",
+      "exclusive": "48小时内专业版独占"
+    },
+    {
+      "day": "周二",
+      "theme": "工具测评",
+      "title": "工具深度测评: Plasmo框架开发Chrome扩展效率提升300%",
+      "opportunity": "opp-003",
+      "exclusive": "完整配置教程+源码"
+    },
+    {
+      "day": "周三",
+      "theme": "B2B服务",
+      "title": "实战复盘: 如何用AI Newsletter代运营签下第一个¥8,000/月客户",
+      "opportunity": "opp-002",
+      "exclusive": "客户提案PPT模板+话术脚本"
+    },
+    {
+      "day": "周四",
+      "theme": "自动化掘金",
+      "title": "n8n模板变现: 从0到Gumroad上架首月$800的完整路径",
+      "opportunity": "opp-004",
+      "exclusive": "5个即用模板JSON+上架指南"
+    },
+    {
+      "day": "周五",
+      "theme": "社媒变现",
+      "title": "小红书矩阵实操: 1人运营5个AI穿搭账号的SOP手册",
+      "opportunity": "opp-005",
+      "exclusive": "LoRA训练参数+批量发布配置"
+    },
+    {
+      "day": "周六",
+      "theme": "深度专题",
+      "title": "深度专题: 从0到月入过万 - 独立开发者90天执行路线图",
+      "opportunity": null,
+      "exclusive": "完整路线图+里程碑检查表"
+    },
+    {
+      "day": "周日",
+      "theme": "复盘+预告",
+      "title": "本周复盘: 6个机会执行进度跟踪 + 下周3个新机会预告",
+      "opportunity": null,
+      "exclusive": "会员答疑精华+下周预告"
+    }
+  ],
+  "pricing": {
+    "monthly": {
+      "price": 99,
+      "currency": "CNY",
+      "period": "month"
+    },
+    "yearly": {
+      "price": 799,
+      "currency": "CNY",
+      "period": "year"
+    },
+    "enterprise": {
+      "price": 2999,
+      "currency": "CNY",
+      "period": "year"
+    },
+    "consulting": {
+      "price": 499,
+      "currency": "CNY",
+      "period": "per_session"
+    }
+  },
+  "target_metrics": {
+    "month_1_revenue_cny": 4950,
+    "month_6_revenue_cny": 19800,
+    "month_12_revenue_cny": 59400,
+    "ltv_cac_ratio": "22:1 to 84:1",
+    "gross_margin": ">85%"
+  }
+}
