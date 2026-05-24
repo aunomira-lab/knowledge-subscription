@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工作流教练所 | 用AI做成事，不是买工具</title>
+    <meta name="description" content="面向海外华人/双语职场人、留学生/家长、自由职业者。真实测试的AI工作流、可复制的模板、一手案例。早鸟$19/月。">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            color: #1a1a2e;
+            background: #fafafa;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            border-bottom: 2px solid #1a1a2e;
+            margin-bottom: 40px;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        .tagline {
+            font-size: 1.25rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        .problem-box {
+            background: #fff;
+            border: 2px solid #1a1a2e;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+        .problem-box::before {
+            content: "问题";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #1a1a2e;
+            color: #fff;
+            padding: 4px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .problem-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+        .problem-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        .problem-list li::before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .solution-box {
+            background: #1a1a2e;
+            color: #fff;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .solution-box h3 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        .solution-list {
+            list-style: none;
+        }
+        .solution-list li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .solution-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2ecc71;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .section { margin: 50px 0; }
+        .section h2 {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #1a1a2e;
+        }
+        .target-users {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .user-card {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+        .user-card:hover {
+            border-color: #1a1a2e;
+            transform: translateY(-3px);
+        }
+        .user-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .user-card p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+        .sample-section {
+            background: #fff;
+            border: 3px solid #1a1a2e;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .sample-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+        .sample-badge {
+            background: #f39c12;
+            color: #fff;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .sample-content {
+            background: #f8f9fa;
+            padding: 25px;
+            border-left: 4px solid #1a1a2e;
+        }
+        .sample-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        .sample-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .proof-box {
+            background: #e8f6f3;
+            border-left: 4px solid #1abc9c;
+            padding: 20px 25px;
+            margin: 20px 0;
+        }
+        .proof-box h4 {
+            color: #16a085;
+            margin-bottom: 10px;
+        }
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        .pricing-table th, .pricing-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .pricing-table th {
+            background: #1a1a2e;
+            color: #fff;
+            font-weight: 600;
+        }
+        .pricing-table tr:hover {
+            background: #f8f9fa;
+        }
+        .price-highlight {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+        .cta-section {
+            text-align: center;
+            padding: 50px 0;
+            border-top: 3px solid #1a1a2e;
+            margin-top: 40px;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #e74c3c;
+            color: #fff;
+            padding: 20px 60px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        .cta-button:hover {
+            background: #c0392b;
+            transform: scale(1.02);
+        }
+        .cta-button.secondary {
+            background: transparent;
+            color: #1a1a2e;
+            border: 3px solid #1a1a2e;
+        }
+        .cta-button.secondary:hover {
+            background: #1a1a2e;
+            color: #fff;
+        }
+        .guarantee-box {
+            background: #fff9e6;
+            border: 2px solid #f39c12;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .guarantee-box h4 {
+            color: #d68910;
+            margin-bottom: 10px;
+        }
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 25px 0;
+        }
+        .faq-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: #1a1a2e;
+        }
+        .faq-item p {
+            color: #555;
+            padding-left: 20px;
+        }
+        .risk-notice {
+            background: #fdf2f2;
+            border: 2px solid #e74c3c;
+            padding: 20px 25px;
+            margin: 30px 0;
+        }
+        .risk-notice h4 {
+            color: #c0392b;
+            margin-bottom: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 50px;
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .tagline { font-size: 1.05rem; }
+            .pricing-table { font-size: 0.9rem; }
+            .pricing-table th, .pricing-table td { padding: 15px 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <h1>工作流教练所</h1>
+            <p class="tagline">用AI做成事，不是买工具</p>
+            <p style="color: #666; font-size: 1rem;">面向海外华人/双语职场人、留学生家长、自由职业者的<br>真实测试AI工作流 + 可复制模板 + 一手案例</p>
+        </section>
+
+        <!-- Problem -->
+        <div class="problem-box">
+            <ul class="problem-list">
+                <li>ChatGPT Plus 订了半年，还是只会问答案</li>
+                <li>每天收藏AI工具，真正用起来的没几个</li>
+                <li>看了无数教程，轮到自己做就卡住</li>
+                <li>花时间筛选信息，比做事还累</li>
+                <li>担心AI幻觉、隐私泄露、版权风险</li>
+            </ul>
+        </div>
+
+        <!-- Solution -->
+        <div class="solution-box">
+            <h3>这里给你的不是"神器推荐"，而是：</h3>
+            <ul class="solution-list">
+                <li>真实测试过的工作流（附截图和失败记录）</li>
+                <li>可直接复制的Prompt模板和脚本</li>
+                <li>明确的结果：读完能做成什么</li>
+                <li>作者的判断：推荐/不推荐和原因</li>
+                <li>风险提醒和避坑指南</li>
+                <li>持续更新承诺（工具变化后会跟进）</li>
+            </ul>
+        </div>
+
+        <!-- Target Users -->
+        <section class="section">
+            <h2>这是给谁的</h2>
+            <div class="target-users">
+                <div class="user-card">
+                    <h4>🌍 海外华人 / 双语职场人</h4>
+                    <p>需要用中英文工作，想提升效率但不知道怎么开始用AI</p>
+                </div>
+                <div class="user-card">
+                    <h4>🎓 留学生和家长</h4>
+                    <p>需要写申请文书、准备面试、完成学业项目的真实帮助</p>
+                </div>
+                <div class="user-card">
+                    <h4>💼 自由职业者 / 小企业主</h4>
+                    <p>一个人就是一支队伍，需要AI来拓展能力边界</p>
+                </div>
+                <div class="user-card">
+                    <h4>📝 非技术岗知识工作者</h4>
+                    <p>产品、运营、市场、人力等岗位的实际应用场景</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sample Preview -->
+        <section class="section">
+            <h2>样稿预览</h2>
+            <div class="sample-section">
+                <div class="sample-header">
+                    <span class="sample-badge">付费会员专属</span>
+                    <span style="color: #666; font-size: 0.9rem;">2026年5月实测</span>
+                </div>
+                <div class="sample-content">
+                    <h4>Claude 3.7 + 游戏化学习法：我如何用3天背完GRE核心词汇</h4>
+                    <p style="color: #555; margin: 15px 0;">
+                        这篇不是"推荐一个背单词APP"。我花了三天时间，用Claude 3.7搭建了一套完全个性化的游戏化学习系统，包含：
+                    </p>
+                    <ul style="margin-left: 20px; color: #555;">
+                        <li>根据我的遗忘曲线动态调整的复习策略</li>
+                        <li>生成与我兴趣相关的记忆场景（我喜欢科幻）</li>
+                        <li>每日游戏化挑战的自动生成</li>
+                    </ul>
+                    <div class="sample-meta">
+                        <span>⚡ 可复制模板含 Prompt + 脚本</span>
+                        <span>📊 我的实测数据：3天 / 200词 / 4小时总时长</span>
+                        <span>⚠️ 风险提醒：不适合短期冲刺</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="proof-box">
+                <h4>📝 这篇文章不包含以下内容</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>"让我来教你" 或 "简单几步" 的空泛语言</li>
+                    <li>没有测试过的工具推荐</li>
+                    <li>ChatGPT生成的套路化结构</li>
+                    <li>刮疸人的"神器"和"赚大钱"</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="section" id="pricing">
+            <h2>选择方案</h2>
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>方案</th>
+                        <th>价格</th>
+                        <th>包含内容</th>
+                        <th>适合谁</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>免费订阅</strong></td>
+                        <td>$0</td>
+                        <td>每周一篇公开文章，了解风格</td>
+                        <td>想先试读的人</td>
+                    </tr>
+                    <tr style="background: #fff9e6;">
+                        <td><strong>早鸟会员</strong><br><small style="color: #e74c3c;">限量100人</small></td>
+                        <td><span class="price-highlight">$19/月</span></td>
+                        <td>
+                            • 每周2篇深度工作流<br>
+                            • 可下载的Prompt模板<br>
+                            • 真实案例和失败记录<br>
+                            • 订阅者社群
+                        </td>
+                        <td>认真想用AI做成事的人</td>
+                    </tr>
+                    <tr>
+                        <td><strong>工作流模板包</strong></td>
+                        <td><span class="price-highlight">$49</span></td>
+                        <td>
+                            • 10个精选工作流<br>
+                            • 完整Prompt库<br>
+                            • 自动化脚本<br>
+                            • 更新承诺1年
+                        </td>
+                        <td>想要一套系统模板的人</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Founding Member</strong></td>
+                        <td><span class="price-highlight">$199/年</span></td>
+                        <td>
+                            • 早鸟会员全部内容<br>
+                            • 每月1次1v1咨询(30分钟)<br>
+                            • 定制工作流建议<br>
+                            • 新功能优先体验
+                        </td>
+                        <td>需要个性化支持的人</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="guarantee-box">
+                <h4>🛡️ 7天无理由退款保障</h4>
+                <p>如果内容不符合预期，或你觉得"这东西我自己搜一下也能找到"，全额退款，无需解释。</p>
+            </div>
+        </section>
+
+        <!-- Risk Notice -->
+        <div class="risk-notice">
+            <h4>⚠️ 诚实声明</h4>
+            <ul style="margin-left: 20px;">
+                <li>我不保证任何"变现"结果，只分享真实测试过的工作流</li>
+                <li>AI工具更新很快，我会跟进但无法承诺永不过时</li>
+                <li>某些工作流需要ChatGPT/Claude订阅，这些费用需要你自行承担</li>
+                <li>部分功能可能涉及隐私和版权风险，我会明确标注</li>
+            </ul>
+        </div>
+
+        <!-- FAQ -->
+        <section class="section">
+            <h2>常见问题</h2>
+            <div class="faq-item">
+                <h4>Q: 这和其他AI新闻订阅有什么区别？</h4>
+                <p>A: 我不做"新闻摘要"。每篇内容都是我亲自测试过的工作流，附有截图、失败记录、可复制的模板。</p>
+            </div>
+            <div class="faq-item">
+                <h4>Q: 我会收到多少内容？</h4>
+                <p>A: 付费会员每周至少2篇深度文章，含Prompt、脚本、案例。不做日更是因为我需要时间真正测试和验证。</p>
+            </div>
+            <div class="faq-item">
+                <h4>Q: 如何确保内容不是AI生成的？</h4>
+                <p>A: 每篇文章都附有我的测试截图、失败记录、想法过程。如果你发现"这看起来就是ChatGPT写的"，可以要求退款。</p>
+            </div>
+            <div class="faq-item">
+                <h4>Q: 退款政策是怎样的？</h4>
+                <p>A: 7天内无理由全额退款。之后取消订阅，当月已付费用不退，下月不会续费。</p>
+            </div>
+            <div class="faq-item">
+                <h4>Q: 如何支付？</h4>
+                <p>A: 支持Stripe（信用卡/借记卡）。如果你在中国大陆，可以联系我了解其他支付方式。</p>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <p style="font-size: 1.2rem; margin-bottom: 20px; color: #555;">
+                早鸟会员限量100人，剩余<span style="color: #e74c3c; font-weight: bold;"> 73 </span>个名额
+            </p>
+            <a href="#" class="cta-button">立即加入 - $19/月</a>
+            <a href="#" class="cta-button secondary">先订阅免费版</a>
+            <p style="margin-top: 30px; color: #666; font-size: 0.95rem;">
+                也可以先看这篇完整样稿：<br>
+                <a href="#" style="color: #1a1a2e; text-decoration: underline;">《Claude 3.7学习法完整案例》</a>
+            </p>
+        </div>
+
+        <footer>
+            <p>© 2026 工作流教练所 | 用AI做成事</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">
+                有问题？联系 hello@workflowdojo.com
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
