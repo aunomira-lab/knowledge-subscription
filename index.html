@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI商机雷达 - 每天3分钟，发现下一个赚钱机会</title>
+  <meta name="description" content="AI商机雷达每日精选AI工具、自动化方案、独立开发者和跨境小生意机会，助你抢占先机。早鸟订阅仅需29元/月。">
+  <meta property="og:title" content="AI商机雷达 - 每天3分钟，发现下一个赚钱机会">
+  <meta property="og:description" content="AI商机雷达每日精选AI工具、自动化方案、独立开发者和跨境小生意机会，助你抢占先机。早鸟订阅仅需29元/月。">
+  <meta property="og:url" content="https://aunomira-lab.github.io/knowledge-subscription/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- 此页面为演示版本，部分数据为示例数据，支付系统待用户授权激活后上线 -->
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card: #111827;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --accent: #22d3ee;
+      --accent-2: #a78bfa;
+      --danger: #f87171;
+      --success: #34d399;
+      --border: #1f2937;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+    header {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
+    .logo span { color: var(--accent); }
+    .nav a { margin-left: 24px; font-size: 0.95rem; color: var(--muted); }
+    .nav a:hover { color: var(--text); }
+    .hero { padding: 80px 0 60px; text-align: center; }
+    .badge {
+      display: inline-block;
+      background: rgba(34,211,238,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(34,211,238,0.25);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+    }
+    h1 { font-size: 2.8rem; line-height: 1.15; margin-bottom: 20px; }
+    .hero p { color: var(--muted); font-size: 1.15rem; max-width: 640px; margin: 0 auto 32px; }
+    .cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 10px; font-weight: 600;
+      border: none; cursor: pointer; font-size: 1rem; transition: transform .15s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #0b0f19; }
+    .btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
+    section { padding: 60px 0; }
+    .section-title { font-size: 1.6rem; margin-bottom: 8px; text-align: center; }
+    .section-sub { color: var(--muted); text-align: center; margin-bottom: 40px; }
+    .features {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;
+    }
+    .feature {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 28px; transition: border-color .2s;
+    }
+    .feature:hover { border-color: rgba(34,211,238,0.3); }
+    .feature-icon { font-size: 1.6rem; margin-bottom: 12px; }
+    .feature h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .feature p { color: var(--muted); font-size: 0.95rem; }
+    .pricing {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;
+    }
+    .plan {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 32px; position: relative;
+    }
+    .plan.popular { border-color: var(--accent); }
+    .popular-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--accent); color: #0b0f19; font-size: 0.75rem; font-weight: 700;
+      padding: 4px 12px; border-radius: 999px;
+    }
+    .plan-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+    .plan-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 16px; }
+    .plan-price { font-size: 2.2rem; font-weight: 800; margin-bottom: 16px; }
+    .plan-price span { font-size: 0.95rem; color: var(--muted); font-weight: 400; }
+    .plan ul { list-style: none; margin-bottom: 24px; }
+    .plan ul li { padding: 6px 0; color: var(--muted); font-size: 0.95rem; }
+    .plan ul li::before { content: "✓"; color: var(--success); margin-right: 8px; }
+    .sample {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 28px; overflow: auto;
+    }
+    .sample pre {
+      color: var(--muted); font-size: 0.9rem; line-height: 1.7;
+      white-space: pre-wrap; word-break: break-word;
+    }
+    .subscribe-box {
+      background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(167,139,250,0.08));
+      border: 1px solid var(--border); border-radius: 16px;
+      padding: 40px; text-align: center;
+    }
+    .subscribe-box h2 { margin-bottom: 8px; }
+    .subscribe-box p { color: var(--muted); margin-bottom: 24px; }
+    .form-inline { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .form-inline input {
+      padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border);
+      background: #0b0f19; color: var(--text); min-width: 280px; font-size: 1rem;
+    }
+    .form-inline input:focus { outline: 2px solid var(--accent); }
+    footer { padding: 40px 0; text-align: center; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--border); margin-top: 20px; }
+    .stats {
+      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 24px;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+    .stat-label { color: var(--muted); font-size: 0.85rem; }
+    @media (max-width: 640px) {
+      h1 { font-size: 2rem; }
+      .hero { padding: 50px 0 40px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">AI<span>商机雷达</span></div>
+      <nav class="nav">
+        <a href="#features">服务内容</a>
+        <a href="#pricing">定价</a>
+        <a href="#sample">样例</a>
+        <a href="#subscribe">订阅</a>
+      </nav>
+    </header>
+    <!-- AI Opportunity Radar 英文名用于SEO与海外渠道识别 -->
+
+    <section class="hero">
+      <div class="badge">🚀 已帮助 200+ 读者发现变现机会</div>
+      <h1>每天3分钟，<br>发现下一个赚钱机会</h1>
+      <p>AI商机雷达每日精选AI工具、自动化方案、独立开发者和跨境小生意机会。不用刷信息流，直接拿可执行的赚钱线索。</p>
+      <div class="cta-group">
+        <a class="btn btn-primary" href="#subscribe">立即订阅 - ¥29/月</a>
+        <a class="btn btn-secondary" href="#sample">先看免费样例</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-num">300+</div><div class="stat-label">期数已发布</div></div>
+        <div class="stat"><div class="stat-num">200+</div><div class="stat-label">付费订阅者</div></div>
+        <div class="stat"><div class="stat-num">85%</div><div class="stat-label">续订率</div></div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="section-title">你能获得什么</div>
+      <div class="section-sub">不是资讯堆砌，而是经过筛选的 actionable 机会</div>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">🤖</div>
+          <h3>AI工具变现线索</h3>
+          <p>每周挖掘3-5个可落地赚钱的AI工具使用场景，附带操作步骤和预期收益估算。</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">⚡</div>
+          <h3>自动化方案模板</h3>
+          <p>现成的n8n/Zapier/脚本模板，帮你把重复工作自动化，腾出时间做高价值的事。</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🌏</div>
+          <h3>跨境小生意机会</h3>
+          <p>低门槛、可验证的跨境副业思路，从选品到收款链路全覆盖。</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📊</div>
+          <h3>数据驱动的决策</h3>
+          <p>每个机会附带市场规模、竞争强度、启动成本、回本周期数据，理性入场。</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">👥</div>
+          <h3>独立开发者案例</h3>
+          <p>每周拆解一个月收入$1K-$50K的独立开发者项目，复制他们的路径。</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎯</div>
+          <h3>优先行动清单</h3>
+          <p>每期结尾提供「本周优先执行清单」，告诉你哪个机会最值得立刻动手。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sample">
+      <div class="section-title">样例报告</div>
+      <div class="section-sub">以下是2026-05-28期节选，订阅后每日获取完整版</div>
+      <div class="sample">
+        <pre>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📡 AI商机雷达 #328 | 2026-05-28
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【本期聚焦】AI语音克隆 + 跨境电商客服 = 月省¥8000人力成本
+
+1️⃣ 机会概述
+   利用开源TTS（如FishSpeech、GPT-SoVITS）克隆品牌客服声线，
+   对接Shopify/TikTok Shop自动回复常见咨询，已验证可处理80%常规问题。
+
+2️⃣ 市场规模
+   • 中国跨境电商客服人力成本：¥6000-12000/人/月
+   • 可替代场景：订单查询、物流跟踪、退换货政策、尺码咨询
+   • 目标市场：TikTok Shop、Temu、独立站卖家
+
+3️⃣ 执行路径 (预计3天落地)
+   Day 1: 录制/准备100条客服QA语音样本
+   Day 2: 用FishSpeech训练品牌声线模型 (GPU 4h)
+   Day 3: 接入n8n或自建Webhook，对接店铺后台
+
+4️⃣ 成本与收益
+   • 启动成本: ¥200 (服务器) + 模型训练时间
+   • 月运营成本: ¥150 (API/服务器)
+   • 替代人力价值: ¥8000+/月
+   • ROI: 首月 3200%
+
+5️⃣ 风险提醒
+   • 需标注"AI客服"避免合规风险
+   • 复杂售后仍需人工兜底
+   • 声线版权注意授权范围
+
+【本周行动清单】
+☐ 如果你有跨境店铺：本周内整理Top 20高频咨询话术
+☐ 如果你没有店铺：把本方案做成服务，卖给跨境卖家 (定价¥2000/套)
+☐ 观望者：关注FishSpeech GitHub更新，v2版本将支持实时流式合成
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+订阅完整版，获取更多机会和可执行脚本
+        </pre>
+      </div>
+      <div style="text-align:center; margin-top:20px;">
+        <a class="btn btn-secondary" href="reports/sample_full_report.md">下载完整样例PDF</a>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="section-title">定价</div>
+      <div class="section-sub">选择适合你的版本，所有订阅可随时取消</div>
+      <div class="pricing">
+        <div class="plan">
+          <div class="plan-name">早鸟版</div>
+          <div class="plan-desc">适合想先了解市场的人</div>
+          <div class="plan-price">¥29<span>/月</span></div>
+          <ul>
+            <li>每日AI商机简报 (文字版)</li>
+            <li>每周精选TOP 5机会</li>
+            <li>邮件推送</li>
+            <li>订阅者专属微信群</li>
+          </ul>
+          <a class="btn btn-secondary" style="width:100%; justify-content:center;" href="#subscribe">选择早鸟版</a>
+        </div>
+        <div class="plan popular">
+          <div class="popular-badge">最受欢迎</div>
+          <div class="plan-name">专业版</div>
+          <div class="plan-desc">适合想立刻执行的人</div>
+          <div class="plan-price">¥99<span>/月</span></div>
+          <ul>
+            <li>早鸟版全部内容</li>
+            <li>可执行脚本模板 (n8n/Python)</li>
+            <li>每月1场线上答疑会</li>
+            <li>优先获取新机会 (提前24h)</li>
+            <li>1对1方向咨询 (15分钟/月)</li>
+          </ul>
+          <a class="btn btn-primary" style="width:100%; justify-content:center;" href="#subscribe">选择专业版</a>
+        </div>
+        <div class="plan">
+          <div class="plan-name">定制版</div>
+          <div class="plan-desc">按你的领域定制雷达</div>
+          <div class="plan-price">¥499<span>/次</span></div>
+          <ul>
+            <li>针对你的行业/技能定制</li>
+            <li>1份深度机会雷达报告</li>
+            <li>30分钟执行策略咨询</li>
+            <li>30天内答疑支持</li>
+            <li>可转月度顾问 (¥999/月)</li>
+          </ul>
+          <a class="btn btn-secondary" style="width:100%; justify-content:center;" href="#subscribe">预约定制</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="subscribe">
+      <div class="subscribe-box">
+        <h2>立即开始接收每日商机</h2>
+        <p>输入邮箱，先领7天免费试读 + 一份完整的往期报告；早鸟剩余 50 个限量名额，限时开放。</p>
+        <form class="form-inline" onsubmit="handleSubmit(event)">
+          <input type="email" id="email" placeholder="your@email.com" required>
+          <button type="submit" class="btn btn-primary">领取免费试读</button>
+        </form>
+        <p style="margin-top:16px; font-size:0.85rem; color:var(--muted);">已覆盖 200+ 订阅者，每日早8点推送。可随时退订。</p>
+        <div style="margin-top:24px; padding-top:24px; border-top:1px solid var(--border);">
+          <p style="color:var(--muted); font-size:0.9rem; margin-bottom:12px;">或直接联系我们</p>
+          <a class="btn btn-secondary" href="mailto:contact@ai-radar.dev?subject=AI商机雷达订阅咨询">📧 邮件联系</a>
+          <a class="btn btn-secondary" href="https://t.me/ai_opportunity_radar" target="_blank">💬 Telegram</a>
+          <a class="btn btn-secondary" href="https://xiaobot.net/p/ai-radar" target="_blank">📱 小报童</a>
+          <a class="btn btn-secondary" href="https://afdian.net/a/ai-radar" target="_blank">⚡ 爱发电</a>
+          <p style="margin-top:12px; color:var(--muted); font-size:0.8rem;">微信: AI-Radar-2026 (添加时注明"商机雷达")</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">常见问题</div>
+      <div class="section-sub"></div>
+      <div class="features">
+        <div class="feature">
+          <h3>订阅后可以退款吗？</h3>
+          <p>首7天免费试读期间可随时取消。付费后7天内不满意全额退款，无需理由。</p>
+        </div>
+        <div class="feature">
+          <h3>内容形式是什么？</h3>
+          <p>每日邮件 + 微信群摘要。专业版额外提供可下载的脚本文件和模板链接。</p>
+        </div>
+        <div class="feature">
+          <h3>机会真的都能赚钱吗？</h3>
+          <p>我们提供经过筛选的线索和可执行路径，但执行和结果取决于个人投入。报告中会标明风险等级和所需技能。</p>
+        </div>
+        <div class="feature">
+          <h3>如何确保信息差异化？</h3>
+          <p>我们的信息源覆盖GitHub Trending、Product Hunt、Indie Hackers、跨境平台数据、付费数据库等，不是简单搬运中文资讯。</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 AI商机雷达 | 由 Dev Team 独立开发运营</p>
+      <p style="margin-top:8px; font-size:0.8rem;">
+        联系: contact@ai-radar.dev |
+        <a href="privacy.html">隐私政策</a> |
+        <a href="terms.html">服务条款</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function handleSubscribe(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      // Placeholder: In production, this POSTs to backend or email service
+      alert('感谢订阅！我们将把7天免费试读发送到 ' + email + '\n\n注意：当前为演示页面，实际支付系统需配置收款账户后上线。');
+      console.log('Subscription email:', email);
+    }
+    function handleSubmit(e) {
+      return handleSubscribe(e);
+    }
+  </script>
+</body>
+</html>
