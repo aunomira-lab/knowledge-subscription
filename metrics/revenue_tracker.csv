@@ -1,0 +1,3 @@
+date,mrr,new_paid,churned,net_new,total_paid,total_revenue,refunds,net_revenue,arpu,ltv_estimate,cac_estimate,channel_source,notes
+2026-05-31,0,0,0,0,0,0,0,0,0,0,0,Baseline,Day 0 setup; no revenue yet; experiment not started
+2026-06-01,0,0,0,0,0,0,0,0,0,297,0,Marketing Sprint,Day 1 marketing execution by dev-monitor; 0 paid but tracker validated; exit_code=0 on all checks

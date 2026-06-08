@@ -1,228 +1,323 @@
-# Incident Runbook: AI Architecture Weekly
+# 事故处理手册（Incident Runbook）
 
-**Project ID**: knowledge-subscription  
-**Task ID**: ab047a39  
-**Type**: monitoring (ops-support)  
-**Last Updated**: 2026-05-24  
-**Owner**: dev-optimizer (profitability-analyst)  
-**Severity Levels**: P0 (Critical) / P1 (High) / P2 (Medium) / P3 (Low)
-
----
-
-## 1. Incident Classification
-
-### P0 — Critical (All Hands, < 1 hr response)
-- Stripe checkout broken (zero revenue capture)
-- Substack account suspended or banned
-- Landing page hijacked / defaced
-- Mass subscriber data breach
-- Legal cease-and-desist received
-- Founder / brand impersonation attack
-- **微信个人号被封/限流 (Phase 2 revenue channel dead)**
-- **用户投诉"诈骗"导致收款码被冻结**
-- **小红书账号被封导致主要流量断流**
-
-### P1 — High (< 4 hr response)
-- MRR drops > 20% week-over-week with no known cause
-- Stripe payout frozen or KYC blocked
-- Substack publish failure on scheduled day
-- Hacker News front-page traffic spike (opportunity but needs capture)
-- Major content error published (factual inaccuracy, broken code)
-- Churn spike > 12% in a single week
-- **收款码被冻结但另一平台可用**
-- **知乎/即刻账号异常限流**
-- **微信群被举报导致无法发言**
-
-### P2 — Medium (< 24 hr response)
-- Email open rate < 30% for 2 consecutive sends
-- Unsubscribe spike > 5% on single issue
-- Support ticket > 24 hrs unanswered
-- Code example repo issue reported
-- Social media negative review / thread
-- Minor pricing mismatch between Stripe and Substack
-
-### P3 — Low (< 72 hr response)
-- Typos in published issue
-- Dead external link
-- Minor CSS/layout issue on landing page
-- Non-urgent feature request from subscriber
+**版本**: v4.2
+**任务ID**: 2d17707b
+**项目ID**: knowledge-subscription
+**更新日期**: 2026-06-08
+**执行角色**: dev-monitor
+**适用范围**: 知识订阅产品的一切生产事故与运营事故
+**当前状态**: 销售页已上线运行，监控体系v4.2就绪，待等待支付渠道激活后全面运营
 
 ---
 
-## 2. Runbook: P0 Incidents
+## 一、事故分级与定义
 
-### 2.1 Stripe Checkout Broken
-**Symptoms**: Users report "payment failed", Stripe dashboard shows 0 successful charges, test card fails
-1. **00:00-00:05** — Verify Stripe status at status.stripe.com
-2. **00:05-00:15** — Run test payment via Stripe test mode
-3. **00:15-00:30** — If Stripe is up but our integration broken:
-   - Check Substack paid tier settings (pricing, currency, description)
-   - Check if Stripe webhook endpoint is returning 200
-   - Check Stripe dashboard for account holds / verification requests
-4. **00:30-00:45** — If cannot fix: enable "pay what you want" fallback via Ko-fi or Buy Me a Coffee; tweet update
-5. **00:45-01:00** — Notify dev-deploy and dev-architect; open `reports/incident_YYYY-MM-DD_stripe.md`
-6. **Post-fix** — Send apology + discount code to affected users; log in tracker
+### S1-重大事故（Critical）
 
-### 2.2 Substack Account Suspended
-**Symptoms**: Cannot log in, subscribers see "publication unavailable", email from Substack
-1. **00:00-00:15** — Read Substack email carefully; screenshot everything
-2. **00:15-00:30** — Export subscriber list CSV immediately (if still accessible)
-3. **00:30-00:45** — Draft appeal email to Substack support; cc dev-security
-4. **00:45-01:00** — Activate backup: create Beehiiv account, import CSV, tweet new URL
-5. **01:00-02:00** — Update landing page with new subscription URL
-6. **Post-recovery** — If restored, maintain dual-platform for 30 days; if not, full migrate to Beehiiv + self-hosted email
+**定义**: 导致产品无法服务、收入为零、涉及法律风险或品牌毁损
 
-### 2.3 Landing Page Hijacked / Defaced
-**Symptoms**: Visitors see unexpected content, SSL error, domain DNS mismatch
-1. **00:00-00:10** — Check Vercel/Cloudflare dashboard for unauthorized deployments
-2. **00:10-00:20** — Check DNS records for unauthorized changes
-3. **00:20-00:30** — Roll back to last known good deployment via dashboard
-4. **00:30-00:45** — Rotate API keys / tokens; check GitHub for unauthorized commits
-5. **00:45-01:00** — Notify dev-security; run `docs/anti_ai_slop_checklist.md` equivalent for security
+**示例**:
+- 销售页连续2小时不可访问
+- 支付渠道完全中断
+- 用户数据泄露或被盗用
+- 收到法律律师函/平台封禁通知
+- 内容被大规模举报或删除
+- 绕过收款码（微信/支付宝）被封禁
 
-### 2.4 Mass Data Breach
-**Symptoms**: Subscriber emails leaked, phishing emails sent to list, security notice received
-1. **00:00-00:15** — Immediately change all platform passwords (Substack, Stripe, Twitter, GitHub)
-2. **00:15-00:30** — Enable 2FA on all accounts where not already enabled
-3. **00:30-01:00** — Draft breach notification to subscribers (transparent, factual)
-4. **01:00-02:00** — Notify dev-security; investigate source (phishing, API key leak, platform breach)
-5. **Post-incident** — Audit all integrations; remove unused API keys; document in `reports/security_incident_YYYY-MM-DD.md`
+**响应时间**: 立即响应，15分钟内确认，1小时内确认影响范围，4小时内完成初步恢复
 
----
+### S2-高事故（High）
 
-## 3. Runbook: P1 Incidents
+**定义**: 导致部分服务受损、用户体验严重下降、重要渠道不可用
 
-### 3.1 MRR Drop > 20% WoW
-1. Pull Stripe churn report: how many cancelled? Any bulk cancellations?
-2. Check Substack: any email deliverability issues? Bounce spike?
-3. Check last 2 published issues: any controversial content? Negative replies?
-4. If churn concentrated on one day: investigate if related to specific email or publish
-5. Response: Send targeted win-back email with discount; publish high-value free issue
-6. Escalate to dev-architect if trend continues for 2nd week
+**示例**:
+- 邮件发送失败率>50%
+- 单一平台帐号被封禁
+- 内容生成脚本连续失败>3次
+- 连续投诉>5件/天
+- 绕过收款码被限制（如微信收款达到当日上限）
 
-### 3.2 Substack Publish Failure
-1. Check Substack status page
-2. Retry publish manually
-3. If still failing: draft issue as Substack note / Twitter thread as temporary distribution
-4. Email free list directly via CSV + SendGrid/Resend as emergency backup
-5. Log in `metrics/experiment_tracker.csv`; update `docs/kpi_dashboard.md`
+**响应时间**: 30分钟内响应，2小时内完成评估，8小时内完成主要恢复
 
-### 3.3 Hacker News Front-Page Spike
-**This is a P1 opportunity, not a failure**
-1. Monitor traffic in real time (Substack referrer analytics)
-2. Pin tweet with subscription CTA
-3. Update landing page hero to match HN post topic
-4. Enable email capture popup if not already active
-5. Prepare short follow-up comment on HN with subscription link
-6. After spike: analyze conversion rate from HN → free sub → paid; document for repeatability
+### S3-中事故（Medium）
 
-### 3.4 Sales Page Offline / Deployment Blocked (P1)
-**Symptoms**: `curl` to landing page returns non-200, `wrangler whoami` shows "not authenticated", `CLOUDFLARE_API_TOKEN` not set, user reports "site down"
-1. **00:00-00:05** — Verify: `curl -s -o /dev/null -w "%{http_code}" https://ai-opportunity-radar.pages.dev` (or configured domain)
-2. **00:05-00:10** — Check `reports/deployment_verification.md` for current blocker status
-3. **00:10-00:20** — Check `docs/deployment_blockers.md` for which user auth steps are incomplete
-4. **00:20-00:30** — If user auth missing: STOP all content spend and paid ads immediately; do not burn CAC on a broken funnel
-5. **00:30-01:00** — Generate updated `reports/deployment_verification.md` with exact unblock steps for user
-6. **01:00-04:00** — If user provides auth (API Token / wrangler login success): run `./deploy/deploy.sh production`
-7. **Post-deploy** — Verify HTTP 200, check payment links are not placeholders, update `metrics/experiment_tracker.csv` with "unblocked" note
-8. **If unresolved > 48 hrs**: escalate to dev-architect with pivot recommendation (小报童-first or WeChat收款码 MVP)
+**定义**: 影响局部用户体验、不影响核心服务
+
+**示例**:
+- 单篇内容格式错误
+- 销售页某按钮点击失败
+- 邮件打开率突然下降>30%
+- 单一用户涉及定制服务纠纷
+- 绕过收款二维码模糊或无法识别
+
+**响应时间**: 2小时内响应，24小时内解决
+
+### S4-低事故（Low）
+
+**定义**: 对用户影响微乎其微，主要是优化类问题
+
+**示例**:
+- 内容中的编辑笔误
+- 捕获超时或数据更新延迟
+- 单一用户反馈并非紧急
+
+**响应时间**: 24小时内响应，72小时内解决
 
 ---
 
-## 3.5 Runbook: Phase 2 WeChat-native P0/P1 Incidents
+## 二、通用应急处置流程
 
-### 3.5.1 微信个人号被封 / 无法发消息 (P0)
-**Symptoms**: 无法发送私聊/群消息，提示"操作频繁"或永久封禁，新好友请求无法通过
-1. **00:00-00:10** — 停止所有群发和主动加人动作
-2. **00:10-00:20** — 尝试微信官方申诉: 微信 → 我 → 设置 → 账号与安全 → 微信安全中心 → 申诉
-3. **00:20-00:30** — 激活备用微信号: 立即在朋友圈/小红书里更新"加备用号 XXX"
-4. **00:30-01:00** — 通过小红书/知乎/即刻私信，通知高价值联系人新号
-5. **01:00-02:00** — 停止所有群聊推广3天; 内容发布切换到小红书/即刻/知乎纯平台模式
-6. **Post-recovery** — 降低主动加人频率(< 5/天); 减少群发; 增加被动引流(用户主动加)
-
-### 3.5.2 收款码被冻结 / 无法收款 (P0/P1)
-**Symptoms**: 用户扫码提示"交易异常"或"暂停服务"，微信/支付宝通知收款功能受限
-1. **00:00-00:10** — 立即切换另一平台(微信被封→用支付宝; 支付宝被封→用微信)
-2. **00:10-00:20** — 私信已报价但未付款的用户: "换了个收款方式，这是新的"
-3. **00:20-00:30** — 联系微信/支付宝客服，了解冻结原因和预计解封时间
-4. **00:30-01:00** — 如果双平台都被封: 暂停收款动作; 改为"免费体验+随喜打赏"模式
-5. **Post-fix** — 分散收款: 日常小额用微信，大额用支付宝; 避免单日收款突增
-
-### 3.5.3 小红书账号被封 (P1)
-**Symptoms**: 无法登录，笔记消失，收到平台违规通知
-1. **00:00-00:10** — 截图所有违规通知; 导出已发布笔记文本和图片备份
-2. **00:10-00:20** — 尝试申诉: 小红书 → 我 → 帮助与客服 → 账号申诉
-3. **00:20-00:30** — 激活备用渠道: 加大知乎/即刻/微信群发布频率
-4. **00:30-01:00** — 注册新小红书账号(使用不同手机号/设备); 养号3天不发营销内容
-5. **Post-recovery** — 新号前10篇只发纯价值，不加任何"加微信"CTA; 第11篇开始软植入
-
----
-
-## 4. Runbook: P2 Incidents
-
-### 4.1 Email Open Rate < 30% (2x consecutive)
-1. Check Substack spam score / deliverability dashboard
-2. Review subject lines: are they generic? Too long? No clear value?
-3. A/B test next 2 subject lines:
-   - Variant A: Specific number + outcome ("3 mistakes that cost $10K in inference")
-   - Variant B: Curiosity gap ("The long-context myth most teams believe")
-4. Segment inactive subscribers (no open in 30 days) for re-engagement campaign
-5. If no improvement after 2 A/B tests, escalate to dev-architect for content strategy review
-
-### 4.2 Unsubscribe Spike > 5%
-1. Identify which issue caused the spike (Substack shows unsubscribes per post)
-2. Read all replies and comments on that issue
-3. Common causes: too promotional, off-topic, controversial opinion, technical error
-4. Response: Acknowledge in next issue's intro; adjust content calendar
-5. If cause = technical error, publish correction note immediately
-
----
-
-## 5. Recovery & Post-Incident Process
-
-### Immediate (during incident)
-- Create `reports/incident_YYYY-MM-DD_<short-name>.md`
-- Log start time, symptoms, actions taken, timestamps
-- Communicate in team channel every 30 min for P0, every 2 hr for P1
-
-### Short-term (within 24 hrs of resolution)
-- Update incident report with root cause
-- Send subscriber communication if user-facing (transparent, not defensive)
-- Update `docs/kpi_dashboard.md` with impact quantification (subs lost, revenue lost)
-
-### Medium-term (within 1 week)
-- Post-mortem meeting with dev-architect, dev-deploy, dev-security
-- Update this runbook if new failure mode discovered
-- Implement preventive measures (checklist updates, monitoring alerts, backup automation)
-
-### Long-term (within 1 month)
-- Review if incident type recurs; if yes, structural fix required
-- Update `docs/support_sop.md` if procedures changed
-- Train all team members on new runbook sections
-
----
-
-## 6. Contact Escalation Tree
+### 事故生命周期
 
 ```
-P0/P1 Detected
-    |
-    v
-dev-optimizer (profitability-analyst) — first responder
-    |
-    +---> dev-deploy (infra/payment/platform) — P0 tech incidents
-    |
-    +---> dev-architect (strategy/content) — P1 business incidents
-    |
-    +---> dev-security (legal/compliance/breach) — P0 security incidents
-    |
-    +---> dev-tester (QA/code validation) — P2 content/code issues
+检测(Detection)
+    ↓
+评估(Assessment) ← 15分钟内确认级别
+    ↓
+响应(Response) ← 启动应急通知
+    ↓
+恢复(Recovery) ← 执行对应方案
+    ↓
+复盘(Postmortem) ← 48h内完成
 ```
 
-**Emergency Contact Method**: Email team alias with subject `[P0] <incident type>` for critical issues.
+### 步骤1：检测
+
+- 自动检测：设定的预警规则触发
+- 用户报告：通过任何支持渠道收到
+- 平台通知：小报童/Stripe/微信后台发出警告
+
+**检测记录字段**:
+- 检测时间
+- 检测渠道
+- 影响范围预估
+- 初步评级
+
+### 步骤2：评估
+
+**必须在第一时间完成以下判断**:
+
+1. 这是什么类型的事故？（付费/内容/平台/技术/法律/绕过收款）
+2. 影响多少用户？
+3. 是否影响收入？（日收入损失估算）
+4. 是否涉及法律合规？
+5. 需不需要立即升级？
+
+**评估记录字段**:
+- 事故类型
+- 级别判断
+- 影响用户数
+- 收入影响
+- 升级决定
+
+### 步骤3：响应
+
+**启动应急通知列表**:
+
+| 级别 | 通知对象 | 通知方式 | 必须包含信息 |
+|------|----------|----------|--------------|
+| S1 | 小电 + 项目团队全员 | 微信 + 电话 | 事故类型、影响范围、预估损失、应急联系方式 |
+| S2 | 小电 + 相关负责人 | 微信 | 事故类型、影响范围、预计恢复时间 |
+| S3 | 相关负责人 | 微信/邮件 | 事故简要、处理方向 |
+| S4 | 记录在优化池 | 项目资料库 | 问题描述、优先级、建议处理方案 |
+
+### 步骤4：恢复
+
+执行具体方案（见下文专项处置），并记录：
+- 恢复开始时间
+- 采取的措施
+- 中间检查结果
+- 恢复完成时间
+- 用户通知状态
+
+### 步骤5：复盘
+
+**必须在48小时内完成复盘文档**:
+
+1. 事件时间线
+2. 根因分析（尽量客观，不追责个人）
+3. 影响尽量评估（用户数、收入损失、品牌影响）
+4. 采取的措施及效果
+5. 改进建议
+6. 行动计划（谁、什么时候、做什么）
 
 ---
 
-**Next Drill**: 2026-06-21 (simulate Substack publish failure)  
-**Owner**: dev-optimizer  
-**Version**: 1.0
+## 三、专项处置方案
+
+### 专项A：销售页/服务器不可用
+
+**触发条件**: 销售页返回非200或超时>5分钟
+
+**检查清单**:
+1. `curl -I https://aunomira-lab.github.io/knowledge-subscription/` 检查状态码
+2. 检查 GitHub Pages 后台是否有部署故障
+3. 检查域名是否过期
+4. 检查是否被平台屏蔽
+
+**恢复方案**:
+- 若部署故障: 重新部署 `deploy.sh`
+- 若域名问题: 检查DNS解析，必要时切换备用域名
+- 若平台屏蔽: 立即通知小电，启动备用渠道
+
+**备用方案**:
+- 主域名: aunomira-lab.github.io/knowledge-subscription/
+- 备用域名: 待部署
+- 平台内页面: 小报童个人主页
+
+### 专项B：支付渠道故障
+
+**触发条件**: 用户报告无法支付或支付成功但未开通权限
+
+**检查清单**:
+1. 测试小报童支付流程
+2. 测试微信转账流程
+3. 检查Stripe帐户状态（若已开通）
+
+**恢复方案**:
+- 小报童故障: 切换至微信收款码，人工验证支付后手动开通权限
+- 微信收款故障: 切换至支付宝收款码
+- 所有渠道故障: 暂停付费入口，公告免费期延长
+
+**备用方案**:
+- 主通道: 小报童平台内购买
+- 备用通道: 微信收款码人工核实
+- 后备通道: 支付宝收款码人工核实
+- 紧急通道: GitHub Sponsors（若已开通）
+
+### 专项C：绕过收款故障
+
+**触发条件**: 微信/支付宝收款码被封禁、限额、不可用
+
+**检查清单**:
+1. 检查微信收款码是否可正常打开
+2. 检查支付宝收款码是否异常
+3. 确认是否达到当日/当月限额
+
+**恢复方案**:
+- 收款码被封: 立即生成新的二维码并更新到所有渠道
+- 限额达标: 切换到另一个收款人的二维码
+- 所有二维码无法使用: 立即通知小电，尝试银行转账或其他绕过方案
+
+**备用方案**:
+- 主收款码: 微信个人收款码
+- 备用收款码: 支付宝个人收款码
+- 后备收款码: 微信赞赏码（若有）
+
+### 专项D：平台账号封禁
+
+**触发条件**: 微信/小红书/即刻账号异常、内容被删除、功能受限
+
+**检查清单**:
+1. 检查平台后台通知或邮件
+2. 确认是否违规或被举报
+3. 检查其他平台是否受影响
+
+**恢复方案**:
+- 微信被封: 立即通知小电，用备用微信号继续服务，通知用户移步邮箱
+- 小红书被封: 停止小红书渠道，加速即刻/知乎渠道建设
+- 平台限流: 调整内容策略，减少营销尾边，增加干货比例
+
+**备用方案**:
+- 主平台: 微信个人号
+- 备用平台: 小红书号
+- 后备平台: 邮件列表直接触达
+
+### 专项E：内容生产中断
+
+**触发条件**: 内容生成脚本失败或人工无法及时产出
+
+**检查清单**:
+1. 检查生成器脚本运行状态
+2. 检查数据源可用性
+3. 确认人工备份时间
+
+**恢复方案**:
+- 脚本故障: 使用备份脚本或手动生成
+- 数据源故障: 使用本地缓存数据
+- 无法生成当日内容: 发送预警模板"今日延期更新"，补发往日精选内容
+
+**备用方案**:
+- 主生成方式: 自动脚本
+- 备份方式: 手动生成
+- 紧急方式: 发送延期通知+平台内消息
+
+### 专项F：用户数据问题
+
+**触发条件**: 用户反馈数据错误、泄露风险、订单记录不一致
+
+**检查清单**:
+1. 检查 experiment_tracker.csv 一致性
+2. 检查各平台后台数据
+3. 确认是否涉及个人隐私信息
+
+**恢复方案**:
+- 数据错误: 检查并更新源数据，通知受影响用户
+- 泄露风险: 立即开启安全审计，通知小电，法律评估
+- 订单不一致: 对平台后台为准，补偿或退款
+
+---
+
+## 四、升级规则
+
+### 自动升级条件
+
+| 级别 | 升级触发条件 | 升级对象 | 升级方式 |
+|------|----------|----------|----------|
+| S1 | 自动触发 | 小电 | 微信电话+消息，不超过次日早上9:00 |
+| S2 | 事故处理者判断 | 小电 | 微信消息，不超过次日中午12:00 |
+| S3 | 事故处理者判断 | 项目经理 | 微信消息，在处理过程中可升级 |
+| S4 | 不升级 | - | 记录在优化池 |
+
+### 人工升级条件
+
+以下情况必须人工判断升级:
+- 事故处理者不确定影响范围
+- 涉及法律合规性存疑
+- 涉及外部协作方（平台、支付方、广告主）
+- 预估损失>¥500
+
+---
+
+## 五、联系人列表
+
+| 角色 | 联系方式 | 备注 |
+|------|----------|------|
+| 小电 | 微信主账号 | 升级对象、最终决策 |
+| dev-monitor | 本会话 | 日常运营、监控、警报检测 |
+| dev-coder | 微信/项目会话 | 技术故障、脚本修复 |
+| dev-deploy | 微信/项目会话 | 部署、域名、平台事务 |
+| 律师顾问 | 邮件 | 法律问题（必要时） |
+
+---
+
+## 六、验证命令
+
+```bash
+# 1. 确认事故手册存在
+ls /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/docs/incident_runbook.md
+
+# 2. 确认联系人信息可访问
+python3 -c "
+import json
+state = '/home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/state/project_state.json'
+try:
+    with open(state) as f:
+        data = json.load(f)
+    print('Project state readable')
+    print(f'Status: {data.get(\"status\", \"unknown\")}')
+except Exception as e:
+    print(f'Note: {e}')
+"
+
+# 3. 确认应急备份方案存在
+ls /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/deploy/deploy.sh
+
+# 4. 确认监控脚本存在
+ls /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/scripts/monitor_dashboard.py
+```
+
+---
+
+**下次审核**: 每月第一个工作日
+**负责人**: dev-monitor

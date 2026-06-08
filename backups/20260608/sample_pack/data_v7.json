@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "task_id": "6af54650",
+    "project_id": "knowledge-subscription",
+    "version": "v7.0",
+    "generated_at": "2026-05-26T06:50:46.962945"
+  },
+  "opportunities": [
+    {
+      "id": "opp-001",
+      "title": "AI Agent 自动化客服 SaaS",
+      "category": "AI基础设施/SaaS",
+      "difficulty": 3,
+      "launch_days": "5-10天",
+      "revenue": "¥5,000-30,000/月",
+      "margin": ">85%",
+      "summary": "为中小电商/本地生活商家搭建 AI 客服 Agent，用 Dify/Coze + 企业微信/飞书接入，自动处理 80% 重复咨询，按月收取 SaaS 订阅费。",
+      "data_sources": [
+        "Dify GitHub 46k+ stars（2026-05），企业版定价 $199/月，验证 B2B 需求",
+        "淘宝/拼多多商家日均咨询 200-2000 条，人工客服成本 ¥3,000-8,000/月",
+        "Coze 国内生态月活超 700 万（2026Q2），Bot 商店头部应用日调用 12 万+",
+        "1688 上 '智能客服系统' 月销 350+ 套，均价 ¥299"
+      ],
+      "action_steps": [
+        "注册 Dify 开源版或 Coze 专业版，熟悉工作流编排和知识库 RAG",
+        "选择 1 个目标行业（推荐：餐饮外卖/母婴电商），收集 50 条真实 FAQ 训练知识库",
+        "搭建标准工作流：用户问题 -> 意图分类 -> RAG 检索 -> LLM 生成回复 -> 人工兜底",
+        "制作 3 分钟演示视频（录屏：用户提问 -> Agent 秒回），作为销售物料",
+        "在闲鱼/小红书/行业群发免费试用（7 天），转化率目标 15%，定价 ¥299/月起步"
+      ],
+      "prompt_template": "你是一位专业的【行业】客服顾问。请根据以下知识库内容，用亲切、口语化的中文回复用户问题。如果知识库中没有答案，回复\"这个问题比较特殊，我帮您转接人工专员，请稍等~\"。\n\n知识库：\n{{knowledge_base}}\n\n用户问题：{{user_question}}\n\n请直接输出回复内容，不要加任何解释。",
+      "tags": [
+        "AI Agent",
+        "SaaS",
+        "客服自动化",
+        "Dify",
+        "Coze"
+      ],
+      "source_urls": [
+        "https://github.com/langgenius/dify",
+        "https://www.coze.com/",
+        "https://dify.ai/pricing"
+      ],
+      "free_preview": true
+    },
+    {
+      "id": "opp-002",
+      "title": "Cursor 全栈开发外包服务",
+      "category": "技术服务/B2B",
+      "difficulty": 3,
+      "launch_days": "7-14天",
+      "revenue": "¥8,000-50,000/项目",
+      "margin": ">80%",
+      "summary": "利用 Cursor + Claude 4 的编程能力，为中小企业和独立创始人提供快速 MVP 开发外包。单人效率相当于传统 3 人团队，交付周期缩短 60%。",
+      "data_sources": [
+        "Cursor 月活开发者超 400 万（2026-05），Anysphere 估值 $50 亿+",
+        "Upwork 'AI developer' 时薪 $60-180，需求年增 450%",
+        "国内外包市场 MVP 开发报价 ¥2-10 万，交付周期 2-4 周",
+        "即刻/推特大量独立开发者晒出 'Cursor 3 天做完原需一个月的项目'"
+      ],
+      "action_steps": [
+        "安装 Cursor + 配置 Claude 4 API，熟悉 Agent 模式（Ctrl+K / Composer / Agent）",
+        "用 Cursor 在 3 天内独立搭建 1 个完整作品（推荐：SaaS 落地页 + 用户系统 + 支付接入）",
+        "录制开发过程时间轴视频，作为能力证明发布到即刻/推特/小红书",
+        "在电鸭社区、V2EX、即刻 Creator 圈子发布接单帖，标题模板：'Cursor 全栈接单，1 周交付 MVP，首单 8 折'",
+        "标准化交付包：源码 + Vercel 部署 + 30 天 Bug 修复 + 操作视频，起步价 ¥8,000"
+      ],
+      "prompt_template": "你是一位资深全栈工程师，使用 Cursor + Next.js + Prisma + PostgreSQL 技术栈。\n\n请根据以下需求文档，生成完整的可运行代码：\n{{requirement_doc}}\n\n要求：\n1. 代码必须可直接运行，无占位符\n2. 包含所有必要的 API 路由和数据库 Schema\n3. 使用 TypeScript，类型完整\n4. 包含 README 说明安装和运行步骤\n\n先输出文件结构，再逐个输出完整代码。",
+      "tags": [
+        "Cursor",
+        "外包",
+        "全栈开发",
+        "MVP",
+        "Claude"
+      ],
+      "source_urls": [
+        "https://www.cursor.com/",
+        "https://www.upwork.com/nx/jobs/search/?q=ai%20developer",
+        "https://eleduck.com/"
+      ],
+      "free_preview": true
+    },
+    {
+      "id": "opp-003",
+      "title": "AI 数字人短视频矩阵 + 带货",
+      "category": "社媒变现/电商",
+      "difficulty": 2,
+      "launch_days": "3-7天",
+      "revenue": "¥10,000-80,000/月",
+      "margin": ">70%",
+      "summary": "用 HeyGen/D-ID/剪映 生成 AI 数字人出镜视频，批量制作带货/种草内容，在抖音/视频号/小红书上矩阵发布。无需真人出镜，1 人可管理 5-10 个账号。",
+      "data_sources": [
+        "HeyGen 月活 1500 万+（2026-05），企业版 $89/月，验证市场需求",
+        "抖音 '数字人带货' 话题播放量超 80 亿，头部账号月 GMV 百万+",
+        "剪映数字人功能上线后，DAU 增长 40%，低门槛工具验证大众需求",
+        "淘宝联盟/精选联盟高佣商品佣金率 20%-50%，无需囤货"
+      ],
+      "action_steps": [
+        "注册 HeyGen 免费版或剪映数字人，生成 1 个固定形象数字人（确保所有视频形象一致）",
+        "选择 1 个垂直品类（推荐：家居好物/图书教育/美妆个护），在精选联盟筛选佣金 >30% 的商品",
+        "用 ChatGPT/Claude 写 10 条带货脚本（痛点开场 -> 产品介绍 -> 使用场景 -> 促单），每条 30-60 秒",
+        "批量生成视频：HeyGen 生成口播 + 剪映加字幕/B-roll/背景音乐，1 天可产 20 条",
+        "注册 3 个抖音 + 2 个视频号，每天各发 2-3 条，挂购物车，7 天后根据播放/转化率淘汰低效账号"
+      ],
+      "prompt_template": "你是一位抖音带货脚本撰写专家，擅长写 30-60 秒的短视频口播脚本。\n\n商品信息：\n{{product_info}}\n\n目标受众：{{target_audience}}\n\n请按以下结构写脚本：\n1. 钩子（前 3 秒抓注意力，用疑问句或反常识陈述）\n2. 痛点共鸣（描述目标受众的具体困扰）\n3. 产品介绍（核心卖点，只讲 1-2 个差异点）\n4. 使用场景（让用户能想象自己在用）\n5. 促单（限时/限量/价格锚点）\n\n输出格式：\n[场景描述] + 口播台词（口语化，每句不超过 15 字）\n\n总字数控制在 200 字以内。",
+      "tags": [
+        "AI数字人",
+        "短视频",
+        "带货",
+        "抖音",
+        "矩阵"
+      ],
+      "source_urls": [
+        "https://www.heygen.com/",
+        "https://www.capcut.cn/",
+        "https://www.douyin.com/"
+      ],
+      "free_preview": true
+    },
+    {
+      "id": "opp-004",
+      "title": "MCP 服务开发：AI 工具连接层生意",
+      "category": "独立开发者",
+      "difficulty": 3,
+      "launch_days": "2-4周",
+      "revenue": "$3,000-20,000/月",
+      "margin": ">90%",
+      "summary": "开发 Model Context Protocol (MCP) 服务器，为 Claude / Cursor / Windsurf 等 AI 编辑器提供结构化工具调用能力。MCP 是 2025-2026 年 AI 基础设施最大风口，早期开发者供不应求。",
+      "data_sources": [
+        "MCP (Model Context Protocol) 由 Anthropic 开源，GitHub 12k+ stars，社区 500+ 扩展",
+        "Cursor/Windsurf/Claude Desktop 均原生支持 MCP，用户基数超 1000 万",
+        "Upwork 'MCP developer' 时薪 $80-200，岗位数量 3 个月增长 800%",
+        "国内 'MCP 开发' 搜索量月增 300%，中文教程和模板极度稀缺"
+      ],
+      "action_steps": [
+        "学习 MCP 协议规范（modelcontextprotocol.io），理解 Tools/Resources/Prompts 三大概念",
+        "用 TypeScript + @modelcontextprotocol/sdk 开发第一个 MCP 服务器：连接 Notion API，实现 '读取页面/创建笔记/搜索内容' 三个工具",
+        "在 npm 发布包，在 GitHub 写 README（含安装视频），在 Product Hunt / 即刻 / 小红书同步发布",
+        "提供付费增值服务：私有化部署 ($299/次)、企业定制 ($1,999+)、SaaS 托管 ($29/月)",
+        "开设 '7 天 MCP 开发实战营'，售价 ¥399，教授从 0 到发布 npm 包的完整流程"
+      ],
+      "prompt_template": "你是一个 MCP (Model Context Protocol) 服务器开发专家。请根据以下需求，生成一个完整的 MCP 服务器代码。\n\n需求：{{mcp_requirement}}\n\n技术栈：TypeScript + @modelcontextprotocol/sdk + zod\n\n要求：\n1. 实现至少 3 个 tool，每个 tool 有清晰的 name、description 和 zod schema\n2. 包含错误处理和参数验证\n3. 输出完整的 server.ts 和 package.json\n4. 附带安装说明和测试命令\n\n先描述工具设计，再输出完整代码。",
+      "tags": [
+        "MCP",
+        "AI基础设施",
+        "TypeScript",
+        "npm",
+        "独立开发"
+      ],
+      "source_urls": [
+        "https://modelcontextprotocol.io/",
+        "https://github.com/modelcontextprotocol",
+        "https://www.npmjs.com/package/@modelcontextprotocol/sdk"
+      ],
+      "free_preview": false
+    },
+    {
+      "id": "opp-005",
+      "title": "n8n + AI 自动化工作流代搭建服务",
+      "category": "自动化/效率",
+      "difficulty": 2,
+      "launch_days": "3-5天",
+      "revenue": "¥3,000-20,000/月",
+      "margin": ">90%",
+      "summary": "为运营者/创业者搭建定制化 n8n 工作流，覆盖小红书自动发布、私域 SOP、AI 内容生成、跨平台数据同步。一次搭建可复用，边际成本趋近于零。",
+      "data_sources": [
+        "n8n GitHub 65k+ stars（2026-05），社区模板 1,000+，但中文高价值模板稀缺",
+        "小红书运营者日均花 3 小时做重复性工作（排版、发布、回复、数据记录）",
+        "国内 '自动化' 相关搜索量月增 60%，RPA 工具需求爆发",
+        "即刻 '效率工具' 圈子日均讨论 200+ 条，付费意愿强烈"
+      ],
+      "action_steps": [
+        "本地 Docker 部署 n8n，熟悉核心节点：HTTP Request、AI Agent、Schedule、Webhook、Notion",
+        "制作 3 个标准化工作流模板：（1）RSS 聚合 -> AI 改写 -> 多平台定时发布；（2）私域加好友 -> 自动打标签 -> 7 天 SOP nurture；（3）竞品价格监控 -> 降价告警 -> 自动通知飞书",
+        "为每个工作流录制 5 分钟部署教程 + 提供可直接导入的 JSON 文件",
+        "在即刻/小红书/V2EX 发案例帖：'帮小红书博主搭建自动发布工作流，每天省 2 小时'",
+        "定价：单次搭建 ¥499-1,999（按复杂度），模板包 ¥99-299，年维护 ¥999"
+      ],
+      "prompt_template": "你是一位 n8n 自动化专家。请根据以下业务需求，设计完整的工作流 JSON 配置。\n\n业务需求：{{workflow_requirement}}\n\n要求：\n1. 使用 n8n 标准节点，不依赖自定义代码（除非必要）\n2. 包含错误处理分支（如果 API 失败，重试 3 次后发飞书告警）\n3. 关键节点添加注释说明\n4. 输出可直接导入 n8n 的 JSON 格式\n\n先描述工作流逻辑（节点顺序和数据流），再输出完整 JSON。",
+      "tags": [
+        "n8n",
+        "自动化",
+        "工作流",
+        "效率工具",
+        "运营提效"
+      ],
+      "source_urls": [
+        "https://n8n.io/",
+        "https://github.com/n8n-io/n8n",
+        "https://workflow.chschtsch.xyz/"
+      ],
+      "free_preview": false
+    },
+    {
+      "id": "opp-006",
+      "title": "AI 编程陪跑营：教小白用 Cursor 做副业项目",
+      "category": "知识付费/教育",
+      "difficulty": 2,
+      "launch_days": "7-14天",
+      "revenue": "¥15,000-100,000/期",
+      "margin": ">85%",
+      "summary": "针对零基础但想做副业的职场人，开设 21 天 Cursor 编程陪跑营。不教编程理论，直接带学员从 0 到 1 做出可上线的 Chrome 扩展/落地页/自动化脚本，结营即有作品可卖。",
+      "data_sources": [
+        "小报童 'AI 编程' 类专栏头部订阅 6000+，单价 ¥99-299",
+        "知识星球 'AI 编程圈' 年费 ¥365，成员 9000+",
+        "即刻 'Cursor' 话题日均新增 60+ 条，大量用户表示 '想学但不会开始'",
+        "国内编程教育市场规模 500 亿+，'实战导向' 付费转化率远高于理论课"
+      ],
+      "action_steps": [
+        "设计课程大纲：Week1 Cursor 基础 + 做出第一个网页；Week2 接入 API + 做 Chrome 扩展；Week3 部署上线 + 冷启动获客",
+        "准备教学物料：10 个录屏视频（每节 15 分钟）、源码模板包、答疑文档、学员作品展示页",
+        "选择发售平台：小报童做专栏（¥199）+ 微信群做陪跑答疑（¥999/21 天）+ 即刻/小红书引流",
+        "冷启动：在即刻发 '免费直播：1 小时用 Cursor 做出你的第一个产品'，直播中转化陪跑营",
+        "建立学员作品墙：每期结营收集学员作品，截图发小红书/即刻，形成社交证明飞轮"
+      ],
+      "prompt_template": "你是一位零基础编程陪跑导师。学员背景：{{student_background}}，目标：{{student_goal}}。\n\n请为这位学员设计一份 21 天学习路线图，要求：\n1. 每天学习任务不超过 1 小时\n2. 每 3 天产出一个可运行的小作品\n3. 第 7/14/21 天分别产出里程碑作品\n4. 遇到常见报错时，给出具体解决步骤（不要只说 '查文档'）\n\n输出格式：\nDay N: 任务标题\n- 具体做什么（附带 Cursor 操作步骤）\n- 预期产出\n- 常见坑及解法\n- 进阶挑战（可选）",
+      "tags": [
+        "知识付费",
+        "Cursor",
+        "编程教育",
+        "陪跑营",
+        "副业"
+      ],
+      "source_urls": [
+        "https://xiaobot.net/",
+        "https://zsxq.com/",
+        "https://www.xiaohongshu.com/"
+      ],
+      "free_preview": false
+    }
+  ],
+  "schedule": [
+    {
+      "day": "周一",
+      "theme": "新机会首发",
+      "title": "首发独占：AI Agent 客服 SaaS — 5 天搭建、月收 ¥5,000+ 的完整路径",
+      "opportunity": "opp-001",
+      "exclusive": "48 小时内专业版独占 | 附赠 Dify 工作流 JSON + 知识库模板"
+    },
+    {
+      "day": "周二",
+      "theme": "技术服务",
+      "title": "Cursor 外包实战：如何用 AI 编程接下第一个 ¥8,000 的 MVP 项目",
+      "opportunity": "opp-002",
+      "exclusive": "完整客户沟通话术 + 合同模板 + 交付 checklist"
+    },
+    {
+      "day": "周三",
+      "theme": "社媒变现",
+      "title": "AI 数字人带货：1 人运营 5 个账号，从 0 到月佣 ¥10,000 的 SOP",
+      "opportunity": "opp-003",
+      "exclusive": "10 条可直接使用的带货脚本 + HeyGen 参数配置"
+    },
+    {
+      "day": "周四",
+      "theme": "独立开发",
+      "title": "MCP 服务开发：AI 工具连接层，从 0 到月入 $3,000+ 的新风口",
+      "opportunity": "opp-004",
+      "exclusive": "完整 TypeScript MCP 服务器源码 + npm 发布指南 + 定价策略"
+    },
+    {
+      "day": "周五",
+      "theme": "自动化掘金",
+      "title": "n8n 代搭建：帮运营者每天省 2 小时，收费 ¥1,999/套的商业模式",
+      "opportunity": "opp-005",
+      "exclusive": "3 个高价值工作流 JSON + 客户提案 PPT 模板"
+    },
+    {
+      "day": "周六",
+      "theme": "深度专题",
+      "title": "深度专题：独立开发者/副业者的 90 天变现执行路线图",
+      "opportunity": "opp-006",
+      "exclusive": "完整路线图 + 里程碑检查表 + 每周 OKR 模板"
+    },
+    {
+      "day": "周日",
+      "theme": "复盘+预告",
+      "title": "本周复盘：6 个机会执行进度追踪 + 下周 3 个新机会预告",
+      "opportunity": null,
+      "exclusive": "会员答疑精华 + 下周新机会内幕预告"
+    }
+  ],
+  "pricing": {
+    "monthly": {
+      "price": 99,
+      "currency": "CNY",
+      "period": "month"
+    },
+    "yearly": {
+      "price": 799,
+      "currency": "CNY",
+      "period": "year"
+    },
+    "enterprise": {
+      "price": 2999,
+      "currency": "CNY",
+      "period": "year"
+    },
+    "consulting": {
+      "price": 499,
+      "currency": "CNY",
+      "period": "per_session"
+    }
+  },
+  "target_metrics": {
+    "month_1_revenue_cny": 4950,
+    "month_3_revenue_cny": 14850,
+    "month_6_revenue_cny": 29700,
+    "month_12_revenue_cny": 89100,
+    "ltv_cac_ratio": "22:1 to 84:1",
+    "gross_margin": ">85%"
+  }
+}

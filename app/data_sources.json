@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "version": "v2.0",
+    "project": "knowledge-subscription",
+    "task_id": "c74f6491",
+    "updated": "2026-05-31",
+    "purpose": "高端深度内容生成器的数据源与证据评级规则"
+  },
+  "evidence_rating_rules": {
+    "A": {
+      "label": "一手数据/官方财报/权威机构报告",
+      "examples": [
+        "企业年报/SEC 10-K",
+        "行业协会统计报告",
+        "官方平台公开数据（如 Substack 官方 blog）",
+        "垂直 SaaS 厂商官方定价页"
+      ],
+      "weight": 1.0,
+      "requirement": "深度报告中 A 级证据占比 >= 40%"
+    },
+    "B": {
+      "label": "可靠媒体/知名机构分析",
+      "examples": [
+        "艾瑞咨询/易观分析报告",
+        "a16z/Sequoia 投资理由公开文章",
+        "TechCrunch/The Information 独家报道",
+        "GitHub 官方 stars/下载量统计"
+      ],
+      "weight": 0.7,
+      "requirement": "深度报告中 B 级证据占比 >= 30%"
+    },
+    "C": {
+      "label": "社区讨论/个人经验/线上观察",
+      "examples": [
+        "Reddit/知乎/即刻 高赞回答",
+        "实际操作者分享（含收入截图）",
+        "电商平台销量/评论数据"
+      ],
+      "weight": 0.4,
+      "requirement": "C 级证据必须配备 A/B 级证据交叉验证，单独使用不超过 20%"
+    }
+  },
+  "source_registry": {
+    "industry_reports": [
+      {"name": "艾瑞咨询", "url": "https://www.iresearch.com.cn/", "freq": "quarterly", "rating": "B", "lang": "zh"},
+      {"name": "Statista", "url": "https://www.statista.com/", "freq": "weekly", "rating": "A", "lang": "en"},
+      {"name": "CB Insights State of AI", "url": "https://www.cbinsights.com/research/", "freq": "annual", "rating": "A", "lang": "en"}
+    ],
+    "platform_dynamics": [
+      {"name": "Substack Official Blog", "url": "https://on.substack.com/", "freq": "weekly", "rating": "A", "lang": "en"},
+      {"name": "小报童 Top 作者专栏", "url": "https://xiaobot.net/", "freq": "daily", "rating": "C", "lang": "zh"},
+      {"name": "知识星球创作者推荐", "url": "https://zsxq.com/", "freq": "weekly", "rating": "C", "lang": "zh"}
+    ],
+    "social_signals": [
+      {"name": "Reddit r/Newsletters", "url": "https://www.reddit.com/r/Newsletters/", "freq": "daily", "rating": "C", "lang": "en"},
+      {"name": "Indie Hackers", "url": "https://www.indiehackers.com/", "freq": "daily", "rating": "B", "lang": "en"},
+      {"name": "Hacker News", "url": "https://news.ycombinator.com/", "freq": "daily", "rating": "B", "lang": "en"},
+      {"name": "知乎 AI/创业话题", "url": "https://www.zhihu.com/search?type=content&q=AI%E5%88%9B%E4%B8%9A", "freq": "daily", "rating": "C", "lang": "zh"},
+      {"name": "小红书 创业/副业", "url": "https://www.xiaohongshu.com/search_result?keyword=%E5%88%9B%E4%B8%9A", "freq": "daily", "rating": "C", "lang": "zh"}
+    ],
+    "ai_tool_tracking": [
+      {"name": "GitHub Trending", "url": "https://github.com/trending", "freq": "daily", "rating": "B", "lang": "en"},
+      {"name": "Product Hunt", "url": "https://www.producthunt.com/", "freq": "daily", "rating": "B", "lang": "en"},
+      {"name": "Vapi/Retell/ElevenLabs 官方博客", "url": "https://vapi.ai/blog", "freq": "weekly", "rating": "A", "lang": "en"},
+      {"name": "browser-use GitHub", "url": "https://github.com/browser-use/browser-use", "freq": "daily", "rating": "B", "lang": "en"}
+    ],
+    "competitor_monitoring": [
+      {"name": "Lenny's Newsletter", "url": "https://www.lennysnewsletter.com/", "freq": "weekly", "rating": "A", "lang": "en"},
+      {"name": "Pekingnology", "url": "https://www.pekingnology.com/", "freq": "weekly", "rating": "B", "lang": "en"},
+      {"name": "小报童头部作者", "url": "https://xiaobot.net/", "freq": "weekly", "rating": "C", "lang": "zh"}
+    ]
+  },
+  "banned_keywords": {
+    "shallow_mass_market": [
+      "AI只会聊天",
+      "偷偷拉开普通人",
+      "普通人的差距",
+      "普通人的人工智能课",
+      "今晚就能试",
+      "上手就会",
+      "百分百",
+      "稳赚",
+      "无脑",
+      "原地起飞",
+      "赚飞"
+    ],
+    "emotional_hype": [
+      "震惊",
+      "爆炸",
+      "危险",
+      "完了",
+      "翻身",
+      "逆袭"
+    ],
+    "low_value_actions": [
+      "改邮件",
+      "写纪要",
+      "写文案",
+      "写广告词",
+      "做 PPT",
+      "写工作总结"
+    ]
+  },
+  "quality_gates": {
+    "evidence_gate": {
+      "label": "证据门",
+      "checklist": [
+        "关键判断是否有 A/B 级数据源支撑",
+        "数据来源是否可追溯（含 URL 或报告名）",
+        "统计数据是否标注采集日期",
+        "存在争议时是否给出反例或边界条件"
+      ],
+      "threshold": "通过 >= 3/4 项"
+    },
+    "depth_gate": {
+      "label": "深度门",
+      "checklist": [
+        "是否提供可复用框架/方法论（而不仅仅是工具推荐）",
+        "是否含有适用边界/反例/异常情况处理",
+        "是否展示了步骤化流程（从需求到交付的完整链路）",
+        "是否提供可视化结构（流程图/框架图/清单/模板）"
+      ],
+      "threshold": "通过 >= 3/4 项"
+    },
+    "asset_gate": {
+      "label": "资产门",
+      "checklist": [
+        "读者能否拿走一个模板、清单、字段表或 SOP",
+        "资产是否具备实際可复用性（换一个人执行结果接近）",
+        "是否标注了不能自动化/需要人工确认的环节",
+        "资产有无版本号、更新时间、适用范围"
+      ],
+      "threshold": "通过 >= 3/4 项"
+    },
+    "business_gate": {
+      "label": "商业门",
+      "checklist": [
+        "内容能否连接到咨询/订阅/模板包/陪跑服务的收费入口",
+        "是否提供了收益测算或细节（而不是空泛估算）",
+        "是否明确了目标用户群体和付费意愿",
+        "风险提示是否充分（不承诺稳赚/股市）"
+      ],
+      "threshold": "通过 >= 3/4 项"
+    }
+  },
+  "content_structures": {
+    "deep_dive": [
+      "先给结论（用户痛点 + 解决方案一句话概括）",
+      "数据支撑（A/B 级证据，含来源和日期）",
+      "方法论框架（可复用的操作系统，不是工具清单）",
+      "可复用资产（模板/清单/字段表/SOP，含版本和更新机制）",
+      "执行步骤（5-7 个具体到工具、命令、参数的动作）",
+      "质量门禁自检（四道门通过状态）",
+      "收费入口与风险提示"
+    ],
+    "workflow_sop": [
+      "业务目标与输入标准",
+      "处理步骤四段式（结构化原料→生成初稿→质量审查→资产沉淀）",
+      "质量门禁检查清单",
+      "异常处理与人工介入节点",
+      "复盘指标与迭代方向"
+    ]
+  }
+}

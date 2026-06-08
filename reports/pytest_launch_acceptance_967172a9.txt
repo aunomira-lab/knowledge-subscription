@@ -1,0 +1,55 @@
+..F........F.F........................F.......F....F.........F..F....... [ 26%]
+.................................................................F...... [ 53%]
+........................................................................ [ 79%]
+.......................................................                  [100%]
+=================================== FAILURES ===================================
+________________________ TestSalesPage.test_has_og_tags ________________________
+tests/test_launch_acceptance.py:46: in test_has_og_tags
+    assert "og:title" in html
+E   assert 'og:title' in '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device...演示页面，实际支付系统需配置收款账户后上线。\');\n      console.log(\'Subscription email:\', email);\n    }\n  </script>\n</body>\n</html>\n'
+________________ TestSalesPage.test_payment_placeholder_status _________________
+tests/test_launch_acceptance.py:85: in test_payment_placeholder_status
+    assert placeholder_found, "销售页未标明支付入口为占位状态，可能误导用户"
+E   AssertionError: 销售页未标明支付入口为占位状态，可能误导用户
+E   assert False
+______________________ TestSalesPage.test_urgency_element ______________________
+tests/test_launch_acceptance.py:97: in test_urgency_element
+    assert "早鸟剩余" in html or "限量" in html or "限时" in html
+E   assert ('早鸟剩余' in '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device...演示页面，实际支付系统需配置收款账户后上线。\');\n      console.log(\'Subscription email:\', email);\n    }\n  </script>\n</body>\n</html>\n' or '限量' in '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device...演示页面，实际支付系统需配置收款账户后上线。\');\n      console.log(\'Subscription email:\', email);\n    }\n  </script>\n</body>\n</html>\n' or '限时' in '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device...演示页面，实际支付系统需配置收款账户后上线。\');\n      console.log(\'Subscription email:\', email);\n    }\n  </script>\n</body>\n</html>\n')
+________________ TestLaunchBlockers.test_payment_not_fully_live ________________
+tests/test_launch_acceptance.py:262: in test_payment_not_fully_live
+    assert "待用户授权激活" in html or "占位" in html or "AI-Radar-2026" in html
+E   assert ('待用户授权激活' in '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device...演示页面，实际支付系统需配置收款账户后上线。\');\n      console.log(\'Subscription email:\', email);\n    }\n  </script>\n</body>\n</html>\n' or '占位' in '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device...演示页面，实际支付系统需配置收款账户后上线。\');\n      console.log(\'Subscription email:\', email);\n    }\n  </script>\n</body>\n</html>\n' or 'AI-Radar-2026' in '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device...演示页面，实际支付系统需配置收款账户后上线。\');\n      console.log(\'Subscription email:\', email);\n    }\n  </script>\n</body>\n</html>\n')
+_______________ TestUsability.test_mailto_form_works_as_fallback _______________
+tests/test_launch_acceptance.py:320: in test_mailto_form_works_as_fallback
+    assert "handleSubmit" in html
+E   assert 'handleSubmit' in '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device...演示页面，实际支付系统需配置收款账户后上线。\');\n      console.log(\'Subscription email:\', email);\n    }\n  </script>\n</body>\n</html>\n'
+__________ TestHighEndQualityGate.test_all_samples_have_data_sources ___________
+tests/test_report_generator.py:133: in test_all_samples_have_data_sources
+    self.assertGreaterEqual(len(urls), 1, f"{f.name} 应至少包含 1 个数据来源 URL")
+E   AssertionError: 0 not greater than or equal to 1 : sunday_v9.md 应至少包含 1 个数据来源 URL
+_______________ TestHighEndQualityGate.test_no_overpromise_words _______________
+tests/test_report_generator.py:175: in test_no_overpromise_words
+    self.assertNotIn(word, content, f"{f.name} 包含禁止词汇: {word}")
+E   AssertionError: '笔记' unexpectedly found in "# AI赚钱机会雷达 - 免费试看版 v9\n\n**生成时间**: 2026-06-01 23:29\n**任务ID**: a6837f49\n**版本**: v9.0\n**来源**: knowledge-subscription 首批可售卖内容样例包\n\n---\n\n## 试看说明\n\n本报告为「AI赚钱机会雷达」专业订阅的**免费试看版**。你看到的是付费会员每日收到的内容节选——**完整版包含 6 大机会的深度 SOP、收益测算表、执行清单、AI 提示词模板和可运行代码片段。**\n\n| 对比项 | 免费试看 | 专业版订阅 |\n|--------|----------|------------|\n| 机会数量 | 3 个节选 | 每日 2-3 个完整机会 |\n| 执行 SOP | 简化版 | 每一步具体到工具、命令、参数 |\n| 收益测算 | 区间估算 | 精确到平台的计算公式 + 敏感性分析 |\n| AI 提示词 | 无 | 可直接复制使用的 Prompt 模板 |\n| 可运行代码 | 无 | Python / n8n JSON / 前端源码片段 |\n| 社群支持 | 无 | 会员群 + 每周五直播答疑 |\n| 价格 | 免费 | ¥99/月 或 ¥799/年 |\n\n---\n\n## 本期免费机会（3 个深度节选）\n\n### AI 语音电话 Agent SaaS：替代传统外呼，月收 ¥8,000+\n**分类**: AI语音/B2B SaaS | **难度**: ⭐⭐⭐ | **启动时间**: 7-14天\n\n**收益预估**: ¥8,000-50,000/月（毛利率 >85%）\n\n使用 Vapi、Retell 或 Bland 搭建 AI 语音电话 Agent，为房产中介、教培机构、医美诊所提供自动预约、回访、邀约服务。按通话分钟数或坐席数收费。\n\n**核心数据**: Vapi 2026年5月公开数据：日处理通话超 2,000 万分钟，企业客户数 12,000+\n**行动提示**: 注册 Vapi 或 Retell 免费账户，熟悉语音工作流：接听/外呼 -> STT -> LLM 决策 -> TTS 回复\n---\n\n### AI 浏览器自动化爬虫：卖标准化数据抓取工作流\n**分类**: 自动化/数据服务 | **难度**: ⭐⭐⭐ | **启动时间**: 5-10天\n\n**收益预估**: ¥5,000-30,000/月（毛利率 >90%）\n\n利用 browser-use、Stagehand 或 Playwright + AI 视觉理解，为电商卖家、投研机构提供定制化网页数据抓取和监控服务。一次开发可复用，边际成本极低。\n\n**核心数据**: browser-use GitHub 25k+ stars（2026-05），月下载量 180 万+\n**行动提示**: 安装 browser-use：pip install browser-use，注册 OpenAI/Anthropic API key，运行官方 demo\n---\n\n### 小红书/公众号 AI 图文矩阵：1 人运营 20 个号月收 ¥10,000+\n**分类**: 社媒变现/内容创业 | **难度**: ⭐⭐ | **启动时间**: 3-7天\n\n**收益预估**: ¥10,000-60,000/月（毛利率 >75%）\n\n用 Flux、Midjourney v7 和 AI 写作工具批量生成高颜值图文内容，覆盖家居、穿搭、职场等垂直领域，在小红书和公众号做矩阵发布。通过品牌广告、知识付费和私域转化变现。\n\n**核心数据**: 小红书 2026 Q1 创作者报告：图文笔记互动率比视频高 23%，'精致生活'和'职场干货'品类增速最快\n**行动提示**: 选定 2-3 个垂直赛道（推荐组合：职场效率 + 家居好物），每个赛道注册 5-7 个小红书号 + 2 个公众号\n---\n\n## 立即行动\n\n1. **访问订阅入口解锁专业版**，获取全部 6 个机会的完整 SOP、每日更新和会员群。\n2. **加入会员群**，与 200+ 正在执行的创作者一起交流，每周五直播答疑。\n3. **将本报告转发给需要副业/创业机会的朋友**，每成功推荐 1 人得 1 个月延期。\n\n**订阅入口**: https://ai-radar.io/subscribe (占位，需替换为真实收款页)\n**客服微信**: ai-radar-support (占位)\n\n---\n\n*本报告由 Dev Team 自动生成于 2026-06-01。数据截至当日，执行风险请自行评估。收益数据为估算，不承诺任何结果。*\n" : free_preview_v9.md 包含禁止词汇: 笔记
+______________ TestHighEndQualityGate.test_samples_have_checklist ______________
+tests/test_report_generator.py:187: in test_samples_have_checklist
+    self.assertIn("[ ]", content, f"{f.name} 应包含复选框行动清单")
+E   AssertionError: '[ ]' not found in '# AI赚钱机会雷达 - 周日日报 v9\n\n**日期**: 2026-06-01\n**主题**: 复盘+预告\n**任务ID**: a6837f49\n**版本**: v9.0\n\n---\n\n## 本周机会回顾\n\n- **AI 语音电话 Agent SaaS：替代传统外呼，月收 ¥8,000+** | 难度 ⭐⭐⭐ | 收益 ¥8,000-50,000/月 | 标签: AI语音, Vapi, Retell, 外呼自动化, B2B SaaS\n- **AI 浏览器自动化爬虫：卖标准化数据抓取工作流** | 难度 ⭐⭐⭐ | 收益 ¥5,000-30,000/月 | 标签: browser-use, 爬虫, 数据服务, Playwright, 自动化\n- **小红书/公众号 AI 图文矩阵：1 人运营 20 个号月收 ¥10,000+** | 难度 ⭐⭐ | 收益 ¥10,000-60,000/月 | 标签: 小红书, 公众号, AI图文, 矩阵运营, 社媒变现\n- **跨境电商 AI 评论分析选品雷达：从差评里挖金矿** | 难度 ⭐⭐⭐ | 收益 $2,000-15,000/月 | 标签: 跨境电商, 选品, 评论分析, Amazon, Temu\n- **AI 播客/有声书内容工厂：批量生产音频资产** | 难度 ⭐⭐ | 收益 ¥5,000-40,000/月 | 标签: AI音频, 播客, 有声书, ElevenLabs, 内容工厂\n- **AI 面试陪跑 & 简历重构：裁员潮里的刚需生意** | 难度 ⭐⭐ | 收益 ¥10,000-80,000/月 | 标签: 求职, 简历优化, 面试辅导, 知识付费, AI陪跑\n\n---\n\n## 执行进度追踪\n\n| 机会 | 本周启动率 | 会员反馈亮点 | 下周重点 |\n|------|-----------|-------------|---------|\n| opp-v9-001 AI 语音电话 Agent | 23% | 已有 2 位会员完成 Vapi demo | 新增教培话术模板 |\n| opp-v9-002 browser-use 爬虫 | 18% | 1 位会员接到首单 ¥800 | 新增亚马逊评论分析模块 |\n| opp-v9-003 小红书矩阵 | 31% | 3 位会员账号破 500 粉 | 新增 Flux 封面 Prompt 库 |\n| opp-v9-004 跨境选品雷达 | 12% | 1 位会员发现潜力品类 | 新增 Shopee 数据抓取 |\n| opp-v9-005 音频内容工厂 | 15% | 2 位会员上架首批播客 | 新增小宇宙运营 SOP |\n| opp-v9-006 求职陪跑 | 28% | 5 位会员完成简历重构 | 新增模拟面试语音 Agent |\n\n---\n\n## 下周新机会预告\n\n1. **AI 硬件代理分销**：国产 AI 眼镜/AI 录音笔海外市场代理，利润率 40-60%\n2. **本地生活 Agent**：为餐饮/美甲/健身店搭建自动预约和点评回复系统\n3. **跨境独立站 AI 运营**：Shopify + AI 建站 + AI 客服 + AI 广告投放全链路\n\n---\n\n## 会员答疑精华\n\n**Q: 没有编程基础，能做什么？**\nA: 优先执行 opp-v9-003（小红书矩阵）和 opp-v9-006（求职陪跑），两者均无需写代码，只需使用现成工具。\n\n**Q: 启动资金最少需要多少？**\nA: ¥0-500。大多数机会可用免费工具起步。\n\n**Q: 多久能看到第一笔收入？**\nA: 社媒变现（小红书）平均 2-4 周；技术服务（爬虫/语音 Agent）平均 1-2 周接到首单；知识付费（求职陪跑）平均 1 周内可成交首客。\n\n---\n\n*本日报由 Dev Team 自动生成。数据截至当日，执行风险请自行评估。*\n' : sunday_v9.md 应包含复选框行动清单
+___________ TestMarkdownContent.test_delivery_checklist_has_14_items ___________
+tests/test_sample_pack_16513ba1.py:155: in test_delivery_checklist_has_14_items
+    assert len(v10_rows) >= 10, f"Expected >=10 v10 deliverable rows, got {len(v10_rows)}"
+E   AssertionError: Expected >=10 v10 deliverable rows, got 0
+E   assert 0 >= 10
+E    +  where 0 = len([])
+=========================== short test summary info ============================
+FAILED tests/test_launch_acceptance.py::TestSalesPage::test_has_og_tags - ass...
+FAILED tests/test_launch_acceptance.py::TestSalesPage::test_payment_placeholder_status
+FAILED tests/test_launch_acceptance.py::TestSalesPage::test_urgency_element
+FAILED tests/test_launch_acceptance.py::TestLaunchBlockers::test_payment_not_fully_live
+FAILED tests/test_launch_acceptance.py::TestUsability::test_mailto_form_works_as_fallback
+FAILED tests/test_report_generator.py::TestHighEndQualityGate::test_all_samples_have_data_sources
+FAILED tests/test_report_generator.py::TestHighEndQualityGate::test_no_overpromise_words
+FAILED tests/test_report_generator.py::TestHighEndQualityGate::test_samples_have_checklist
+FAILED tests/test_sample_pack_16513ba1.py::TestMarkdownContent::test_delivery_checklist_has_14_items
+9 failed, 262 passed in 0.59s

@@ -1,0 +1,19 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.0.2, pluggy-1.6.0 -- /home/AgentAdmin/hermes-agent/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
+plugins: asyncio-1.3.0, timeout-2.4.0, anyio-4.12.1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 9 items
+
+tests/test_sample_pack_889b251b.py::test_free_preview_exists PASSED      [ 11%]
+tests/test_sample_pack_889b251b.py::test_premium_catalog_exists PASSED   [ 22%]
+tests/test_sample_pack_889b251b.py::test_week1_samples_exist PASSED      [ 33%]
+tests/test_sample_pack_889b251b.py::test_data_json_exists PASSED         [ 44%]
+tests/test_sample_pack_889b251b.py::test_delivery_checklist_exists PASSED [ 55%]
+tests/test_sample_pack_889b251b.py::test_code_generator_exists PASSED    [ 66%]
+tests/test_sample_pack_889b251b.py::test_revenue_mentions PASSED         [ 77%]
+tests/test_sample_pack_889b251b.py::test_opportunity_items_count PASSED  [ 88%]
+tests/test_sample_pack_889b251b.py::test_all PASSED                      [100%]
+
+============================== 9 passed in 0.02s ===============================

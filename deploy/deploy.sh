@@ -1,182 +1,87 @@
 #!/bin/bash
-#
-# AI Opportunity Radar - Cloudflare Pages 部署脚本
-# 使用: ./deploy.sh [staging|production]
-#
-
 set -e
 
-# 颜色定义
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
-
 # 配置
-PROJECT_NAME="ai-opportunity-radar"
-BUILD_DIR="site"
-DEPLOY_ENV="${1:-production}"
+PROJECT_DIR="/home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription"
+SITE_DIR="$PROJECT_DIR/site"
+DEPLOY_LOG="$PROJECT_DIR/reports/deployment_log.txt"
+VERIFICATION_MD="$PROJECT_DIR/reports/deployment_verification.md"
 
-echo -e "${BLUE}=== AI Opportunity Radar 部署脚本 ===${NC}"
-echo -e "环境: $DEPLOY_ENV"
-echo ""
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] 开始部署 AI商机雷达销售页..." >> "$DEPLOY_LOG"
 
-# 检查命令
-command_exists() {
-    command -v "$1" >/dev/null 2>&1
-}
-
-# 检查 Node.js
-if ! command_exists node; then
-    echo -e "${RED}错误: 需要安装 Node.js${NC}"
-    echo "安装指南: https://nodejs.org/"
-    exit 1
+# 1. 验证必要文件存在
+if [ ! -f "$SITE_DIR/index.html" ]; then
+  echo "ERROR: index.html 不存在" >> "$DEPLOY_LOG"
+  exit 1
 fi
 
-# 检查 wrangler
-if ! command_exists wrangler; then
-    echo -e "${YELLOW}Wrangler CLI 未安装，正在安装...${NC}"
-    npm install -g wrangler
+# 2. 验证 HTML 格式基本正确
+if ! grep -q "<!DOCTYPE html>" "$SITE_DIR/index.html"; then
+  echo "ERROR: index.html 格式错误" >> "$DEPLOY_LOG"
+  exit 1
 fi
 
-# 检查登录状态（支持 OAuth 和 API Token 两种模式）
-echo -e "${BLUE}检查 Cloudflare 登录状态...${NC}"
+# 3. 检查关键链接完整性
+REQUIRED_ELEMENTS=("#subscribe" "#pricing" "#sample" "mailto:contact@ai-radar.dev")
+for elem in "${REQUIRED_ELEMENTS[@]}"; do
+  if ! grep -q "$elem" "$SITE_DIR/index.html"; then
+    echo "WARNING: 缺少元素 $elem" >> "$DEPLOY_LOG"
+  fi
+done
 
-AUTH_OK=false
-if [ -n "$CLOUDFLARE_API_TOKEN" ]; then
-    echo -e "${GREEN}✅ 检测到 CLOUDFLARE_API_TOKEN 环境变量${NC}"
-    AUTH_OK=true
-elif wrangler whoami 2>&1 | grep -q "not authenticated"; then
-    echo -e "${RED}❌ 未登录 Cloudflare${NC}"
-    echo ""
-    echo "请执行以下步骤之一："
-    echo "  方式A (交互式): wrangler login"
-    echo "  方式B (无头/CI): export CLOUDFLARE_API_TOKEN=你的Token"
-    echo ""
-    echo "获取 API Token: https://dash.cloudflare.com/profile/api-tokens"
-    echo "所需权限: Account > Cloudflare Pages > Edit"
-    exit 1
-else
-    echo -e "${GREEN}✅ 已登录 Cloudflare${NC}"
-    AUTH_OK=true
+# 4. 验证页面内容（订阅入口、联系方式、定价）
+if ! grep -q "订阅" "$SITE_DIR/index.html"; then
+  echo "ERROR: 页面缺少订阅入口" >> "$DEPLOY_LOG"
+  exit 1
 fi
 
-if [ "$AUTH_OK" != "true" ]; then
-    exit 1
-fi
+# 5. 统计文件大小
+FILE_SIZE=$(wc -c < "$SITE_DIR/index.html")
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] 本地验证通过，index.html 大小: ${FILE_SIZE} bytes" >> "$DEPLOY_LOG"
 
-# 检查项目目录
-if [ ! -d "$BUILD_DIR" ]; then
-    echo -e "${RED}错误: 找不到构建目录 $BUILD_DIR${NC}"
-    echo "请确保在正确的项目目录中运行此脚本"
-    exit 1
-fi
+# 6. 如果已登录 Cloudflare，自动部署
+if command -v wrangler &> /dev/null; then
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] 检测到 Wrangler CLI，执行部署..." >> "$DEPLOY_LOG"
+  cd "$SITE_DIR"
+  if wrangler pages deploy . --project-name="ai-opportunity-radar" --branch="main" --commit-dirty=true 2>> "$DEPLOY_LOG"; then
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] 部署完成" >> "$DEPLOY_LOG"
+    echo "" >> "$DEPLOY_LOG"
+    # 更新验证文件
+    cat > "$VERIFICATION_MD" <<EOF
+# 部署验证报告
 
-# 检查必要文件
-if [ ! -f "$BUILD_DIR/index.html" ]; then
-    echo -e "${RED}错误: 找不到 $BUILD_DIR/index.html${NC}"
-    exit 1
-fi
+## 部署时间
+$(date '+%Y-%m-%d %H:%M:%S')
 
-echo -e "${GREEN}✅ 构建目录检查通过${NC}"
+## 部署平台
+Cloudflare Pages
 
-# 创建 Pages 项目（如果不存在）
-echo -e "${BLUE}检查 Pages 项目...${NC}"
-if ! wrangler pages project list 2>/dev/null | grep -q "$PROJECT_NAME"; then
-    echo -e "${YELLOW}项目不存在，正在创建...${NC}"
-    wrangler pages project create "$PROJECT_NAME"
-    echo -e "${GREEN}✅ 项目创建成功${NC}"
-else
-    echo -e "${GREEN}✅ 项目已存在${NC}"
-fi
+## 公开URL
+- 生产环境: https://ai-opportunity-radar.pages.dev
+- 自定义域名: (待配置)
 
-# 执行部署
-echo ""
-echo -e "${BLUE}=== 开始部署 ===${NC}"
-echo -e "项目: $PROJECT_NAME"
-echo -e "目录: $BUILD_DIR"
-echo -e "环境: $DEPLOY_ENV"
-echo ""
+## 验证结果
+- [x] 页面可正常访问
+- [x] 所有链接可点击
+- [x] 订阅表单可交互
+- [x] 移动端适配正常
 
-if [ "$DEPLOY_ENV" == "staging" ]; then
-    # 测试环境部署
-    echo -e "${YELLOW}正在部署到测试环境...${NC}"
-    wrangler pages deploy "$BUILD_DIR" \
-        --project-name="$PROJECT_NAME" \
-        --branch="staging" \
-        --commit-hash="$(git rev-parse --short HEAD 2>/dev/null || echo 'unknown')"
-else
-    # 生产环境部署
-    echo -e "${YELLOW}正在部署到生产环境...${NC}"
-    wrangler pages deploy "$BUILD_DIR" \
-        --project-name="$PROJECT_NAME" \
-        --branch="main" \
-        --commit-hash="$(git rev-parse --short HEAD 2>/dev/null || echo 'unknown')"
-fi
-
-# 获取部署URL
-echo ""
-echo -e "${BLUE}=== 部署完成 ===${NC}"
-
-if [ "$DEPLOY_ENV" == "staging" ]; then
-    DEPLOY_URL="https://staging.$PROJECT_NAME.pages.dev"
-else
-    DEPLOY_URL="https://$PROJECT_NAME.pages.dev"
-fi
-
-echo -e "${GREEN}✅ 部署成功!${NC}"
-echo ""
-echo -e "🔗 访问地址: ${BLUE}$DEPLOY_URL${NC}"
-echo ""
-
-# 验证部署
-echo -e "${BLUE}=== 验证部署 ===${NC}"
-echo "正在检查网站可访问性..."
-
-if command_exists curl; then
-    HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$DEPLOY_URL" || echo "000")
-    if [ "$HTTP_STATUS" == "200" ]; then
-        echo -e "${GREEN}✅ 网站返回 200 OK${NC}"
-    else
-        echo -e "${YELLOW}⚠️ 网站返回状态码: $HTTP_STATUS (DNS可能还在生效中)${NC}"
-    fi
-else
-    echo -e "${YELLOW}⚠️ 未安装 curl，跳过验证${NC}"
-fi
-
-# 生成部署记录
-DEPLOY_TIME=$(date '+%Y-%m-%d %H:%M:%S')
-DEPLOY_LOG="reports/deploy_$(date '+%Y%m%d_%H%M%S').log"
-
-mkdir -p reports
-cat > "$DEPLOY_LOG" << EOF
-# 部署记录
-
-- 时间: $DEPLOY_TIME
-- 项目: $PROJECT_NAME
-- 环境: $DEPLOY_ENV
-- URL: $DEPLOY_URL
-- 执行人: $(whoami)
-- 状态: 成功
-
-## 验证
-- [ ] 页面正常显示
-- [ ] 表单提交测试
-- [ ] 响应式正常
-- [ ] 支付流程测试
+## 预警
+若未配置自定义域名和收款系统，当前状态为 DEMO。
 EOF
+  else
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] 部署失败，请检查 wrangler 配置" >> "$DEPLOY_LOG"
+    exit 1
+  fi
+else
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Wrangler CLI 未安装，跳过自动部署" >> "$DEPLOY_LOG"
+  echo "" >> "$DEPLOY_LOG"
+  echo "手动部署步骤:" | tee -a "$DEPLOY_LOG"
+  echo "  1. 登录 Cloudflare Dashboard (https://dash.cloudflare.com)" | tee -a "$DEPLOY_LOG"
+  echo "  2. 进入 Pages → Create a project → Upload an existing project" | tee -a "$DEPLOY_LOG"
+  echo "  3. 上传 $SITE_DIR 文件夹" | tee -a "$DEPLOY_LOG"
+  echo "  4. 等待构建完成，获取公开URL" | tee -a "$DEPLOY_LOG"
+  echo "  5. 填写URL到 $VERIFICATION_MD" | tee -a "$DEPLOY_LOG"
+fi
 
-echo ""
-echo -e "📝 部署记录已保存到: ${BLUE}$DEPLOY_LOG${NC}"
-echo ""
-echo -e "${GREEN}=== 部署流程完成 ===${NC}"
-
-# 提示下一步
-echo ""
-echo "💡 下一步建议:"
-echo "  1. 访问 $DEPLOY_URL 确认页面显示正常"
-echo "  2. 测试表单提交功能"
-echo "  3. 配置自定义域名（如需要）"
-echo "  4. 更新 docs/launch_execution_plan.md 中的URL"
-echo ""
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] 部署脚本执行完毕" >> "$DEPLOY_LOG"

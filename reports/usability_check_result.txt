@@ -1,28 +1,28 @@
 Usability Check Result
-Time: 2026-05-24T06:03:33.987781
+Time: 2026-06-08T00:21:42.638011
 Task ID: 4c927c2e
-Score: 92.5/100
+Score: 90.0/100
 Verdict: PASS (通过)
 
 Details:
   ✅ PASS: HTML: DOCTYPE 
-  ❌ FAIL: HTML: Title 
+  ✅ PASS: HTML: Title 
   ✅ PASS: HTML: Meta viewport 
   ✅ PASS: HTML: Pricing ¥29 
   ✅ PASS: HTML: Pricing ¥99 
-  ✅ PASS: HTML: CTA Button 
-  ✅ PASS: HTML: FAQ Section 
+  ❌ FAIL: HTML: CTA Button 
+  ❌ FAIL: HTML: FAQ Section 
   ✅ PASS: HTML: Responsive CSS 
-  ✅ PASS: Content: Welcome Email (1 files)
-  ✅ PASS: Content: Free Posts (2 files)
-  ✅ PASS: Content: Paid Posts (2 files)
+  ❌ FAIL: Content: Welcome Email (0 files)
+  ❌ FAIL: Content: Free Posts (0 files)
+  ❌ FAIL: Content: Paid Posts (0 files)
   ✅ PASS: File: docs/pricing_ladder.md (6140 bytes)
-  ✅ PASS: File: docs/deployment_blockers.md (7970 bytes)
-  ✅ PASS: File: README.md (2985 bytes)
+  ✅ PASS: File: docs/deployment_blockers.md (3411 bytes)
+  ✅ PASS: File: README.md (3121 bytes)
   ✅ PASS: Deploy: Sales Page Ready 
   ✅ PASS: Deploy: Deploy Docs Ready 
-  ✅ PASS: Tests: 107/107 passed (100.0%)
+  ✅ PASS: Tests: 282/282 passed (100.0%)
   ✅ PASS: Blocker: 小报童账号 
   ✅ PASS: Blocker: 支付接入 
-  ⚠️ WARN: Blocker: 社媒账号 
+  ✅ PASS: Blocker: 社媒账号 
   ✅ PASS: Blocker: 阻塞标记 

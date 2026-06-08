@@ -1,161 +1,203 @@
-# Customer Support Guide: AI Architecture Weekly
+# 客户支持入口与FAQ
 
-**Project ID**: knowledge-subscription  
-**Task ID**: ab047a39  
-**Type**: monitoring (ops-support)  
-**Last Updated**: 2026-05-24  
-**Owner**: dev-optimizer (profitability-analyst)
-
----
-
-## 1. Support Philosophy
-
-> **"Every support interaction is a retention and referral opportunity."**
-
-We are a tiny team. We cannot offer 24/7 live chat. But we can be fast, personal, and genuinely helpful. Founder voice in all replies. No templates unless absolutely necessary.
+**版本**: v4.2
+**任务ID**: 2d17707b
+**项目ID**: knowledge-subscription
+**更新日期**: 2026-06-08
+**执行角色**: dev-monitor
+**当前状态**: 销售页已上线，支付渠道尚未激活，微信客服号仍为占位符状态，绕过收款方案A/B/C/D已准备
 
 ---
 
-## 2. Support Entry Points
+## 一、客户支持入口
 
-### Public Channels (monitored daily)
-| Entry Point | URL / Location | Typical Request Type | Response SLA |
-|-------------|---------------|----------------------|--------------|
-| Substack comments | On each post | Content questions, corrections, debate | 24 hrs |
-| Substack email replies | Replies to newsletter | Private feedback, unsubscribe, upgrade | 24 hrs |
-| Twitter/X replies & DMs | @ handle | Quick questions, sharing, bug reports | 48 hrs |
-| LinkedIn comments & messages | Personal / page | B2B inquiries, Team tier interest | 48 hrs |
-| Hacker News replies | On posted stories | Technical deep-dives, corrections | 24 hrs (if top-level) |
-| GitHub Issues | Code example repo | Code bugs, setup help, feature requests | 72 hrs |
+### 主要入口
 
-### Private / Internal Channels
-| Entry Point | Access | Typical Request | SLA |
-|-------------|--------|---------------|-----|
-| Stripe customer portal | dashboard.stripe.com | Billing, refund, invoice, payment failure | 24 hrs |
-| Direct email (team alias) | team@ domain | Sensitive issues, legal, partnership | 24 hrs |
-| Discord (future) | Private server | Paid member Q&A, community, code help | 4 hrs |
+| 入口 | 链接/方式 | 响应时限 | 备注 |
+|------|-----------|----------|------|
+| 微信个人号 | 扫码或搜索"knowledge-sub" | ≤4h | 推荐，可实时沟通 |
+| 邮件 | support@knowledge-sub.local | ≤24h | 正式请求、企业合作 |
+| 小报童平台 | 平台内消息 | ≤24h | 平台内订阅问题 |
+| 知乎私信 | 知乎帐号私信 | ≤48h | 知乎平台渠道来的用户 |
+| GitHub | 项目Issues | ≤48h | 技术问题、功能建议 |
+| 小红书私信 | 小红书帐号私信 | ≤48h | 小红书渠道来的用户 |
 
----
+### 微信二维码占位
 
-## 3. FAQ — Pre-Written Answers (Use as Starting Point, Personalize)
+```
+[微信二维码占位符 - 实际上线时替换为真实二维码图片]
+备注: 二维码需要在账号实名认证后生成，当前状态为占位
+生成方式: 微信收款小程序→我的二维码收款码→保存图片
+尺寸建议: 300x300px
+位置: 销售页底部、每篇内容尾部、邮件签名
+```
 
-### Q1: "How do I upgrade from free to paid?"
-**Answer**: Thanks for considering it! You can upgrade directly on our Substack page — hit the "Subscribe" button and choose Pro ($15/mo) or Founding Member ($99/yr, limited to first 100). If you don't see the option, reply here and I'll send you a direct link.
+### 链接快捷方式
 
-### Q2: "I paid but I don't see the paid content / template."
-**Answer**: Sorry for the confusion! Sometimes Substack takes a few minutes to sync with Stripe. Can you try refreshing the page? If still missing, tell me which issue you're looking for and I'll send it directly.
-
-### Q3: "Can I get a refund?"
-**Answer**: Yes — if you're not getting value, I don't want your money. Reply with the email you used to subscribe and I'll process a full refund within 48 hours. No questions asked (though I'd love to know what would have made it worth it).
-
-### Q4: "Do you offer student / non-profit discounts?"
-**Answer**: Yes! Email me from your .edu or org address and I'll send you a 50% off code for the annual plan.
-
-### Q5: "Can I share this with my team?"
-**Answer**: Free issues — absolutely, share widely. Paid issues and templates are for individual subscribers. If you need a team license, check out the Team tier ($499/yr per seat, includes sharing license). Or just forward me your team size and I'll quote custom.
-
-### Q6: "The code example didn't work for me."
-**Answer**: Sorry about that. A few quick things to check: (1) Are you on Python 3.10+? (2) Did you install the pinned versions in requirements.txt? (3) What's the exact error message? Paste it here and I'll debug with you.
-
-### Q7: "I want to unsubscribe."
-**Answer**: No problem — you can unsubscribe at the bottom of any email. If you're leaving because something wasn't working, I'd genuinely appreciate a one-line reply telling me why. It helps make the newsletter better.
-
-### Q8: "Do you consult / can you advise on our architecture?"
-**Answer**: Sometimes! I take on a very limited number of advisory engagements. If you're on the Team tier or above, you get a quarterly review call included. For deeper engagements, email me with your scope and timeline and I'll send availability and rates.
-
-### Q9: "Can I republish / translate your content?"
-**Answer**: Free issues: yes with attribution and a link back. Paid issues: no, that's how we fund the work. For syndication or translation deals, email me directly.
-
-### Q10: "How do I access the Discord community?"
-**Answer**: It's not live yet — we're launching it once we hit 50 paid subscribers. You'll get an invite automatically when we cross that threshold. Want in early? Reply and I'll add you to the pre-launch list.
-
-### Q11: "Your website / sales page is not loading. Is this a scam?"
-**Answer**: Thanks for flagging this! We're currently migrating our landing page to a new host and it may be briefly offline. If you're seeing a 404 or timeout, it should be resolved within a few hours. In the meantime, you can browse our content directly on Substack (link) or add me on WeChat for direct access. Apologies for the friction — here's a 20% off code for the inconvenience: `COMEBACK20`.
-
-> **Internal note**: If sales page is offline due to deployment blocker, do NOT offer discounts until the page is live. Reply with expected fix time and direct user to Substack or WeChat as fallback.
-
-### Q12: "我怎么付款？安全吗？"
-**Answer**: 你直接微信/支付宝转我就行，¥29，确认后我秒发资料。不放心的话，我先发你一半试读，看完觉得值再付。
-
-### Q13: "付了款没收到怎么办？"
-**Answer**: 抱歉！有时候消息多会漏掉。你把付款截图发我，我立刻补发，再送你一份额外的模板作为补偿。
-
-### Q14: "能不能便宜点？"
-**Answer**: 这次早鸟价¥29已经是底价了，后面会涨到¥99。如果你觉得不值，我可以先发你一份免费资料，看完再决定。
-
-### Q15: "我可以转发给朋友吗？"
-**Answer**: 免费的内容随便转。付费资料仅限你自己用，朋友想要可以推我微信，我给他们同样的早鸟价。
+```
+销售页: https://aunomira-lab.github.io/knowledge-subscription/
+小报童主页: https://xiaobot.net/p/knowledge-sub
+邮箱订阅: https://aunomira-lab.github.io/knowledge-subscription/#subscribe
+GitHub: https://github.com/dev-team/knowledge-subscription
+```
 
 ---
 
-## 4. Human Escalation Paths
+## 二、产品价格与权益
 
-### When to escalate immediately (don't try to handle alone)
-| Scenario | Escalate To | Why |
-|----------|-------------|-----|
-| User threatens legal action | dev-security | Legal liability |
-| User reports data breach / unauthorized charge | dev-security + dev-deploy | Security + payment integrity |
-| User is a journalist / media inquiry | dev-architect | Brand/messaging control |
-| User offers acquisition / partnership / investment | dev-architect | Strategic opportunity |
-| User is clearly in distress / mental health crisis | dev-architect | Duty of care; no business response |
-| User engages in harassment / abuse | dev-security | Safety and platform policy |
+### 订阅方案
 
-### Escalation process
-1. Screenshot the full context
-2. Do NOT reply further until escalation resolved
-3. Forward to escalate-to with subject `[ESCALATION] <brief description>`
-4. Document in `metrics/experiment_tracker.csv` notes (anonymized)
+| 方案 | 价格 | 权益 | 目标人群 |
+|------|------|------|----------|
+| 早鸟版 | ¥69/月 | 每日简报入会权、社群资格 | 前50位试水者 |
+| 标准版 | ¥99/月 | 每日简报+可执行SOP+脚本模板 | 正式订阅者 |
+| 年度版 | ¥799/年 | 标准版全部权益+年度总结报告+专属定制报告优惠券 | 长期用户 |
+| 定制服务 | ¥499/次 | 按领域定制一份机会雷达报告 | 企业/深度用户 |
 
----
+### 无风险试用政策
 
-## 5. Tone & Voice Guidelines
-
-### Do
-- Use first person ("I", "me", "my") — this is a founder-led product
-- Be specific: cite issue numbers, link directly to resources
-- Admit mistakes openly: "You're right, that benchmark was outdated. Here's the corrected number."
-- Over-deliver: if someone asks for one thing, give them the next related thing too
-- Sign with your name / handle
-
-### Don't
-- Use corporate speak ("We value your feedback and will escalate to the relevant team")
-- Copy-paste without reading the actual question
-- Argue with subscribers in public threads — take debates to DMs/email
-- Promise timelines you can't keep
-- Ignore negative feedback — it's often the most valuable
+- **7天无理由退款**: 购买后7天内不满意全额退款
+- **第一篇免费试看**: 未订阅者可免费阅读任意一篇完整简报
+- **随时取消**: 订阅后随时可取消，取消后保留当月访问权
 
 ---
 
-## 6. Support Volume Targets & Capacity Planning
+## 三、常见问题解答（FAQ）
 
-| Volume Level | Tickets/Day | Handling Time | Action |
-|--------------|-------------|---------------|--------|
-| < 5 | Normal ops | ~30 min/day | dev-optimizer handles directly |
-| 5-15 | Growth phase | ~1.5 hrs/day | dev-optimizer + async dev-architect backup |
-| 15-30 | Scaling threshold | ~3 hrs/day | Hire part-time community manager OR automate FAQ bot |
-| > 30 | Full business | ~6 hrs/day | Dedicated support hire; document hiring SOP |
+### 订阅与支付
 
-**Current capacity**: ~5 tickets/day before impacting content production time.
+**Q1: 如何订阅？**
+A: 可通过以下方式订阅：
+1. 访问销售页 https://aunomira-lab.github.io/knowledge-subscription 点击订阅按钮
+2. 直接在小报童搜索"知识订阅"订阅
+3. 微信扫描二维码直接支付后人工开通权限
+4. 支付宝扫描二维码支付后人工开通权限
+
+**Q2: 支持哪些支付方式？**
+A: 支持微信支付、支付宝支付、小报童平台内支付。若需其他方式请联系客服。
+
+**Q3: 订阅后如何收到内容？**
+A: 每日早上9:00通过邮件发送当日简报，同时在小报童/知识星球等平台可同步阅读。
+
+**Q4: 可以退款吗？**
+A: 可以。购买后7天内无理由全额退款，超7天根据实际使用情况部分退款，最低退款50%。投诉类退款100%处理。
+
+**Q5: 可以开发票吗？**
+A: 可以。微信支付可直接申请电子发票，其他方式请联系客服提供邮箱和开票信息。
+
+### 内容与产品
+
+**Q6: 每天的简报包含什么？**
+A: 每日简报包含：
+- 1-2个可实操的AI赚钱机会
+- 每个机会含收益估算、执行步骤、必要工具
+- 可复制的AI提示词模板
+- 数据来源链接供验证
+
+**Q7: 内容与免费渠道有什么区别？**
+A: 免费渠道只发布精选节选版、浅层概括；付费版每日深度分析、含可直接执行的SOP、脚本模板和社群支持。
+
+**Q8: 如果某天没收到简报怎么办？**
+A: 首先检查垃圾邮箱文件夹，若仍未收到请联系客服，我们会在4h内重发并补偿延迟说明。
+
+**Q9: 可以提供定制化机会分析吗？**
+A: 可以。定制服务¥499/次，按您的行业和资源定制一份机会雷达报告，含5个机会+可执行路线图。
+
+### 技术与访问
+
+**Q10: 支持哪些设备阅读？**
+A: 所有支持邮箱和浏览器的设备均可阅读。建议使用小报童App获得最佳体验。
+
+**Q11: 可以下载历史报告吗？**
+A: 可以。所有付费订阅用户可访问平台内的历史档案。年度用户可获得完整年度汇编。
+
+**Q12: 如何取消订阅？**
+A: 您可以随时通过以下方式取消：
+1. 小报童平台→我的订阅→管理→取消
+2. 微信联系客服人工协助
+3. 发送邮件至 support@knowledge-sub.local
+取消后当月仍可访问，次月不再扣款。
+
+### 绕过收款问题
+
+**Q13: 小报童/爱发电未注册完成，如何订阅？**
+A: 可以直接通过微信收款码或支付宝二维码支付。支付后抨一张支付成功截图给客服，我们会在30分钟内手动开通权限。
+
+**Q14: 扫码支付后多久收到内容？**
+A: 通常在30分钟内。若超5分钟未收到，请发消息给客服唯一验证。
+
+**Q15: 绕过收款是否安全？**
+A: 我们是实名认证的个人创作者，支付直接到创作者账户，无中间商赚抽成，支付记录可查。所有绕过收款订单均存储在 experiment_tracker.csv 中以供核实。
 
 ---
 
-## 7. Feedback Loop to Product
+## 四、经营常见问题
 
-Every support interaction feeds back into the product:
+**Q16: 收入估算是否可靠？**
+A: 我们的收益估算基于市场数据和实际案例，但不保证每个人都能达到同样结果。实际收益取决于您的时间投入、技能水平、市场环境等因素。我们提供的是机会和方法，不是保证。
 
-| Support Signal | Product Action | Owner |
-|----------------|---------------|-------|
-| 3+ people ask same question | Add to FAQ; consider self-service page | dev-optimizer |
-| Code example broken | Fix in repo; add regression test | dev-coder |
-| "Too expensive" > 20% of churn | A/B test pricing; consider new tier | dev-architect |
-| "Not technical enough" | Adjust content difficulty upward | dev-architect |
-| "Too dense / hard to read" | Add summary section; simplify diagrams | dev-optimizer |
-| Feature request repeated 5+ times | Add to backlog; size for next sprint | dev-architect |
-| Competitor mentioned favorably | Competitive research task | dev-optimizer |
+**Q17: 为什么定价¥99/月？**
+A: ¥99/月约等于每天¥3.3，低于一杯咖啡的价格。这个定价基于对标行业标准和我们的成本结构。早鸟价¥69/月是前50位用户的特别优惠。
+
+**Q18: 与知识星球/小报童其他主播有什么区别？**
+A: 我们的差异化在于：
+- 专注AI赚钱机会（不是泛泛的AI资讯）
+- 每篇含可直接执行的操作步骤（不是纯分析）
+- 提供可复制的提示词和脚本模板（不是理论）
+- 独立开发者直接运营，响应更快，反馈直接反馈到产品
 
 ---
 
-**Next Review**: 2026-06-21  
-**Version**: 1.0  
-**Owner**: dev-optimizer  
-**Measured by**: Support response time in `docs/kpi_dashboard.md`, subscriber NPS (future)
+## 五、投诉与建议
+
+### 如何投诉
+
+1. 直接发送邮件至 support@knowledge-sub.local，标题注明"投诉"
+2. 微信私聊反馈，我们会在2小时内响应
+3. 所有投诉均会得到官方回复，并在48h内给出处理结果
+
+### 如何提供建议
+
+1. 微信私聊或邮件发送
+2. 在GitHub开启Issue，标注"feature-request"
+3. 在每月度的用户调查中填写
+
+---
+
+## 六、联系我们
+
+```
+主营人: dev-monitor (AI赚钱机会跟踪器)
+支持时间: 每日 9:00-21:00
+回复时限: 普通问题4h内，紧急问题1h内
+
+邮箱: support@knowledge-sub.local
+微信: [占位符 - 实名认证后填充]
+
+备注: 由于目前备案等级限制，微信客服微信号尚未注册完成，目前主要通过邮箱和小报童平台提供支持。
+绕过收款订单请直接发送支付截图到微信/邮箱，我们会在30分钟内开通权限。
+```
+
+---
+
+## 七、验证命令
+
+```bash
+# 1. 确认客户支持文件存在
+ls /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/docs/customer_support.md
+
+# 2. 确认支持文档完整性
+wc -l /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/docs/customer_support.md
+
+# 3. 确认其他支撑文件
+ls /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/docs/support_sop.md
+ls /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/docs/incident_runbook.md
+
+# 4. 确认监控脚本存在
+ls /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/scripts/monitor_dashboard.py
+```
+
+---
+
+**下次更新**: 每月第一个工作日
+**负责人**: dev-monitor

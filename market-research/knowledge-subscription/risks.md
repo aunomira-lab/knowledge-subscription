@@ -1,14 +1,70 @@
-# Risks — High-Willingness Paid Content Directions
+# 知识付费订阅市场调研：风险与规避
 
-## Key risks
-- Generic AI-news positioning will not convert; must remain decision-grade and evidence-rich.
-- Lack of proprietary production experience can reduce credibility; mitigate with public teardowns, interviews, reproducible experiments, and transparent caveats.
-- Substack/Stripe onboarding, KYC, tax and payout status can block paid launch; do not claim paid subscriptions are live until verified.
-- Content production cost is high; use repeatable editorial templates and paid-only artifacts.
-- Copyright/fair-use risk for teardown screenshots or proprietary diagrams; cite sources and create original diagrams.
+**项目**: knowledge-subscription  
+**调研时间**: 2026-06-01  
+**调研角色**: dev-docs (researcher)  
 
-## Risk controls
-- No-fluff checklist before publication.
-- Maintain source links and scorecards for every article.
-- Separate free audience-building from paid templates/decision matrices.
-- Manual review before first paid posts.
+---
+
+## 风险清单
+
+### 1. 平台风险
+
+| 风险 | 发生概率 | 影响 | 规避策略 |
+|------|----------|------|----------|
+| 小报童实名认证门槛 | 中 | 中 | 创作者完成实名认证，备用知识星球 / Substack |
+| 微信支付限制 | 低 | 高 | 同时接入支付宝 / Stripe，多渠道备份 |
+| 知乎/小红书 封号风险 | 中 | 中 | 避免过度营销用语，使用多平台分散风险 |
+| Substack 付费墙限制 | 低 | 中 | 同时运营小报童作为中文主阵地 |
+
+### 2. 内容风险
+
+| 风险 | 发生概率 | 影响 | 规避策略 |
+|------|----------|------|----------|
+| 内容质量不稳定 | 中 | 高 | 四道门质量检查自动化 + 人工抽样 |
+| 被指控违约/远宪收益 | 低 | 高 | 每期必含风险提示、不承诺收益、最小可行性声明 |
+| 低端词汇污染品牌 | 中 | 中 | 已有禁用词系统（禁用"AI只会聊天"、"稳赚"等 20+ 词汇） |
+| 内容过时效性差 | 低 | 中 | 注重方法论而非工具列表，方法论不易过时 |
+
+### 3. 竞争风险
+
+| 风险 | 发生概率 | 影响 | 规避策略 |
+|------|----------|------|----------|
+| 头部竞品增加AI内容 | 中 | 中 | 加快发布建立先发优势，专注AI机会架构拆解差异化 |
+| AI生成内容泛滥拉低行情 | 中 | 中 | 强调人工深度和可复用资产，不做简单信息聚合 |
+| 免费内容替代品增多 | 高 | 低 | 通过可执行 SOP和收益测算构建壁垒 |
+
+### 4. 获客风险
+
+| 风险 | 发生概率 | 影响 | 规避策略 |
+|------|----------|------|----------|
+| 自然流量增长不及预期 | 高 | 高 | 预留7天获客实验，如转化率<3%则调整定位 |
+| 广告投放ROI不及预期 | 中 | 中 | 前期不投放广告，自然流量达到50人后才考虑投放 |
+| 邮件打开率下降 | 中 | 中 | 多平台发布（邮件+ 小报童+ 知识星球），降低单一渠道依赖 |
+
+### 5. 合规/法律风险
+
+| 风险 | 发生概率 | 影响 | 规避策略 |
+|------|----------|------|----------|
+| 内容版权争议 | 低 | 中 | 所有引用数据注明来源，图表自制，不转载文章 |
+| 支付合规（个人收款） | 中 | 中 | 通过小报童/知识星球平台收款，避免直接个人收款 |
+| ICP 备案 | 低 | 低 | 若使用自建网站，及时完成ICP备案 |
+
+---
+
+## 风险综合评估
+
+| 风险类别 | 权重 | 风险得分 | 说明 |
+|----------|------|----------|------|
+| 平台风险 | 20% | 2/10 | 有备用方案，可分散 |
+| 内容风险 | 25% | 3/10 | 质量门禁已建立，可控 |
+| 竞争风险 | 20% | 4/10 | 差异化明显，但需持续构建壁垒 |
+| 获客风险 | 25% | 5/10 | 最大不确定性，需实验验证 |
+| 合规风险 | 10% | 2/10 | 使用平台可避免大部分风险 |
+| **加权总分** | | **3.2/10** | **中低风险** |
+
+---
+
+*文档创建: 2026-06-01*  
+*维护角色: dev-docs*  
+*下次更新: 每月复盘或重大风险事件后*

@@ -1,139 +1,136 @@
-# knowledge-subscription 首批可售卖内容样例包 - 交付清单 v4.0
+# 交付清单 - knowledge-subscription 首批可售卖内容样例包 v9
 
-**任务ID**: 994f3629
-**项目ID**: knowledge-subscription
-**生成时间**: 2026-05-24 06:23
-**版本**: v4.0
-**执行角色**: dev-coder
-
----
-
-## 一、本次交付物清单
-
-| # | 交付物 | 文件路径 | 说明 | 状态 |
-|---|--------|----------|------|------|
-| 1 | 免费试看版报告 | reports/sample_pack/free_preview_v5.md | 3 个机会深度节选 + 对比表 + 转化入口 | 已生成 |
-| 2 | 专业版订阅目录 | reports/sample_pack/premium_catalog_v4.md | 权益 / 专栏 / 定价 / FAQ | 已生成 |
-| 3 | 周一日报样例 | reports/sample_pack/week1_samples/monday_v5.md | AI Agent 客服 SaaS 首发 | 已生成 |
-| 4 | 周二日报样例 | reports/sample_pack/week1_samples/tuesday_v5.md | Cursor 外包实战 | 已生成 |
-| 5 | 周三日报样例 | reports/sample_pack/week1_samples/wednesday_v5.md | AI 数字人带货 | 已生成 |
-| 6 | 周四日报样例 | reports/sample_pack/week1_samples/thursday_v5.md | Chrome 扩展上架 | 已生成 |
-| 7 | 周五日报样例 | reports/sample_pack/week1_samples/friday_v5.md | n8n 代搭建商业模式 | 已生成 |
-| 8 | 周六日报样例 | reports/sample_pack/week1_samples/saturday_v5.md | 90 天变现深度专题 | 已生成 |
-| 9 | 周日报样例 | reports/sample_pack/week1_samples/sunday_v5.md | 本周复盘 + 下周预告 | 已生成 |
-| 10 | 内容生成器源码 | app/sample_pack_generator_v5.py | 可运行 Python 脚本 | 已测试 |
-| 11 | 结构化数据 | reports/sample_pack/data_v5.json | 机器可读数据 | 已生成 |
-| 12 | 交付清单 | docs/delivery_checklist.md | 本文件 | 已更新 |
+**任务ID**: a6837f49
+**版本**: v9.0
+**生成时间**: 2026-06-08 00:24
+**生成器**: app/sample_pack_generator_a6837f49.py
 
 ---
 
-## 二、内容质量验证
+## 一、交付物清单
 
-### 2.1 硬性指标
+### 1.1 文件清单
 
-| 指标 | 要求 | 实际 | 是否达标 |
-|------|------|------|----------|
-| 具体收益数据 | 每个机会必须含元/月估算 | 全部 6 个机会含收益区间 | 是 |
-| 执行步骤分解 | SOP 具体到工具和时间 | 每个机会 5 步 SOP | 是 |
-| 成本/投入说明 | 启动时间 + 难度 + 必要成本 | 全部标注 | 是 |
-| 风险提示 | 不承诺结果 + 风险公开 | 免费试看页含声明 | 是 |
-| AI 提示词 | 专业版含可复用 Prompt | 每个机会含 prompt_template | 是 |
-| 可运行代码 | 技术类机会含代码片段 | opp-001/002/004/005 含源码框架 | 是 |
-| 数据来源 | 可追溯的链接或平台 | 每个机会含 source_urls + data_sources | 是 |
+| 序号 | 路径 | 说明 |
+|------|------|------|
+| 1 | `reports/sample_pack/free_preview_v9.md` | 免费试看版 Markdown |
+| 2 | `reports/sample_pack/premium_catalog_v9.md` | 专业版订阅目录 Markdown |
+| 3 | `reports/sample_pack/data_v9.json` | 结构化数据 JSON |
+| 4 | `reports/sample_pack/week1_samples/monday_v9.md` | 周一日报样例 |
+| 5 | `reports/sample_pack/week1_samples/tuesday_v9.md` | 周二日报样例 |
+| 6 | `reports/sample_pack/week1_samples/wednesday_v9.md` | 周三日报样例 |
+| 7 | `reports/sample_pack/week1_samples/thursday_v9.md` | 周四日报样例 |
+| 8 | `reports/sample_pack/week1_samples/friday_v9.md` | 周五日报样例 |
+| 9 | `reports/sample_pack/week1_samples/saturday_v9.md` | 周六日报样例 |
+| 10 | `reports/sample_pack/week1_samples/sunday_v9.md` | 周日复盘样例 |
+| 11 | `docs/delivery_checklist.md` | 交付清单（本文件） |
 
-### 2.2 语言与格式
+### 1.2 内容统计
 
-- [x] 中文主体，专业亲切
-- [x] 无过度承诺（未出现'guaranteed'/'稳赚'/'躺赚'）
-- [x] 表格结构化展示
-- [x] 重点内容加粗
-- [x] 每篇含明确操作指引
-- [x] 每篇含风险提示
+- **机会总数**: 6 个
+- **免费试看机会**: 3 个
+- **付费独占机会**: 3 个
+- **首周日报样例**: 7 天（周一至周日）
+- **平均难度**: 2.5 星
+- **覆盖领域**: 社媒变现/内容创业, 内容生产/音频变现, AI语音/B2B SaaS, 跨境电商/数据工具, 知识付费/求职服务, 自动化/数据服务
 
 ---
 
-## 三、验证命令
+## 二、内容质量检查项
+
+- [x] 所有机会均含：标题、分类、难度、启动时间、收益预估、毛利率
+- [x] 所有机会均含：4 条数据支撑来源
+- [x] 所有机会均含：5 步可执行行动路径
+- [x] 所有机会均含：可直接复制使用的 AI 提示词模板
+- [x] 所有机会均含：参考链接（可验证数据来源）
+- [x] 免费试看版已标注与专业版的对比差异
+- [x] 专业版目录已含完整定价方案和常见问题
+- [x] 首周日报样例已按周一至周日排期，周日为复盘+预告
+- [x] 所有文件均使用 UTF-8 编码
+- [x] data_v9.json 通过 JSON 格式校验
+
+---
+
+## 三、运行与验证
+
+### 3.1 重新生成内容样例包
 
 ```bash
-# 1. 进入项目目录
 cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
+python app/sample_pack_generator_a6837f49.py
+```
 
-# 2. 运行生成器（仅需 Python 3.9+ 标准库）
-python app/sample_pack_generator_v5.py
+### 3.2 验证 JSON 完整性
 
-# 3. 检查输出文件
-ls -la reports/sample_pack/free_preview_v5.md
-ls -la reports/sample_pack/premium_catalog_v4.md
-ls -la reports/sample_pack/week1_samples/*_v5.md
-ls -la reports/sample_pack/data_v5.json
+```bash
+python -c "import json; json.load(open('reports/sample_pack/data_v9.json')); print('JSON OK')"
+```
 
-# 4. 统计字数
-wc -m reports/sample_pack/free_preview_v5.md
-wc -m reports/sample_pack/premium_catalog_v4.md
+### 3.3 运行内容质量测试
 
-# 5. 验证 JSON 数据完整性
-python -c "import json; json.load(open('reports/sample_pack/data_v5.json')); print('JSON OK')"
+```bash
+pytest tests/test_sample_pack_a6837f49.py -v --tb=short > reports/pytest_output_a6837f49.txt 2>&1
+```
 
-# 6. 运行 pytest 内容质量测试
-pytest tests/test_sample_pack.py -v --tb=short > reports/pytest_output_994f3629.txt 2>&1
+### 3.4 快速查看内容
+
+```bash
+# 免费试看版（用于引流）
+cat reports/sample_pack/free_preview_v9.md
+
+# 专业版目录（用于销售页）
+cat reports/sample_pack/premium_catalog_v9.md
+
+# 首周日报样例
+cat reports/sample_pack/week1_samples/monday_v9.md
 ```
 
 ---
 
-## 四、盈利空间判断
+## 四、商业用途说明
 
-### 4.1 内容产品本身
+### 4.1 如何使用这些文件赚钱
 
-| 定价 | 月订户数 | 月收入 | 年收 |
-|------|----------|--------|------|
-| ¥99/月 | 50 人 | ¥4,950 | ¥59,400 |
-| ¥99/月 | 200 人 | ¥19,800 | ¥237,600 |
-| ¥799/年 | 100 人 | - | ¥79,900 |
-| 年付组合 | 200 人（50% 年付） | ¥14,850/月 | ¥178,200 |
+| 文件 | 使用场景 | 变现动作 |
+|------|----------|----------|
+| free_preview_v9.md | 社交媒体/社群引流 | 发布小红书/即刻/知乎，文末放订阅入口 |
+| premium_catalog_v9.md | 销售页/落地页素材 | 提取定价表和 FAQ 到 site/index.html |
+| week1_samples/*.md | 邮件/Substack/小报童首发内容 | 直接作为首周付费内容发布 |
+| data_v9.json | 后续自动化生成器的输入数据源 | 接入每日报告生成流水线 |
 
-测算依据: verdict.md GO (79/100)，LTV/CAC 22-84:1，毛利率 >85%。
+### 4.2 定价参考
 
-### 4.2 内容二次变现
-
-- 将免费试看版分发到知乎/小红书/即刻引流 -> 获客成本 ≈ 0
-- 将 SOP 模板单独包装为 ¥39-99 数字商品 -> 边际成本 ≈ 0
-- 将高频问题沉淀为 ¥499 单次咨询 -> 时薪 ¥499+
-- 开设 21 天陪跑营 ¥999/人 -> 规模化后月收 ¥30,000+
-
-### 4.3 本次新增机会变现潜力
-
-| 机会 | 最快变现路径 | 预估首月收入 |
-|------|-------------|-------------|
-| AI Agent 客服 SaaS | 闲鱼/小红书发布试用，转化月付 | ¥3,000-5,000 |
-| Cursor 外包服务 | 电鸭/V2EX 接单 | ¥8,000-15,000 |
-| AI 数字人带货 | 精选联盟佣金 | ¥5,000-20,000 |
-| n8n 代搭建 | 即刻/小红书发案例帖 | ¥3,000-8,000 |
-| AI 编程陪跑营 | 小报童专栏 + 微信群 | ¥10,000-30,000 |
+- 早鸟订阅：¥99/月
+- 年度订阅：¥799/年（省 ¥389）
+- 企业版：¥2,999/年
+- 单次咨询：¥499/次
 
 ---
 
-## 五、下一步赚钱动作
+## 五、已知限制与下一步
 
-1. **立即（今天）**: 将 free_preview_v5.md 转成长图/小红书图文，发小红书 + 即刻 + 朋友圈，挂上 "私信领完整版" 钩子。
-2. **24 小时内**: 用 Vercel/Cloudflare Pages 部署静态销售页（site/index.html），嵌入微信/支付宝收款二维码。
-3. **3 天内**: 开通小报童付费专栏（¥99/月），上传 premium_catalog_v4.md 作为专栏介绍页。
-4. **1 周内**: 在 5 个目标社群（即刻 Creator、电鸭、V2EX、小红书副业群、知乎 AI 话题）分发免费试看版，收集 50 条反馈。
-5. **2 周内**: 启动早鸟转化活动（¥69/月，限 50 人），用 scarcity + 倒计时促单，目标首单 10 人。
-6. **1 个月内**: 将 opp-006（AI 编程陪跑营）做成首个高价产品（¥999/21 天），在专业版会员群优先发售。
+### 5.1 当前占位符（需替换为真实信息）
 
----
+- [ ] `https://ai-radar.io/subscribe` -> 替换为真实收款/订阅页 URL
+- [ ] `ai-radar-support` -> 替换为真实客服微信号/企业微信
+- [ ] 收益数据为估算值，需在实际执行中更新为真实案例
 
-## 六、版本记录
+### 5.2 下一步赚钱动作
 
-| 版本 | 时间 | 变更 |
-|------|------|------|
-| v1.0 | 2026-05-20 | 初始交付（任务 f6775626） |
-| v2.0 | 2026-05-21 | 新增可运行生成器、统一数据结构（任务 06d572a0） |
-| v3.0 | 2026-05-22 | 内容质量测试脚本、静态检查、增强交付清单（任务 7691939d） |
-| v4.0 | 2026-05-23 | 重构日报结构、新增数据 JSON、更新定价（任务 e648389a） |
-| v5.0 | 2026-05-24 | 全新 6 个机会（AI Agent / Cursor / 数字人 / 陪跑营）、Prompt 模板、更强转化设计（任务 994f3629） |
+1. **本周内**：将 free_preview_v9.md 转化为 3 篇引流帖（小红书/即刻/知乎），文末放订阅意向收集表
+2. **本周内**：将 premium_catalog_v9.md 的定价表和 FAQ 更新到 site/index.html
+3. **首周内容发布**：将 week1_samples/*.md 直接发布到小报童/Substack/邮件列表，作为首周付费内容
+4. **2 周内**：接入真实支付系统（微信支付/支付宝/Stripe），替换销售页占位链接
+5. **持续**：每日使用生成器或手动发布新机会，积累 30 天内容库后开启年度订阅促销
 
 ---
 
-**下次审核**: 2026-05-28
-**负责人**: Dev Team - dev-coder
+## 六、签名
+
+- **生成器开发者**: dev-coder
+- **审核状态**: 待 dev-tester 运行测试后确认
+- **市场调研结论**: GO (79/100) — 已通过门禁
+
+---
+
+*本清单由 Dev Team 自动生成。任何修改请同步更新生成器源码。*

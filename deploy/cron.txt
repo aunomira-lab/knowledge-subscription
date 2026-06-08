@@ -1,0 +1,39 @@
+# cron.txt — AI Opportunity Radar 定时任务配置
+# 任务ID: d1eb27ce
+# 更新日期: 2026-05-31
+# 使用方法: crontab -e 然后粘贴以下内容
+# 或者: cat deploy/cron.txt | crontab -
+
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PROJECT_DIR=/home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
+
+# -------------------------------------------------
+# 每日运营脚本：内容生成 + 网站健康检查 + 数据备份
+# 每日早上 08:00 执行
+# -------------------------------------------------
+0 8 * * * cd $PROJECT_DIR && bash deploy/run_daily.sh >> /tmp/ai-radar-cron.log 2>&1
+
+# -------------------------------------------------
+# 每日销售页检测（额外一次，确保可用）
+# 每日中午 12:00 和 晚上 20:00 检测
+# -------------------------------------------------
+0 12,20 * * * curl -s -o /dev/null -w "%{http_code} %{time_total}s\n" https://aunomira-lab.github.io/knowledge-subscription/ >> /tmp/ai-radar-health.log 2>&1
+
+# -------------------------------------------------
+# 每日数据清理：删除 30 天前的临时备份
+# 每日凌晨 03:00 执行
+# -------------------------------------------------
+0 3 * * * find $PROJECT_DIR/backups -type d -mtime +30 -exec rm -rf {} + 2>/dev/null; find /tmp/ai-radar-*.log -mtime +7 -delete 2>/dev/null
+
+# -------------------------------------------------
+# 每周一汇总复盘：生成周报告
+# 每周一早上 09:00 执行
+# -------------------------------------------------
+0 9 * * 1 cd $PROJECT_DIR && bash deploy/weekly_report.sh >> /tmp/ai-radar-weekly.log 2>&1
+
+# -------------------------------------------------
+# 每月结构化数据备份（如有对接分析工具）
+# 每月 1 日 04:00
+# -------------------------------------------------
+0 4 1 * * cd $PROJECT_DIR && tar czf backups/monthly_$(date +\%Y\%m).tar.gz metrics/ reports/sample_pack/ site/index.html 2>/dev/null

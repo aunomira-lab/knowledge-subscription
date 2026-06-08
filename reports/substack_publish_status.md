@@ -2,57 +2,44 @@
 
 ## 自动化进度
 
-- Hermes Kanban `dev-team`: `todo=0`、`ready=0`、`running=0`、`blocked=0`、`done=26`；无可 dispatch 的 Substack 自动化任务，本轮未触发 `dispatch`。
-- 内容生成脚本存在并已运行：`python3 projects/knowledge-subscription/scripts/generate_substack_issue.py --auto`，exit=0。
-- Social publisher CLI 可用并已运行：`auto-process` 本轮处理 `0` 条；`status`/`credentials-check` 已复核。
-- 最终决策保持 `PIVOT-GO`：内容生成全自动，Substack 发布为半自动/人工最终确认；不得伪装已发布。
+- Hermes Kanban dev-team：todo=0、ready=0、running=0、blocked=0、done=26；diagnostics 无活跃问题。本轮无可 dispatch 的 ready/todo 任务。
+- 内容生成脚本可用，`python3 projects/knowledge-subscription/scripts/generate_substack_issue.py --auto` 执行成功。
+- Social publisher CLI 可用：`auto-process` 执行成功但 processed=0；`status` 与 `credentials-check` 已完成。
+- 指定读取项中，`reports/substack_automation_final_decision.md` 与 `docs/substack_cron_automation.md` 不存在；已跳过，不作为错误。
+- 发布边界不变：当前只能自动生成内容包；Substack 真实发布仍需账号/Publication URL/登录态或人工确认，不得伪装已发布。
 
 ## 已自动生成
 
 本轮已生成 4 个 Substack 内容草稿：
 
-- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-05-24_你以为AI只会聊天它正在偷偷拉开普通人的_free_post.md`
-- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-05-24_你以为AI只会聊天它正在偷偷拉开普通人的_paid_deep_dive.md`
-- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-05-24_你以为AI只会聊天它正在偷偷拉开普通人的_video_script_60s.md`
-- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-05-24_你以为AI只会聊天它正在偷偷拉开普通人的_video_script_3min.md`
+- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-07_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_free_post.md`
+- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-07_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_paid_deep_dive.md`
+- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-07_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_video_script_60s.md`
+- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-07_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_video_script_3min.md`
 
-## 已排队 / 队列状态
+主题：从单次提示词到可复用AI工作流：一套可审计的 SOP 设计法。
 
-Social publisher 全局队列：
+## 已排队 / 已发布 / 待人工
 
-- `PENDING_REVIEW`: 9
-- `READY_MANUAL_PUBLISH`: 6
-- `NEEDS_CREDENTIALS`: 2
-- Substack 平台项总数：4
-- knowledge-subscription 项目总数：2
+- 已排队：social publisher 本轮未处理出新的可发布项；`auto-process` 返回 processed=0。
+- 已发布：没有检测到真实 Substack 已发布记录；未执行 mark-published。
+- 待人工：真实 Substack 发布处于 `READY_MANUAL_PUBLISH` / `NEEDS_CREDENTIALS` 边界，需要用户提供账号与发布路径后才能继续。
+- 旧队列状态：当前队列仍以 PAUSED_BY_USER / REJECTED 为主，不作为本轮可自动发布对象推进。
 
-knowledge-subscription / Substack 当前队列：
+## 缺凭证 / 状态码
 
-- `smp_knowledge-subscription_substack_20260507_162525_583863_88aa81` — `PENDING_REVIEW` — 知识订阅测试newsletter
-- `smp_knowledge-subscription_substack_20260511_163903_466090_5dc431` — `NEEDS_CREDENTIALS` — Test Newsletter - 1778517543；缺失 `publication_url`、`api_key`/可用发布凭证或登录态
+- Substack / newsletter / upstack：配置中 `auto_publish=false`，当前不能自动发布。
+- Webhook：缺 `webhook_url`。
+- X/Twitter：缺 x-cli credentials/tooling。
+- 当前 Substack 真实发布状态：`NEEDS_CREDENTIALS` 或 `READY_MANUAL_PUBLISH`。
+- 本轮没有 Publication URL、API key、可用登录态/session cookie 或可自动发布适配器凭证，因此没有也不能宣称已发布。
 
-## 已发布
+## 需要用户提供或完成的动作
 
-- `PUBLISHED`: 0
-- 本轮没有自动发布成功记录；未执行 `mark-published`。
+1. Substack Publication URL。
+2. Substack 可用登录态/session cookie，或明确选择纯人工复制发布。
+3. 如启用付费订阅：完成 Stripe Connect/KYC、税务信息、提现账户配置。
+4. 确认 Substack 付费开关与订阅价格策略。
+5. 人工发布首篇后，提供真实 Substack post URL，系统才能记录/标记已发布。
 
-## 待人工
-
-- 审核 `PENDING_REVIEW` 内容，确认是否进入手动发布。
-- 对可发布草稿执行人工 Substack 编辑器检查、点击 Publish，并在发布后提供真实 Substack URL 执行标记。
-- 当前 Substack 仍按半自动发布路径运行：系统可生成草稿/Outbox，但最终发布确认需要人工完成。
-
-## 缺凭证
-
-- `NEEDS_CREDENTIALS`: 全局 2 条，其中 knowledge-subscription / Substack 1 条。
-- Substack/newsletter/upstack 平台已启用，但 `auto_publish=false`，当前 `can_auto_publish=false`。
-- Substack 缺失字段：`publication_url`、`api_key`/可用发布凭证或登录态。
-
-## 需要用户提供/完成的动作
-
-1. `NEEDS_CREDENTIALS`: 提供 Substack Publication URL。
-2. `NEEDS_CREDENTIALS`: 提供可用的 Substack 登录态/session cookie，或 API key/发布凭证（如采用可用发布方案）。
-3. 完成 Substack 登录状态确认，保证浏览器辅助发布可进入目标 publication。
-4. 完成 Stripe Connect/KYC、税务信息、提现账户配置。
-5. 确认是否开启 Substack 付费订阅开关，以及免费/付费内容比例。
-6. 首次人工发布后，提供真实 Substack post URL，再执行 `mark-published`；在此之前不能标记为已发布。
+如果暂时只做内容打磨和内部样稿，无需额外用户动作。

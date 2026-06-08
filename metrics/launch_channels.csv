@@ -1,4 +1,10 @@
-平台,渠道类型,获客成本_CAC,预期日流量,转化率_预估,优先级,执行状态,账号要求,启动日期,负责人,备注,内容形式,投放预算_日,UTM追踪链接模板
+# 平台,渠道类型,获客成本_CAC,预期日流量,转化率_预估,优先级,执行状态,账号要求,启动日期,负责人,备注,内容形式,投放预算_日,UTM追踪链接模板
+# 更新日期: 2026-06-08
+# 任务ID: d718d905
+# 负责人: dev-deploy (deployer)
+# 项目ID: knowledge-subscription
+# 状态: READY TO EXECUTE
+# 公开URL: https://aunomira-lab.github.io/knowledge-subscription/
 知乎,内容平台,0-10,100-300,2%,P0,待启动,个人号即可,Day 1,dev-deploy,回答热门问题+专栏文章,深度回答,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=zhihu&utm_medium=answer&utm_campaign=launch
 小红书,内容平台,0-5,200-500,1.5%,P0,待启动,个人号即可,Day 1,dev-deploy,图文+短视频,图文笔记,50,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=xiaohongshu&utm_medium=note&utm_campaign=launch
 即刻,社群平台,0,50-150,3%,P0,待启动,邀请码注册,Day 1,dev-deploy,动态+圈子+AMA,短动态+讨论,0,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=jike&utm_medium=post&utm_campaign=launch

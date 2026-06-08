@@ -1,0 +1,295 @@
+{
+  "task_id": "a6837f49",
+  "version": "v9.0",
+  "generated_at": "2026-06-08T00:24:04.157187",
+  "project": "knowledge-subscription",
+  "opportunities": [
+    {
+      "id": "opp-v9-001",
+      "title": "AI 语音电话 Agent SaaS：替代传统外呼，月收 ¥8,000+",
+      "category": "AI语音/B2B SaaS",
+      "difficulty": 3,
+      "launch_days": "7-14天",
+      "revenue": "¥8,000-50,000/月",
+      "margin": ">85%",
+      "summary": "使用 Vapi、Retell 或 Bland 搭建 AI 语音电话 Agent，为房产中介、教培机构、医美诊所提供自动预约、回访、邀约服务。按通话分钟数或坐席数收费。",
+      "data_sources": [
+        "Vapi 2026年5月公开数据：日处理通话超 2,000 万分钟，企业客户数 12,000+",
+        "Retell AI 完成 B 轮 $42M 融资，ARR 年增 600%",
+        "国内房产中介单店月均外呼 5,000-20,000 通，人工成本 ¥6,000-15,000/人",
+        "1688 上 'AI 外呼系统' 月销 500+ 套，均价 ¥499，产品体验差、复购率低"
+      ],
+      "action_steps": [
+        "注册 Vapi 或 Retell 免费账户，熟悉语音工作流：接听/外呼 -> STT -> LLM 决策 -> TTS 回复",
+        "选择 1 个垂直场景（推荐：教培试听课邀约），录制 100 通真实通话做意图分类训练数据",
+        "搭建标准话术树：开场白 -> 需求确认 -> 产品介绍 -> 异议处理 -> 预约/挂断，每个节点配 3 种回复变体",
+        "用 Python 写接入 demo：读取客户 CSV -> 批量外呼 -> 通话结果回写 -> 飞书群通知，作为销售演示",
+        "在电销行业社群发试用帖：'7 天免费试用，不替换现有系统，只补夜间/高峰期漏接'，定价 ¥0.15/分钟 或 ¥999/坐席/月"
+      ],
+      "prompt_template": "你是一位专业的【行业】电话销售顾问。请根据话术知识库，用自然、亲切的口语化中文与客户通话。\n通话目标：{{call_goal}}\n客户信息：{{customer_info}}\n当前对话历史：{{conversation_history}}\n请生成下一句回复（仅输出要说的内容）。如需转人工，请只说'转人工'。",
+      "tags": [
+        "AI语音",
+        "Vapi",
+        "Retell",
+        "外呼自动化",
+        "B2B SaaS"
+      ],
+      "source_urls": [
+        "https://vapi.ai/",
+        "https://www.retellai.com/",
+        "https://www.bland.ai/"
+      ],
+      "free_preview": true
+    },
+    {
+      "id": "opp-v9-002",
+      "title": "AI 浏览器自动化爬虫：卖标准化数据抓取工作流",
+      "category": "自动化/数据服务",
+      "difficulty": 3,
+      "launch_days": "5-10天",
+      "revenue": "¥5,000-30,000/月",
+      "margin": ">90%",
+      "summary": "利用 browser-use、Stagehand 或 Playwright + AI 视觉理解，为电商卖家、投研机构提供定制化网页数据抓取和监控服务。一次开发可复用，边际成本极低。",
+      "data_sources": [
+        "browser-use GitHub 25k+ stars（2026-05），月下载量 180 万+",
+        "Stagehand（browserbase）获 a16z 领投 $15M，专注 AI 驱动的浏览器自动化",
+        "淘宝/拼多多/京东商家日均需监控竞品价格、库存、评论，现有工具年费 ¥3,000-12,000",
+        "即刻 '爬虫' 话题日均新增 40+ 条，大量用户表示 '不会写代码但需要数据'"
+      ],
+      "action_steps": [
+        "安装 browser-use：pip install browser-use，注册 OpenAI/Anthropic API key，运行官方 demo",
+        "选择 1 个高价值场景（推荐：Temu/Amazon 竞品价格监控），写出抓取目标字段：标题、价格、评分、库存、最近 10 条评论",
+        "用 browser-use 编写抓取 agent：给定 URL 列表 -> AI 自动识别页面结构 -> 提取结构化数据 -> 保存 CSV/JSON",
+        "搭建交付界面：Streamlit 单页应用，用户粘贴竞品链接 -> 选择监控频率 -> 开始抓取 -> 下载结果。部署到 Render/Railway 免费档",
+        "定价策略：单次抓取 ¥99-499（按页数），监控服务 ¥299-999/月，企业定制 ¥2,999+"
+      ],
+      "prompt_template": "你是一个专业的网页数据抓取专家，使用 browser-use 工具。\n目标网站：{{target_url}}\n需要抓取的数据：{{data_requirements}}\n请生成一个完整的 browser-use agent 代码，要求：\n1. 使用 Python + asyncio + browser_use 库\n2. 包含明确的任务描述\n3. 处理分页和动态加载\n4. 数据保存为 pandas DataFrame 并导出 CSV\n5. 包含错误处理和重试逻辑",
+      "tags": [
+        "browser-use",
+        "爬虫",
+        "数据服务",
+        "Playwright",
+        "自动化"
+      ],
+      "source_urls": [
+        "https://github.com/browser-use/browser-use",
+        "https://github.com/browserbase/stagehand",
+        "https://playwright.dev/"
+      ],
+      "free_preview": true
+    },
+    {
+      "id": "opp-v9-003",
+      "title": "小红书/公众号 AI 图文矩阵：1 人运营 20 个号月收 ¥10,000+",
+      "category": "社媒变现/内容创业",
+      "difficulty": 2,
+      "launch_days": "3-7天",
+      "revenue": "¥10,000-60,000/月",
+      "margin": ">75%",
+      "summary": "用 Flux、Midjourney v7 和 AI 写作工具批量生成高颜值图文内容，覆盖家居、穿搭、职场等垂直领域，在小红书和公众号做矩阵发布。通过品牌广告、知识付费和私域转化变现。",
+      "data_sources": [
+        "小红书 2026 Q1 创作者报告：图文笔记互动率比视频高 23%，'精致生活'和'职场干货'品类增速最快",
+        "Flux 开源模型生态成熟，单张 1024px 图片生成成本 < ¥0.05，质量接近 Midjourney v6",
+        "公众号 '小绿书'（图片消息）打开率恢复至 8-12%，部分图文号广告报价 ¥0.5-2/阅读",
+        "即刻 'AI 小红书' 圈子头部玩家晒出：1 人管理 15 个号，月均广告收入 ¥15,000-40,000"
+      ],
+      "action_steps": [
+        "选定 2-3 个垂直赛道（推荐组合：职场效率 + 家居好物），每个赛道注册 5-7 个小红书号 + 2 个公众号",
+        "搭建内容工厂：ChatGPT/Claude 写标题和文案（批量生成 50 条）-> Flux/Midjourney 生成封面和配图 -> 排期发布",
+        "建立爆款素材库：用后羿/新榜抓取近 30 天千赞以上图文，分析标题结构、封面配色、正文节奏",
+        "发布策略：每个号每天 1-2 条，发布时间 7:30/12:00/18:30/22:00，前 30 分钟主动回复评论提升互动权重",
+        "变现路径：粉丝 1,000+ 开通蒲公英接广告（¥200-800/条）-> 粉丝 5,000+ 引流私域卖模板/课程（¥99-499）-> 粉丝 10,000+ 接品牌合作（¥3,000-10,000/条）"
+      ],
+      "prompt_template": "你是一位小红书爆款图文创作者，擅长写【赛道】领域的千赞笔记。\n选题：{{topic}}\n目标受众：{{target_audience}}\n要求：\n1. 标题使用数字法或反常识法，含 1-2 个 emoji，不超过 20 字\n2. 封面图提示词：给出 Midjourney/Flux 可用的英文 prompt，要求视觉冲击力、高饱和度\n3. 正文分 5-7 段，每段不超过 3 行，用 emoji 点缀\n4. 结尾带互动钩子\n5. 标签 5-8 个",
+      "tags": [
+        "小红书",
+        "公众号",
+        "AI图文",
+        "矩阵运营",
+        "社媒变现"
+      ],
+      "source_urls": [
+        "https://www.xiaohongshu.com/",
+        "https://blackforestlabs.ai/ (Flux)",
+        "https://www.midjourney.com/"
+      ],
+      "free_preview": true
+    },
+    {
+      "id": "opp-v9-004",
+      "title": "跨境电商 AI 评论分析选品雷达：从差评里挖金矿",
+      "category": "跨境电商/数据工具",
+      "difficulty": 3,
+      "launch_days": "7-14天",
+      "revenue": "$2,000-15,000/月",
+      "margin": ">90%",
+      "summary": "用 AI 批量抓取 Amazon、Temu、速卖通、Shopee 的商品评论，通过情感分析和痛点提取，帮助跨境卖家发现'高销量低评分'的改进机会。卖报告和 SaaS 订阅。",
+      "data_sources": [
+        "Amazon 全球 3P 卖家超 200 万，90% 以上表示'选品是最大痛点'，现有工具年费 $600-2,400",
+        "Temu 2026 年活跃卖家 150 万+，大量工厂型卖家缺乏 C 端用户洞察能力",
+        "Shopee 东南亚卖家论坛中，'如何分析竞品差评'是搜索量前 5 的问题",
+        "AI 情感分析 API 成本已降至 $0.001/条评论，处理 10 万条评论成本 < $100"
+      ],
+      "action_steps": [
+        "确定目标平台（推荐：Temu 美国站），用 Playwright/browser-use 抓取 TOP 100 商品的评论数据",
+        "设计 AI 分析流水线：原始评论 -> 去重清洗 -> 按星级分类 -> LLM 提取痛点关键词 -> 统计频率 -> 生成改进建议",
+        "输出'选品雷达报告'模板：市场概况 -> 差评 TOP10 痛点 -> 改进产品概念 -> 预估利润空间",
+        "制作销售页：放 3 份免费样例报告（不同品类），其余报告付费解锁（¥199/份 或 ¥499/月无限下载）",
+        "获客：在亚马逊卖家群/知无不言/Temu 卖家论坛发帖子：'我分析了 500 条差评，发现这个品类有 3 个被忽视的改进机会'，引流到销售页"
+      ],
+      "prompt_template": "你是一位跨境电商选品分析师。请根据以下商品评论数据，生成一份选品雷达分析报告。\n商品信息：\n平台：{{platform}}\n类目：{{category}}\n差评样本（1-3 星）：\n{{negative_reviews}}\n要求：\n1. 提取 TOP10 用户痛点，按出现频率排序\n2. 对每个痛点，给出'现有产品如何改进'的具体建议\n3. 评估改进后的新品竞争力和预估利润率\n4. 输出一份可直接发给卖家的 Markdown 报告",
+      "tags": [
+        "跨境电商",
+        "选品",
+        "评论分析",
+        "Amazon",
+        "Temu"
+      ],
+      "source_urls": [
+        "https://sellercentral.amazon.com/",
+        "https://www.temu.com/",
+        "https://www.zhizhou.com/ (知无不言)"
+      ],
+      "free_preview": false
+    },
+    {
+      "id": "opp-v9-005",
+      "title": "AI 播客/有声书内容工厂：批量生产音频资产",
+      "category": "内容生产/音频变现",
+      "difficulty": 2,
+      "launch_days": "5-10天",
+      "revenue": "¥5,000-40,000/月",
+      "margin": ">80%",
+      "summary": "用 ElevenLabs、NotebookLM 或国内讯飞/魔音工坊，将热门文章、公版书籍批量转化为高质量有声书和播客节目，分发到小宇宙、喜马拉雅、Spotify、YouTube。通过广告分成、付费订阅变现。",
+      "data_sources": [
+        "喜马拉雅 2025 年报：有声书用户 4.2 亿，付费率 18%，'AI 合成语音'内容增速 340%",
+        "小宇宙播客 2026 年活跃主播 50 万+，'商业/科技'品类广告 CPM ¥80-200",
+        "ElevenLabs 2026 年 5 月数据：支持 32 种语言、1,000+ 声音克隆，API 成本 $0.08/千字符",
+        "YouTube Podcasts 月活 10 亿+，创作者可通过 AdSense 获得 $2-8/千次播放"
+      ],
+      "action_steps": [
+        "选择内容赛道（推荐：商业思维/AI 趋势/心理学），收集 50 篇高阅读量公版文章/报告（确保无版权风险）",
+        "用 ElevenLabs 训练固定主播声音（或使用 API 预设声音），设定参数：语速 1.1x、语气亲和、停顿自然",
+        "搭建流水线：原文 -> Claude 改写为口语化播客脚本 -> ElevenLabs API 生成音频 -> ffmpeg 添加片头片尾 -> 生成封面图 -> 批量上传",
+        "分发矩阵：小宇宙（中文主阵地）+ 喜马拉雅（长尾流量）+ YouTube Podcasts（英语内容/ AdSense）+ Spotify（全球化）",
+        "变现组合：平台广告分成（起步）-> 小宇宙'付费单集'（¥9.9-29.9/期）-> 系列专辑（¥99-199/季）-> 企业定制音频内容（¥2,999+）"
+      ],
+      "prompt_template": "你是一位专业的播客脚本编辑。请将以下书面文章改写成适合音频节目的口播脚本。\n原文：\n{{original_text}}\n节目名称：{{podcast_name}}\n主播人设：{{host_persona}}\n目标听众：{{target_audience}}\n改写要求：\n1. 用第二人称'你'，语气像朋友聊天，避免书面长句\n2. 每 300 字插入一个过渡句或口语化衔接\n3. 关键数据重复一遍（音频无法回看）\n4. 结尾加 30 秒总结 + 下期预告 + 订阅引导\n5. 总时长控制在 10-15 分钟（约 2,500-3,500 字）",
+      "tags": [
+        "AI音频",
+        "播客",
+        "有声书",
+        "ElevenLabs",
+        "内容工厂"
+      ],
+      "source_urls": [
+        "https://elevenlabs.io/",
+        "https://www.xiaoyuzhoufm.com/",
+        "https://www.ximalaya.com/"
+      ],
+      "free_preview": false
+    },
+    {
+      "id": "opp-v9-006",
+      "title": "AI 面试陪跑 & 简历重构：裁员潮里的刚需生意",
+      "category": "知识付费/求职服务",
+      "difficulty": 2,
+      "launch_days": "3-5天",
+      "revenue": "¥10,000-80,000/月",
+      "margin": ">85%",
+      "summary": "针对 2025-2026 年持续的人才市场波动，为中高端求职者提供 AI 驱动的简历重构、面试模拟和谈薪辅导。用 Claude 4 做简历诊断和模拟面试，客单价高、转介绍高。",
+      "data_sources": [
+        "智联招聘 2026 Q1 报告：平均每个岗位收到 128 份简历，985/211 毕业生平均求职周期 4.2 个月",
+        "BOSS 直聘数据：'简历优化'服务搜索量年增 180%，'面试辅导'年增 220%",
+        "猎聘网高端简历服务客单价 ¥1,500-8,000，头部顾问月入 5 万+",
+        "小红书 '简历修改'话题浏览量 12 亿+，'面试技巧'话题 8 亿+"
+      ],
+      "action_steps": [
+        "训练自己的 AI 简历诊断模型：收集 50 份优质简历（不同行业/职级），让 Claude 总结'高分简历'的共同特征，形成诊断 checklist",
+        "设计服务包：A 包 ¥299（AI 简历重构 + 1 轮反馈）；B 包 ¥799（简历 + 模拟面试 3 轮 + 谈薪话术）；C 包 ¥1,999（全程陪跑 30 天 + 内推资源对接）",
+        "搭建交付流程：用户填表（目标岗位/当前痛点）-> AI 生成初版简历 -> 人工精修 -> 交付 + 30 分钟视频讲解修改逻辑 -> 模拟面试（用语音 Agent 扮演面试官）",
+        "获客渠道：小红书发 '简历前后对比' 图文（敏感信息打码）+ 知乎写 'HR 视角：什么样的简历 10 秒过初筛' + 即刻发 'AI 模拟面试实录' 片段",
+        "建立转介绍机制：成功拿到 offer 的用户，送 1 次免费职业规划咨询；推荐 1 位新客户，双方各得 ¥50 优惠券"
+      ],
+      "prompt_template": "你是一位资深 HR 和职业发展顾问，有 10 年互联网大厂招聘经验。\n请根据以下用户信息和目标岗位，重构一份高分简历。\n用户原始简历：\n{{original_resume}}\n目标岗位：{{target_job}}\n目标公司类型：{{company_type}}\n要求：\n1. 使用 STAR 法则重写所有项目/工作经历\n2. 每个结果必须有量化数据（百分比、金额、用户数、效率提升等）\n3. 删除与目标岗位无关的经历，突出匹配度最高的 3-5 项能力\n4. 自我评价不超过 3 行，用'数据 + 能力 + 价值'结构\n5. 输出可直接复制到 Word/在线简历工具的纯文本格式",
+      "tags": [
+        "求职",
+        "简历优化",
+        "面试辅导",
+        "知识付费",
+        "AI陪跑"
+      ],
+      "source_urls": [
+        "https://www.zhaopin.com/",
+        "https://www.zhipin.com/",
+        "https://www.xiaohongshu.com/"
+      ],
+      "free_preview": false
+    }
+  ],
+  "schedule": [
+    {
+      "day": "周一",
+      "theme": "新机会首发",
+      "title": "首发独占：AI 语音电话 Agent SaaS — 7 天搭建、月收 ¥8,000+ 的完整路径",
+      "opportunity": "opp-v9-001",
+      "exclusive": "48 小时内专业版独占 | 附赠 Vapi 工作流配置 + 房产中介话术 JSON + 飞书通知模板"
+    },
+    {
+      "day": "周二",
+      "theme": "技术掘金",
+      "title": "browser-use 实战：如何用 AI 浏览器自动化接下第一个 ¥5,000 的数据抓取项目",
+      "opportunity": "opp-v9-002",
+      "exclusive": "完整 browser-use agent 源码 + 反爬策略清单 + 客户报价模板"
+    },
+    {
+      "day": "周三",
+      "theme": "社媒变现",
+      "title": "小红书矩阵：1 人运营 20 个号，从 0 到月收 ¥10,000+ 的 SOP",
+      "opportunity": "opp-v9-003",
+      "exclusive": "50 个可直接使用的标题模板 + Flux 封面 Prompt 库 + 排期表 Excel"
+    },
+    {
+      "day": "周四",
+      "theme": "跨境选品",
+      "title": "AI 评论分析选品雷达：从 10 万条差评里挖出下一个爆款",
+      "opportunity": "opp-v9-004",
+      "exclusive": "完整选品报告模板 + Temu 抓取代码 + 痛点分析 Prompt"
+    },
+    {
+      "day": "周五",
+      "theme": "音频资产",
+      "title": "AI 播客内容工厂：批量生产有声书，睡后收入的搭建指南",
+      "opportunity": "opp-v9-005",
+      "exclusive": "ElevenLabs 批量生成脚本 + 多平台分发 checklist + 变现组合策略"
+    },
+    {
+      "day": "周六",
+      "theme": "深度专题",
+      "title": "深度专题：裁员潮下的 AI 求职陪跑服务，客单价 ¥1,999 的交付全案",
+      "opportunity": "opp-v9-006",
+      "exclusive": "简历重构 Prompt 库 + 模拟面试语音 Agent 配置 + 客户签约合同模板"
+    },
+    {
+      "day": "周日",
+      "theme": "复盘+预告",
+      "title": "本周复盘：6 个机会执行进度追踪 + 下周 3 个新机会预告",
+      "opportunity": null,
+      "exclusive": "会员答疑精华整理 + 下周新机会内幕预告（AI 硬件代理 / 本地生活 Agent / 跨境独立站）"
+    }
+  ],
+  "stats": {
+    "total_opportunities": 6,
+    "free_preview_count": 3,
+    "premium_count": 3,
+    "avg_difficulty": 2.5,
+    "categories": [
+      "社媒变现/内容创业",
+      "内容生产/音频变现",
+      "AI语音/B2B SaaS",
+      "跨境电商/数据工具",
+      "知识付费/求职服务",
+      "自动化/数据服务"
+    ]
+  }
+}

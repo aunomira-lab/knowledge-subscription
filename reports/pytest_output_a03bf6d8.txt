@@ -1,0 +1,33 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.0.3, pluggy-1.6.0 -- /home/AgentAdmin/.hermes/hermes-agent-v2026.5.7/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
+plugins: anyio-4.12.1
+collecting ... collected 24 items
+
+tests/test_sample_pack_a03bf6d8.py::TestFileExistence::test_free_preview_exists PASSED [  4%]
+tests/test_sample_pack_a03bf6d8.py::TestFileExistence::test_premium_catalog_exists PASSED [  8%]
+tests/test_sample_pack_a03bf6d8.py::TestFileExistence::test_week1_samples_exist PASSED [ 12%]
+tests/test_sample_pack_a03bf6d8.py::TestFileExistence::test_data_json_exists PASSED [ 16%]
+tests/test_sample_pack_a03bf6d8.py::TestFileExistence::test_delivery_checklist_exists PASSED [ 20%]
+tests/test_sample_pack_a03bf6d8.py::TestFileExistence::test_generator_exists PASSED [ 25%]
+tests/test_sample_pack_a03bf6d8.py::TestFileExistence::test_radar_script_exists PASSED [ 29%]
+tests/test_sample_pack_a03bf6d8.py::TestContentQuality::test_free_preview_has_task_id PASSED [ 33%]
+tests/test_sample_pack_a03bf6d8.py::TestContentQuality::test_free_preview_no_guaranteed_promise PASSED [ 37%]
+tests/test_sample_pack_a03bf6d8.py::TestContentQuality::test_free_preview_has_conversion_entry PASSED [ 41%]
+tests/test_sample_pack_a03bf6d8.py::TestContentQuality::test_free_preview_has_revenue_data PASSED [ 45%]
+tests/test_sample_pack_a03bf6d8.py::TestContentQuality::test_premium_catalog_has_pricing PASSED [ 50%]
+tests/test_sample_pack_a03bf6d8.py::TestContentQuality::test_premium_catalog_has_faq PASSED [ 54%]
+tests/test_sample_pack_a03bf6d8.py::TestContentQuality::test_premium_catalog_has_columns PASSED [ 58%]
+tests/test_sample_pack_a03bf6d8.py::TestContentQuality::test_data_json_valid_structure PASSED [ 62%]
+tests/test_sample_pack_a03bf6d8.py::TestContentQuality::test_all_opportunities_have_required_fields PASSED [ 66%]
+tests/test_sample_pack_a03bf6d8.py::TestContentQuality::test_week_reports_have_risk_disclaimer PASSED [ 70%]
+tests/test_sample_pack_a03bf6d8.py::TestContentQuality::test_week_reports_have_checklist PASSED [ 75%]
+tests/test_sample_pack_a03bf6d8.py::TestContentQuality::test_delivery_checklist_has_verification_commands PASSED [ 79%]
+tests/test_sample_pack_a03bf6d8.py::TestContentQuality::test_delivery_checklist_has_profit_analysis PASSED [ 83%]
+tests/test_sample_pack_a03bf6d8.py::TestContentQuality::test_free_preview_opportunities_match_json PASSED [ 87%]
+tests/test_sample_pack_a03bf6d8.py::TestContentQuality::test_content_minimum_length PASSED [ 91%]
+tests/test_sample_pack_a03bf6d8.py::TestRunnableCode::test_opportunity_radar_script_runs PASSED [ 95%]
+tests/test_sample_pack_a03bf6d8.py::TestRunnableCode::test_generator_script_runs PASSED [100%]
+
+============================== 24 passed in 0.12s ==============================

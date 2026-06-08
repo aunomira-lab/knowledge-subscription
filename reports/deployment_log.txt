@@ -1,0 +1,63 @@
+[2026-06-08 00:19:03] === 部署开始 ===
+[2026-06-08 00:19:03] 平台: github
+[Mon Jun  8 00:19:05 UTC 2026] 本地预览通过: http://localhost:8888
+[0;34m========================================[0m
+[0;34m  AI商机雷达 - GitHub Pages部署脚本[0m
+[0;34m========================================[0m
+
+[1;33m[1/6] 检查环境...[0m
+[0;32m  ✓ git 已安装[0m
+[0;32m  ✓ git 仓库检查完成[0m
+[1;33m[2/6] 检查销售页...[0m
+[0;32m  ✓ 销售页检查通过 (365 行)[0m
+[1;33m[3/6] 检查GitHub远程仓库...[0m
+[0;32m  ✓ 远程仓库: git@github.com:aunomira-lab/knowledge-subscription.git[0m
+[1;33m[4/6] 部署到 gh-pages 分支...[0m
+Initialized empty Git repository in /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/site/.git/
+[main (root-commit) 9b4d0f6] Deploy to GitHub Pages - 2026-06-08 00:19:05
+ 2 files changed, 854 insertions(+)
+ create mode 100644 index.html
+ create mode 100644 landing-v2.html
+To github.com:aunomira-lab/knowledge-subscription.git
+ + 0fb8021...9b4d0f6 main -> gh-pages (forced update)
+[0;32m  ✓ 部署完成[0m
+[1;33m[5/6] 生成访问链接...[0m
+
+[0;32m========================================[0m
+[0;32m  🎉 部署成功![0m
+[0;32m========================================[0m
+
+[0;34m线上URL:[0m https://aunomira-lab.github.io/knowledge-subscription
+
+[1;33m注意:[0m
+  1. DNS传播可能需要几分钟
+  2. 首次访问可能有延迟
+  3. 确保仓库 Settings > Pages 已启用
+
+[1;33m验证命令:[0m
+  curl -I https://aunomira-lab.github.io/knowledge-subscription
+
+[1;33m[6/6] 验证部署...[0m
+[0;34m  正在测试 https://aunomira-lab.github.io/knowledge-subscription...[0m
+[1;33m  ⚠ HTTP状态码: 301[0m
+
+[0;32m========================================[0m
+[0;32m  部署流程完成![0m
+[0;32m========================================[0m
+
+[0;34m下一步:[0m
+  1. 访问GitHub仓库 Settings > Pages 确认已启用
+  2. 更新渠道清单中的公开URL
+  3. 开始执行获客计划
+
+[Mon Jun  8 00:19:10 UTC 2026] GitHub Pages 部署完成
+WARNING: URL返回 HTTP 000000
+[2026-06-08 00:19:10] === 部署完成 ===
+[2026-06-08 00:19:11] 开始部署 AI商机雷达销售页...
+[2026-06-08 00:19:11] 本地验证通过，index.html 大小: 17138 bytes
+[2026-06-08 00:19:11] 检测到 Wrangler CLI，执行部署...
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mIn a non-interactive environment, it's necessary to set a CLOUDFLARE_API_TOKEN environment variable for wrangler to work. Please go to https://developers.cloudflare.com/fundamentals/api/get-started/create-token/ for instructions on how to create an api token, and assign its value to CLOUDFLARE_API_TOKEN.[0m
+
+
+🪵  Logs were written to "/home/AgentAdmin/.hermes/profiles/backup-agent-2/home/.config/.wrangler/logs/wrangler-2026-06-08_00-19-11_983.log"
+[2026-06-08 00:19:12] 部署失败，请检查 wrangler 配置
