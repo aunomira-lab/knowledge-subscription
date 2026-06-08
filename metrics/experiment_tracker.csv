@@ -1,9 +1,9 @@
-date,day_number,content_published,content_title,exposure_count,visit_count,signup_count,pay_count,revenue_cny,impressions,visits,signups,activations,paid_users,daily_revenue,cumulative_revenue,open_rate,ctr_avg,new_followers,shares,feedback_count,complaints,experiment_phase,revenue_cumulative_usd,revenue_cumulative_cny,paid_conversions_new,free_subs_net,mrr_delta,mrr_delta_cny,notes
-2026-06-08,0,1,"Day 0: dev-monitor v4.2 monitoring infrastructure ready",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,seed,0,0,0,0,0,0,"Day 0 monitoring: revenue_experiment_7d.md v4.2 + kpi_dashboard.md v4.2 + support docs v4.2 + experiment_tracker.csv refreshed + monitor_dashboard.py deployed. Status: HOLD. Blocker: payment channels not activated (xiaobot/aifadian)."
-2026-06-09,1,0,"Day 1: Free preview + early bird launch",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,seed,0,0,0,0,0,0,"Day 1 TEMPLATE: publish free_preview.md to 3 channels. Target: exposure>=500 visits>=50 signups>=10. Revenue target: ¥0 (pure acquisition)."
-2026-06-10,2,0,"Day 2: Paid brief #1 - Cursor outsourcing SOP",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,seed,0,0,0,0,0,0,"Day 2 TEMPLATE: publish paid brief to email list + jike + xiaohongshu. Target: open_rate>=40% click>=5% paid>=1. Revenue target: ¥69-99."
-2026-06-11,3,0,"Day 3: Paid brief #2 - AI digital human scripts",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,seed,0,0,0,0,0,0,"Day 3 TEMPLATE: publish zhihu excerpt + paid brief. Target: zhihu_read>=200 visits>=30 paid>=1. Revenue target: ¥69-99."
-2026-06-12,4,0,"Day 4: Social proof + scarcity tactic",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,seed,0,0,0,0,0,0,"Day 4 TEMPLATE: publish user feedback + scarcity. Target: paid>=2 cumulative>=3. Revenue target: ¥138-198."
-2026-06-13,5,0,"Day 5: Matrix amplification - Chrome extension guide",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,seed,0,0,0,0,0,0,"Day 5 TEMPLATE: publish to github + twitter + xiaohongshu. Target: github_stars>=5 paid>=1. Revenue target: ¥69-99."
-2026-06-14,6,0,"Day 6: Urgency - early bird countdown",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,seed,0,0,0,0,0,0,"Day 6 TEMPLATE: 1v1 DM to inactive users + countdown. Target: convert_sleeping>=2. Revenue target: ¥138-198."
-2026-06-15,7,0,"Day 7: Week recap + STOP/ACCELERATE evaluation",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,seed,0,0,0,0,0,0,"Day 7 TEMPLATE: publish week recap + data disclosure. Decision: STOP if revenue<100 & paid<2; HOLD if 100-500; ACCELERATE if >=500."
+day,date,status,new_visitors,page_views,trial_signups,free_users,paid_users,earlybird_paid,pro_paid,custom_paid,revenue_cny,payment_method,content_published,content_channels,content_production_minutes,quality_score,interactions,complaints,refunds,utm_zhihu,utm_xiaohongshu,utm_jike,utm_wechat,utm_other,notes,decision
+Day 0,2026-06-08,ready,0,0,0,0,0,0,0,0,0,none,0,none,0,88.2,0,0,0,0,0,0,0,0,experiment initialized; waiting for payment code activation,hold
+Day 1,2026-06-09,pending,0,0,0,0,0,0,0,0,0,none,0,none,0,0,0,0,0,0,0,0,0,0,waiting for activation,pending
+Day 2,2026-06-10,pending,0,0,0,0,0,0,0,0,0,none,0,none,0,0,0,0,0,0,0,0,0,0,waiting for activation,pending
+Day 3,2026-06-11,pending,0,0,0,0,0,0,0,0,0,none,0,none,0,0,0,0,0,0,0,0,0,0,waiting for activation,pending
+Day 4,2026-06-12,pending,0,0,0,0,0,0,0,0,0,none,0,none,0,0,0,0,0,0,0,0,0,0,waiting for activation,pending
+Day 5,2026-06-13,pending,0,0,0,0,0,0,0,0,0,none,0,none,0,0,0,0,0,0,0,0,0,0,waiting for activation,pending
+Day 6,2026-06-14,pending,0,0,0,0,0,0,0,0,0,none,0,none,0,0,0,0,0,0,0,0,0,0,waiting for activation,pending
+Day 7,2026-06-15,pending,0,0,0,0,0,0,0,0,0,none,0,none,0,0,0,0,0,0,0,0,0,0,waiting for activation,pending

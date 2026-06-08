@@ -40,7 +40,8 @@
 │           ├── saturday.md                   # 周六：工具测评
 │           └── sunday.md                     # 周日：90天路线图
 └── tests/
-    ├── test_sample_pack.py                 # 主测试脚本
+    ├── test_sample_pack_current.py         # 主测试脚本（当前版本）
+    ├── test_sample_pack.py                 # 历史测试脚本
     └── test_sample_pack_v12.py             # 备份测试（带版本号）
 ```
 
@@ -70,13 +71,13 @@ python app/sample_pack_generator.py --check
 ### 运行测试
 
 ```bash
-python tests/test_sample_pack.py
+python tests/test_sample_pack_current.py
 ```
 
 或
 
 ```bash
-python -m pytest tests/test_sample_pack.py -v
+python -m pytest tests/test_sample_pack_current.py -v
 ```
 
 |---

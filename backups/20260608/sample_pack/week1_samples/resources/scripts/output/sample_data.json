@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-20T05:39:28.007041",
+  "generated_at": "2026-06-08T05:03:41.720796",
   "count": 3,
   "opportunities": [
     {
-      "id": "OPP-20260520-001",
+      "id": "OPP-20260608-001",
       "title": "MCP Server开发: 电商数据查询Server",
       "category": "AI工具",
       "description": "为跨境电商卖家开发MCP Server，支持Temu/Shein/淘宝店铺数据查询",
@@ -21,7 +21,7 @@
       "profit_estimate": "$500-3000/月 (按次调用或订阅)",
       "difficulty": 3,
       "time_to_start": "1-2周",
-      "created_at": "2026-05-20T05:39:28.006881",
+      "created_at": "2026-06-08T05:03:41.720595",
       "source_urls": [
         "https://smithery.ai",
         "https://glama.ai"
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "OPP-20260520-002",
+      "id": "OPP-20260608-002",
       "title": "n8n自动化工作流模板市场",
       "category": "自动化",
       "description": "制作高价值n8n工作流模板，在Gumroad和国内平台销售",
@@ -51,7 +51,7 @@
       "profit_estimate": "$300-1500/月 (模板可重复销售)",
       "difficulty": 2,
       "time_to_start": "3-5天",
-      "created_at": "2026-05-20T05:39:28.006894",
+      "created_at": "2026-06-08T05:03:41.720608",
       "source_urls": [
         "https://n8n.io",
         "https://gumroad.com"
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "OPP-20260520-003",
+      "id": "OPP-20260608-003",
       "title": "Newsletter内容运营服务",
       "category": "独立开发者",
       "description": "为企业/个人提供Newsletter代运营服务",
@@ -81,7 +81,7 @@
       "profit_estimate": "¥3000-15000/月",
       "difficulty": 2,
       "time_to_start": "1周",
-      "created_at": "2026-05-20T05:39:28.006899",
+      "created_at": "2026-06-08T05:03:41.720613",
       "source_urls": [
         "https://xiaobot.net"
       ],

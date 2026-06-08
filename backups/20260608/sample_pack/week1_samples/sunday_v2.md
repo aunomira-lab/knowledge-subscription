@@ -119,7 +119,7 @@ Newsletter, 内容运营, B2B服务, AI
 - https://plasmo.com
 
 #### 标签
-Chrome扩展, 微SaaS, 笔记工具, AI
+Chrome扩展, 微SaaS, 知识库, AI
 
 ### 小红书AI时尚穿搭账号矩阵
 **分类**: 社媒变现 | **难度**: ⭐⭐ | **启动时间**: 1-2周

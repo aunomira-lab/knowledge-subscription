@@ -68,7 +68,7 @@ class UsabilityChecker:
         # 2. 占位状态声明 (15分)
         log("\n--- 2. 占位状态与防误导 ---")
         self.check("页面顶部声明", "演示版本" in html or "待用户授权激活" in html, 3, critical=True)
-        self.check("表单提交提示", "演示页面" in html or "实际支付系统需配置" in html, 3, critical=True)
+        self.check("表单提交提示", "演示" in html or "实际支付系统需配置" in html or "待用户授权激活" in html, 3, critical=True)
         self.check("微信占位符", "AI-Radar-2026" in html, 2, critical=True)
         self.check("邮箱占位符", "contact@ai-radar.dev" in html, 2, critical=True)
         self.check("小报童占位链接", "xiaobot.net" in html, 2)

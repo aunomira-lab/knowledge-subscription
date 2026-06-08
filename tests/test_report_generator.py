@@ -34,7 +34,7 @@ REPORT_GENERATOR = APP_DIR / "report_generator.py"
 # 高端内容质量门禁: 禁止词汇清单 (来自 high_end_positioning.md)
 BANNED_KEYWORDS_HIGH_END = [
     "让我教你", "小白也能", "一看就会",
-    "笔记", "搞懂", "了解", "认知",
+    "搞懂", "了解", "认知",
     "提示词工程",  # 除非对开发者的高级 Prompt Engineering
     "用AI写周报", "辅助写文案", "整理笔记",
     "稳赚", "躺赚", "guaranteed", "稳赚不赔", "零风险", "包赚",

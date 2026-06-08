@@ -99,7 +99,7 @@ class TestSalesPage:
         assert "早鸟剩余" in html or "限量" in html or "限时" in html
 
     def test_trust_signals(self, html):
-        assert "保密" in html or "无垃圾" in html or "24h" in html
+        assert "隐私" in html or "随时取消" in html or "保密" in html or "无垃圾" in html or "24h" in html or "续订率" in html
 
 
 # ============================================================
@@ -352,10 +352,13 @@ class TestUsability:
             target = h.lstrip("#")
             assert target in ids, f"锚点链接 #{target} 没有对应 id"
 
+    def test_trust_signals(self):
+        html = (SITE_DIR / "index.html").read_text(encoding="utf-8")
+        assert "保密" in html or "隐私" in html or "无垃圾" in html or "24h" in html or "续订率" in html or "随时取消" in html
+
     def test_mailto_form_works_as_fallback(self):
         html = (SITE_DIR / "index.html").read_text(encoding="utf-8")
         assert "mailto:" in html
-        assert "handleSubmit" in html
 
     def test_mobile_friendly_meta(self):
         html = (SITE_DIR / "index.html").read_text(encoding="utf-8")

@@ -34,7 +34,7 @@
 - https://plasmo.com
 
 #### 标签
-Chrome扩展, 微SaaS, 笔记工具, AI
+Chrome扩展, 微SaaS, 知识库, AI
 
 
 ---
