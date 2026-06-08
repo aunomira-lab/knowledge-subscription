@@ -1,308 +1,251 @@
-# AI商机雷达 - 部署指南
+# AI商机雷达 - 部署说明
 
-**任务ID**: d718d905  
 **项目ID**: knowledge-subscription  
-**负责人**: dev-deploy (deployer)  
-**更新日期**: 2026-06-08  
-**部署平台**: GitHub Pages (当前已上线)  
-**公开URL**: https://aunomira-lab.github.io/knowledge-subscription/  
-**状态**: 销售页已上线可访问 | 支付入口 BLOCKED_BY_USER | 等待收款账号授权
-**验证结果**: HTML语法通过 | HTTP 200 | 关键内容完整 | 本地服务器测试通过
+**任务ID**: d718d905  
+**部署角色**: dev-deploy (deployer)  
+**更新日期**: 2026-06-08
 
 ---
 
-## 部署平台选择
+## 当前部署状态
 
-### 首选: Cloudflare Pages
-
-- 免费额度支持几百万次访问/月
-- 全球CDN加速，中国访问可用 (cloudflare-cn)
-- 推送即部署，无需服务器维护
-- 自定义域名支持
-- 免费SSL证书自动续期
-
-### 当前实际: GitHub Pages
-
-- 已通过 `scripts/deploy-github-pages.sh` 自动部署
-- 访问地址: https://aunomira-lab.github.io/knowledge-subscription/
-- 无需额外服务器或部署人员
-- 与 GitHub Actions 集成可实现每次推送自动部署
+| 项目 | 状态 | 说明 |
+|------|------|------|
+| 销售页 site/index.html | ✅ 已完成 | 包含收款入口、订阅表单、UTM跟踪 |
+| GitHub Pages 公开站点 | ✅ 已上线 | https://aunomira-lab.github.io/knowledge-subscription/ |
+| Cloudflare Pages 备选 | ⏳ 待账号 | 需用户提侜 Cloudflare 邮箱 |
+| 自定义域名 | ⏳ 待购买 | 可选，先用免费子域名试运行 |
+| 微信/支付宝收款 | ⏳ 待实名认证 | 需用户提侜身份证和银行卡信息 |
+| 广告账户 | ⏳ 待实名 | 小红书/知乎/微信广告平台 |
 
 ---
 
-## 一、帐号准备 (BLOCKED_BY_USER 步骤)
+## 部署平台
 
-以下帐号必须由负责人完成，Agent 无法自动注册/实名:
+### 主选平台：GitHub Pages（已上线）
 
-1. **Cloudflare 帐号** (推荐迁移到此平台)
-   - 地址: https://dash.cloudflare.com/sign-up
-   - 需要: 邮箱验证（无需手机号）
-   - 授权后回填: `docs/deployment_blockers.md` 标记 `CF_ACCOUNT_READY=true`
+- **成本**: 免费
+- **中国访问**: 可访问（可能稍慢，建议配合 CDN）
+- **自定义域名**: 支持
+- **自动 HTTPS**: 支持
+- **维护成本**: 零
+- **当前公开 URL**: https://aunomira-lab.github.io/knowledge-subscription/
 
-2. **实名收款帐号** (生产环境必备)
-   - 小报童: https://xiaobot.net (个人可开通，支持微信支付，抽成1%)
-   - 爱发电: https://afdian.net (个人可用，微信支付)
-   - 微信支付商户: https://pay.weixin.qq.com/ (需企业或个体工商户执照)
-   - 或 Stripe: https://stripe.com (需海外实体/收款平台)
-   - 回填: `docs/deployment_blockers.md` 标记 `PAYMENT_READY=true`
+### 备选平台 A：Cloudflare Pages
 
-3. **域名** (推荐购买)
-   - 推荐: `ai-radar.dev` / `aijihui.com` / `aishangji.com`
-   - 推荐注册商: Namecheap / Cloudflare Registrar
-   - 需要: 支付宝/微信支付或信用卡
-   - 回填: `docs/deployment_blockers.md` 标记 `DOMAIN_READY=true`
+- **成本**: 免费（每月 500 次构建）
+- **中国访问**: 快（全球 CDN）
+- **自定义域名**: 支持
+- **自动 HTTPS**: 支持
+- **优势**: 无需维护服务器
 
-4. **电子邮箱 / 发送平台** (用于订阅推送)
-   - 推荐: ConvertKit (https://convertkit.com) 或 Beehiiv (https://beehiiv.com)
-   - 免费额度均可覆盖前1000订阅者
-   - 回填: `docs/deployment_blockers.md` 标记 `EMAIL_PLATFORM_READY=true`
+### 备选平台 B：Vercel
+
+- **成本**: 免费（个人项目）
+- **中国访问**: 一般
+- **自定义域名**: 支持
+- **自动 HTTPS**: 支持
 
 ---
 
-## 二、部署脚本
+## 用户账号授权步骤
 
-### 主部署脚本: scripts/deploy.sh
+### 必须授权（P0）
+
+1. **GitHub 账号**
+   - 用途: 当前已自动部署到 GitHub Pages
+   - 状态: 已通过平台账号完成
+   - 结果: 公开 URL 可访问
+
+2. **微信收款实名认证**
+   - 用途: 微信收款码收款
+   - 注册: 打开微信 → 我 → 服务 → 收款码 → 申请商家收款码
+   - 需要: 身份证正反面、银行卡信息
+   - 时间: 1-3 工作日
+   - 费用: 免费申请，提现手续费 0.6%
+
+3. **小报童创作者注册**
+   - 用途: 微信生态内付费订阅
+   - 注册: https://xiaobot.net → 微信扫码登录
+   - 需要: 微信实名
+   - 费用: 平台抽成 10%
+   - 操作: 创建专栋 → 设置定价 → 复制链接填回 site/index.html
+
+4. **爱发电创作者注册**
+   - 用途: 支付宝/微信打赏支持
+   - 注册: https://afdian.net → 微信扫码登录
+   - 需要: 微信实名
+   - 费用: 平台抽成 6%
+   - 操作: 创建专页 → 复制链接填回 site/index.html
+
+### 建议授权（P1）
+
+5. **Cloudflare 账号**
+   - 用途: 更快的全球访问速度
+   - 注册: https://dash.cloudflare.com/sign-up
+   - 需要: 邮箱
+   - 费用: 免费
+   - 操作: 注册 → 创建 Pages 项目 → 部署 site 目录
+
+6. **小红书企业号**
+   - 用途: 广告投放
+   - 注册: 小红书 App → 我 → 创佚中心 → 更多服务 → 专业号中心
+   - 需要: 营业执照或个人微信实名
+   - 费用: 免费注册
+
+7. **知乎广告账户**
+   - 用途: 知+广告投放
+   - 注册: https://www.zhihu.com → 我的 → 创作中心 → 知+广告
+   - 需要: 实名认证
+   - 费用: 免费注册
+
+8. **Brevo 邮件服务**
+   - 用途: 自动发送每日简报、收费提醒
+   - 注册: https://www.brevo.com/
+   - 费用: 免费 300 邮件/天
+   - 替代方案: 可先用微信公众号/个人邮箱
+
+---
+
+## 部署步骤
+
+### 方式一：命令行部署（推荐）
 
 ```bash
-# 快速启动
+# 1. 进入项目目录
 cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
-./scripts/deploy.sh [cloudflare|github]
+
+# 2. 运行部署脚本
+bash scripts/deploy-github-pages.sh
+
+# 或使用 Cloudflare（需先安装 wrangler）
+bash scripts/deploy.sh
 ```
 
-该脚本自动执行:
-1. 验证 index.html 存在
-2. 验证 HTML 格式完整性
-3. 检查关键元素（订阅、定价、联系入口）
-4. 本地预览测试 (python3 -m http.server)
-5. 执行平台部署
-6. 验证公开URL可访问
-
-### 本地预览
-
-```bash
-cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/site
-python3 -m http.server 8080
-# 打开浏览器访问 http://localhost:8080
-```
-
-### 定时构建脚本 (cron)
-
-添加到 crontab (如果页面内容需要每日更新):
-
-```bash
-# 每天凌晨1点自动部署 (如果使用Git推送触发)
-0 1 * * * cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription && ./scripts/deploy.sh github >> /tmp/ai-radar-cron.log 2>&1
-```
-
-或使用 GitHub Actions 自动触发 (推荐):
+### 方式二：GitHub Actions 自动部署
 
 ```yaml
 # .github/workflows/deploy.yml
 name: Deploy to GitHub Pages
+
 on:
   push:
     branches: [main]
-  schedule:
-    - cron: '0 1 * * *'  # 每天凌晨1点
+  workflow_dispatch:
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Deploy
-        run: ./scripts/deploy.sh github
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+```
+
+### 方式三：一键脚本部署
+
+```bash
+# 运行已写好的部署脚本
+bash /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/scripts/deploy.sh
+
+# 或
+bash /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/deploy/deploy.sh
 ```
 
 ---
 
-## 三、手动部署步骤
+## 常见操作
 
-### 方案A: GitHub Pages (当前已上线)
+```bash
+# 检查部署状态
+curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/
 
-1. 推送到主分支，GitHub Actions 自动部署
-2. 在 Settings → Pages 中确认分支为 gh-pages
-3. 访问 `https://<org>.github.io/knowledge-subscription/`
+# 检查关键元素
+curl -s https://aunomira-lab.github.io/knowledge-subscription/ | grep -o '商机雷达'
 
-### 方案B: Cloudflare Pages (推荐迁移)
+# 本地预览
+cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/site
+python3 -m http.server 8080
+# 然后访问 http://localhost:8080
 
-1. 注册 Cloudflare 帐号
-2. 进入 Dashboard → Pages → Create a project
-3. 选择 "Upload an asset" 上传 site/ 文件夹
-4. 等待构建，获取公开URL
-5. 填写此 URL 到 `reports/deployment_verification.md`
+# 检查脚本语法
+bash -n deploy/deploy.sh
+bash -n deploy/cron-deploy.sh
+bash -n deploy/validate-deployment.sh
+bash -n deploy/run_daily.sh
+bash -n deploy/activate-contact.sh
+```
 
 ---
 
-## 四、收款/联系入口配置
+## 环境变量
 
-当前页面已集成以下联系入口:
+如果部署到 Cloudflare Pages，在控制台配置：
+
+| 变量名 | 说明 | 是否必填 |
+|--------|------|----------|
+| `EMAIL_WEBHOOK` | 邮箱收集后发送到的第三方服务 | 否 |
+| `ANALYTICS_ID` | Google Analytics / Plausible 统计 ID | 否 |
+| `STRIPE_PK` | Stripe 公开钥匙（后续支付上线后） | 否 |
+
+---
+
+## 安全注意事项
+
+- 所有表单数据请通过 HTTPS 传输
+- 生产环境应将邮箱数据发送到可靠后端（如 Airtable / Notion / Brevo）
+- 定期更新依赖包
+- 收款码不要直接嵌入到页面公开源码中（使用模态弹窗或加载）
+
+---
+
+## 监控与运维
+
+- 使用 GitHub Pages 内置访问统计
+- 使用 UptimeRobot 监控站点可用性（免费）
+- 每月查看流量和购买转化率
+- 每日运营脚本: `bash deploy/run_daily.sh`
+- 健康检查: `bash scripts/health_check.sh`
+
+---
+
+## 收款/联系入口
 
 | 入口 | 类型 | 状态 | 说明 |
 |------|------|------|------|
-| 邮箱 contact@ai-radar.dev | 联系/咨询 | 占位符 | 需配置真实邮箱或邮件转发服务 |
-| Telegram @ai_opportunity_radar | 社区 | 占位符 | 需创建Telegram群组 |
-| 小报童 xiaobot.net/p/ai-radar | 订阅/收款 | 占位符 | 需实名注册小报童作者帐户 |
-| 免费试读邮件收集 | 转化 | JS alert | 生产环境需接 ConvertKit/Beehiiv API |
-
-### 建议的生产环境收款链路
-
-```
-用户页面 → ConvertKit免费订阅 → 每日邮件推送 → 邮件中含小报童订阅链接 → 小报童完成支付
-```
-
-小报童优势:
-- 个人可开通，无需企业资质
-- 支持微信支付
-- 分成模式适合初期MVP
+| 微信收款码 | 即时收款 | 待激活 | 页面占位符已设置，需用户提侜收款码图片 |
+| 小报童 | 定期订阅 | 待激活 | 链接已占位: https://xiaobot.net/p/ai-radar-2026 |
+| 爱发电 | 打赏支持 | 待激活 | 链接已占位: https://afdian.net/a/ai-radar-2026 |
+| 邮箱意向登记 | 意向收集 | ✅ 已上线 | 页面表单可提交，当前存储于 localStorage |
+| 联系邮箱 | 客服 | 占位 | contact@ai-radar.dev（需替换为真实邮箱） |
+| 微信号 | 社群 | 占位 | AI-Radar-2026（需替换为真实微信号） |
 
 ---
 
-## 五、环境检查清单
+## 宣传平台
 
-在正式部署前，请确认以下检查项:
+已确定至少 7 个宣传平台计划（详见 docs/launch_execution_plan.md）：
 
-- [ ] 公开URL已填写到 `reports/deployment_verification.md`
-- [ ] 销售页渲染正常，所有链接可点击
-- [ ] 隐私政策页面已创建 (privacy.html)
-- [ ] 服务条款页面已创建 (terms.html)
-- [ ] 联系邮箱已设置自动转发
-- [ ] 小报童/爱发电帐号已注册
-- [ ] 邮件推送平台已配置 (ConvertKit/Beehiiv)
-- [ ] 转化追踪已配置 (Cloudflare Web Analytics 或 Google Analytics)
-- [ ] 每日自动生成报告的cron已配置
+1. **知乎答案 + 专栏** — 长文引流
+2. **小红书笔记** — 短图文种草
+3. **微信公众号** — 深度文章 + 邮件列表沉淀
+4. **Twitter/X** — 英文受众、全球游民
+5. **GitHub** — 开源模板引流零成本
+6. **Indie Hackers** — 英文社区沉淀
+7. **Product Hunt** — 发布日活动
 
 ---
 
-## 六、回滚方案
+## 链接
 
-如果当前平台出问题，备选方案:
-
-1. **Vercel** (https://vercel.com)
-   - 同样免费支持静态页面
-   - 自动部署 GitHub 推送
-   - 支持中国访问，速度一般
-
-2. **Netlify** (https://netlify.com)
-   - 免费额度充足
-   - 自动部署
-   - Form处理 (可用于收集邮箱)
+- [GitHub Pages 文档](https://docs.github.com/en/pages)
+- [Cloudflare Pages 文档](https://developers.cloudflare.com/pages/)
+- [Wrangler CLI 文档](https://developers.cloudflare.com/workers/wrangler/)
+- [Vercel 文档](https://vercel.com/docs)
 
 ---
 
-# 9. 验证命令
-
-以下命令均已在 2026-06-08 实际执行并通过:
-
-```bash
-# 进入项目目录
-cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
-
-# 验证HTML格式
-python3 -c "
-from html.parser import HTMLParser
-class Validator(HTMLParser):
-    def error(self, message): raise Exception(message)
-with open('site/index.html', 'r') as f:
-    Validator().feed(f.read())
-print('HTML 语法检查通过')
-"
-# 输出: HTML 语法检查通过
-
-# 验证关键内容
-python3 -c "
-import re
-html = open('site/index.html').read()
-checks = {
-    'title': bool(re.search(r'<title>.*</title>', html)),
-    'subscribe_section': '#subscribe' in html,
-    'pricing_section': '#pricing' in html,
-    'sample_section': '#sample' in html,
-    'email_link': 'mailto:contact@ai-radar.dev' in html,
-    'telegram': 't.me/ai_opportunity_radar' in html,
-    'xiaobot': 'xiaobot.net' in html,
-    'afdian': 'afdian.net' in html,
-    'wechat': 'AI-Radar-2026' in html,
-    'has_js': '<script>' in html,
-    'has_form': '<form' in html,
-    'pricing': '¥29' in html,
-}
-for k,v in checks.items():
-    print(f'  {k}: {“PASS” if v else “FAIL”}')
-all_pass = all(checks.values())
-print(f'\n总体: {“PASS” if all_pass else “FAIL”}')
-exit(0 if all_pass else 1)
-"
-# 输出: 全部 PASS
-
-# 验证部署脚本语法
-bash -n deploy/deploy.sh && echo "deploy.sh 语法正确"
-bash -n deploy/validate-deployment.sh && echo "validate-deployment.sh 语法正确"
-bash -n deploy/run_daily.sh && echo "run_daily.sh 语法正确"
-
-# 本地预览测试
-python3 -c "
-import http.server, socketserver, threading, urllib.request, time
-PORT = 18888
-Handler = http.server.SimpleHTTPRequestHandler
-httpd = socketserver.TCPServer(('', PORT), Handler)
-thread = threading.Thread(target=httpd.serve_forever)
-thread.daemon = True
-thread.start()
-time.sleep(1)
-url = f'http://localhost:{PORT}/'
-resp = urllib.request.urlopen(url)
-html = resp.read().decode('utf-8')
-assert '商机雷达' in html
-assert '¥29' in html
-assert 'handleSubmit' in html
-print('本地服务器测试通过')
-httpd.shutdown()
-"
-
-# 公开URL验证
-URL="https://aunomira-lab.github.io/knowledge-subscription/"
-curl -s -o /dev/null -w "HTTP %{http_code}\n" "$URL"
-# 输出: HTTP 200
-curl -s "$URL" | grep -o '¥29' | wc -l
-# 输出: 7
-curl -s "$URL" | grep -o 'handleSubmit' | head -1
-# 输出: handleSubmit
-curl -I "$URL" 2>/dev/null | grep -E '(HTTP/2|server:)'
-# 输出: HTTP/2 200 / server: GitHub.com
-```
-
----
-
-## 八、文件结构
-
-```
-knowledge-subscription/
-├── site/
-│   ├── index.html          # 销售页面 (已上线)
-│   ├── privacy.html        # 隐私政策 (待创建)
-│   └── terms.html          # 服务条款 (待创建)
-├── deploy/
-│   └── README.md           # 本文件
-├── scripts/
-│   ├── deploy.sh           # 主部署脚本 (新增)
-│   ├── deploy-github-pages.sh # GitHub Pages部署 (已有)
-│   └── health_check.sh      # 健康检查 (已有)
-├── docs/
-│   ├── launch_execution_plan.md  # 7天获客执行计划
-│   └── deployment_blockers.md    # 部署阻塞清单
-├── metrics/
-│   └── launch_channels.csv      # 渠道数据
-├── reports/
-│   ├── deployment_verification.md  # 部署验证
-│   └── deployment_log.txt        # 部署日志
-└── runs/
-    └── d718d905_result.json      # 任务结果
-```
-
----
-
-## 九、联系支持
-
-部署问题请联系:
-- 邮箱: contact@ai-radar.dev (占位，待授权)
-- 项目跟踪: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/
+*本文档由 dev-deploy 维护。有问题请升级至 Dev Team 或联系小电。*
