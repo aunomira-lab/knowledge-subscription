@@ -39,3 +39,216 @@
 [2026-06-13 05:01:17] Step 5/6: 备份关键文件...
 [完成] 关键文件已备份至: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/backups/20260613
 [2026-06-13 05:01:17] Step 6/6: 检查Git状态...
+[main bc63ce9] daily: auto-run 2026-06-13 [task d1eb27ce]
+ 222 files changed, 27153 insertions(+), 2812 deletions(-)
+ create mode 100644 app/build_sales_site.py
+ create mode 100644 backups/20260613/index.html
+ create mode 100644 backups/20260613/sample_pack/01_free_preview.md
+ create mode 100644 backups/20260613/sample_pack/02_pro_catalog.md
+ create mode 100644 backups/20260613/sample_pack/03_week1_samples.md
+ create mode 100644 backups/20260613/sample_pack/README.md
+ create mode 100644 backups/20260613/sample_pack/data.json
+ create mode 100644 backups/20260613/sample_pack/data_v10.json
+ create mode 100644 backups/20260613/sample_pack/data_v11.json
+ create mode 100644 backups/20260613/sample_pack/data_v12.json
+ create mode 100644 backups/20260613/sample_pack/data_v4.json
+ create mode 100644 backups/20260613/sample_pack/data_v5.json
+ create mode 100644 backups/20260613/sample_pack/data_v6.json
+ create mode 100644 backups/20260613/sample_pack/data_v7.json
+ create mode 100644 backups/20260613/sample_pack/data_v9.json
+ create mode 100644 backups/20260613/sample_pack/free_preview.md
+ create mode 100644 backups/20260613/sample_pack/free_preview/sample_opportunity_01.md
+ create mode 100644 backups/20260613/sample_pack/free_preview/sample_opportunity_02.md
+ create mode 100644 backups/20260613/sample_pack/free_preview/sample_opportunity_03.md
+ create mode 100644 backups/20260613/sample_pack/free_preview_v10.md
+ create mode 100644 backups/20260613/sample_pack/free_preview_v11.md
+ create mode 100644 backups/20260613/sample_pack/free_preview_v12.md
+ create mode 100644 backups/20260613/sample_pack/free_preview_v2.md
+ create mode 100644 backups/20260613/sample_pack/free_preview_v3.md
+ create mode 100644 backups/20260613/sample_pack/free_preview_v4.md
+ create mode 100644 backups/20260613/sample_pack/free_preview_v5.md
+ create mode 100644 backups/20260613/sample_pack/free_preview_v6.md
+ create mode 100644 backups/20260613/sample_pack/free_preview_v7.md
+ create mode 100644 backups/20260613/sample_pack/free_preview_v9.md
+ create mode 100644 backups/20260613/sample_pack/free_sample.md
+ create mode 100644 backups/20260613/sample_pack/free_trial.md
+ create mode 100644 backups/20260613/sample_pack/premium_catalog.md
+ create mode 100644 backups/20260613/sample_pack/premium_catalog_v10.md
+ create mode 100644 backups/20260613/sample_pack/premium_catalog_v11.md
+ create mode 100644 backups/20260613/sample_pack/premium_catalog_v12.md
+ create mode 100644 backups/20260613/sample_pack/premium_catalog_v2.md
+ create mode 100644 backups/20260613/sample_pack/premium_catalog_v3.md
+ create mode 100644 backups/20260613/sample_pack/premium_catalog_v4.md
+ create mode 100644 backups/20260613/sample_pack/premium_catalog_v5.md
+ create mode 100644 backups/20260613/sample_pack/premium_catalog_v7.md
+ create mode 100644 backups/20260613/sample_pack/premium_catalog_v9.md
+ create mode 100644 backups/20260613/sample_pack/pro_catalog.md
+ create mode 100644 backups/20260613/sample_pack/teaser_report.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/README.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/content_calendar.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/day01_ai_newsletter_arbitrage.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/day01_monday.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/day02_chrome_extension_micro_saas.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/day02_tuesday.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/day03_wednesday.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/day03_xiaohongshu_ai_fashion.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/day04_thursday.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/day05_friday.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/day06_saturday.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/day07_sunday.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/day1_ai_tools.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/day1_opportunity_radar.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/day2_automation.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/friday.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/friday_report.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/friday_v10.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/friday_v11.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/friday_v12.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/friday_v2.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/friday_v4.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/friday_v5.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/friday_v6.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/friday_v7.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/friday_v9.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/monday.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/monday_report.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/monday_v10.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/monday_v11.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/monday_v12.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/monday_v2.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/monday_v4.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/monday_v5.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/monday_v6.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/monday_v7.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/monday_v9.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/resources/n8n/social_media_automation.json
+ create mode 100644 backups/20260613/sample_pack/week1_samples/resources/scripts/opportunity_radar.py
+ create mode 100644 backups/20260613/sample_pack/week1_samples/resources/scripts/output/sample_data.csv
+ create mode 100644 backups/20260613/sample_pack/week1_samples/resources/scripts/output/sample_data.json
+ create mode 100644 backups/20260613/sample_pack/week1_samples/resources/scripts/output/sample_report.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/resources/scripts/requirements.txt
+ create mode 100644 backups/20260613/sample_pack/week1_samples/saturday.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/saturday_v10.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/saturday_v11.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/saturday_v12.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/saturday_v2.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/saturday_v4.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/saturday_v5.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/saturday_v6.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/saturday_v7.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/saturday_v9.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/sunday.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/sunday_v10.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/sunday_v11.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/sunday_v12.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/sunday_v2.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/sunday_v4.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/sunday_v5.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/sunday_v6.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/sunday_v7.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/sunday_v9.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/thursday.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/thursday_report.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/thursday_v10.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/thursday_v11.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/thursday_v12.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/thursday_v2.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/thursday_v4.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/thursday_v5.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/thursday_v6.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/thursday_v7.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/thursday_v9.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/tuesday.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/tuesday_report.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/tuesday_v10.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/tuesday_v11.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/tuesday_v12.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/tuesday_v2.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/tuesday_v4.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/tuesday_v5.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/tuesday_v6.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/tuesday_v7.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/tuesday_v9.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/wednesday.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/wednesday_report.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/wednesday_v10.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/wednesday_v11.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/wednesday_v12.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/wednesday_v2.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/wednesday_v4.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/wednesday_v5.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/wednesday_v6.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/wednesday_v7.md
+ create mode 100644 backups/20260613/sample_pack/week1_samples/wednesday_v9.md
+ create mode 100644 logs/daily_20260613.log
+ create mode 100644 reports/.hermes-tmp.3420982
+ create mode 100644 reports/.hermes-tmp.3500845
+ create mode 100644 reports/.hermes-tmp.3575885
+ create mode 100644 reports/daily/briefing_20260613.md
+ create mode 100644 reports/launch_acceptance_detailed.txt
+ create mode 100644 reports/pytest_results_889b251b_20260613.txt
+ create mode 100644 reports/pytest_results_889b251b_final.txt
+ create mode 100644 reports/pytest_results_eff3f092_final.txt
+ create mode 100644 reports/pytest_results_eff3f092_security.txt
+ create mode 100644 reports/security_static_check_eff3f092.txt
+ create mode 100644 reports/static_checks_889b251b.txt
+ create mode 100644 reports/static_checks_889b251b_final.txt
+ create mode 100644 reports/static_checks_eff3f092.txt
+ create mode 100644 reports/test_results_889b251b_20260613.txt
+ create mode 100644 reports/test_results_889b251b_final.txt
+ create mode 100644 reports/v2_samples/20260613_knowledge_asset_architecture.md
+ create mode 100644 reports/v2_samples/20260613_workflow_sop_deep_dive.md
+ create mode 100755 scripts/cloudflare-deploy.sh
+ create mode 100644 scripts/validate_monitoring_docs.py
+ create mode 100644 site/.nojekyll
+ create mode 100644 site/README.md
+ create mode 100644 site/privacy.html
+ create mode 100644 site/sample_pack/free_preview.html
+ create mode 100644 site/sample_pack/index.html
+ create mode 100644 site/sample_pack/premium_catalog.html
+ create mode 100644 site/terms.html
+ create mode 100644 tests/test_build_sales_site.py
+ create mode 100644 tests/test_results_889b251b.md
+[完成] 本地提交已创建，请手动 push 触发部署
+[2026-06-13 05:01:17] ===== 每日运营完成 =====
+[2026-06-13 05:03:12] ===== 每日运营开始 =====
+[2026-06-13 05:03:12] Step 1/6: 检查内容生成器...
+[a6837f49] sample_pack_generator v9.0 starting...
+
+[1/6] Generating free preview...
+  OK -> /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/sample_pack/free_preview_v9.md
+
+[2/6] Generating premium catalog...
+  OK -> /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/sample_pack/premium_catalog_v9.md
+
+[3/6] Generating week1 samples...
+  OK -> /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/sample_pack/week1_samples/monday_v9.md
+  OK -> /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/sample_pack/week1_samples/tuesday_v9.md
+  OK -> /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/sample_pack/week1_samples/wednesday_v9.md
+  OK -> /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/sample_pack/week1_samples/thursday_v9.md
+  OK -> /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/sample_pack/week1_samples/friday_v9.md
+  OK -> /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/sample_pack/week1_samples/saturday_v9.md
+  OK -> /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/sample_pack/week1_samples/sunday_v9.md
+
+[4/6] Generating data JSON...
+  OK -> /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/sample_pack/data_v9.json
+
+[5/6] Generating delivery checklist...
+  OK -> /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/docs/delivery_checklist.md
+
+[6/6] Done. Summary:
+  Opportunities: 6
+  Free preview: 3
+  Week samples: 7
+  Output dir: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/sample_pack
+  Docs dir: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/docs
+[2026-06-13 05:03:12] Step 2/6: 检查销售页健康...
+[通过] 销售页可访问 (HTTP 200)
+[异常] 销售页缺少关键内容
+[2026-06-13 05:03:12] Step 3/6: 生成简报标题跟踪...
+[完成] 日报模板已生成: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/daily/briefing_20260613.md
+[2026-06-13 05:03:12] Step 4/6: 更新运营数据...
+[完成] 运营数据已记录: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/metrics/daily_metrics.csv
+[2026-06-13 05:03:12] Step 5/6: 备份关键文件...
+[完成] 关键文件已备份至: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/backups/20260613
+[2026-06-13 05:03:12] Step 6/6: 检查Git状态...

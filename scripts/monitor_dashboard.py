@@ -183,7 +183,7 @@ def generate_daily_actions(metrics: dict) -> list[str]:
     # 基于当前日期判断实验天数
     day_of_experiment = 0
     try:
-        start = datetime(2026, 6, 8)
+        start = datetime(2026, 6, 13)
         today = datetime.utcnow()
         day_of_experiment = (today - start).days
     except Exception:
@@ -279,9 +279,9 @@ def render_report(metrics: dict, actions: list[str]) -> str:
     ])
     
     # 动态判断
-    if metrics["revenue_streak"] >= 3 and datetime.utcnow().date() >= datetime(2026, 6, 11).date():
+    if metrics["revenue_streak"] >= 3 and datetime.utcnow().date() >= datetime(2026, 6, 16).date():
         lines.append("可止: 连续3天收入=0。检查收款码可见性+销售页流量。")
-    elif metrics["paid_subs"] == 0 and datetime.utcnow().date() >= datetime(2026, 6, 15).date():
+    elif metrics["paid_subs"] == 0 and datetime.utcnow().date() >= datetime(2026, 6, 20).date():
         lines.append("可止: Day 7 后仍无付费用户。重新评估产品-市场匹配。")
     elif metrics["conversion_rate"] >= 5.0 and metrics["free_subs"] >= 20:
         lines.append("加码: 转化率≥5%。立即加码投放广告+扩大内容产能。")

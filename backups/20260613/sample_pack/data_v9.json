@@ -1,7 +1,7 @@
 {
   "task_id": "a6837f49",
   "version": "v9.0",
-  "generated_at": "2026-06-13T05:01:17.066060",
+  "generated_at": "2026-06-13T05:03:12.790503",
   "project": "knowledge-subscription",
   "opportunities": [
     {
@@ -285,11 +285,11 @@
     "avg_difficulty": 2.5,
     "categories": [
       "自动化/数据服务",
+      "内容生产/音频变现",
+      "跨境电商/数据工具",
       "知识付费/求职服务",
       "社媒变现/内容创业",
-      "AI语音/B2B SaaS",
-      "内容生产/音频变现",
-      "跨境电商/数据工具"
+      "AI语音/B2B SaaS"
     ]
   }
 }

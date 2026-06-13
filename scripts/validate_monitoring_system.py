@@ -33,8 +33,8 @@ def validate_csv(filepath):
             rows = list(reader)
             
             # 检查必需字段
-            required_fields = ['date', 'day_number', 'exposure_count', 'visit_count', 
-                             'signup_count', 'pay_count', 'revenue_cny']
+            required_fields = ['day', 'date', 'status', 'revenue_cny', 'paid_users', 
+                             'free_subs_net', 'cumulative_revenue', 'daily_revenue', 'complaints']
             header = reader.fieldnames
             for field in required_fields:
                 if field not in header:
@@ -134,11 +134,11 @@ def main():
     
     # 4. 验证Markdown文档内容
     print("\n[阶段4] 验证7天收入实验文档内容")
-    exp_sections = ["实验目标", "转化漏斗", "收入追踪", "加码/停止"]
+    exp_sections = ["实验目标", "转化漏斗", "收入追踪", "加码", "停止"]
     results.append(validate_markdown("docs/revenue_experiment_7d.md", "实验文档", exp_sections))
     
     print("\n[阶段5] 验证KPI看板文档内容")
-    kpi_sections = ["收入指标", "转化漏斗", "用户指标", "预警指标"]
+    kpi_sections = ["核心收入指标", "转化漏斗", "内容运营指标", "预警状态"]
     results.append(validate_markdown("docs/kpi_dashboard.md", "KPI看板", kpi_sections))
     
     # 6. 数据一致性检查

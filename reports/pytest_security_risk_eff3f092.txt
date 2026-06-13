@@ -1,0 +1,42 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.0.2, pluggy-1.6.0 -- /home/AgentAdmin/hermes-agent/venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
+plugins: asyncio-1.3.0, timeout-2.4.0, anyio-4.12.1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 32 items
+
+tests/test_security_risk.py::TestSecurityStatic::test_no_hardcoded_secrets_in_site PASSED [  3%]
+tests/test_security_risk.py::TestSecurityStatic::test_no_xss_vectors_in_site PASSED [  6%]
+tests/test_security_risk.py::TestSecurityStatic::test_no_http_plaintext_links PASSED [  9%]
+tests/test_security_risk.py::TestSecurityStatic::test_no_forbidden_promise_words PASSED [ 12%]
+tests/test_security_risk.py::TestSecurityStatic::test_sample_content_has_risk_disclaimers PASSED [ 15%]
+tests/test_security_risk.py::TestSecurityStatic::test_sample_content_has_taskid PASSED [ 18%]
+tests/test_security_risk.py::TestSecurityStatic::test_subscription_data_sanitization PASSED [ 21%]
+tests/test_security_risk.py::TestCompliance::test_privacy_html_exists PASSED [ 25%]
+tests/test_security_risk.py::TestCompliance::test_terms_html_exists PASSED [ 28%]
+tests/test_security_risk.py::TestCompliance::test_privacy_html_has_placeholder_warning PASSED [ 31%]
+tests/test_security_risk.py::TestCompliance::test_terms_html_has_placeholder_warning PASSED [ 34%]
+tests/test_security_risk.py::TestCompliance::test_sales_page_has_refund_policy PASSED [ 37%]
+tests/test_security_risk.py::TestCompliance::test_sales_page_has_revenue_disclaimer PASSED [ 40%]
+tests/test_security_risk.py::TestCompliance::test_no_real_personal_info_in_site PASSED [ 43%]
+tests/test_security_risk.py::TestCompliance::test_payment_links_are_placeholder_or_known_platforms PASSED [ 46%]
+tests/test_security_risk.py::TestCompliance::test_deployment_blockers_documented PASSED [ 50%]
+tests/test_security_risk.py::TestSubscriptionRisk::test_pricing_consistency PASSED [ 53%]
+tests/test_security_risk.py::TestSubscriptionRisk::test_revenue_projections_reasonable PASSED [ 56%]
+tests/test_security_risk.py::TestSubscriptionRisk::test_revenue_monotonically_increasing PASSED [ 59%]
+tests/test_security_risk.py::TestSubscriptionRisk::test_free_user_cannot_access_paid_content PASSED [ 62%]
+tests/test_security_risk.py::TestSubscriptionRisk::test_early_bird_user_cannot_access_pro_content PASSED [ 65%]
+tests/test_security_risk.py::TestSubscriptionRisk::test_pro_user_can_access_all_except_custom PASSED [ 68%]
+tests/test_security_risk.py::TestSubscriptionRisk::test_custom_user_can_access_all PASSED [ 71%]
+tests/test_security_risk.py::TestSubscriptionRisk::test_expired_user_loses_access PASSED [ 75%]
+tests/test_security_risk.py::TestSubscriptionRisk::test_no_negative_pricing PASSED [ 78%]
+tests/test_security_risk.py::TestSubscriptionRisk::test_custom_plan_price_matches_expected_mrr_calculation PASSED [ 81%]
+tests/test_security_risk.py::TestOpsRisk::test_support_sop_exists PASSED [ 84%]
+tests/test_security_risk.py::TestOpsRisk::test_incident_runbook_exists PASSED [ 87%]
+tests/test_security_risk.py::TestOpsRisk::test_customer_support_exists PASSED [ 90%]
+tests/test_security_risk.py::TestOpsRisk::test_support_sop_has_escalation_path PASSED [ 93%]
+tests/test_security_risk.py::TestOpsRisk::test_incident_runbook_has_recovery_steps PASSED [ 96%]
+tests/test_security_risk.py::TestOpsRisk::test_kpi_dashboard_exists PASSED [100%]
+
+============================== 32 passed in 0.08s ==============================
