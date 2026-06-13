@@ -1,0 +1,163 @@
+=== 硬编码密钥检查 ===
+site/.git/hooks/fsmonitor-watchman.sample:11:# The hook is passed a version (currently 2) and last update token
+site/.git/hooks/fsmonitor-watchman.sample:12:# formatted as a string and outputs to stdout a new update token and
+site/.git/hooks/fsmonitor-watchman.sample:13:# all files that have been modified since the update token. Paths must
+site/.git/hooks/fsmonitor-watchman.sample:19:my ($version, $last_update_token) = @ARGV;
+site/.git/hooks/fsmonitor-watchman.sample:22:# print STDERR "$0 $version $last_update_token\n";
+site/.git/hooks/fsmonitor-watchman.sample:83:	# changed since $last_update_token but not from the .git folder.
+site/.git/hooks/fsmonitor-watchman.sample:90:	if (substr($last_update_token, 0, 1) eq "c") {
+site/.git/hooks/fsmonitor-watchman.sample:91:		$last_update_token = "\"$last_update_token\"";
+site/.git/hooks/fsmonitor-watchman.sample:92:		$last_update_line = qq[\n"since": $last_update_token,];
+site/.git/hooks/fsmonitor-watchman.sample:151:		$last_update_token = $o->{clock};
+app/sample_pack_generator_v11.py:100:client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_KEY"))
+app/sample_pack_generator_v11.py:109:        max_tokens=500,
+app/sample_pack_generator_v11.py:281:        resp = self.claude.messages.create(model="claude-4-opus", max_tokens=300, messages=[{"role":"user","content":prompt}])
+app/sample_pack_generator_v11.py:286:        resp = self.claude.messages.create(model="claude-4-opus", max_tokens=800, messages=[{"role":"user","content":eval_prompt}])
+grep: app/__pycache__/sample_pack_generator_v10.cpython-311.pyc: binary file matches
+grep: app/__pycache__/sample_pack_generator_v12.cpython-311.pyc: binary file matches
+app/sample_pack_generator_v12.py:100:client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_KEY"))
+app/sample_pack_generator_v12.py:109:        max_tokens=500,
+app/sample_pack_generator_v12.py:281:        resp = self.claude.messages.create(model="claude-4-opus", max_tokens=300, messages=[{"role":"user","content":prompt}])
+app/sample_pack_generator_v12.py:286:        resp = self.claude.messages.create(model="claude-4-opus", max_tokens=800, messages=[{"role":"user","content":eval_prompt}])
+app/sample_pack_generator_v12.py:461:            max_tokens=1000,
+app/sample_pack_generator_v12.py:468:        resp = self.claude.messages.create(model="claude-4-opus", max_tokens=300, messages=[{"role":"user","content":prompt}])
+app/sample_pack_generator_v12.py:510:const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+app/sample_pack_generator_v12.py:522:  res.json({ clientSecret: subscription.latest_invoice.payment_intent.client_secret })
+app/sample_pack_generator_v10.py:100:client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_KEY"))
+app/sample_pack_generator_v10.py:109:        max_tokens=500,
+app/sample_pack_generator_v10.py:281:        resp = self.claude.messages.create(model="claude-4-opus", max_tokens=300, messages=[{"role":"user","content":prompt}])
+app/sample_pack_generator_v10.py:286:        resp = self.claude.messages.create(model="claude-4-opus", max_tokens=800, messages=[{"role":"user","content":eval_prompt}])
+
+=== XSS 注入检查 ===
+无 eval/innerHTML/document.write
+
+=== 明文 HTTP 检查 ===
+无明文 HTTP
+
+=== 过度承诺禁用词 ===
+无过度承诺禁用词
+
+=== 支付/收款占位一致性 ===
+site/sample_pack/index.html:139:<p>当前为 <strong>占位收款入口</strong>。请通过以下方式联系运营者获取真实订阅链接：</p>
+site/sample_pack/index.html:141:<li>微信客服: <strong>ai-radar-support</strong>（占位）</li>
+site/sample_pack/index.html:142:<li>邮箱: <strong>contact@ai-radar.dev</strong>（占位）</li>
+site/sample_pack/index.html:143:<li>订阅入口: <strong>https://ai-radar.io/subscribe</strong>（占位）</li>
+site/sample_pack/free_preview.html:104:<p><strong>订阅入口</strong>: https://ai-radar.io/subscribe (占位，需替换为真实收款页)</p>
+site/sample_pack/free_preview.html:105:<p><strong>客服微信</strong>: ai-radar-support (占位)</p>
+site/index.html:279:          <span>AI_Radar_Dev</span>
+site/index.html:280:          <span style="color:var(--muted);font-size:0.8rem;">(占位，待替换)</span>
+site/index.html:284:          <a href="mailto:contact@ai-opportunity-radar.com">contact@ai-opportunity-radar.com</a>
+site/index.html:285:          <span style="color:var(--muted);font-size:0.8rem;">(占位，待替换)</span>
+site/index.html:290:          <span style="color:var(--muted);font-size:0.8rem;">(占位，待替换)</span>
+site/index.html:295:          <span style="color:var(--muted);font-size:0.8rem;">(占位，待替换)</span>
+site/index.html:329:    <p>联系: <a href="mailto:contact@ai-opportunity-radar.com">contact@ai-opportunity-radar.com</a> (占位，待替换)</p>
+site/index.html:339:    <div class="qr-placeholder">[微信二维码占位]<br>微信号: AI_Radar_Dev (占位，待替换)<br>添加备注: 订阅+版本</div>
+site/index.html:368:    alert('已记录你的意向: ' + email + '\n\n请添加微信 AI_Radar_Dev 完成支付。');
+site/terms.html:17:    <strong>占位文件声明</strong>：本服务条款为模板占位，尚未由法律/合规审核。正式上线前需补充完整条款文本。
+site/terms.html:34:  <p>如有条款相关问题，请联系 <a href="mailto:contact@ai-opportunity-radar.com">contact@ai-opportunity-radar.com</a>（占位邮箱，待替换）。</p>
+site/terms.html:35:  <p style="margin-top:40px; color:#64748b; font-size:14px;">© 2026 AI Opportunity Radar. 本页面为演示版本占位。</p>
+site/privacy.html:17:    <strong>占位文件声明</strong>：本隐私政策为模板占位，尚未由法律/合规审核。正式上线前需补充完整隐私政策文本。
+site/privacy.html:32:  <p>如有隐私相关问题，请联系 <a href="mailto:contact@ai-opportunity-radar.com">contact@ai-opportunity-radar.com</a>（占位邮箱，待替换）。</p>
+site/privacy.html:33:  <p style="margin-top:40px; color:#64748b; font-size:14px;">© 2026 AI Opportunity Radar. 本页面为演示版本占位。</p>
+docs/deployment_blockers.md:3:## 状态: BLOCKED_BY_USER
+docs/deployment_blockers.md:74:- **备注**: 收款码为占位，联系方式为占位
+docs/deployment_blockers.md:92:# 编辑 site/index.html 替换二维码占位
+docs/deployment_blockers.md:113:如果用户需要帮助完成账号授权，联系: contact@ai-opportunity-radar.com
+docs/customer_support.md:18:| 邮箶 | 4小时 | 正式沟通，简报发送 | contact@ai-radar.dev (占位) |
+docs/customer_support.md:182:| 客服邮箱 | contact@ai-radar.dev | (占位) |
+docs/today_action_kit.md:114:## 平台注册清单（解除 BLOCKED_BY_USER）
+docs/acquisition_sprint_1.md:15:- **现状**: Verdict GO (81/100)，销售页已上线，收款渠道 BLOCKED_BY_USER
+docs/acquisition_sprint_1.md:33:| P2 | 公众号 | 深度长文，适合SOP和案例，但需用户注册+原创3篇 | 5-15人 | ¥0 | BLOCKED_BY_USER | 深度案例+限时早鸟价 |
+docs/acquisition_sprint_1.md:77:### 3.2 被阻塞项（BLOCKED_BY_USER）
+docs/acquisition_sprint_1.md:84:| 微信私域 | 需用户真实微信号替换占位符 | 用户提供微信号 | 3分钟 | 1v1触达和社群无法建立 | 用邮箱+GitHub Issues临时联系 |
+docs/acquisition_sprint_1.md:263:| 销售页占位符 | `grep -cE "AI-Radar-2026|contact@ai-radar.dev" site/index.html` | ≥7 | **7处** |
+docs/acquisition_sprint_1.md:338:4. **P1 — 24h内**: 用户完成小报童/即刻/知乎注册，解除BLOCKED_BY_USER状态
+docs/acquisition_sprint_1.md:417:| P2 | 知识星球 | 高 | 5-15% | 社群形态，高转化，但需实名+年费 | BLOCKED_BY_USER |
+docs/acquisition_sprint_1.md:453:4. **P1 — 24h内**: 用户完成小报童/即刻/知乎注册，解除BLOCKED_BY_USER状态
+docs/acquisition_sprint_1.md:558:| 12 | 销售页占位符 | `grep -cE "AI-Radar-2026\|contact@ai-radar.dev" site/index.html` | 7处 | 0 |
+docs/acquisition_sprint_1.md:593:4. **P1 — 24h内**: 用户完成小报童/即刻/知乎注册，解除BLOCKED_BY_USER状态
+docs/acquisition_sprint_1.md:632:| 15 | 网站内容合规 | `curl -s https://aunomira-lab.github.io/knowledge-subscription/ \| grep -oiE "¥[0-9]+\|免费样例\|早鸟\|订阅\|mailto\|xiaobot\|afdian"` |  pricing+CTA+收款占位齐全 | 0 |
+docs/acquisition_sprint_1.md:806:### 13.7 平台注册优先级（解除 BLOCKED_BY_USER）
+docs/acquisition_sprint_1.md:991:| 11 | 销售页占位符 | `grep -cE "AI-Radar-2026|contact@ai-radar.dev" site/index.html` | 7处 | 0 |
+docs/acquisition_sprint_1.md:1060:| 小报童收款 | BLOCKED_BY_USER | 用销售页mailto收集意向，手动后续收款 | 用户访问 xiaobot.net 注册 |
+docs/acquisition_sprint_1.md:1061:| 爱发电收款 | BLOCKED_BY_USER | 同上 | 用户访问 afdian.net 注册 |
+docs/acquisition_sprint_1.md:1062:| 知识星球 | BLOCKED_BY_USER | 用免费微信群临时替代 | 用户下载APP注册 |
+docs/acquisition_sprint_1.md:1063:| 微信私域 | BLOCKED_BY_USER | 用邮箱+GitHub Issues临时联系 | 用户提供微信号 |
+docs/acquisition_sprint_1.md:1064:| 公众号 | BLOCKED_BY_USER | 用知乎专栏+即刻替代 | 用户访问 mp.weixin.qq.com 注册 |
+docs/acquisition_sprint_1.md:1065:| 自定义域名 | BLOCKED_BY_USER | 使用 github.io 默认域名 | 用户购买域名 |
+docs/acquisition_sprint_1.md:1066:| 支付商户号 | BLOCKED_BY_USER | 小报童/爱发电代收 | 用户申请微信支付/支付宝商户 |
+docs/substack_security_compliance.md:80:  api_key: "${SUBSTACK_API_KEY}"  # 使用环境变量占位符
+docs/publish_runbook.md:17:| 微信公众号注册 | BLOCKED_BY_USER | 需要用户完成微信实名认证和公众号注册 |
+docs/publish_runbook.md:18:| 文章原创审核 | BLOCKED_BY_USER | 需要完成3篇原创文章才能开通赞赏和流量主 |
+docs/publish_runbook.md:70:| 星球创建 | BLOCKED_BY_USER | 需要实名认证+99元年费 |
+docs/publish_runbook.md:71:| 星球设置 | BLOCKED_BY_USER | 完善星球简介、封面、标签 |
+docs/publish_runbook.md:111:| 个人微信号 | BLOCKED_BY_USER | 用户 |
+docs/publish_runbook.md:112:| 微信群（500人群） | BLOCKED_BY_USER | 用户 |
+docs/publish_runbook.md:113:| 朋友圈 | BLOCKED_BY_USER | 用户 |
+docs/publish_runbook.md:114:| 企业微信（如有） | BLOCKED_BY_USER | 用户 |
+docs/revenue_bypass_playbook.md:13:**现状**: 小报童/爱发电/知识星球/微信支付商户号均未注册，状态 BLOCKED_BY_USER。  
+docs/strategy.md:320:| 部署阻塞记录 | docs/deployment_blockers.md | 已存在 | 5 BLOCKED_BY_USER |
+
+=== 公开 URL 检查 ===
+site/index.html:10:<meta property="og:url" content="https://aunomira-lab.github.io/knowledge-subscription">
+site/index.html:330:    <p>已部署于 <a href="https://aunomira-lab.github.io/knowledge-subscription">GitHub Pages</a> · 最后更新 2026-06-13</p>
+docs/deployment_blockers.md:62:- [x] 演示页公开URL: https://aunomira-lab.github.io/knowledge-subscription (GitHub Pages)
+docs/deployment_blockers.md:71:- **演示地址**: https://aunomira-lab.github.io/knowledge-subscription
+docs/today_action_kit.md:37:https://aunomira-lab.github.io/knowledge-subscription/?utm_source=email&utm_medium=direct&utm_campaign=sprint1
+docs/today_action_kit.md:62:https://aunomira-lab.github.io/knowledge-subscription/?utm_source=pyq&utm_medium=post&utm_campaign=sprint1
+docs/today_action_kit.md:147:| 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | 200 | 0 |
+docs/acquisition_sprint_1.md:67:| 静态销售页 | 已上线 | site/index.html | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | 200 |
+docs/acquisition_sprint_1.md:126:   https://aunomira-lab.github.io/knowledge-subscription/?utm_source=pyq&utm_medium=post&utm_campaign=sprint1
+docs/acquisition_sprint_1.md:154:   https://aunomira-lab.github.io/knowledge-subscription/?utm_source=email&utm_medium=direct&utm_campaign=sprint1
+docs/acquisition_sprint_1.md:253:| 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | 200 | **HTTP 200** |
+docs/acquisition_sprint_1.md:294:https://aunomira-lab.github.io/knowledge-subscription/?utm_source=email&utm_medium=direct&utm_campaign=sprint1_v31
+docs/acquisition_sprint_1.md:437:| 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | 200 | **200** | 0 |
+docs/acquisition_sprint_1.md:547:| 1 | 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | HTTP 200 | 0 |
+docs/acquisition_sprint_1.md:618:| 1 | 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | HTTP 200 | 0 |
+docs/acquisition_sprint_1.md:632:| 15 | 网站内容合规 | `curl -s https://aunomira-lab.github.io/knowledge-subscription/ \| grep -oiE "¥[0-9]+\|免费样例\|早鸟\|订阅\|mailto\|xiaobot\|afdian"` |  pricing+CTA+收款占位齐全 | 0 |
+docs/acquisition_sprint_1.md:671:免费样例：https://aunomira-lab.github.io/knowledge-subscription/?utm_source=email&utm_medium=friend&utm_campaign=sprint1
+docs/acquisition_sprint_1.md:698:免费样例报告：https://aunomira-lab.github.io/knowledge-subscription/?utm_source=email&utm_medium=colleague&utm_campaign=sprint1
+docs/acquisition_sprint_1.md:722:免费获取：https://aunomira-lab.github.io/knowledge-subscription/?utm_source=email&utm_medium=dev&utm_campaign=sprint1
+docs/acquisition_sprint_1.md:751:免费样例：https://aunomira-lab.github.io/knowledge-subscription/?utm_source=social&utm_medium=friends&utm_campaign=sprint1
+docs/acquisition_sprint_1.md:930:| 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | 200 | 200 | 0 |
+docs/acquisition_sprint_1.md:981:| 1 | 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | HTTP 200 | 0 |
+docs/acquisition_sprint_1.md:1233:| 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | 200 | 0 |
+docs/acquisition_sprint_1.md:1263:免费领取一份样例，看看是不是你需要的那种： https://aunomira-lab.github.io/knowledge-subscription/?utm_source=comment&utm_medium=jike&utm_campaign=sprint1
+docs/acquisition_sprint_1.md:1272:早鸟价 ¥99/月，免费领取样例： https://aunomira-lab.github.io/knowledge-subscription/?utm_source=bio&utm_medium=v2ex&utm_campaign=sprint1
+docs/mvp_spec.md:22:| 静态销售页 | `site/index.html` | 已部署 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` |
+docs/mvp_spec.md:486:- [x] 验证销售页: `curl https://aunomira-lab.github.io/knowledge-subscription/` 返回 200
+docs/mvp_spec.md:530:curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/
+docs/mvp_spec.md:654:| 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | 200 | 0 |
+docs/mvp_spec.md:714:|| 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | 200 | 0 |
+docs/mvp_spec.md:768:| 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | 200 | 0 |
+docs/mvp_spec.md:823:|| 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | 200 | 0 |
+docs/mvp_spec.md:867:|| 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | 200 | 0 |
+docs/mvp_spec.md:926:|| 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | 200 | 0 |
+docs/mvp_spec.md:986:| 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | 200 | 0 |
+docs/mvp_spec.md:1062:| 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | 200 | 0 |
+docs/publish_runbook.md:47:- 文末添加超链接: https://aunomira-lab.github.io/knowledge-subscription/?utm_source=wechat_mp&utm_medium=article&utm_campaign=launch
+docs/publish_runbook.md:168:基础URL: https://aunomira-lab.github.io/knowledge-subscription/
+docs/revenue_bypass_playbook.md:198:| 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | HTTP 200 | 0 |
+docs/strategy.md:364:| 销售页可访问 | curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/ | 200 | 0 |
+docs/strategy.md:428:| 销售页可访问 | `curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/` | 200 | 0 |
+docs/promo_posts.md:41:**链接**: https://aunomira-lab.github.io/knowledge-subscription/?utm_source=wechat_mp&utm_medium=article&utm_campaign=launch
+docs/promo_posts.md:115:订阅入口：https://aunomira-lab.github.io/knowledge-subscription/?utm_source=zhixingqiu&utm_medium=post&utm_campaign=launch
+docs/promo_posts.md:145:https://aunomira-lab.github.io/knowledge-subscription/?utm_source=wechat_group&utm_medium=share&utm_campaign=launch
+
+=== 文件完整性 ===
+privacy.html 存在
+terms.html 存在
+deployment_blockers.md 存在
+support_sop.md 存在
+incident_runbook.md 存在
+
+=== 收入预测一致性 ===
+month_1: 3438
+month_3: 14290
+month_6: 33055
+month_12: 64200
+递增验证 OK
+
+=== 销售页结构 ===
+index.html size: 17077 bytes
+销售页结构 OK

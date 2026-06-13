@@ -1,0 +1,15 @@
+# AI赚钱机会雷达 - 依赖库
+# 安装命令: pip install -r requirements.txt
+
+# 网络请求
+aiohttp>=3.9.0
+requests>=2.31.0
+
+# 数据处理
+pandas>=2.0.0
+
+# 日期时间
+python-dateutil>=2.8.2
+
+# 工具
+pyyaml>=6.0.1

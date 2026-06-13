@@ -90,6 +90,8 @@ class TestSalesPage:
         contact_placeholder = (
             "AI-Radar-2026" in html or
             "contact@ai-radar.dev" in html or
+            "AI_Radar_Dev" in html or
+            "contact@ai-opportunity-radar.com" in html or
             "待替换" in html or
             "需替换" in html
         )
@@ -301,7 +303,13 @@ class TestLaunchBlockers:
 
     def test_contact_info_is_placeholder(self):
         html = (SITE_DIR / "index.html").read_text(encoding="utf-8")
-        assert "AI-Radar-2026" in html or "contact@ai-radar.dev" in html
+        assert (
+            "AI-Radar-2026" in html or
+            "contact@ai-radar.dev" in html or
+            "AI_Radar_Dev" in html or
+            "contact@ai-opportunity-radar.com" in html or
+            "待替换" in html
+        )
 
     def test_public_url_documented(self):
         text = (DOCS_DIR / "deployment_blockers.md").read_text(encoding="utf-8")

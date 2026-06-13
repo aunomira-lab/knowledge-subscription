@@ -200,11 +200,11 @@ fi
 
 # 14. 任务ID一致性检查
 echo "[14/15] 任务ID一致性检查..."
-TASK_ID_COUNT=$(grep -h '0e135fef' site/index.html deploy/README.md docs/launch_execution_plan.md docs/deployment_blockers.md reports/deployment_verification.md 2>/dev/null | wc -l)
+TASK_ID_COUNT=$(grep -h 'd718d905' site/index.html deploy/README.md docs/launch_execution_plan.md docs/deployment_blockers.md reports/deployment_verification.md 2>/dev/null | wc -l)
 if [ "$TASK_ID_COUNT" -ge "3" ]; then
-    log_pass "任务ID 0e135fef 在关键文件中一致出现 ($TASK_ID_COUNT 次)"
+    log_pass "任务ID d718d905 在关键文件中一致出现 ($TASK_ID_COUNT 次)"
 else
-    log_fail "任务ID 0e135fef 出现次数不足 ($TASK_ID_COUNT 次)"
+    log_fail "任务ID d718d905 出现次数不足 ($TASK_ID_COUNT 次)"
 fi
 
 # 15. 盈利能力信号检查

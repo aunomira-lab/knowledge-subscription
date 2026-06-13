@@ -1,9 +1,51 @@
-day,date,status,new_visitors,page_views,trial_signups,free_users,paid_users,earlybird_paid,pro_paid,custom_paid,revenue_cny,payment_method,content_published,content_channels,content_production_minutes,quality_score,interactions,complaints,refunds,utm_zhihu,utm_xiaohongshu,utm_jike,utm_wechat,utm_other,notes,decision
-Day 0,2026-06-08,ready,0,0,0,0,0,0,0,0,0,none,0,none,0,88.2,0,0,0,0,0,0,0,0,experiment initialized; waiting for payment code activation,hold
-Day 1,2026-06-09,pending,0,0,0,0,0,0,0,0,0,none,0,none,0,0,0,0,0,0,0,0,0,0,waiting for activation,pending
-Day 2,2026-06-10,pending,0,0,0,0,0,0,0,0,0,none,0,none,0,0,0,0,0,0,0,0,0,0,waiting for activation,pending
-Day 3,2026-06-11,pending,0,0,0,0,0,0,0,0,0,none,0,none,0,0,0,0,0,0,0,0,0,0,waiting for activation,pending
-Day 4,2026-06-12,pending,0,0,0,0,0,0,0,0,0,none,0,none,0,0,0,0,0,0,0,0,0,0,waiting for activation,pending
-Day 5,2026-06-13,pending,0,0,0,0,0,0,0,0,0,none,0,none,0,0,0,0,0,0,0,0,0,0,waiting for activation,pending
-Day 6,2026-06-14,pending,0,0,0,0,0,0,0,0,0,none,0,none,0,0,0,0,0,0,0,0,0,0,waiting for activation,pending
-Day 7,2026-06-15,pending,0,0,0,0,0,0,0,0,0,none,0,none,0,0,0,0,0,0,0,0,0,0,waiting for activation,pending
+day,date,status,revenue_cny,paid_users,free_subs_net,cumulative_revenue,revenue_cumulative_usd,mrr_delta_cny,daily_revenue,complaints,conversion_rate,decision,notes
+0,2026-06-08,prepared,0,0,0,0,0,0,0,0,0.0,observe,实验启动日：建看板、备内容、设收款码
+1,2026-06-09,active,0,0,0,0,0,0,0,0,0.0,observe,Day 1 实验执行
+2,2026-06-10,active,0,0,0,0,0,0,0,0,0.0,observe,Day 2 实验执行
+3,2026-06-11,active,0,0,0,0,0,0,0,0,0.0,observe,Day 3 实验执行
+4,2026-06-12,active,0,0,0,0,0,0,0,0,0.0,observe,Day 4 实验执行
+5,2026-06-13,active,0,0,0,0,0,0,0,0,0.0,observe,Day 5 实验执行
+6,2026-06-14,active,0,0,0,0,0,0,0,0,0.0,observe,Day 6 实验执行
+7,2026-06-15,active,0,0,0,0,0,0,0,0,0.0,observe,Day 7 实验执行
+8,2026-06-16,active,0,0,0,0,0,0,0,0,0.0,observe,第2周 持续运营
+9,2026-06-17,active,0,0,0,0,0,0,0,0,0.0,observe,第2周 持续运营
+10,2026-06-18,active,0,0,0,0,0,0,0,0,0.0,observe,第2周 持续运营
+11,2026-06-19,active,0,0,0,0,0,0,0,0,0.0,observe,第2周 持续运营
+12,2026-06-20,active,0,0,0,0,0,0,0,0,0.0,observe,第2周 持续运营
+13,2026-06-21,active,0,0,0,0,0,0,0,0,0.0,observe,第2周 持续运营
+14,2026-06-22,active,0,0,0,0,0,0,0,0,0.0,observe,第2周 持续运营
+15,2026-06-23,active,0,0,0,0,0,0,0,0,0.0,observe,第3周 优化转化
+16,2026-06-24,active,0,0,0,0,0,0,0,0,0.0,observe,第3周 优化转化
+17,2026-06-25,active,0,0,0,0,0,0,0,0,0.0,observe,第3周 优化转化
+18,2026-06-26,active,0,0,0,0,0,0,0,0,0.0,observe,第3周 优化转化
+19,2026-06-27,active,0,0,0,0,0,0,0,0,0.0,observe,第3周 优化转化
+20,2026-06-28,active,0,0,0,0,0,0,0,0,0.0,observe,第3周 优化转化
+21,2026-06-29,active,0,0,0,0,0,0,0,0,0.0,observe,第3周 优化转化
+22,2026-06-30,active,0,0,0,0,0,0,0,0,0.0,observe,第4周 评估加码
+23,2026-07-01,active,0,0,0,0,0,0,0,0,0.0,observe,第4周 评估加码
+24,2026-07-02,active,0,0,0,0,0,0,0,0,0.0,observe,第4周 评估加码
+25,2026-07-03,active,0,0,0,0,0,0,0,0,0.0,observe,第4周 评估加码
+26,2026-07-04,active,0,0,0,0,0,0,0,0,0.0,observe,第4周 评估加码
+27,2026-07-05,active,0,0,0,0,0,0,0,0,0.0,observe,第4周 评估加码
+28,2026-07-06,active,0,0,0,0,0,0,0,0,0.0,observe,第4周 评估加码
+29,2026-07-07,active,0,0,0,0,0,0,0,0,0.0,observe,第4周 评估加码
+30,2026-07-08,active,0,0,0,0,0,0,0,0,0.0,observe,第4周 评估加码
+31,2026-07-09,observe,0,0,0,0,0,0,0,0,0.0,observe,第5周 长期追踪
+32,2026-07-10,observe,0,0,0,0,0,0,0,0,0.0,observe,第5周 长期追踪
+33,2026-07-11,observe,0,0,0,0,0,0,0,0,0.0,observe,第5周 长期追踪
+34,2026-07-12,observe,0,0,0,0,0,0,0,0,0.0,observe,第5周 长期追踪
+35,2026-07-13,observe,0,0,0,0,0,0,0,0,0.0,observe,第6周 长期追踪
+36,2026-07-14,observe,0,0,0,0,0,0,0,0,0.0,observe,第6周 长期追踪
+37,2026-07-15,observe,0,0,0,0,0,0,0,0,0.0,observe,第6周 长期追踪
+38,2026-07-16,observe,0,0,0,0,0,0,0,0,0.0,observe,第6周 长期追踪
+39,2026-07-17,observe,0,0,0,0,0,0,0,0,0.0,observe,第6周 长期追踪
+40,2026-07-18,observe,0,0,0,0,0,0,0,0,0.0,observe,第6周 长期追踪
+41,2026-07-19,observe,0,0,0,0,0,0,0,0,0.0,observe,第6周 长期追踪
+42,2026-07-20,observe,0,0,0,0,0,0,0,0,0.0,observe,第7周 长期追踪
+43,2026-07-21,observe,0,0,0,0,0,0,0,0,0.0,observe,第7周 长期追踪
+44,2026-07-22,observe,0,0,0,0,0,0,0,0,0.0,observe,第7周 长期追踪
+45,2026-07-23,observe,0,0,0,0,0,0,0,0,0.0,observe,第7周 长期追踪
+46,2026-07-24,observe,0,0,0,0,0,0,0,0,0.0,observe,第7周 长期追踪
+47,2026-07-25,observe,0,0,0,0,0,0,0,0,0.0,observe,第7周 长期追踪
+48,2026-07-26,observe,0,0,0,0,0,0,0,0,0.0,observe,第7周 长期追踪
+49,2026-07-27,observe,0,0,0,0,0,0,0,0,0.0,observe,第8周 长期追踪

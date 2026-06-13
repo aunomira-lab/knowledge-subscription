@@ -401,3 +401,17 @@
 [2026-06-08 05:10:22] Step 5/6: 备份关键文件...
 [完成] 关键文件已备份至: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/backups/20260608
 [2026-06-08 05:10:22] Step 6/6: 检查Git状态...
+[main a3cd3c0] daily: auto-run 2026-06-08 [task d1eb27ce]
+ 67 files changed, 2639 insertions(+), 1708 deletions(-)
+ create mode 100644 reports/.hermes-tmp.3319853
+ create mode 100644 reports/pytest_results_889b251b_v2.txt
+ create mode 100644 reports/pytest_results_eff3f092_actual.txt
+ create mode 100644 reports/test_results_889b251b_v2.txt
+ create mode 100644 reports/usability_check_eff3f092_actual.txt
+ create mode 100644 reports/usability_check_eff3f092_v3.txt
+ mode change 100644 => 100755 scripts/daily_metrics_update.py
+ mode change 100644 => 100755 scripts/monitor_dashboard.py
+ mode change 100644 => 100755 scripts/validate_monitoring_system.py
+ create mode 100644 tests/test_sample_pack_current.py
+[完成] 本地提交已创建，请手动 push 触发部署
+[2026-06-08 05:10:22] ===== 每日运营完成 =====

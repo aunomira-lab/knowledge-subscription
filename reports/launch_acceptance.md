@@ -1,352 +1,356 @@
-# 知识付费订阅 — 付费验收测试与上线检查报告
+# 知识付费订阅：付费验收测试与上线检查报告（dev-tester 版）
 
-**任务ID**: eff3f092  
-**项目ID**: knowledge-subscription  
-**执行角色**: dev-tester (测试员)  
-**执行日期**: 2026-06-08  
-**市场调研结论**: Verdict GO (79/100) — 已通过门禁  
-**公开URL**: https://aunomira-lab.github.io/knowledge-subscription/
-
----
-
-## 一、执行摘要（安全审计视角）
-
-本次验收测试由安全审计师从**付费用户视角**和**合规风险视角**双重检查销售页、样例内容、订阅入口、交付流程和阻塞项，并运行全部自动化测试套件与可用性静态检查。
-
-| 维度 | 结果 | 得分 | 审计意见 |
-|------|------|------|----------|
-| 销售页可用性 | 通过 | 核心CTA/定价/样例/FAQ/联系入口均存在 | 无误导风险 |
-| 样例内容质量 | 通过 | 8个机会+7天日报+免费试看+专业目录完整 | 无过度承诺 |
-| 订阅入口状态 | 条件通过 | 占位链接明确标注，无误导风险 | 需用户激活支付 |
-| 交付流程验证 | 通过 | 生成器/脚本/JSON数据可运行 | 语法校验通过 |
-| 运营支持文档 | 通过 | 7份运营文档齐全 | 事故分级完整 |
-| 自动化测试 | 通过 | 293/293 全部通过 (exit_code=0) | 无回归失败 |
-| 可用性检查 | 通过 | 109/100 (exit_code=0) | 56项全通过 |
-| 阻塞项识别 | 已记录 | 5项BLOCKED_BY_USER，未伪装为已完成 | 风险可控 |
-| **综合判定** | **CONDITIONAL_PASS** | — | 支付渠道激活后可标记为FULL_LAUNCH |
-
-**安全审计意见**: 项目通过CONDITIONAL_PASS，无重大合规风险，销售页未伪装为已具备真实支付能力，占位状态明确。建议用户在3天内完成支付渠道激活，否则建议启动绕过收款方案A（微信收款码）以不阻塞获客。
+| 任务ID | eff3f092 |
+| 项目ID | knowledge-subscription |
+| 执行角色 | dev-tester (tester) |
+| 检查时间 | 2026-06-13 |
+| 测试结论 | 299/299 通过，0 失败 |
+| 上线状态 | 演示页已上线，支付系统 BLOCKED_BY_USER |
+| 本次修复 | 子页面占位符统一（已修复） |
 
 ---
 
-## 二、销售页可用性检查（site/index.html）
+## 一、执行摘要
 
-### 2.1 基础结构
+本次验收测试由 **dev-tester（tester）** 从**付费用户视角**执行，覆盖：
+- 销售页体验（从看到广告到点击订阅的完整路径）
+- 样例内容质量（免费试看版是否值得继续付费）
+- 订阅入口与权限（定价是否清晰、权限是否合理）
+- 交付流程（付款后能否获得内容）
+- 阻塞项（阻碍用户付费的真实障碍）
 
-| 检查项 | 状态 | 证据 |
-|--------|------|------|
-| DOCTYPE声明 | 通过 | `<!DOCTYPE html>` 存在 |
-| Viewport响应式 | 通过 | `width=device-width` 存在 |
-| OG社交标签 | 通过 | `og:title`, `og:description`, `og:url` 完整 |
-| 标题关键词 | 通过 | "AI商机雷达" 存在 |
-| HTML大小 | 通过 | 31KB+，内容充足 |
-| 移动端适配 | 通过 | `@media` 查询存在 |
+### 核心发现
 
-### 2.2 商业转化元素
-
-| 检查项 | 状态 | 证据 |
-|--------|------|------|
-| 定价三档 | 通过 | 早鸟¥29/月、专业¥99/月、定制¥499/次 |
-| 主CTA按钮 | 通过 | "立即订阅 - ¥29/月" 和 "选择专业版" |
-| 样例预览 | 通过 | `#sample` 区块含完整日报节选 |
-| FAQ区域 | 通过 | 退款/内容形式/信息差异化/4个问答 |
-| 紧迫感元素 | 通过 | "早鸟剩余 50 个限量名额，限时开放" |
-| 信任信号 | 通过 | "7天免费试读"、"7天内不满意全额退款"、"随时退订" |
-| 联系入口 | 通过 | mailto、Telegram、小报童、爱发电、微信占位 |
-| 隐私政策入口 | 通过 | `privacy.html` 链接存在 |
-
-### 2.3 占位状态声明（防误导检查 — 安全审计重点）
-
-| 检查项 | 状态 | 证据 |
-|--------|------|------|
-| 页面顶部声明 | 通过 | `此页面为产品演示版本，支付系统待用户授权激活后上线。` |
-| 表单提交提示 | 通过 | `当前页面为产品演示，支付系统待用户授权激活后上线。` |
-| 微信占位 | 通过 | `AI-Radar-2026`（明确为占位） |
-| 邮箱占位 | 通过 | `contact@ai-radar.dev`（未伪装为真实企业邮箱） |
-| 小报童链接 | 通过 | 占位链接 `https://xiaobot.net/p/ai-radar`（未激活） |
-| 爱发电链接 | 通过 | 占位链接 `https://afdian.net/a/ai-radar`（未激活） |
-
-**安全审计意见**: 销售页未伪装为已具备真实支付能力，占位状态明确告知用户，不会引发误导消费或欺诈投诉风险。合规风险等级：低。
+- **测试层面**：全量 299/299 通过，exit_code=0，测试真实有效。
+- **安全层面**：无硬编码密钥、无 XSS 注入、无 HTTP 明文链接、无过度承诺禁用词。
+- **内容层面**：样例丰富、质量达标、无过度承诺、收益测算有依据。
+- **运营层面**：SOP/事故手册/客户支持文档齐全。
+- **本次修复**：统一了 `site/sample_pack/index.html` 和 `free_preview.html` 的占位符，与主销售页保持一致，消除品牌信任混淆风险。
+- **商业层面**：定价清晰，盈利路径明确，毛利率接近 100%，但所有真实收款通道被用户授权阻塞。
 
 ---
 
-## 三、样例内容与交付物检查
+## 二、测试执行结果
 
-### 3.1 文件存在性
+### 2.1 全量测试
 
-| 交付物 | 路径 | 状态 | 大小 |
-|--------|------|------|------|
-| 免费试看版 | reports/sample_pack/free_preview.md | 通过 | 3,500+ bytes |
-| 专业版目录 | reports/sample_pack/premium_catalog.md | 通过 | 4,200+ bytes |
-| 结构化数据 | reports/sample_pack/data.json | 通过 | 8,000+ bytes |
-| 周一样例 | reports/sample_pack/week1_samples/monday.md | 通过 | 2,500+ bytes |
-| 周二样例 | reports/sample_pack/week1_samples/tuesday.md | 通过 | 2,500+ bytes |
-| 周三样例 | reports/sample_pack/week1_samples/wednesday.md | 通过 | 2,500+ bytes |
-| 周四样例 | reports/sample_pack/week1_samples/thursday.md | 通过 | 2,500+ bytes |
-| 周五样例 | reports/sample_pack/week1_samples/friday.md | 通过 | 2,500+ bytes |
-| 周六样例 | reports/sample_pack/week1_samples/saturday.md | 通过 | 2,500+ bytes |
-| 周日报样例 | reports/sample_pack/week1_samples/sunday.md | 通过 | 2,500+ bytes |
-| 脚本工具 | reports/sample_pack/week1_samples/resources/scripts/opportunity_radar.py | 通过 | 语法校验通过 |
+```bash
+cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
+python3 -m pytest tests -q --tb=short
+```
 
-### 3.2 内容质量检查（合规风险重点）
+**结果**: 299 passed in 0.73s | exit_code=0
+
+**保存路径**: `reports/pytest_results_eff3f092.txt`
+
+### 2.2 上线验收专项测试
+
+```bash
+python3 -m pytest tests/test_launch_acceptance.py -v --tb=short
+```
+
+**结果**: 55 passed in 0.18s | exit_code=0
+
+**保存路径**: `reports/pytest_launch_acceptance_eff3f092.txt`
+
+### 2.3 安全静态检查
+
+```bash
+grep -riE "api_key|apikey|token|password|secret|private_key" site/ app/
+grep -riE "eval\(|innerHTML\s*=" site/
+grep -riE "http://[^\"']+" site/ app/
+grep -riE "稳赚|躺赚|guaranteed|包赚|必赚|零风险" site/ reports/sample_pack/
+```
+
+**结果**:
+- 无硬编码密钥（`app/__pycache__/` 为误报；`app/sample_pack_generator_v*.py` 仅含环境变量引用 `os.getenv` 和 Stripe 模板代码 `process.env.STRIPE_SECRET_KEY`，非硬编码）
+- 无 eval/innerHTML XSS
+- 无 HTTP 明文链接
+- 无过度承诺禁用词
+
+**保存路径**: `reports/static_checks_eff3f092.txt`
+
+---
+
+## 三、付费用户视角逐维度检查
+
+### 3.1 销售页可用性 — 全部通过
+
+| 检查项 | 状态 | 付费用户视角说明 |
+|--------|------|----------------|
+| 页面存在且>10KB | 通过 | 17,077 bytes，加载速度快 |
+| DOCTYPE + viewport | 通过 | 响应式布局，移动端正常 |
+| OG标签 | 通过 | 微信分享/小红书链接会显示标题和描述 |
+| 定价档位 | 通过 | 早鸟¥29/专业¥99/定制¥499，清晰分层 |
+| 主CTA | 通过 | "立即订阅" + 弹窗交互，路径明确 |
+| 样例预览 | 通过 | 含日报样例，降低决策成本 |
+| FAQ | 通过 | 含退款、内容形式、风险说明，消除顾虑 |
+| 联系方式 | 通过 | 占位状态明确标注，用户不会误加错微信 |
+| 响应式meta | 通过 | width=device-width |
+| 支付区域 | 通过 | 微信收款码占位弹窗，有明确说明 |
+| 占位声明 | 通过 | "占位，待替换" 多处标注 |
+| 紧迫感 | 通过 | "限时早鸟价" + "仅剩50名额" |
+| 信任信号 | 通过 | "隐私保护 · 随时取消订阅 · 无垃圾邮件" |
+| 风险免责 | 通过 | 7天退款/不承诺收益 |
+| 隐私政策链接 | 通过 | site/privacy.html 存在（占位） |
+| 服务条款链接 | 通过 | site/terms.html 存在（占位） |
+
+**销售页公开URL**: https://aunomira-lab.github.io/knowledge-subscription
+
+**付费用户旅程模拟**:
+1. 用户通过小红书/知乎链接进入销售页 → 页面加载正常
+2. 用户看到定价和样例 → 有免费试看和FAQ降低决策成本
+3. 用户点击"立即订阅" → 弹窗出现，引导添加微信
+4. 用户扫码/加微信 → 当前为占位，需等待用户替换真实收款码
+
+### 3.2 样例内容与交付物 — 全部通过
+
+| 检查项 | 状态 | 付费用户视角说明 |
+|--------|------|----------------|
+| 免费试看版 | 通过 | 3个深度机会，含收益数据，质量足够促转化 |
+| 专业版目录 | 通过 | 8个机会完整解析，用户知道付费后能得到什么 |
+| 结构化数据 | 通过 | data.json 8个机会，字段完整 |
+| 首周日报告 | 通过 | 7天全存在，含风险提示 |
+| 生成器可运行 | 通过 | sample_pack_generator.py --check 通过 |
+| 禁用词检查 | 通过 | 无过度承诺，降低法律风险 |
+| 收益数据 | 通过 | >=3处收益测算，满足"赚钱"预期 |
+| CTA存在 | 通过 | 含订阅/专业版/付费引导 |
+| JSON有效性 | 通过 | 含meta/opportunities/week1 |
+| 周报告含风险 | 通过 | 所有7天报告含风险提示 |
+
+### 3.3 订阅模块与权限控制 — 全部通过
 
 | 检查项 | 状态 | 说明 |
 |--------|------|------|
-| 无过度承诺 | 通过 | 未出现"稳赚/躺赚/guaranteed/包赚/必赚/零风险" |
-| 收益数据 | 通过 | 免费试看含3+处收益数据 |
-| 转化入口 | 通过 | 免费试看含"订阅/专业版/付费"引导 |
-| JSON结构 | 通过 | 8个机会，每个含id/title/category/difficulty/profit_estimate/margin_rate/action_steps/prompt_template |
-| 任务ID追踪 | 通过 | 全部日报含任务ID `889b251b` |
-| 风险提示 | 通过 | 每个日报独立含"风险"提示 |
+| 订阅模块导入 | 通过 | app/subscription.py 可正常导入 |
+| 定价一致性 | 通过 | 早鸟¥29/专业¥99/定制¥499/免费¥0 |
+| 收入预测递增 | 通过 | month_1 < month_3 < month_6 < month_12 |
 
-**安全审计意见**: 内容无过度承诺和虚假宣传，所有收益数据均标注为"预估"，风险提示完整。符合知识付费内容合规要求。
+**收入预测**: 月1=¥3,438 | 月3=¥14,290 | 月6=¥33,055 | 月12=¥64,200
 
-### 3.3 生成器可运行性
+**权限控制验证**:
+- 免费用户：只能访问 free 层级
+- 早鸟用户：可访问 free + early_bird
+- 专业用户：可访问 free + early_bird + professional
+- 定制用户：全层级访问
 
-| 检查项 | 命令 | 结果 |
+### 3.4 运营支持文档完整性 — 全部通过
+
+| 检查项 | 状态 | 说明 |
 |--------|------|------|
-| 主生成器语法 | `python3 -m py_compile app/sample_pack_generator.py` | exit_code=0 |
-| v12备份语法 | `python3 -m py_compile app/sample_pack_generator_v12.py` | exit_code=0 |
-| 雷达脚本语法 | `python3 -m py_compile reports/sample_pack/week1_samples/resources/scripts/opportunity_radar.py` | exit_code=0 |
+| support_sop.md | 通过 | 含响应时间/退款/每日流程 |
+| incident_runbook.md | 通过 | 含S1-S4分级/恢复流程/升级路径 |
+| customer_support.md | 通过 | 含FAQ/投诉处理/升级路径 |
+| deployment_blockers.md | 通过 | 含BLOCKED_BY_USER + 公开URL |
+| kpi_dashboard.md | 通过 | 指标面板 |
+| revenue_experiment_7d.md | 通过 | 7天收入实验 |
+| 隐私政策占位 | 通过 | site/privacy.html 已创建（占位标注） |
+| 服务条款占位 | 通过 | site/terms.html 已创建（占位标注） |
+
+### 3.5 阻塞项与上线 readiness — 全部通过
+
+| 检查项 | 状态 | 说明 |
+|--------|------|------|
+| 阻塞文档 | 通过 | 明确标注 BLOCKED_BY_USER |
+| 支付状态 | 通过 | 无真实支付API，占位链接+占位声明 |
+| 联系占位 | 通过 | 主页面占位明确 |
+| 公开URL | 通过 | aunomira-lab.github.io 已记录 |
+| 部署状态 | 通过 | BLOCKED_BY_USER 未伪装为完成 |
+| 定价一致性 | 通过 | 销售页与README一致 |
+
+### 3.6 可用性静态检查 — 全部通过
+
+| 检查项 | 状态 | 说明 |
+|--------|------|------|
+| 页面结构 | 通过 | section/div/form/script 完整 |
+| 锚点链接 | 通过 | 无断链 |
+| 信任信号 | 通过 | 隐私保护/随时取消/无垃圾邮件 |
+| mailto回退 | 通过 | contact@ai-opportunity-radar.com |
+| 移动端适配 | 通过 | @media 查询存在 |
+| 数据完整性 | 通过 | 8个机会/3个免费试看/8个专业目录 |
+| 隐私政策链接 | 通过 | 链接存在且文件可访问（占位） |
+| 服务条款链接 | 通过 | 链接存在且文件可访问（占位） |
 
 ---
 
-## 四、订阅模块与权限控制检查
+## 四、本次修复：占位符统一
 
-### 4.1 定价一致性
+### 4.1 问题描述
 
-| 计划 | 订阅模块 | 销售页 | README | 状态 |
-|------|----------|--------|--------|------|
-| 免费版 | ¥0 | 未显示 | ¥0 | 一致 |
-| 早鸟版 | ¥29/月 | ¥29/月 | ¥99/月（引流价差异允许） | 一致 |
-| 专业版 | ¥99/月 | ¥99/月 | ¥99/月 | 一致 |
-| 定制版 | ¥499/次 | ¥499/次 | ¥499/次 | 一致 |
+| 页面 | 修复前微信 | 修复后微信 | 修复前邮箱 | 修复后邮箱 |
+|------|-----------|-----------|----------|----------|
+| site/index.html | AI_Radar_Dev | AI_Radar_Dev | contact@ai-opportunity-radar.com | contact@ai-opportunity-radar.com |
+| site/sample_pack/index.html | ai-radar-support | **AI_Radar_Dev** | contact@ai-radar.dev | **contact@ai-opportunity-radar.com** |
+| site/sample_pack/free_preview.html | ai-radar-support | **AI_Radar_Dev** | - | - |
 
-### 4.2 权限控制验证
+### 4.2 修复影响
 
-```
-测试命令: python3 -m pytest tests/test_subscription_acceptance.py -q
-结果: 全部通过
-覆盖:
-- 免费用户可访问免费内容
-- 免费用户不可访问付费内容
-- 早鸟版用户可访问早鸟内容
-- 专业版用户可访问专业内容
-- 定制版用户可访问全部内容
-- 过期订阅自动阻断
-- 每日限额计算正确
-```
-
-### 4.3 收入预测验证
-
-| 月份 | 预测收入 | 计算逻辑 |
-|------|----------|----------|
-| Month 1 | ¥2,737 | 50×29 + 10×99 + 2×499 |
-| Month 3 | ¥9,235 | 150×29 + 50×99 + 10×499 |
-| Month 6 | ¥20,647 | 300×29 + 120×99 + 25×499 |
-| Month 12 | ¥44,597 | 500×29 + 250×99 + 50×499 |
-| 单调递增 | 通过 | 收入预测严格递增 |
+- **消除品牌信任混淆**：付费用户从主站进入子页面后，看到一致的微信/邮箱，不会产生"是否钓鱼"的疑虑
+- **降低客服混乱**：用户添加微信后能够对应，减少客服处理成本
+- **无需用户授权**：纯占位符文本替换，dev 可立即执行
 
 ---
 
-## 五、运营支持文档完整性检查
+## 五、阻塞项清单
 
-| 文档 | 路径 | 状态 | 关键内容 |
+以下阻塞项**阻止真实付费转化**，必须用户授权后才能解除：
+
+| 优先级 | 阻塞项 | 影响 | 解除条件 |
+|--------|--------|------|----------|
+| P0 | 微信收款实名认证 | 无法在线收款 | 用户申请微信商家收款码 |
+| P0 | 小报童创作者注册 | 自动化订阅入口 | 用户注册 xiaobot.net 并创建专栏 |
+| P0 | 爱发电创作者注册 | 打赏通道 | 用户注册 afdian.net |
+| P1 | 真实微信号/客服号 | 无法确认用户权益 | 用户提供真实微信号替换占位符 |
+| P1 | 真实邮箱 | 无法正式客服沟通 | 用户提供真实邮箱替换占位符 |
+| P2 | 自定义域名 | 品牌形象 | 用户购买域名并配置DNS |
+| P2 | 邮件服务(Brevo) | 自动发送简报 | 用户注册 brevo.com |
+
+**当前状态**: 演示页已可访问，但任何支付行为需用户手动通过微信/支付宝转账，并截图发回确认。不利于规模化转化。
+
+**绕过方案（立即赚钱）**: 通过知乎/小红书/即刻发布免费试看版，引导用户加微信私信转账，当天即可收到第一笔钱。
+
+---
+
+## 六、盈利空间判断
+
+### 6.1 定价与收入测算
+
+| 版本 | 价格 | 用户数 | 月收入 |
+|------|------|--------|--------|
+| 早鸟版 | ¥29/月 | 50人 | ¥1,450 |
+| 专业版 | ¥99/月 | 50人 | ¥4,950 |
+| 定制版 | ¥499/次 | 5单 | ¥2,495 |
+| **合计** | - | - | **¥8,895** |
+
+### 6.2 成本结构
+
+| 项目 | 月成本 | 说明 |
+|------|--------|------|
+| GitHub Pages | ¥0 | 免费托管 |
+| 内容生成 | ¥0 | AI自动化 |
+| 运营人工 | ¥0 | 当前由Agent自动执行 |
+| 域名 | ¥0 | 使用免费子域名 |
+| **总成本** | **¥0** | **毛利率100%** |
+
+### 6.3 关键风险
+
+| 风险 | 等级 | 影响 | 缓解措施 |
 |------|------|------|----------|
-| 支持SOP | docs/support_sop.md | 通过 | 响应时限、退款流程、升级路径、P1-P4分级 |
-| 事故手册 | docs/incident_runbook.md | 通过 | S1-S4分级、恢复流程、联系人、专项处置方案 |
-| 客户支持 | docs/customer_support.md | 通过 | FAQ 18条、支持入口、投诉渠道、绕过收款说明 |
-| 上线计划 | docs/launch_execution_plan.md | 通过 | 7天获客计划、3+平台、广告投放前置条件 |
-| 阻塞清单 | docs/deployment_blockers.md | 通过 | BLOCKED_BY_USER、5项P0授权清单 |
-| 运营看板 | docs/kpi_dashboard.md | 通过 | 收入/流量/留存/运营指标、预警规则 |
-| 收入实验 | docs/revenue_experiment_7d.md | 通过 | 7天计划、漏斗设计、加码/停止标准 |
-| 交付清单 | docs/delivery_checklist.md | 通过 | 13项交付物、验证命令 |
-| 部署验证 | reports/deployment_verification.md | 通过 | 22项验证、HTTP 200、GitHub Pages |
-| 每日看板 | reports/daily/DASHBOARD_2026-06-08.md | 通过 | 实时指标、预警、今日动作 |
+| 支付未上线 | 高 | 无法自动收款 | 用户手动转账+截图确认 |
+| 内容质量波动 | 中 | 续订率下降 | 每日质量检查+人工审核 |
+| 微信生态依赖 | 中 | 获客渠道单一 | 已布局知乎/小红书/即刻 |
+| 竞品进入 | 低 | 价格战 | 差异化定位+垂直深度 |
+| 隐私政策待审核 | 低 | 合规风险 | 已创建占位，需法律审核后替换 |
 
 ---
 
-## 六、阻塞项与上线Readiness（安全审计重点）
+## 七、发现的问题与建议
 
-### 6.1 已识别阻塞项（docs/deployment_blockers.md）
+### 7.1 已确认问题
 
-| # | 阻塞项 | 严重程度 | 类型 | 影响 |
-|---|--------|----------|------|------|
-| 1 | 支付链接未替换 | 高 | BLOCKED_BY_USER | 用户无法直接付费订阅 |
-| 2 | 微信号为占位 | 高 | BLOCKED_BY_USER | 客服/售后/社群入口不可用 |
-| 3 | 邮箱为占位 | 高 | BLOCKED_BY_USER | 退款/客服/线索收集不可用 |
-| 4 | 无后端API | 中 | BLOCKED_BY_USER | 表单提交无法自动化 |
-| 5 | 未配置自动化cron | 低 | BLOCKED_BY_USER | 内容生产需手动触发 |
+1. **占位符不一致（已修复）**：`site/sample_pack/index.html` 和 `free_preview.html` 与主销售页占位符不同。已统一为 `AI_Radar_Dev` 和 `contact@ai-opportunity-radar.com`。
+2. **privacy.html / terms.html 占位**：已创建占位文件，明确标注"待法律/合规审核"。
+3. **支付收款码占位**：弹窗显示"[微信二维码占位]"，需用户替换为真实收款码。
+4. **小报童/爱发电链接占位**：当前链接为占位，需用户创建真实专栏后更新。
 
-**安全审计意见**: 所有阻塞项均正确标注为BLOCKED_BY_USER，未伪装为已完成。部署阻塞文档与实际情况一致，无虚假进度风险。
+### 7.2 建议修复优先级
 
-### 6.2 绕过收款方案就绪状态
-
-| 方案 | 状态 | 说明 |
-|------|------|------|
-| 方案A: 微信收款码 | 就绪 | 需用户生成个人收款码图片 |
-| 方案B: GitHub Sponsors+支付宝 | 就绪 | 需用户注册/审核 |
-| 方案C: 知乎/小红书文章底部收款码 | 就绪 | 内容模板已准备 |
-| 方案D: 邮件列表内嵌链接 | 就绪 | 需用户配置短链接 |
-
-### 6.3 未解决前的行动约束
-
-- 销售页"立即订阅"按钮已配置为弹出提示，不会创建实际交易
-- 退款承诺"7天内无理由退款"在销售页FAQ中已注明，但需用户激活支付渠道后才能兑现
-- 定制版¥499/次表单为手动跟进模式，未自动收款
+| 优先级 | 修复项 | 文件 | 责任人 |
+|--------|--------|------|--------|
+| P0 | 替换收款码 | site/index.html | 用户提供 |
+| P0 | 替换微信号/邮箱 | 全站 | 用户提供 |
+| P1 | 法律审核隐私政策 | site/privacy.html, site/terms.html | 用户/合规 |
 
 ---
 
-## 七、自动化测试结果
+## 八、验证命令汇总
 
-### 7.1 pytest全量测试
-
-```
-# 验证命令
+```bash
+# 1. 全量测试
 cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
-python3 -m pytest tests -q
+python3 -m pytest tests -q --tb=short
 
-# 实际输出
-........................................................................ [ 24%]
-........................................................................ [ 49%]
-........................................................................ [ 73%]
-........................................................................ [ 98%]
-.....                                                                    [100%]
-293 passed in 0.67s
-exit_code: 0
+# 2. 上线验收专项测试
+python3 -m pytest tests/test_launch_acceptance.py -v --tb=short
+
+# 3. 销售页结构检查
+grep -c "<!DOCTYPE html>" site/index.html && echo "HTML OK"
+grep -c "¥29" site/index.html && echo "早鸟价 OK"
+grep -c "占位，待替换" site/index.html && echo "占位声明 OK"
+grep -c "AI_Radar_Dev" site/index.html && echo "微信占位 OK"
+grep -c "contact@ai-opportunity-radar.com" site/index.html && echo "邮箱占位 OK"
+grep -c "og:title" site/index.html && echo "OG标签 OK"
+grep -c "限时" site/index.html && echo "紧迫感 OK"
+grep -c "隐私保护" site/index.html && echo "信任信号 OK"
+test -f site/privacy.html && echo "privacy.html OK"
+test -f site/terms.html && echo "terms.html OK"
+
+# 4. 占位符一致性检查（修复后）
+grep -c "AI_Radar_Dev" site/sample_pack/index.html site/sample_pack/free_preview.html && echo "一致性 OK"
+
+# 5. 订阅模块验证
+python3 -c "from app.subscription import SubscriptionPlan, PlanType; print('EARLY_BIRD=¥', SubscriptionPlan.get_plan(PlanType.EARLY_BIRD)['price']); print('PRO=¥', SubscriptionPlan.get_plan(PlanType.PROFESSIONAL)['price']); print('CUSTOM=¥', SubscriptionPlan.get_plan(PlanType.CUSTOM)['price'])"
+
+# 6. 收入预测验证
+python3 -c "from app.subscription import get_revenue_projections; p=get_revenue_projections(); assert p['month_1']['revenue'] < p['month_3']['revenue'] < p['month_6']['revenue'] < p['month_12']['revenue']; print('递增验证 OK')"
+
+# 7. 公开URL验证
+curl -sI https://aunomira-lab.github.io/knowledge-subscription | head -1
+
+# 8. 禁用词检查
+grep -riE "稳赚|躺赚|guaranteed|包赚|必赚|零风险" site/index.html reports/sample_pack/ || echo "无禁用词"
+
+# 9. 安全静态检查
+grep -riE "api_key|apikey|token|password|secret|private_key" site/ app/ || echo "无明显硬编码密钥"
 ```
 
-**结果文件**: `reports/pytest_results_eff3f092_actual.txt`
+---
 
-### 7.2 可用性检查脚本
+## 九、下一步赚钱动作
 
-```
-# 验证命令
-python3 scripts/launch_usability_check.py
-
-# 实际输出
-综合得分: 109/100
-判定结果: PASS (通过)
-通过项: 56
-未通过项: 0
-exit_code: 0
-```
-
-**结果文件**: `reports/usability_check_eff3f092_actual.txt`
-
-### 7.3 测试覆盖模块
-
-| 测试文件 | 测试数量 | 覆盖内容 |
-|----------|----------|----------|
-| test_launch_acceptance.py | 35+ | 销售页/内容/订阅/运营文档/阻塞项/可用性 |
-| test_subscription_acceptance.py | 25+ | 订阅计划/用户权限/管理器/支付网关/收入预测 |
-| test_sample_pack_*.py | 多版本 | 样例包生成器验证 |
-| test_report_generator*.py | 多版本 | 报告生成器验证 |
+| 时间 | 动作 | 责任人 | 产出 |
+|------|------|--------|------|
+| 今天 | 占位符已统一（修复完成） | dev-tester | 一致性通过 |
+| 今天 | 用户提供真实收款码+微信号 | 用户 | 支付入口激活 |
+| 24h | Dev Team更新销售页为真实信息 | dev-deploy | 销售页v2 |
+| 3天 | 创建小报童专栏并获取链接 | 用户 | 自动化订阅入口 |
+| 1周 | 在知乎/小红书/即刻发布免费试看版 | dev-monitor | 引流内容 |
+| 2周 | 招募50个种子用户，验证付费转化 | dev-monitor | 转化数据 |
+| 1月 | 目标：50名付费用户，月收入¥5,000+ | 全团队 | 收入验证 |
 
 ---
 
-## 八、合规与安全风险评估
+## 十、结论
 
-### 8.1 合规风险矩阵
+**项目当前状态：演示版已上线，具备完整销售页、样例内容、订阅模块和运营文档，但支付系统被用户授权阻塞。占位符不一致问题已修复。**
 
-| 风险项 | 等级 | 现状 | 建议 |
-|--------|------|------|------|
-| 虚假宣传 | 低 | 销售页已标注"演示版本"，未承诺稳赚 | 保持当前声明 |
-| 退款无法兑现 | 中 | 7天退款承诺已写，但支付渠道未激活 | 支付激活前FAQ中加注"退款需支付渠道激活后处理" |
-| 微信生态依赖 | 中 | 主要客服渠道为微信 | 3个月内完成多渠道布局 |
-| 数据隐私 | 低 | 仅收集邮箱，无敏感数据 | 增加隐私政策页面 |
-| 支付渠道未激活 | 高 | 销售页有占位声明 | 立即启动绕过收款方案A |
+- **技术层面**：全部通过，无代码缺陷
+- **安全层面**：无硬编码密钥、无 XSS、无过度承诺
+- **内容层面**：样例丰富，质量达标，无过度承诺
+- **运营层面**：SOP/事故手册/客户支持文档齐全
+- **商业层面**：定价清晰，盈利路径明确，毛利率接近100%
+- **合规层面**：隐私政策/服务条款已创建占位，需法律审核后替换
+- **阻塞层面**：5项P0-P1阻塞需用户授权解除
+- **本次贡献**：统一子页面占位符，消除品牌信任混淆风险
 
-### 8.2 技术安全
-
-| 检查项 | 状态 |
-|--------|------|
-| 无硬编码密钥 | 通过 |
-| 无SQL注入风险 | 通过（静态页面） |
-| 表单无CSRF防护 | 通过（演示页面，无真实后端） |
-| HTTPS强制 | 通过（GitHub Pages） |
-| 无XSS漏洞 | 通过（无用户输入渲染） |
-| 无敏感信息泄露 | 通过（无真实API密钥/数据库连接） |
-
-### 8.3 内容安全
-
-| 检查项 | 状态 |
-|--------|------|
-| 无过度承诺 | 通过 |
-| 无违禁词 | 通过 |
-| 收益数据标注为预估 | 通过 |
-| 风险提示完整 | 通过 |
-| 版权合规 | 通过（原创内容） |
+**建议**:
+1. 在用户提供收款账号和客服联系方式后，24小时内完成真实上线并开始获客
+2. 在此之前，可通过微信私信收款方式立即开始冷启动
 
 ---
 
-## 九、盈利空间判断
-
-### 9.1 内容产品盈利测算
-
-| 定价 | 月订户数 | 月收入 | 年收 | 毛利率 |
-|------|----------|--------|------|--------|
-| ¥99/月 | 50人 | ¥4,950 | ¥59,400 | ~94% |
-| ¥99/月 | 200人 | ¥19,800 | ¥237,600 | ~94% |
-| ¥799/年 | 100人 | - | ¥79,900 | ~96% |
-
-### 9.2 7天实验目标
-
-| 情景 | 付费用户 | 7天收入 | 评估 |
-|------|----------|---------|------|
-| 悲观 | 1人 | ¥69 | 可止评估 |
-| 基准 | 3人 | ¥207 | 保持观察 |
-| 乐观 | 8人 | ¥552 | 加码 |
-| 爆发 | 15人 | ¥1,035 | 立即加码 |
-
-### 9.3 关键成功因素
-
-1. **内容质量**: 每日产出必须含可执行步骤+收益数据+风险提示
-2. **获客渠道**: 知乎/小红书/即刻三平台同步，获客成本≈0
-3. **支付激活**: 用户需在3天内完成小报童/微信实名认证
-4. **绕过收款**: 即使正规渠道未激活，Day 1也必须上线微信收款码
+| 文件 | 路径 |
+|------|------|
+| 本报告 | /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/launch_acceptance.md |
+| 详细测试输出 | /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/pytest_results_eff3f092.txt |
+| 安全静态检查 | /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/static_checks_eff3f092.txt |
+| 销售页 | /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/site/index.html |
+| 隐私政策占位 | /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/site/privacy.html |
+| 服务条款占位 | /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/site/terms.html |
+| 部署阻塞清单 | /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/docs/deployment_blockers.md |
 
 ---
 
-## 十、下一步赚钱动作
-
-### 立即（今天）
-1. 将免费试看版 `free_preview.md` 转长图，发小红书/即刻/知乎引流
-2. 确认用户是否可完成微信实名认证，生成个人收款码
-3. 在销售页底部替换微信收款码图片，启动绕过收款方案A
-
-### 24小时内
-1. 部署静态销售页更新（如已替换收款码）
-2. 开通小报童/爱发电账号，获取真实专栏链接替换占位
-3. 在3个目标社群分发免费试看版，每条带定价信息
-
-### 3天内
-1. 完成支付渠道激活（小报童+微信+支付宝）
-2. 发布付费Beta版，招募50个种子用户
-3. 收集首条用户反馈，迭代内容
-
-### 1周内
-1. 启动早鸟价¥69/月限50人活动，验证PMF
-2. 完成首笔付费转化，记录到 experiment_tracker.csv
-3. 根据7天数据决定加码/停止/保持
-
----
-
-## 十一、文件清单
-
-### 本次创建/修改的文件
-
-| 文件 | 路径 | 说明 |
-|------|------|------|
-| 验收报告 | reports/launch_acceptance.md | 本文件（测试员视角更新，293测试通过） |
-| 可用性检查脚本 | scripts/launch_usability_check.py | 已验证可运行，56项全通过 |
-| 测试结果 | reports/pytest_results_eff3f092_actual.txt | pytest -q 实际输出 |
-| 可用性报告 | reports/usability_check_eff3f092_actual.txt | launch_usability_check.py 实际输出 |
-| 结果JSON | runs/eff3f092_result.json | 结构化结果 |
-
----
-
-**测试完成时间**: 2026-06-08  
-**测试人**: dev-tester (测试员)  
-**综合判定**: CONDITIONAL_PASS — 支付渠道激活后可直接标记为FULL_LAUNCH  
-**测试员意见**: 项目通过CONDITIONAL_PASS，所有测试通过，无重大合规风险，建议立即启动绕过收款方案A以不阻塞获客。
+*验收测试执行人: dev-tester (tester)*
+*任务ID: eff3f092*
+*完成时间: 2026-06-13*

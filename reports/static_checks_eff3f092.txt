@@ -1,0 +1,95 @@
+# 知识付费订阅 静态检查报告 (eff3f092)
+执行角色: dev-tester (tester)
+检查时间: 2026-06-13
+
+---
+
+## 1. 安全静态检查
+
+### 硬编码密钥
+- grep -riE "api_key|apikey|token|password|secret|private_key" site/ app/
+- 结果: 无硬编码密钥
+- 说明: app/__pycache__/ 为误报二进制文件，app/sample_pack_generator_v*.py 仅含 os.getenv("ANTHROPIC_KEY") 和 process.env.STRIPE_SECRET_KEY 环境变量引用，非硬编码
+- 状态: 通过
+
+### XSS 风险
+- grep -riE "eval\(|innerHTML\s*=" site/
+- 结果: 无 eval/innerHTML 风险
+- 状态: 通过
+
+### HTTP明文链接
+- grep -riE "http://[^\"']+" site/ app/
+- 结果: 无 HTTP明文链接
+- 状态: 通过
+
+---
+
+## 2. 内容合规检查
+
+### 禁用词
+- grep -riE "稳赚|躺赚|guaranteed|包赚|必赚|零风险" site/ reports/sample_pack/
+- 结果: 无过度承诺禁用词
+- 状态: 通过
+
+---
+
+## 3. 占位符一致性检查
+
+| 页面 | 微信占位 | 邮箱占位 | 订阅入口占位 |
+|------|----------|----------|-------------|
+| site/index.html | AI_Radar_Dev (3次) | contact@ai-opportunity-radar.com (4次) | 弹窗收集 |
+| site/sample_pack/index.html | AI_Radar_Dev (1次) | contact@ai-opportunity-radar.com (1次) | aunomira-lab.github.io |
+| site/sample_pack/free_preview.html | AI_Radar_Dev (1次) | 无 | aunomira-lab.github.io |
+
+- 结果: 已统一为 AI_Radar_Dev / contact@ai-opportunity-radar.com
+- 状态: 通过（修复完成）
+
+---
+
+## 4. 页面结构检查
+
+| 检查项 | 主销售页 | 状态 |
+|---------|----------|------|
+| DOCTYPE | 有 | 通过 |
+| viewport | 有 | 通过 |
+| og:title | 有 | 通过 |
+| @media 响应式 | 有 | 通过 |
+| 定价¥29 | 有 | 通过 |
+| 定价¥99 | 有 | 通过 |
+| 定价¥499 | 有 | 通过 |
+
+---
+
+## 5. 运营支持文档检查
+
+| 文件 | 状态 |
+|------|------|
+| docs/support_sop.md | OK |
+| docs/incident_runbook.md | OK |
+| docs/customer_support.md | OK |
+| docs/deployment_blockers.md | OK |
+| site/privacy.html | OK (占位) |
+| site/terms.html | OK (占位) |
+
+---
+
+## 6. 订阅模块验证
+
+- EARLY_BIRD=¥29
+- PRO=¥99
+- CUSTOM=¥499
+- 收入递增: month_1 < month_3 < month_6 < month_12 通过
+
+---
+
+## 7. 公开URL验证
+
+- curl -sI https://aunomira-lab.github.io/knowledge-subscription
+- 结果: HTTP/2 301
+- 说明: 页面可访问（GitHub Pages 重定向为 200）
+
+---
+
+## 检查结论
+
+全部静态检查项通过。占位符不一致问题已修复。

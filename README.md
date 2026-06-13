@@ -20,10 +20,10 @@
 ## 目录结构
 
 ```
-.
+```
 ├── app/
 │   ├── sample_pack_generator.py          # 主生成器（可运行，生成无版本号文件）
-│   └── sample_pack_generator_v12.py    # 备份（生成带版本号文件）
+│   └── build_sales_site.py               # 静态销售站点生成器（Markdown转HTML）
 ├── docs/
 │   └── delivery_checklist.md             # 交付清单
 ├── reports/
@@ -39,10 +39,15 @@
 │           ├── friday.md                     # 周五：复盘
 │           ├── saturday.md                   # 周六：工具测评
 │           └── sunday.md                     # 周日：90天路线图
+├── site/
+│   └── sample_pack/
+│       ├── index.html                      # 销售首页
+│       ├── free_preview.html               # 免费试看HTML页
+│       └── premium_catalog.html            # 专业目录HTML页
 └── tests/
-    ├── test_sample_pack_current.py         # 主测试脚本（当前版本）
-    ├── test_sample_pack.py                 # 历史测试脚本
-    └── test_sample_pack_v12.py             # 备份测试（带版本号）
+    ├── test_sample_pack.py                 # 主测试脚本（当前版本）
+    ├── test_build_sales_site.py            # 销售站点测试
+    └── ...                                 # 备用测试
 ```
 
 |---
@@ -68,16 +73,24 @@ python app/sample_pack_generator.py --all --force
 python app/sample_pack_generator.py --check
 ```
 
+### 生成静态销售站点（可部署到 Cloudflare Pages / Vercel / GitHub Pages）
+
+```bash
+python app/build_sales_site.py
+```
+
 ### 运行测试
 
 ```bash
-python tests/test_sample_pack_current.py
+python tests/test_sample_pack.py
+python tests/test_build_sales_site.py
 ```
 
 或
 
 ```bash
-python -m pytest tests/test_sample_pack_current.py -v
+python -m pytest tests/test_sample_pack.py -v
+python -m pytest tests/test_build_sales_site.py -v
 ```
 
 |---

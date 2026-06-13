@@ -5,18 +5,17 @@
 - Hermes Kanban dev-team：todo=0、ready=0、running=0、blocked=0、done=26；diagnostics 无活跃问题。本轮无可 dispatch 的 ready/todo 任务。
 - 内容生成脚本可用，`python3 projects/knowledge-subscription/scripts/generate_substack_issue.py --auto` 已执行成功。
 - Social publisher CLI 可用：`auto-process` 执行成功但 processed=0；`status` 与 `credentials-check` 已完成。
-- 已读取项目内最终决策与 cron 文档：最终决策仍为 PIVOT-GO / 半自动发布；cron 方案已部署但发布最终确认仍需人工。
-- 指定根路径 `reports/substack_automation_final_decision.md` 与 `docs/substack_cron_automation.md` 不存在；项目路径下对应文档存在并已参考。
-- 发布边界不变：当前只能自动生成内容包与维护 outbox/队列；Substack 真实发布仍需账号、Publication URL、登录态/会话或人工确认，不得伪装已发布。
+- 最终决策仍为 PIVOT-GO / 半自动发布：内容生成、Markdown 格式化、草稿/outbox 可自动化；Substack 最终 Publish 与发布后 mark-published 仍需人工或有效登录态/凭证。
+- 发布边界不变：当前不能伪装为已发布；真实发布需 Substack Publication URL、登录态/session 或人工复制确认。
 
 ## 已自动生成
 
 本轮已生成 4 个 Substack 内容草稿：
 
-- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-08_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_free_post.md`
-- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-08_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_paid_deep_dive.md`
-- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-08_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_video_script_60s.md`
-- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-08_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_video_script_3min.md`
+- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-13_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_free_post.md`
+- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-13_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_paid_deep_dive.md`
+- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-13_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_video_script_60s.md`
+- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-13_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_video_script_3min.md`
 
 主题：从单次提示词到可复用AI工作流：一套可审计的 SOP 设计法。
 
@@ -25,7 +24,7 @@
 - 已排队：social publisher 本轮未处理出新的可发布项；`auto-process` 返回 processed=0。
 - 当前队列：17 条旧记录，状态为 PAUSED_BY_USER=15、REJECTED=2；其中 Substack=4，knowledge-subscription 相关 2 条均为 REJECTED，不作为本轮可自动发布对象推进。
 - 已发布：没有检测到真实 Substack 已发布记录；未执行 mark-published。
-- 待人工：真实 Substack 发布处于 `READY_MANUAL_PUBLISH` / `NEEDS_CREDENTIALS` 边界，需要用户提供账号与发布路径后才能继续。
+- 待人工：真实 Substack 发布处于 `READY_MANUAL_PUBLISH` / `NEEDS_CREDENTIALS` 边界。
 
 ## 缺凭证 / 状态码
 
