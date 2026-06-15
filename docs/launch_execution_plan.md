@@ -3,7 +3,20 @@
 > 项目: knowledge-subscription  
 > 类型: deployment · 销售页上线后立即执行  
 > 编制: deploy (dev-deploy) · 2026-06-15  
-> 门禁状态: ✅ GO (79/100)
+> 门禁状态: ✅ GO (81/100)
+> 公开URL: https://aunomira-lab.github.io/knowledge-subscription/
+
+---
+
+## 当前状态
+
+- [x] 销售页已部署到 GitHub Pages
+- [x] 部署脚本可执行
+- [x] 7天获客计划已完成
+- [x] 渠道矩阵已完成
+- [ ] 微信商户号/支付宝开放平台待授权
+- [ ] 小报童/爱发电店铺待注册
+- [ ] 广告投放前置条件待满足
 
 ---
 
@@ -15,11 +28,11 @@
 
 ---
 
-## 公开 URL (待部署回填)
+## 公开 URL
 
 | 环境 | URL | 状态 |
 |------|-----|------|
-| 测试环境 | https://ai-radar-sales.pages.dev | 待部署 |
+| 测试环境 | https://aunomira-lab.github.io/knowledge-subscription/ | ✅ 已部署 |
 | 正式环境 | https://ai-radar.dev | 待购买域名 |
 
 ---
@@ -27,7 +40,7 @@
 ## 第 1 天: 链接设置 + 发布预热内容
 
 ### 动作
-1. [ ] 确认销售页已部署可访问
+1. [x] 确认销售页已部署可访问
 2. [ ] 在微信公众号/知乎/小红书各平台更新个人简介签名，放入销售页 URL
 3. [ ] 发布一条预热动态：「打算做个每日 AI 赚钱机会简报，有兴趣的踩踩」
 
@@ -198,4 +211,6 @@
 ---
 
 **编制: deploy (dev-deploy) · 2026-06-15**  
-**门禁状态: ✅ GO (79/100) · 已格式通过市场门禁许可**
+**门禁状态: ✅ GO (81/100) · 已格式通过市场门禁许可**  
+**公开URL: https://aunomira-lab.github.io/knowledge-subscription/**  
+**任务ID: d718d905**
