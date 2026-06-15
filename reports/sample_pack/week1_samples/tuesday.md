@@ -1,19 +1,18 @@
-# 周二日报 | 数据工具与跨境小生意：从评论里挖金矿
+# Tuesday日报 | 数据工具与SaaS：跨境评论分析的蓝海
 
-**日期**: 2026-06-09  
-**主题**: 数据工具与跨境小生意：从评论里挖金矿  
-**来源**: AI赚钱机会雷达 - 专业版首周样例
+**日期**: 2026-06-16  
+**主题**: 数据工具与SaaS：跨境评论分析的蓝海  
+**来源**: AI赚钱机会雷达 - 专业版首周样例 v13  
 **任务ID**: 889b251b
 
 ---
 
 ## 今日机会
 
-### AI 驱动跨境电商评论分析 SaaS
-**分类**: 数据工具/SaaS | **难度**: ⭐⭐⭐ | **启动时间**: 14-21天
+### opp-review-saas: AI 驱动跨境电商评论分析 SaaS
+**分类**: 数据工具/SaaS | **难度**: ⭐⭐⭐☆☆ | **启动时间**: 14-21天
 
-**收益预估**: ¥10,000-60,000/月（500付费用户×¥199平均客单价，毛利率>90%）
-**毛利率**: 90%+
+**收益预估**: ¥10,000-60,000/月（毛利率90%+）
 
 用AI自动抓取Amazon、Temu、SHEIN、Shopee的商品评论，做情感分析、痛点提取和机会挖掘，输出'高销量低评分'的改进机会报告。跨境卖家愿意为'知道对手哪里做得差'付费。
 
@@ -30,8 +29,7 @@
 4. 定价：免费3次试用 -> ¥99/月（50个商品/月） -> ¥299/月（无限+API）
 5. 在小红书跨境电商社群、知无不言论坛、Temu卖家群分发免费样例报告引流
 
-**风险提示**:
-抓取电商平台评论需遵守robots.txt，建议通过官方API或卖家授权方式获取。避免高频抓取导致IP被封。
+**风险提示**: 抓取电商平台评论需遵守robots.txt，建议通过官方API或卖家授权方式获取。避免高频抓取导致IP被封。
 
 **AI提示词模板（专业版专属）**:
 ```
@@ -62,11 +60,10 @@ async def analyze_reviews(product_urls: list):
     for url in product_urls:
         agent = Agent(
             task=f"抓取 {url} 的前500条评论，保存为JSON",
-            llm=llm_client,  # DeepSeek-V3
+            llm=llm_client,
             browser=browser,
         )
         raw = await agent.run()
-        # AI分析层
         analysis = llm_client.chat.completions.create(
             model="deepseek-chat",
             messages=[{"role":"user","content":ANALYSIS_PROMPT + raw}]
@@ -80,14 +77,83 @@ async def analyze_reviews(product_urls: list):
 - https://seller.temu.com
 - https://www.browser-use.com
 
+
+---
+
+### opp-n8n-store: n8n + AI 自动化工作流订阅商店
+**分类**: 自动化/数字商品 | **难度**: ⭐⭐☆☆☆ | **启动时间**: 7-10天
+
+**收益预估**: $2,000-15,000/月（毛利率95%+）
+
+制作高价值、立即可用的n8n工作流模板，覆盖'小红书内容矩阵自动发布'、'私域微信自动回复'、'电商订单自动处理'等高频场景，在Gumroad和国内平台双渠道销售。模板一次制作可无限复售，边际成本为零。
+
+**核心数据支撑**:
+- n8n.io 2026年数据：社区用户突破300万，模板市场日均下载量15,000+
+- Gumroad n8n模板头部卖家月收入$5,000-12,000
+- 国内中小企业对自动化工具需求旺盛，但缺乏技术人才搭建工作流
+- 小红书运营者日均花3.5小时在重复性内容发布和评论回复上
+
+**执行SOP（5步走）**:
+1. 选定第一个爆款模板：'小红书图文自动发布+评论监控+AI自动回复'全流程
+2. 用n8n搭建完整工作流：RSS/Notion选题 -> AI生成文案 -> Canva API排版 -> 蚁小二发布 -> 评论监控 -> AI回复
+3. 制作交付物：n8n JSON文件 + 3分钟部署视频 + 图文SOP手册 + 常见问题FAQ
+4. 定价策略：单模板$19（Gumroad）/ ¥39（国内），打包5个模板$59/ ¥129，年度会员$199/ ¥399（含更新+微信群）
+5. 获客：在即刻'n8n'圈子、小红书'效率工具'话题、B站'n8n教程'视频下方引流
+
+**风险提示**: n8n自托管版本免费但需服务器成本（约$5/月）。部分平台API（如小红书）非官方开放，需关注政策变化。
+
+**AI提示词模板（专业版专属）**:
+```
+请帮我分析以下n8n工作流的优化空间：
+
+当前工作流：
+{{workflow_json}}
+
+要求：
+1. 找出3个可优化的节点（延迟、错误处理、数据转换）
+2. 建议2个可新增的AI节点提升自动化程度
+3. 评估该工作流在'高并发场景'下的稳定性风险
+4. 输出优化后的JSON片段（仅修改部分）
+```
+
+**可运行代码片段（专业版专属）**:
+```
+# n8n工作流JSON片段：小红书自动发布
+{
+  "name": "Xiaohongshu Auto Publish",
+  "nodes": [
+    {
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "name": "Daily_9AM",
+      "parameters": {"rule": {"interval": [{"field": "hours", "hoursInterval": 24}]}}
+    },
+    {
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Fetch_Notion_Content",
+      "parameters": {"url": "https://api.notion.com/v1/databases/xxx/query"}
+    },
+    {
+      "type": "@n8n/nodes-ai-agent.agent",
+      "name": "AI_Copywriter",
+      "parameters": {"options": {"model": "claude-4-opus"}}
+    }
+  ]
+}
+```
+
+**来源链接**:
+- https://n8n.io/workflows
+- https://gumroad.com
+
+
 ---
 
 ## 今日SOP（标准操作流程）
 
-1. 安装browser-use：pip install browser-use，运行官方demo确认环境正常
-2. 选定1个目标平台（推荐从Temu开始，竞争相对小），抓取3个畅销品的评论
-3. 用DeepSeek-V3或Claude 4分析这3个产品的评论，输出样例报告
-4. 用Streamlit搭建最简单的Dashboard原型：输入链接->显示分析结果
+1. 浏览今日机会的核心数据支撑，确认信息时效性
+2. 选择1个最匹配自身技能/资源的机会，评估启动时间
+3. 完成该机会SOP的第1步（如注册账号、搭建环境、市场调研）
+4. 在Notion/飞书建立个人执行看板，记录进度
 
 ---
 
@@ -95,10 +161,10 @@ async def analyze_reviews(product_urls: list):
 
 勾选你今天能完成的（即使只完成1项也是进步）：
 
-- [ ] browser-use demo运行成功
-- [ ] 完成3个商品的评论抓取（各100条以上）
-- [ ] 生成1份PDF样例报告（可用Markdown转PDF工具）
-- [ ] 在1个跨境电商卖家社群分享样例报告并收集反馈
+- [ ] 完成今日机会第1步SOP
+- [ ] 在目标平台完成注册/环境搭建
+- [ ] 触达1个潜在客户或目标用户
+- [ ] 在Notion中建立项目执行看板
 
 ---
 
@@ -106,18 +172,19 @@ async def analyze_reviews(product_urls: list):
 
 **工具**: browser-use
 **评分**: 9.0/10
-**优点**: 自然语言控制浏览器, GitHub 28k+ stars, 支持多浏览器
-**缺点**: 对复杂SPA支持有限, 需要代理防封
-**verdict**: AI爬虫首选框架，配合Playwright可覆盖99%场景。
+**优点**: 自然语言驱动浏览器, 零代码抓取
+**缺点**: 复杂页面稳定性有待提升
+**结论**: 本周推荐工具，建议优先试用。
 
 ---
 
 ## 会员专属彩蛋
 
-> **专业版会员可见**: 附赠：Amazon/Temu/Shopee评论抓取专用n8n工作流 + 评论分析Prompt模板3组
+> **专业版会员可见**: 附赠：今日机会完整代码包 + 10个行业专用Prompt模板
 > 订阅后在本日报底部查看下载链接。
 
 ---
 
 *本报告为样例，实际专业版日报更详细，含数据图表、竞品截图、法律风险提示。*
-*生成时间: 2026-06-13*
+*生成时间: 2026-06-16*  
+*任务ID: 889b251b*

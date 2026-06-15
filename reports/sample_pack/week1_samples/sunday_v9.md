@@ -52,4 +52,25 @@ A: 社媒变现（小红书）平均 2-4 周；技术服务（爬虫/语音 Agen
 
 ---
 
+## 数据来源
+
+- https://www.vapi.ai/blog (AI语音电话Agent行业数据)
+- https://www.browser-use.com/ (浏览器自动化工具动态)
+- https://www.xiaohongshu.com/ (小红书平台趋势与流量数据)
+- https://www.amazon.com/ (跨境电商评论与选品数据)
+- https://www.elevenlabs.io/ (AI音频生成工具数据)
+- https://www.zhipin.com/ (招聘市场数据与求职趋势)
+
+---
+
+## 下周行动清单
+
+- [ ] 选择1个本周机会，完成SOP第1步
+- [ ] 在即刻/小红书/朋友圈分享1条本周机会
+- [ ] 加入付费会员群，获取完整Prompt模板
+- [ ] 记录本周执行进度，下周复盘对比
+- [ ] 关注下周新机会首发，早鸟48小时内专业版独占
+
+---
+
 *本日报由 Dev Team 自动生成。数据截至当日，执行风险请自行评估。*

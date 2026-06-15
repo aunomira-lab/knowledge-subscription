@@ -12,10 +12,10 @@
 
 本轮已生成 4 个 Substack 内容草稿：
 
-- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-13_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_free_post.md`
-- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-13_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_paid_deep_dive.md`
-- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-13_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_video_script_60s.md`
-- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-13_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_video_script_3min.md`
+- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-14_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_free_post.md`
+- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-14_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_paid_deep_dive.md`
+- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-14_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_video_script_60s.md`
+- `/home/AgentAdmin/.hermes/shared/content/substack_drafts/2026-06-14_从单次提示词到可复用AI工作流一套可审计的_SOP_设计_video_script_3min.md`
 
 主题：从单次提示词到可复用AI工作流：一套可审计的 SOP 设计法。
 

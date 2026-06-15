@@ -1,0 +1,16 @@
+{
+  "experiment_id": "KS-7D-2026-06-15",
+  "generated_at": "2026-06-15T00:08:25.846651",
+  "total_exposure": 0,
+  "total_visits": 0,
+  "total_signups": 0,
+  "total_paid_users": 0,
+  "total_revenue": 0,
+  "total_cac": 0,
+  "conversion_rate_visit": 0,
+  "conversion_rate_signup": 0,
+  "conversion_rate_paid": 0,
+  "target_revenue": 500,
+  "revenue_gap": 500,
+  "status": "running"
+}

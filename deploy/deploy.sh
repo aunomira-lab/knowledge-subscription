@@ -1,87 +1,83 @@
 #!/bin/bash
-set -e
+# deploy.sh - 一键部署 AI商机雷达销售页到 Cloudflare Pages
+# 创建: deploy (dev-deploy) · 2026-06-15
 
-# 配置
+set -euo pipefail
+
 PROJECT_DIR="/home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription"
 SITE_DIR="$PROJECT_DIR/site"
-DEPLOY_LOG="$PROJECT_DIR/reports/deployment_log.txt"
-VERIFICATION_MD="$PROJECT_DIR/reports/deployment_verification.md"
+PROJECT_NAME="ai-radar-sales"
+LOG_FILE="/tmp/ai-radar-deploy.log"
 
-echo "[$(date '+%Y-%m-%d %H:%M:%S')] 开始部署 AI商机雷达销售页..." >> "$DEPLOY_LOG"
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
+}
 
-# 1. 验证必要文件存在
-if [ ! -f "$SITE_DIR/index.html" ]; then
-  echo "ERROR: index.html 不存在" >> "$DEPLOY_LOG"
-  exit 1
-fi
-
-# 2. 验证 HTML 格式基本正确
-if ! grep -q "<!DOCTYPE html>" "$SITE_DIR/index.html"; then
-  echo "ERROR: index.html 格式错误" >> "$DEPLOY_LOG"
-  exit 1
-fi
-
-# 3. 检查关键链接完整性
-REQUIRED_ELEMENTS=("#subscribe" "#pricing" "#sample" "mailto:contact@ai-radar.dev")
-for elem in "${REQUIRED_ELEMENTS[@]}"; do
-  if ! grep -q "$elem" "$SITE_DIR/index.html"; then
-    echo "WARNING: 缺少元素 $elem" >> "$DEPLOY_LOG"
-  fi
-done
-
-# 4. 验证页面内容（订阅入口、联系方式、定价）
-if ! grep -q "订阅" "$SITE_DIR/index.html"; then
-  echo "ERROR: 页面缺少订阅入口" >> "$DEPLOY_LOG"
-  exit 1
-fi
-
-# 5. 统计文件大小
-FILE_SIZE=$(wc -c < "$SITE_DIR/index.html")
-echo "[$(date '+%Y-%m-%d %H:%M:%S')] 本地验证通过，index.html 大小: ${FILE_SIZE} bytes" >> "$DEPLOY_LOG"
-
-# 6. 如果已登录 Cloudflare，自动部署
-if command -v wrangler &> /dev/null; then
-  echo "[$(date '+%Y-%m-%d %H:%M:%S')] 检测到 Wrangler CLI，执行部署..." >> "$DEPLOY_LOG"
-  cd "$SITE_DIR"
-  if wrangler pages deploy . --project-name="ai-opportunity-radar" --branch="main" --commit-dirty=true 2>> "$DEPLOY_LOG"; then
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] 部署完成" >> "$DEPLOY_LOG"
-    echo "" >> "$DEPLOY_LOG"
-    # 更新验证文件
-    cat > "$VERIFICATION_MD" <<EOF
-# 部署验证报告
-
-## 部署时间
-$(date '+%Y-%m-%d %H:%M:%S')
-
-## 部署平台
-Cloudflare Pages
-
-## 公开URL
-- 生产环境: https://ai-opportunity-radar.pages.dev
-- 自定义域名: (待配置)
-
-## 验证结果
-- [x] 页面可正常访问
-- [x] 所有链接可点击
-- [x] 订阅表单可交互
-- [x] 移动端适配正常
-
-## 预警
-若未配置自定义域名和收款系统，当前状态为 DEMO。
-EOF
-  else
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] 部署失败，请检查 wrangler 配置" >> "$DEPLOY_LOG"
+error_exit() {
+    log "[ERROR] $1"
     exit 1
-  fi
-else
-  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Wrangler CLI 未安装，跳过自动部署" >> "$DEPLOY_LOG"
-  echo "" >> "$DEPLOY_LOG"
-  echo "手动部署步骤:" | tee -a "$DEPLOY_LOG"
-  echo "  1. 登录 Cloudflare Dashboard (https://dash.cloudflare.com)" | tee -a "$DEPLOY_LOG"
-  echo "  2. 进入 Pages → Create a project → Upload an existing project" | tee -a "$DEPLOY_LOG"
-  echo "  3. 上传 $SITE_DIR 文件夹" | tee -a "$DEPLOY_LOG"
-  echo "  4. 等待构建完成，获取公开URL" | tee -a "$DEPLOY_LOG"
-  echo "  5. 填写URL到 $VERIFICATION_MD" | tee -a "$DEPLOY_LOG"
+}
+
+log "[部署开始] AI商机雷达销售页部署..."
+
+# 检查必需文件
+if [ ! -f "$SITE_DIR/index.html" ]; then
+    error_exit "缺少 site/index.html，请先完成销售页内容"
 fi
 
-echo "[$(date '+%Y-%m-%d %H:%M:%S')] 部署脚本执行完毕" >> "$DEPLOY_LOG"
+log "[检查] 必需文件通过: site/index.html 存在"
+
+# 检查 Wrangler CLI
+if ! command -v wrangler &> /dev/null; then
+    error_exit "未安装 wrangler CLI。\n请先运行: npm install -g wrangler\n或: npx wrangler@latest"
+fi
+
+log "[检查] wrangler CLI 已安装"
+
+# 检查 Cloudflare 登录
+if ! wrangler whoami &> /dev/null; then
+    error_exit "未登录 Cloudflare。请先运行: wrangler login\n请求用户授权: Cloudflare 账号"
+fi
+
+log "[检查] Cloudflare 登录验证通过"
+
+# 检查项目是否已创建
+if ! wrangler pages project list 2>/dev/null | grep -q "$PROJECT_NAME"; then
+    log "[构建] 项目 $PROJECT_NAME 不存在，创建中..."
+    wrangler pages project create "$PROJECT_NAME" || true
+else
+    log "[构建] 项目 $PROJECT_NAME 已存在"
+fi
+
+# 执行部署
+log "[构建] 正在部署到 Cloudflare Pages..."
+DEPLOY_OUTPUT=$(wrangler pages deploy "$SITE_DIR" --project-name="$PROJECT_NAME" --branch=main 2>&1)
+
+log "[构建] 部署输出:\n$DEPLOY_OUTPUT"
+
+# 提取公开 URL
+PUBLIC_URL=$(echo "$DEPLOY_OUTPUT" | grep -oP 'https://[a-zA-Z0-9._-]+\.pages\.dev' | head -1)
+
+if [ -n "$PUBLIC_URL" ]; then
+    log "[完成] 公开 URL: $PUBLIC_URL"
+    echo ""
+    echo "════════════════════════════════════════"
+    echo "  部署成功！"
+    echo "  公开访问地址: $PUBLIC_URL"
+    echo "  管理后台: https://dash.cloudflare.com"
+    echo "  请将上述 URL 回填到 README 和 runs/结果文件"
+    echo "════════════════════════════════════════"
+    echo ""
+    echo "$PUBLIC_URL" > "$PROJECT_DIR/reports/public_url.txt"
+    log "[完成] 公开 URL 已保存到 $PROJECT_DIR/reports/public_url.txt"
+else
+    log "[WARNING] 未能自动提取公开 URL，请从上述输出中手动查找"
+    echo ""
+    echo "════════════════════════════════════════"
+    echo "  部署完成，但未能自动提取 URL"
+    echo "  请查看上方输出并手动记录公开 URL"
+    echo "════════════════════════════════════════"
+    echo ""
+fi
+
+log "[完成] 部署脚本执行完毕"

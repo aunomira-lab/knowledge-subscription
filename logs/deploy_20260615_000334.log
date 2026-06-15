@@ -1,0 +1,77 @@
+=== 知识订阅部署脚本 ===
+时间: Mon Jun 15 00:03:34 UTC 2026
+模式: staging
+项目: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
+
+[1/5] 销售页检查: OK
+[2/5] HTML结构检查: OK
+[3/5] 定价标识检查: OK
+[4/5] 备份完成: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/backups/20260615_000334
+演示环境: 检查 GitHub Pages...
+ M deploy/README.md
+ M deploy/deploy.sh
+ M deploy/validate-deployment.sh
+ M docs/customer_support.md
+ M docs/delivery_checklist.md
+ M docs/deployment_blockers.md
+ M docs/incident_runbook.md
+ M docs/kpi_dashboard.md
+ M docs/launch_execution_plan.md
+ M docs/mvp_spec.md
+ M docs/revenue_experiment_7d.md
+ M docs/strategy.md
+ M docs/support_sop.md
+ M logs/daily_20260613.log
+ M metrics/experiment_tracker.csv
+ M metrics/launch_channels.csv
+ M reports/daily/DASHBOARD_2026-06-13.md
+ M reports/deployment_log.txt
+ M reports/deployment_verification.md
+ M reports/launch_acceptance.md
+ M reports/pytest_results_eff3f092.txt
+ M reports/pytest_results_eff3f092_v2.txt
+ M reports/pytest_security_risk_eff3f092.txt
+ M reports/quality_verification_v2.md
+ M reports/sample_pack/data.json
+ M reports/sample_pack/free_preview.md
+ M reports/sample_pack/premium_catalog.md
+ M reports/sample_pack/week1_samples/friday.md
+ M reports/sample_pack/week1_samples/monday.md
+ M reports/sample_pack/week1_samples/saturday.md
+ M reports/sample_pack/week1_samples/sunday.md
+ M reports/sample_pack/week1_samples/sunday_v9.md
+ M reports/sample_pack/week1_samples/thursday.md
+ M reports/sample_pack/week1_samples/tuesday.md
+ M reports/sample_pack/week1_samples/wednesday.md
+ M reports/substack_publish_status.md
+ M runs/d718d905_result.json
+ M scripts/validate_experiment.py
+ M site/index.html
+ M site/privacy.html
+ M site/sample_pack/free_preview.html
+ M site/sample_pack/premium_catalog.html
+ M site/terms.html
+?? backups/20260615_000334/
+?? deploy/cron-daily.sh
+?? logs/content_gen_20260615.log
+?? logs/deploy_20260615_000334.log
+?? reports/pytest_launch_acceptance_eff3f092_tester.txt
+?? reports/pytest_launch_acceptance_eff3f092_v2.txt
+?? reports/pytest_launch_acceptance_eff3f092_v3.txt
+?? reports/pytest_results_eff3f092_tester.txt
+?? reports/pytest_results_eff3f092_v3.txt
+?? reports/pytest_security_risk_eff3f092_tester.txt
+?? reports/pytest_security_risk_eff3f092_v2.txt
+?? reports/pytest_security_risk_eff3f092_v3.txt
+?? reports/pytest_subscription_acceptance_eff3f092_tester.txt
+?? reports/site_test_output_889b251b.txt
+?? reports/test_output_889b251b.txt
+?? reports/v2_samples/20260615_knowledge_asset_architecture.md
+?? reports/v2_samples/20260615_workflow_sop_deep_dive.md
+?? scripts/update_dashboard.py
+[5/5] 演示环境部署检查完成
+公开URL: https://aunomira-lab.github.io/knowledge-subscription
+
+=== 部署完成 ===
+日志: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/logs/deploy_20260615_000334.log
+备份: /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/backups/20260615_000334

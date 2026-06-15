@@ -61,3 +61,14 @@ WARNING: URL返回 HTTP 000000
 
 🪵  Logs were written to "/home/AgentAdmin/.hermes/profiles/backup-agent-2/home/.config/.wrangler/logs/wrangler-2026-06-08_00-19-11_983.log"
 [2026-06-08 00:19:12] 部署失败，请检查 wrangler 配置
+[2026-06-13 05:03:14] 开始部署 AI商机雷达销售页...
+WARNING: 缺少元素 #subscribe
+WARNING: 缺少元素 #sample
+WARNING: 缺少元素 mailto:contact@ai-radar.dev
+[2026-06-13 05:03:14] 本地验证通过，index.html 大小: 19014 bytes
+[2026-06-13 05:03:14] 检测到 Wrangler CLI，执行部署...
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mIn a non-interactive environment, it's necessary to set a CLOUDFLARE_API_TOKEN environment variable for wrangler to work. Please go to https://developers.cloudflare.com/fundamentals/api/get-started/create-token/ for instructions on how to create an api token, and assign its value to CLOUDFLARE_API_TOKEN.[0m
+
+
+🪵  Logs were written to "/home/AgentAdmin/.hermes/profiles/backup-agent-2/home/.config/.wrangler/logs/wrangler-2026-06-13_05-03-14_664.log"
+[2026-06-13 05:03:15] 部署失败，请检查 wrangler 配置

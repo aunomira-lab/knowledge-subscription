@@ -1,0 +1,85 @@
+安全审计与上线验收检查汇总
+============================================================
+
+[PASS] 全量测试
+  cmd: python3 -m pytest tests -q
+  exit_code: 0
+  output: ........................................................................ [ 21%]
+........................................................................ [ 43%]
+........................................................................ [ 65%]
+........................................................................ [ 87%]
+........................................                                 [100%]
+328 passed in 0.80s
+
+
+[PASS] 硬编码密钥检查
+  cmd: grep -riE api_key... site/ app/
+  exit_code: 0
+  output: app/sample_pack_generator_v11.py:client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_KEY"))
+app/sample_pack_generator_v12.py:client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_KEY"))
+app/sample_pack_generator_v12.py:const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+app/sample_pack_generator_v12.py:  res.json({ clientSecret: subscription.latest_invoice.payment_intent.client_secret })
+app/sample_pack_generator_v10.py:client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_KEY"))
+
+[PASS] 禁用词检查
+  cmd: grep -riE 禁用词... site/ reports/sample_pack/
+  exit_code: 0
+  output: 无禁用词
+
+[PASS] 隐私/服务条款占位
+  cmd: grep -c 演示版警告...
+  exit_code: 0
+  output: 1
+隐私政策演示版横幅 OK
+1
+服务条款演示版横幅 OK
+
+[PASS] 公开URL验证
+  cmd: curl -s -o /dev/null -w %{http_code} URL
+  exit_code: 0
+  output: 200
+
+[PASS] 订阅权限验证
+  cmd: python3 -c 订阅权限...
+  exit_code: 0
+  output: 权限边界 OK
+
+[PASS] 收入预测递增
+  cmd: python3 -c 收入预测...
+  exit_code: 0
+  output: 收入预测递增 OK
+
+[PASS] 运营文档完整性
+  cmd: ls docs/...
+  exit_code: 0
+  output: OK: docs/support_sop.md
+OK: docs/incident_runbook.md
+OK: docs/customer_support.md
+OK: docs/kpi_dashboard.md
+OK: docs/revenue_experiment_7d.md
+
+[PASS] 报告生成器
+  cmd: python3 app/report_generator.py
+  exit_code: 0
+  output: ports/quality_verification_v2.md
+
+【Step 4/4】运行结果
+  总体通过状态: ✅ 通过
+  总分: 30.0/34 (88.2%)
+  样稿数量: 2 篇
+  输出文件:
+    - /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/v2_samples/20260615_workflow_sop_deep_dive.md
+    - /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/v2_samples/20260615_knowledge_asset_architecture.md
+    - /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/quality_verification_v2.md
+
+✅ 全部完成！
+
+[PASS] 订阅统计验证
+  cmd: python3 -c 订阅统计...
+  exit_code: 0
+  output: 订阅统计 OK: 用户2, 月收58
+
+[PASS] 销售页结构检查
+  cmd: python3 -c 销售页结构...
+  exit_code: 0
+  output: 销售页结构检查: 8/8 通过

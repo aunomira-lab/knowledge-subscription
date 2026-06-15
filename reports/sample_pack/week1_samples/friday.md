@@ -1,24 +1,23 @@
-# 周五日报 | 本周复盘与下周预告
+# Friday日报 | 周报复盘 + 下周预告
 
-**日期**: 2026-06-12  
-**主题**: 本周复盘与下周预告  
-**来源**: AI赚钱机会雷达 - 专业版首周样例
+**日期**: 2026-06-19  
+**主题**: 周报复盘 + 下周预告  
+**来源**: AI赚钱机会雷达 - 专业版首周样例 v13  
 **任务ID**: 889b251b
 
 ---
 
 ## 今日机会
 
-### Claude 4 智能客服 Agent 代部署服务
-**分类**: AI基础设施/B2B服务 | **难度**: ⭐⭐⭐ | **启动时间**: 10-14天
+### opp-cs-agent: Claude 4 智能客服 Agent 代部署服务
+**分类**: AI基础设施/B2B服务 | **难度**: ⭐⭐⭐☆☆ | **启动时间**: 10-14天
 
-**收益预估**: ¥8,000-40,000/月（服务3-10家企业，毛利率>85%）
-**毛利率**: 85%+
+**收益预估**: ¥8,000-40,000/月（毛利率85%+）
 
-基于Claude 4最新模型，为企业微信、飞书、钉钉搭建可7×24小时运行的智能客服Agent。支持知识库自动学习、工单流转、情绪识别和多轮对话。企业愿意为'不请人的客服'每月付¥3,000-8,000。
+基于Claude 4最新模型，为企业微信、飞书、钉钉搭建可7x24小时运行的智能客服Agent。支持知识库自动学习、工单流转、情绪识别和多轮对话。企业愿意为'不请人的客服'每月付¥3,000-8,000。
 
 **核心数据支撑**:
-- Anthropic 2026年6月数据：Claude 4 Opus上下文窗口200K，工具调用准确率97.2%
+- Anthropic 2026年6月数据: Claude 4 Opus上下文窗口200K，工具调用准确率97.2%
 - 企业微信开放客服API，支持机器人与人工无缝转接
 - 飞书机器人框架2026年Q1更新，支持MCP协议接入
 - 中小电商企业客服人力成本月均¥4,500-6,000/人
@@ -30,8 +29,7 @@
 4. 添加情绪识别层：当用户情绪值>阈值时自动转人工，并携带完整对话上下文
 5. 定价策略：首月¥1,999试用（含5000次对话），正式¥3,999/月（不限对话）+ ¥500/知识库更新
 
-**风险提示**:
-企业微信API有调用频率限制（10,000次/分钟），需申请提高限额。客户数据需签署保密协议。
+**风险提示**: 企业微信API有调用频率限制（10,000次/分钟），需申请提高限额。客户数据需签署保密协议。
 
 **AI提示词模板（专业版专属）**:
 ```
@@ -50,7 +48,7 @@
 ```
 # FastAPI + Claude 4 客服Agent核心代码
 from fastapi import FastAPI, Request
-import anthropic
+import anthropic, os
 
 app = FastAPI()
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_KEY"))
@@ -59,7 +57,6 @@ client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_KEY"))
 async def wechat_webhook(req: Request):
     data = await req.json()
     user_msg = data["Content"]
-    # 检索知识库 + 调用Claude
     resp = client.messages.create(
         model="claude-4-opus-20260501",
         max_tokens=500,
@@ -73,11 +70,13 @@ async def wechat_webhook(req: Request):
 - https://www.anthropic.com/claude
 - https://work.weixin.qq.com/api/doc
 
-### AI 驱动跨境电商评论分析 SaaS
-**分类**: 数据工具/SaaS | **难度**: ⭐⭐⭐ | **启动时间**: 14-21天
 
-**收益预估**: ¥10,000-60,000/月（500付费用户×¥199平均客单价，毛利率>90%）
-**毛利率**: 90%+
+---
+
+### opp-review-saas: AI 驱动跨境电商评论分析 SaaS
+**分类**: 数据工具/SaaS | **难度**: ⭐⭐⭐☆☆ | **启动时间**: 14-21天
+
+**收益预估**: ¥10,000-60,000/月（毛利率90%+）
 
 用AI自动抓取Amazon、Temu、SHEIN、Shopee的商品评论，做情感分析、痛点提取和机会挖掘，输出'高销量低评分'的改进机会报告。跨境卖家愿意为'知道对手哪里做得差'付费。
 
@@ -94,8 +93,7 @@ async def wechat_webhook(req: Request):
 4. 定价：免费3次试用 -> ¥99/月（50个商品/月） -> ¥299/月（无限+API）
 5. 在小红书跨境电商社群、知无不言论坛、Temu卖家群分发免费样例报告引流
 
-**风险提示**:
-抓取电商平台评论需遵守robots.txt，建议通过官方API或卖家授权方式获取。避免高频抓取导致IP被封。
+**风险提示**: 抓取电商平台评论需遵守robots.txt，建议通过官方API或卖家授权方式获取。避免高频抓取导致IP被封。
 
 **AI提示词模板（专业版专属）**:
 ```
@@ -126,11 +124,10 @@ async def analyze_reviews(product_urls: list):
     for url in product_urls:
         agent = Agent(
             task=f"抓取 {url} 的前500条评论，保存为JSON",
-            llm=llm_client,  # DeepSeek-V3
+            llm=llm_client,
             browser=browser,
         )
         raw = await agent.run()
-        # AI分析层
         analysis = llm_client.chat.completions.create(
             model="deepseek-chat",
             messages=[{"role":"user","content":ANALYSIS_PROMPT + raw}]
@@ -144,11 +141,13 @@ async def analyze_reviews(product_urls: list):
 - https://seller.temu.com
 - https://www.browser-use.com
 
-### 小红书AI养生/疗愈账号 + 私域高客单转化
-**分类**: 社媒变现/内容创业 | **难度**: ⭐⭐ | **启动时间**: 7-10天
 
-**收益预估**: ¥15,000-80,000/月（广告+私域课程+陪伴营，毛利率>80%）
-**毛利率**: 80%+
+---
+
+### opp-xiaohongshu-wellness: 小红书AI养生/疗愈账号 + 私域高客单转化
+**分类**: 社媒变现/内容创业 | **难度**: ⭐⭐☆☆☆ | **启动时间**: 7-10天
+
+**收益预估**: ¥15,000-80,000/月（毛利率80%+）
 
 用AI生成高质量的养生、疗愈、情绪管理图文内容，在小红书建立个人IP矩阵，引流到私域卖¥999-3,999的线上课程/陪伴营。养生赛道在25-45岁女性群体中火到爆，内容生产可用AI高度自动化。
 
@@ -165,8 +164,7 @@ async def analyze_reviews(product_urls: list):
 4. 引流设计：笔记底部放'完整版养生手册+1v1体质测试'，引导私信->加微信->入群
 5. 变现路径：入群免费7天打卡 -> 推送¥999小课 -> 推送¥2,999陪伴营 -> 高端¥9,999线下 retreat
 
-**风险提示**:
-养生/健康类内容需避免医疗诊断表述，使用'分享经验'而非'治疗疾病'话术。严格遵守小红书社区规范，避免虚假宣传。
+**风险提示**: 养生/健康类内容需避免医疗诊断表述，使用'分享经验'而非'治疗疾病'话术。严格遵守小红书社区规范，避免虚假宣传。
 
 **AI提示词模板（专业版专属）**:
 ```
@@ -192,13 +190,10 @@ PROMPT_TEMPLATE = Template(open("prompts/xiaohongshu.md").read())
 
 def generate_post(topic: str, persona: str):
     prompt = PROMPT_TEMPLATE.render(topic=topic, persona=persona)
-    # 调用Claude 4
     text = call_claude(prompt)
-    # 调用Midjourney生成配图
     image_url = call_midjourney(f"温暖治愈风，东方美学，{topic}，柔和光线，小红书风格")
     return {"title": extract_title(text), "body": text, "image": image_url}
 
-# 批量生成一周内容
 topics = ["熬夜修复", "春季养肝", "情绪管理", "办公室颈椎保养"]
 posts = [generate_post(t, "职场女性") for t in topics]
 ```
@@ -207,11 +202,13 @@ posts = [generate_post(t, "职场女性") for t in topics]
 - https://www.xiaohongshu.com
 - https://www.midjourney.com
 
-### AI 面试陪跑 + Offer谈判教练（裁员潮刚需）
-**分类**: 知识付费/求职服务 | **难度**: ⭐⭐ | **启动时间**: 5-7天
 
-**收益预估**: ¥20,000-100,000/月（服务20-50位客户，客单价¥2,000-4,000，毛利率>90%）
-**毛利率**: 90%+
+---
+
+### opp-interview-coach: AI 面试陪跑 + Offer谈判教练（裁员潮刚需）
+**分类**: 知识付费/求职服务 | **难度**: ⭐⭐☆☆☆ | **启动时间**: 5-7天
+
+**收益预估**: ¥20,000-100,000/月（毛利率90%+）
 
 针对2026年持续的人才市场波动，为中高端求职者（年薪20万+）提供AI驱动的简历重构、模拟面试和谈薪辅导。用Claude 4做行为面试模拟和薪资谈判推演，客单价高、复购和转介绍率极高。
 
@@ -228,8 +225,7 @@ posts = [generate_post(t, "职场女性") for t in topics]
 4. 获客渠道：即刻'求职圈'、脉脉动态、知乎'面试技巧'话题、小红书'职场干货'
 5. 交付流程：需求诊断（30分钟语音）-> 简历重构（3天）-> 模拟面试（每周1次）-> Offer谈判（实时微信指导）
 
-**风险提示**:
-不得承诺'包过'或'保证offer'。服务协议中明确'辅导服务不承诺结果'。客户简历信息需签署保密协议并加密存储。
+**风险提示**: 不得承诺'包过'或'保证offer'。服务协议中明确'辅导服务不承诺结果'。客户简历信息需签署保密协议并加密存储。
 
 **AI提示词模板（专业版专属）**:
 ```
@@ -261,15 +257,15 @@ class InterviewCoach:
         self.history = []
 
     def ask_question(self, role: str, round_num: int):
-        prompt = f"基于目标岗位{role}，生成第{round_num}轮面试问题（行为面试/技术面试/压力面试轮换）"
-        resp = self.claude.messages.create(model="claude-4-opus", max_tokens=300, messages=[{"role":"user","content":prompt}])
+        prompt = f"基于目标岗位{role}，生成第{round_num}轮面试问题"
+        resp = self.claude.messages.create(model="claude-4-opus", max_tokens=300,
+            messages=[{"role":"user","content":prompt}])
         return resp.content[0].text
 
     def evaluate_answer(self, question: str, answer: str):
-        eval_prompt = f"问题：{question}
-回答：{answer}
-请按STAR法则评估并给出改进建议。"
-        resp = self.claude.messages.create(model="claude-4-opus", max_tokens=800, messages=[{"role":"user","content":eval_prompt}])
+        eval_prompt = f"问题：{question}\n回答：{answer}\n请按STAR法则评估并给出改进建议。"
+        resp = self.claude.messages.create(model="claude-4-opus", max_tokens=800,
+            messages=[{"role":"user","content":eval_prompt}])
         return parse_evaluation(resp.content[0].text)
 ```
 
@@ -277,14 +273,15 @@ class InterviewCoach:
 - https://maimai.cn
 - https://www.zhihu.com
 
+
 ---
 
 ## 今日SOP（标准操作流程）
 
-1. 回顾本周4个机会的执行进度：完成了哪些？卡在哪里？需要谁的帮助？
-2. 统计本周内容数据：免费试看版转发量、咨询量、付费转化率
-3. 收集用户/读者反馈：哪些机会最受欢迎？哪些SOP不够清晰？
-4. 确定下周重点方向（建议：选择1个机会深度执行，不要贪多）
+1. 浏览今日机会的核心数据支撑，确认信息时效性
+2. 选择1个最匹配自身技能/资源的机会，评估启动时间
+3. 完成该机会SOP的第1步（如注册账号、搭建环境、市场调研）
+4. 在Notion/飞书建立个人执行看板，记录进度
 
 ---
 
@@ -292,29 +289,30 @@ class InterviewCoach:
 
 勾选你今天能完成的（即使只完成1项也是进步）：
 
-- [ ] 更新Notion/飞书执行看板，标注本周完成项
-- [ ] 回复所有用户留言和私信
-- [ ] 填写周报模板（附在日报底部）
-- [ ] 预定下周3个核心选题
+- [ ] 完成今日机会第1步SOP
+- [ ] 在目标平台完成注册/环境搭建
+- [ ] 触达1个潜在客户或目标用户
+- [ ] 在Notion中建立项目执行看板
 
 ---
 
 ## 本周工具测评
 
-**工具**: Notion 项目管理
-**评分**: 9.0/10
-**优点**: 灵活度高, 数据库功能强大, 模板丰富
-**缺点**: 国内访问偶尔慢, 高级功能$10/月
-**verdict**: 个人和小团队项目管理首选，建议搭配飞书云文档做国内备份。
+**工具**: n8n
+**评分**: 9.3/10
+**优点**: 开源免费, 社区模板丰富
+**缺点**: 自托管需维护服务器
+**结论**: 本周推荐工具，建议优先试用。
 
 ---
 
 ## 会员专属彩蛋
 
-> **专业版会员可见**: 附赠：周报模板Notion数据库 + 下周8个新机会内幕预告 + 会员答疑精华整理
+> **专业版会员可见**: 附赠：今日机会完整代码包 + 10个行业专用Prompt模板
 > 订阅后在本日报底部查看下载链接。
 
 ---
 
 *本报告为样例，实际专业版日报更详细，含数据图表、竞品截图、法律风险提示。*
-*生成时间: 2026-06-13*
+*生成时间: 2026-06-19*  
+*任务ID: 889b251b*

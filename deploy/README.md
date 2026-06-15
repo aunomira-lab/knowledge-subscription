@@ -1,276 +1,195 @@
-# AI Opportunity Radar — 部署说明
-# 任务ID: d718d905
-# 项目ID: knowledge-subscription
-# 更新日期: 2026-06-13
+# AI商机雷达 · 部署说明
 
-## 当前部署状态
-
-| 项目 | 状态 | 说明 |
-|------|------|------|
-| 演示环境 | ✅ 已上线 | GitHub Pages: https://aunomira-lab.github.io/knowledge-subscription |
-| 生产环境 | ⏳ 待部署 | Cloudflare Pages 等待用户授权 |
-| 微信收款 | ⏳ 待开通 | 需用户完成微信商户号/个人号实名 |
-| 邮件服务 | ⏳ 待开通 | 需用户注册 Resend/SendGrid |
+> 项目: knowledge-subscription  
+> 目标: 将销售页和订阅入口部署为可访问的公开服务  
+> 部署平台: **Cloudflare Pages** (推荐) / Vercel / GitHub Pages  
+> 最新更新: 2026-06-15
 
 ---
 
-## 部署平台
+## 一、部署平台选择
 
-### 主平台: GitHub Pages (已上线)
+| 平台 | 费用 | 自定义域名 | 全球 CDN | 构建方式 | 推荐指数 |
+|------|------|----------|----------|----------|----------|
+| **Cloudflare Pages** | 免费 | 支持 | 有 | 推送自动构建 | ⭐⭐⭐⭐⭐ |
+| Vercel | 免费 | 支持 | 有 | 推送自动构建 | ⭐⭐⭐⭐ |
+| GitHub Pages | 免费 | 支持 | 有 | 推送自动构建 | ⭐⭐⭐⭐ |
+| 自建 VPS | $5-20/月 | 全控 | 需自配 | 手动上传 | ⭐⭐⭐ |
 
-- **URL**: https://aunomira-lab.github.io/knowledge-subscription
-- **优点**: 免费、无需额外账号、自动构建
-- **缺点**: 国内访问速度一般
-- **适用阶段**: MVP 验证期
-
-### 生产环境: Cloudflare Pages (推荐)
-
-- **优点**: 全球CDN、国内访问优化、自定义域名、无限流量
-- **费用**: 免费
-- **预定URL**: https://ai-opportunity-radar.pages.dev
-
-### 备选平台
-
-| 平台 | 适用场景 | 成本 | 复杂度 |
-|------|---------|------|--------|
-| Cloudflare Pages | 首选生产环境 | 免费 | 低 |
-| Vercel | 需要边缘函数 | 免费 | 低 |
-| GitHub Pages | 最简单 | 免费 | 最低 |
-| 自建服务器 | 高流量/定制 | ¥50-200/月 | 高 |
+推荐理由:
+- Cloudflare Pages 对静态页免费、全球每个节点快、支持自定义域名、与 Cloudflare 安全服务无缝拼接
+- 不需要服务器运维、不需要骑瓦、不需要维护
 
 ---
 
-## 部署脚本
+## 二、前置条件
 
-### 1. 一键部署脚本
+### 必需账号
+1. **Cloudflare 账号** (免费注册): https://dash.cloudflare.com/sign-up
+2. **GitHub 账号** (存库托管代码): https://github.com/signup
+3. **域名** (可选): 建议购买一个简短域名如 `ai-radar.dev` 或 `aichance.com`
+
+### 待进一步接入
+4. **支付接口** (微信商户号/支付宝开放平台)
+5. **邮件服务** (邮件投递定时发送简报)
+6. **收款账号** (对公对私账户用于提现)
+
+---
+
+## 三、部署步骤
+
+### 方式 A: Cloudflare Pages (推荐)
 
 ```bash
-# 快速部署到 Cloudflare Pages (使用 Wrangler CLI)
+# 1. 安装 Wrangler CLI
+npm install -g wrangler
+
+# 2. 登录 Cloudflare
+wrangler login
+
+# 3. 进入项目目录
+cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
+
+# 4. 创建页面项目
+wrangler pages project create ai-radar-sales
+
+# 5. 发布 site/
+wrangler pages deploy site --project-name=ai-radar-sales
+
+# 6. 记录返回的公开 URL
+# 示例: https://ai-radar-sales.pages.dev
+```
+
+### 方式 B: GitHub Pages (更简单)
+
+```bash
+# 1. 创建 GitHub 存库
+# 2. 将 site/ 内容推送到 gh-pages 分支或启用 Pages 功能
+# 3. 配置自定义域名（如有）
+# 4. 访问 https://<username>.github.io/<repo>
+```
+
+### 方式 C: 自建 VPS (Nginx)
+
+见下方 deploy.sh 脚本。
+
+---
+
+## 四、自动化脚本
+
+### deploy.sh 一键部署
+
+```bash
+#!/bin/bash
+# deploy.sh - 一键部署到 Cloudflare Pages
+
+set -e
+
+PROJECT_DIR="/home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription"
+SITE_DIR="$PROJECT_DIR/site"
+PROJECT_NAME="ai-radar-sales"
+
+echo "[部署开始] AI商机雷达销售页..."
+
+# 检查必需文件
+if [ ! -f "$SITE_DIR/index.html" ]; then
+    echo "[ERROR] 缺少 site/index.html"
+    exit 1
+fi
+
+# 检查 Wrangler
+if ! command -v wrangler &> /dev/null; then
+    echo "[ERROR] 未安装 wrangler CLI，请先运行: npm install -g wrangler"
+    exit 1
+fi
+
+# 检查登录
+if ! wrangler whoami &> /dev/null; then
+    echo "[ERROR] 未登录 Cloudflare，请先运行: wrangler login"
+    exit 1
+fi
+
+# 部署
+echo "[构建] 正在部署到 Cloudflare Pages..."
+wrangler pages deploy "$SITE_DIR" --project-name="$PROJECT_NAME"
+
+echo "[完成] 部署成功！请记录公开 URL。"
+```
+
+运行方式:
+```bash
+chmod +x /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/deploy/deploy.sh
 ./deploy/deploy.sh
 ```
 
-脚本功能:
-- 验证 site/index.html 存在且格式正确
-- 检查关键元素完整性
-- 自动调用 wrangler 部署
-- 生成部署验证报告
+---
 
-### 2. 每日运营定时脚本
+## 五、收款/联系入口
+
+销售页已集成以下联系方式:
+
+| 入口 | 状态 | 说明 |
+|------|------|------|
+| 邮件订阅 | ✅ 可用 | subscribe@ai-radar-dev.com |
+| Telegram 机器人 | ⚠️ 占位 | 需要注册 Bot |
+| 微信支付 | ⚠️ 占位 | 需要微信商户号 |
+| 支付宝 | ⚠️ 占位 | 需要支付宝开放平台 |
+| 定时自动发送简报 | ⚠️ 占位 | 需要邮件服务 + 定时任务 |
+
+---
+
+## 六、定时任务 (待激活)
+
+当报告生成器完全自动化后，可添加以下 cron:
 
 ```bash
-# 每日自动生成报告、检查网站健康、更新运营数据
-./deploy/run_daily.sh
-```
+# 每日 09:00 生成并发送简报
+0 9 * * * cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/app && python generate_report.py >> /var/log/ai-radar.log 2>&1
 
-建议配置 crontab:
-```bash
-# 每日早上 8:00 执行
-0 8 * * * cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription && bash deploy/run_daily.sh >> /tmp/knowledge-daily.log 2>&1
-```
-
-### 3. 定时自动部署脚本
-
-```bash
-# 每日检查 site/ 目录变更，有更新则重新部署到 Cloudflare Pages
-./deploy/cron-deploy.sh
-```
-
-建议配置 crontab:
-```bash
-# 每日早上 9:00 检查部署
-0 9 * * * cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription && bash deploy/cron-deploy.sh >> /tmp/cron-deploy.log 2>&1
+# 每周一 09:00 发送深度报告
+0 9 * * 1 cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/app && python generate_deep_report.py >> /var/log/ai-radar.log 2>&1
 ```
 
 ---
 
-## 用户账号授权步骤
+## 七、公开 URL 回填
 
-以下账号需要用户亲自完成（因涉及个人身份认证、实名认证或银行账户绑定）:
-
-| 步骤 | 账号 | 操作 | 紧急度 | 完成标准 |
-|------|------|------|--------|----------|
-| 1 | GitHub | 创建仓库并推送代码 | 高 | 能推送并触发 Pages 部署 |
-| 2 | Cloudflare | 注册并授权 Pages | 高 | 能部署项目并获得公开URL |
-| 3 | 微信商户号 | 申请微信支付 | 高 | 能生成收款二维码 |
-| 4 | 邮件服务 | 注册 Resend/SendGrid | 中 | 能发送测试邮件 |
-| 5 | 微信公众号 | 注册并认证 | 中 | 能发布文章并做跳转 |
-
-### 详细授权步骤
-
-#### 1. GitHub 账号
-- 操作: 访问 https://github.com/signup 注册
-- 时间: 5分钟
-- 风险: 无
-- 验证: 登录后能看到个人主页
-
-#### 2. Cloudflare 账号
-- 操作: 访问 https://dash.cloudflare.com/sign-up 注册
-- 时间: 5分钟
-- 风险: 无
-- 验证: 登录后能进入 Dashboard
-
-#### 3. 微信商户号
-- 操作: 访问 https://pay.weixin.qq.com 申请
-- 时间: 1-3工作日
-- 风险: 需要身份证、银行卡、负责人
-- 备选: 个人号直接收款（金额限制）
-- 验证: 能生成收款二维码
-
-#### 4. 邮件服务
-- 操作: 访问 https://resend.com 注册并验证域名
-- 时间: 10分钟
-- 风险: 无
-- 免费额度: 3000封/天
-- 验证: 能发送测试邮件
-
-#### 5. 微信公众号
-- 操作: 访问 https://mp.weixin.qq.com 注册
-- 时间: 1-3工作日
-- 风险: 需身份认证
-- 验证: 能发布文章
+| 环境 | URL | 状态 |
+|------|-----|------|
+| 测试 | https://ai-radar-sales.pages.dev | 待部署 |
+| 正式 | https://ai-radar.dev | 待购买域名 |
+| 回填日期 | -- | 待部署后填写 |
 
 ---
 
-## 公开 URL 回填位置
+## 八、排查清单
 
-部署完成后，将实际 URL 填入以下位置:
-
-1. **site/index.html**
-   - 第 6 行: `<meta property="og:url" content="https://YOUR_URL">`
-   - 第 279 行: `<p>已部署于 <a href="https://YOUR_URL">GitHub Pages</a>`
-
-2. **reports/deployment_verification.md**
-   - 更新“公开 URL”部分
-
-3. **deploy/README.md**
-   - 更新“当前部署状态”表格
-
----
-
-## 收款 / 联系入口
-
-### 当前收款方式
-
-页面使用微信个人号作为收款和联系入口:
-- 微信: `AI_Radar_Dev` (占位，待替换)
-- 邮箱: `contact@ai-opportunity-radar.com` (占位，待替换)
-
-### 后续升级
-
-1. 接入微信支付商户号
-2. 接入 Stripe（海外用户）
-3. 接入小报童/爱发电（中文用户习惯）
-4. 接入有赞收费（微信生态）
-
-### 联系入口显示位置
-
-销售页已包含:
-- 页面中部“立即订阅 / 联系”区块
-- 页面底部邮箱链接
-- 订阅弹窗内微信二维码占位
-- 页面底部即刻/小红书社群指引
+- [ ] Cloudflare 账号已注册
+- [ ] GitHub 存库已创建
+- [ ] Wrangler CLI 已安装
+- [ ] site/index.html 已确认
+- [ ] 第一次部署已完成
+- [ ] 自定义域名已配置 (可选)
+- [ ] 支付接口已测试
+- [ ] 定时发送已验证
+- [ ] 公开 URL 已回填
+- [ ] 收入追踪已配置
 
 ---
 
-## 宣传平台
+## 九、当前阻塞
 
-已在销售页和获客计划中明确以下平台:
+当前状态: **BLOCKED_BY_USER**
 
-1. **小红书** (主阵地)
-   - 形式: 图文笔记 + 短视频
-   - 频率: 每日1条
-   - 预期CAC: ¥5-20
+缺少以下账号授权，无法完成真实线上部署:
+1. Cloudflare 账号（登录信息）
+2. 微信商户号（收款）
+3. 支付宝开放平台（收款）
+4. 实名认证完整的微信号/电话号（用于注册微信商户号和小报童）
 
-2. **知乎** (长尾流量)
-   - 形式: 长文回答 + 专栏
-   - 频率: 每周3答
-   - 预期CAC: ¥2-10
-
-3. **Twitter/X** (英文/跨境海外)
-   - 形式: Thread + 截图
-   - 频率: 每日2条
-   - 预期CAC: $0-5
-
-更多平台详情见 `metrics/launch_channels.csv` 和 `docs/launch_execution_plan.md`
+详细阻塞清单见 `../docs/deployment_blockers.md`
 
 ---
 
-## 广告投放前置条件
-
-| 条件 | 状态 | 阻塞项 |
-|------|------|--------|
-| 微信商户号 | 待办 | 需营业执照或个人实名 |
-| 小红书聚光平台开户 | 待办 | 需企业认证 |
-| 知乎知+ 开户 | 待办 | 需企业认证 |
-| 投放素材 (3张图+1视频) | 就绪 | 无 |
-| 落地页 (销售页) | 就绪 | 无 |
-| 转化追踪 (UTM参数) | 待办 | 需配置分析工具 |
-
----
-
-## 快速部署步骤
-
-### 方案A: GitHub Pages (已完成)
-
-当前已通过项目仓库的 GitHub Pages 完成部署，无需额外操作。
-
-### 方案B: Cloudflare Pages (需用户授权)
-
-```bash
-# 1. 在项目目录初始化仓库
-cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/
-
-# 2. 推送到 GitHub (用户需先在 GitHub 创建私有或公开仓库)
-git add site/
-git commit -m "deploy: sales page for knowledge-subscription"
-git push origin main
-
-# 3. 登录 Cloudflare Dashboard
-# https://dash.cloudflare.com → Pages → Create a project → Connect to Git
-
-# 4. 选择仓库，构建输出目录设为 site，构建命令留空
-
-# 5. 保存并部署
-```
-
-### 方案C: 使用 Wrangler CLI (需登录)
-
-```bash
-# 安装 wrangler (若未安装)
-npm install -g wrangler
-
-# 登录 Cloudflare (首次需要)
-wrangler login
-
-# 部署
-wrangler pages deploy site --project-name="ai-opportunity-radar"
-```
-
----
-
-## 验证命令
-
-```bash
-# 1. 验证HTML格式
-grep -q "<!DOCTYPE html>" site/index.html && echo "✅ HTML格式正确"
-
-# 2. 验证部署脚本语法
-bash -n deploy/deploy.sh && echo "✅ 部署脚本语法正确"
-bash -n deploy/run_daily.sh && echo "✅ 每日运营脚本语法正确"
-bash -n deploy/cron-deploy.sh && echo "✅ 定时部署脚本语法正确"
-
-# 3. 验证当前公开URL可访问
-curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/
-# 预期返回: 200
-
-# 4. 验证销售页关键内容
-grep -q "¥29" site/index.html && echo "✅ 定价信息存在"
-grep -q "AI Opportunity Radar" site/index.html && echo "✅ 品牌名称存在"
-grep -q "立即订阅" site/index.html && echo "✅ 订阅入口存在"
-```
-
----
-
-## 联系人
-
-如果部署过程中遇到问题，请联系: contact@ai-opportunity-radar.com
+**Dev Team · deploy角色 维护**  
+**最后更新: 2026-06-15**

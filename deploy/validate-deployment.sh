@@ -2,8 +2,8 @@
 #
 # deploy/validate-deployment.sh
 # 用途: 一键验证 knowledge-subscription 部署状态
-# 任务ID: 0e135fef
-# 更新日期: 2026-06-01
+# 任务ID: d718d905
+# 更新日期: 2026-06-15
 # 负责人: dev-deploy (deployer)
 #
 # 运行方式:
@@ -16,7 +16,7 @@ set -euo pipefail
 PROJECT_DIR="/home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription"
 SITE_URL="https://aunomira-lab.github.io/knowledge-subscription/"
 REPORT_FILE="$PROJECT_DIR/reports/deployment_verification.md"
-RESULT_JSON="$PROJECT_DIR/runs/0e135fef_result.json"
+RESULT_JSON="$PROJECT_DIR/runs/d718d905_result.json"
 
 PASS=0
 FAIL=0
@@ -36,7 +36,7 @@ log_fail() {
 
 echo "========================================"
 echo "  knowledge-subscription 部署验证套件"
-echo "  任务ID: 0e135fef"
+echo "  任务ID: d718d905"
 echo "  时间: $(date '+%Y-%m-%d %H:%M:%S')"
 echo "========================================"
 echo ""

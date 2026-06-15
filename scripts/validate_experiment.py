@@ -17,8 +17,8 @@ def validate_tracker(filepath='metrics/experiment_tracker.csv'):
         'days_with_content': 0,
         'total_revenue': 0,
         'total_paid_users': 0,
-        'total_visits': 0,
-        'total_signups': 0
+        'total_free_subs': 0,
+        'total_complaints': 0
     }
     
     try:
@@ -28,10 +28,9 @@ def validate_tracker(filepath='metrics/experiment_tracker.csv'):
             prev_date = None
             
             required_columns = [
-                'date', 'content_published', 'content_title', 'impressions', 'visits',
-                'signups', 'activations', 'paid_users', 'daily_revenue', 
-                'cumulative_revenue', 'open_rate', 'ctr_avg', 'new_followers',
-                'shares', 'feedback_count', 'complaints', 'experiment_phase', 'notes'
+                'day', 'date', 'status', 'revenue_cny', 'paid_users', 'free_subs_net',
+                'cumulative_revenue', 'revenue_cumulative_usd', 'mrr_delta_cny',
+                'daily_revenue', 'complaints', 'conversion_rate', 'decision', 'notes'
             ]
             
             # 验证表头
@@ -55,8 +54,8 @@ def validate_tracker(filepath='metrics/experiment_tracker.csv'):
                     errors.append(f"行{row_num}: 日期格式错误 {row['date']}")
                 
                 # 验证数值字段
-                numeric_fields = ['visits', 'signups', 'activations', 'paid_users', 
-                                  'daily_revenue', 'cumulative_revenue', 'open_rate']
+                numeric_fields = ['revenue_cny', 'paid_users', 'free_subs_net', 
+                                  'cumulative_revenue', 'daily_revenue', 'complaints']
                 for field in numeric_fields:
                     try:
                         val = float(row[field])
@@ -85,11 +84,11 @@ def validate_tracker(filepath='metrics/experiment_tracker.csv'):
                     pass
                 
                 # 统计
-                if int(row.get('content_published', 0)) > 0:
+                if row.get('status', '') == 'active':
                     stats['days_with_content'] += 1
-                stats['total_paid_users'] += int(row.get('paid_users', 0))
-                stats['total_visits'] += int(row.get('visits', 0))
-                stats['total_signups'] += int(row.get('signups', 0))
+                stats['total_paid_users'] += int(row.get('paid_users', 0) or 0)
+                stats['total_free_subs'] = max(stats['total_free_subs'], int(row.get('free_subs_net', 0) or 0))
+                stats['total_complaints'] += int(row.get('complaints', 0) or 0)
     
     except FileNotFoundError:
         errors.append(f"文件不存在: {filepath}")
@@ -103,14 +102,14 @@ def validate_tracker(filepath='metrics/experiment_tracker.csv'):
     
     print("\n📊 统计概览:")
     print(f"  总天数: {stats['total_days']}")
-    print(f"  发布内容天数: {stats['days_with_content']}")
-    print(f"  总访问量: {stats['total_visits']}")
-    print(f"  总注册数: {stats['total_signups']}")
+    print(f"  活跃天数: {stats['days_with_content']}")
     print(f"  总付费用户: {stats['total_paid_users']}")
+    print(f"  总免费订阅: {stats['total_free_subs']}")
+    print(f"  总投诉: {stats['total_complaints']}")
     print(f"  总收入: ¥{stats['total_revenue']:.2f}")
     
-    if stats['total_visits'] > 0:
-        conversion_rate = (stats['total_paid_users'] / stats['total_visits']) * 100
+    if stats['total_free_subs'] > 0:
+        conversion_rate = (stats['total_paid_users'] / stats['total_free_subs']) * 100
         print(f"  整体转化率: {conversion_rate:.2f}%")
     
     if errors:
