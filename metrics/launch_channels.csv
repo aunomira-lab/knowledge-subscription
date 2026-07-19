@@ -1,18 +1,8 @@
-channel,platform,audience_estimate,traffic_cost,conversion_rate,expected_signups,expected_revenue,execution_effort,status,owner,notes
-知乎回答,知乎,10000,0,2%,200,5800,高,等待用户账号,content,回答「副业」「赚钱」相关问题，签名放链接
-小红书笔记,小红书,5000,0,1.5%,75,2175,高,等待用户账号,content,图文笔记+数据可视化视频
-微信公众号,微信,3000,0,3%,90,2610,中,等待用户账号,content,正式推文和导航目录信息
-微信朋友圈,微信,500,0,5%,25,725,低,待执衁,content,发精选机会摘录配定价
-独立开发者群,微信/电报,800,0,4%,32,928,低,待执衁,community,小报童社群、知识星球渗透
-跨境电商群,微信,600,0,3%,18,522,低,待执衁,community,行业快报引流深度报告
-副业交流群,微信,700,0,2.5%,17,507,低,待执衁,community,实操案例分享+转化引导
-知乎专栏,知乎,2000,0,2.5%,50,1450,中,等待用户账号,content,专栏文章+导航模块
-知乎圈子,知乎,500,0,3%,15,435,低,等待用户账号,community,小主题讨论类群管理
-Twitter/X发布,X,1500,0,1%,15,435,中,等待用户账号,content,线程式进展+机会摘录
-Reddit论坛,Reddit,1000,0,1.5%,15,435,中,待执衁,community,r/Newsletters、r/entrepreneur提供价值
-小红书广告,小红书,5000,200,2%,100,2900,中,待投放,ads,广告前置: 第2周起试水
-知乎内容投放,知乎,3000,150,1.5%,45,1305,中,待投放,ads,知+知乎投放
-微信广告资讯,微信,5000,300,2%,100,2900,中,待投放,ads,微信商户号广告
-KOL合作,多平台,3000,0,3%,90,2610,中,待执衁,partnership,小级KOL互换简报换推荐
-微信淘宝,微信淘宝,2000,100,1.5%,30,870,中,待投放,ads,第3周起试水低成本广告
-合计,全部,38700,750,2.2%,852,24667,高,持续执行中,team,自然流量为主，广告投放先完成前置条件后启动
+date,platform,account_or_url,content_angle,utm_source,target_audience,offer,planned_action,expected_impressions,expected_clicks,expected_leads,expected_paid,expected_revenue_cny,cac_cap_cny,status,next_step
+2026-07-19,GitHub Pages,https://aunomira-lab.github.io/knowledge-subscription/,sales_page,site,all,¥29/月早鸟+¥99/月专业版+¥499定制,部署销售页并检查按钮,100,30,5,1,29,0,ready,回填真实邮箱和付款链接
+2026-07-20,知乎,TBD,AI副业筛选方法,zhihu,独立开发者/AI服务商,评论领样例+¥29早鸟,发布长文和2个回答,3000,60,10,2,58,10,planned,发布后回填链接和曝光
+2026-07-21,小红书,TBD,AI机会卡图文,xiaohongshu,副业/自由职业者,私信AI商机领样例,发布3张卡片+1条案例,5000,100,20,3,87,12,planned,准备封面和评论钩子
+2026-07-22,即刻/微信群,TBD,7天AI收费挑战,jike_wechat,独立开发者社群,20个¥29早鸟名额,发挑战帖并收集邮箱,1500,80,30,5,145,8,planned,整理社群名单
+2026-07-23,X/Twitter,TBD,AI micro business opportunities,twitter,海外indie hackers,waitlist+Substack备选,发布build-in-public thread,3000,90,20,1,99,20,planned,验证英文需求
+2026-07-24,私信外呼,TBD,样例报告+低价试读,direct_dm,AI服务商/跨境运营,¥499定制报告,向30个目标用户发送私信,30,15,8,1,499,30,planned,记录回复异议
+2026-07-25,复盘,TBD,FAQ和用户反馈,all,已点击/已试读用户,¥99专业版升级,发布FAQ并跟进未付款线索,1000,50,15,3,297,15,planned,计算7天ROI决定加码

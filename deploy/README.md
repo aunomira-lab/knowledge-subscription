@@ -1,265 +1,91 @@
-# AI商机雷达 - 部署说明
+# AI商机雷达销售页部署说明
 
-> 任务ID: d718d905 | 项目ID: knowledge-subscription | 编制: dev-deploy (deployer) | 更新: 2026-06-15
+项目：knowledge-subscription
+部署平台：GitHub Pages（首选，静态页免费，可绑定域名）
+销售页入口：site/index.html
 
-## 当前部署状态
-
-**平台**: GitHub Pages (已上线)  
-**备选平台**: Cloudflare Pages / Vercel / 自建 VPS  
-**公开 URL**: https://aunomira-lab.github.io/knowledge-subscription/  
-**部署方式**: 静态页面，无后端，适合 GitHub Pages 免费托管，支持自定义域名。
-
----
-
-## 前置要求
-
-### 已完成的部分
-
-- [x] GitHub Pages 部署：已通过 GitHub Actions 自动部署
-- [x] 销售页上线：site/index.html 已上线
-- [x] 部署脚本：deploy.sh 可执行
-- [x] 每日运营脚本：cron-daily.sh 可执行
-- [x] 隐私政策和服务条款页面
-
-### 待用户授权的账号
-
-| 平台 | 用途 | 链接 | 状态 |
-|------|------|------|------|
-| Cloudflare | 备选部署静态站点 | https://dash.cloudflare.com | 待注册（免费） |
-| 自定义域名 | 品牌化访问地址 | Namecheap/Cloudflare/Alibaba | 待购买 |
-| 微信商户号 | 收款 | https://pay.weixin.qq.com | 待实名认证（个人/企业） |
-| 支付宝开放平台 | 收款 | https://open.alipay.com | 待实名认证 |
-| 小报童 | 微信内订阅 | https://xiaobot.net | 待注册（免费开店） |
-| 爱发电 | 技术区订阅 | https://afdian.net | 待注册（免费开店） |
-| 知识星球 | 社群付费 | https://zsxq.com | 待注册（免费创建，收入分成） |
-
----
-
-## 快速部署步骤
-
-### 方案 A: GitHub Pages (当前已上线)
-
-当前已通过 GitHub Actions 自动部署到以下地址：
-
-```
-https://aunomira-lab.github.io/knowledge-subscription/
-```
-
-每次推送到 main 分支时自动更新。
-
-### 方案 B: Cloudflare Pages (备选)
-
-1. 注册 Cloudflare 账号 (https://dash.cloudflare.com/sign-up)
-2. 安装 Wrangler CLI:
-   ```bash
-   npm install -g wrangler
-   wrangler login
-   ```
-3. 进入项目目录:
-   ```bash
-   cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
-   ```
-4. 执行部署脚本:
-   ```bash
-   ./deploy/deploy.sh
-   ```
-5. 返回公开 URL 示例:
-   ```
-   https://ai-radar-sales.pages.dev
-   ```
-
-### 方案 C: 自建 (VPS + Nginx)
-
-1. 购买 VPS（推荐 Vultr $5/月或 Cloudflare Tunnel 免费）
-2. 安装 Nginx:
-   ```bash
-   sudo apt update && sudo apt install nginx
-   ```
-3. 复制静态文件到 /var/www/ai-radar
-4. 配置 Nginx server block
-5. 获取公开 URL
-
----
-
-## 可执行自动化脚本
-
-### 部署脚本: deploy/deploy.sh
+## 1. 本地预览
 
 ```bash
-#!/bin/bash
-# deploy.sh - 一键部署 AI商机雷达销售页到 Cloudflare Pages
-# 创建: deploy (dev-deploy) · 2026-06-15
-
-set -euo pipefail
-
-PROJECT_DIR="/home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription"
-SITE_DIR="$PROJECT_DIR/site"
-PROJECT_NAME="ai-radar-sales"
-LOG_FILE="/tmp/ai-radar-deploy.log"
-
-log() {
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
-}
-
-error_exit() {
-    log "[ERROR] $1"
-    exit 1
-}
-
-log "[部署开始] AI商机雷达销售页部署..."
-
-# 检查必需文件
-if [ ! -f "$SITE_DIR/index.html" ]; then
-    error_exit "缺少 site/index.html，请先完成销售页内容"
-fi
-
-log "[检查] 必需文件通过: site/index.html 存在"
-
-# 检查 Wrangler CLI
-if ! command -v wrangler &> /dev/null; then
-    error_exit "未安装 wrangler CLI。\n请先运行: npm install -g wrangler\n或: npx wrangler@latest"
-fi
-
-log "[检查] wrangler CLI 已安装"
-
-# 检查 Cloudflare 登录
-if ! wrangler whoami &> /dev/null; then
-    error_exit "未登录 Cloudflare。请先运行: wrangler login\n请求用户授权: Cloudflare 账号"
-fi
-
-log "[检查] Cloudflare 登录验证通过"
-
-# 检查项目是否已创建
-if ! wrangler pages project list 2>/dev/null | grep -q "$PROJECT_NAME"; then
-    log "[构建] 项目 $PROJECT_NAME 不存在，创建中..."
-    wrangler pages project create "$PROJECT_NAME" || true
-else
-    log "[构建] 项目 $PROJECT_NAME 已存在"
-fi
-
-# 执行部署
-log "[构建] 正在部署到 Cloudflare Pages..."
-DEPLOY_OUTPUT=$(wrangler pages deploy "$SITE_DIR" --project-name="$PROJECT_NAME" --branch=main 2>&1)
-
-log "[构建] 部署输出:\n$DEPLOY_OUTPUT"
-
-# 提取公开 URL
-PUBLIC_URL=$(echo "$DEPLOY_OUTPUT" | grep -oP 'https://[a-zA-Z0-9._-]+\.pages\.dev' | head -1)
-
-if [ -n "$PUBLIC_URL" ]; then
-    log "[完成] 公开 URL: $PUBLIC_URL"
-    echo ""
-    echo "══════════════════════════════════════"
-    echo "  部署成功！"
-    echo "  公开访问地址: $PUBLIC_URL"
-    echo "  管理后台: https://dash.cloudflare.com"
-    echo "  请将上述 URL 回填到 README 和 runs/结果文件"
-    echo "══════════════════════════════════════"
-    echo ""
-    echo "$PUBLIC_URL" > "$PROJECT_DIR/reports/public_url.txt"
-    log "[完成] 公开 URL 已保存到 $PROJECT_DIR/reports/public_url.txt"
-else
-    log "[WARNING] 未能自动提取公开 URL，请从上述输出中手动查找"
-    echo ""
-    echo "══════════════════════════════════════"
-    echo "  部署完成，但未能自动提取 URL"
-    echo "  请查看上方输出并手动记录公开 URL"
-    echo "══════════════════════════════════════"
-    echo ""
-fi
-
-log "[完成] 部署脚本执行完毕"
+cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
+python3 -m http.server 8080 --directory site
+# 浏览器打开 http://127.0.0.1:8080/
 ```
 
-### 部署验证脚本: deploy/validate-deployment.sh
+## 2. GitHub Pages 部署路径
 
-已存在，运行方式:
-```bash
-./deploy/validate-deployment.sh
-```
+推荐公开URL：
 
-### 定时自动部署 (cron)
+- 当前可验证URL：`https://aunomira-lab.github.io/knowledge-subscription/`
+- 如果迁移仓库：`https://<github_user>.github.io/knowledge-subscription/`
 
-添加到 crontab:
-```bash
-# 每日凌晨 3:00 自动部署更新
-0 3 * * * cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription && bash deploy/deploy.sh >> /tmp/ai-radar-deploy.log 2>&1
-```
+步骤：
 
----
+1. 用户授权/确认 GitHub 仓库权限：需要能 push 到 `aunomira-lab/knowledge-subscription` 或新建同名公开仓库。
+2. 将 `site/index.html` 提交到仓库根目录或配置 Pages 指向 `/site`。
+3. 仓库 Settings → Pages：
+   - Source: Deploy from a branch
+   - Branch: `main`
+   - Folder: `/site`（如果GitHub界面不支持 `/site`，则把 site/index.html 同步到 `docs/index.html` 并选 `/docs`）
+4. 等待 Pages 构建完成，打开公开URL。
+5. 将公开URL回填到：
+   - `reports/deployment_verification.md`
+   - `docs/launch_execution_plan.md`
+   - 宣传渠道所有 UTM 链接
 
-## 收款入口替换步骤
+## 3. 可执行部署脚本
 
-在 `site/index.html` 中定位以下待替换字段:
-
-| 占位项 | 替换为 | 位置 |
-|---------|--------|------|
-| `subscribe@ai-radar-dev.com` | 真实邮箱 | 联系入口区块 |
-| `https://t.me/ai_radar_bot` | 真实 Telegram Bot 链接 | 联系入口区块 |
-| `AI-Radar-2026` | 真实微信号 | 联系入口区块 |
-| 微信支付/支付宝按钮行为 | 小报童订阅链接 / 爱发电链接 / 微信活码链接 | 定价区块 |
-
-### 推荐收款流程
-
-1. 微信区: 使用小报童 (xiaobot.net) 收费推送，微信支付流水直接到个人银行卡。
-2. 程序员区: 使用小报童或爱发电 (afdian.net) 收费。
-3. 国际区: 使用 Substack 或 Gumroad 收费。
-
----
-
-## 宣传平台链接替换
-
-在 `site/index.html` 中搜索并替换以下占位:
-
-| 平台 | 占位文字 | 替换为 |
-|------|----------|--------|
-| 微信公众号 | `onclick="alert('微信公众号尚未创建...')"` | `href="https://mp.weixin.qq.com/s/xxx"` |
-| 小红书 | `onclick="alert('小红书账号尚未创建...')"` | `href="https://www.xiaohongshu.com/user/xxx"` |
-| 即刻 | `onclick="alert('即刻圈子尚未创建...')"` | `href="https://jike.cn/xxx"` |
-| Twitter/X | `onclick="alert('Twitter/X 账号尚未创建...')"` | `href="https://x.com/AI_Radar_2026"` |
-| B站 | `onclick="alert('B站账号尚未创建...')"` | `href="https://space.bilibili.com/xxx"` |
-| Newsletter | `onclick="alert('Newsletter 尚未配置...')"` | `href="https://ai-radar.substack.com"` |
-
----
-
-## 验证清单
-
-部署后运行以下检查:
+本目录包含 `deploy_github_pages.sh`，用于检查文件并在有 git remote 权限时提交。
 
 ```bash
-# 1. 检查页面是否可正确打开
-curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/
-
-# 2. 检查关键资源是否可访问
-curl -s -o /dev/null -w "%{http_code}" https://aunomira-lab.github.io/knowledge-subscription/terms.html
-
-# 3. 检查响应头和证书
-curl -I https://aunomira-lab.github.io/knowledge-subscription/
-
-# 4. 查看页面编码中是否含有关键字
-curl -s https://aunomira-lab.github.io/knowledge-subscription/ | grep -E "AI商机雷达|¥29/月|GitHub Pages"
-
-# 5. 本地开发预览
-python3 -m http.server 8080 --directory site/
+cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
+bash deploy/deploy_github_pages.sh
 ```
 
----
+脚本会执行：
 
-## 常见问题
+- 检查 `site/index.html` 是否存在
+- 检查页面是否包含订阅/联系入口、价格、合规提示
+- 检查 git remote
+- 如果存在 remote：提交变更并提示手动 push
+- 如果没有 remote 或没有凭据：退出并提示授权清单
 
-| 问题 | 原因 | 解决 |
-|------|------|------|
-| 部署后 404 | 项目名或路径错误 | 检查 `wrangler pages deploy 目录` |
-| 域名未生效 | DNS 未配置 | 在 Cloudflare DNS 添加 CNAME |
-| 收款码不显示 | 代码未更新 | 替换小报童/爱发电链接后重新部署 |
+## 4. 收款/联系入口配置
 
----
+当前页面使用可立即落地的低门槛入口：
 
-## 联系信息
+- 联系邮箱：`contact@ai-radar.dev`（占位，需用户替换为真实邮箱或表单）
+- 轻量版：¥29/月
+- 专业版：¥99/月
+- 定制报告：¥499/次
 
-- 部署问题反馈: 通过当前项目的 docs/deployment_blockers.md 记录
-- 任务ID: d718d905
-- 项目ID: knowledge-subscription
-- 维护角色: dev-deploy
-- 公开URL: https://aunomira-lab.github.io/knowledge-subscription/
-- 更新日期: 2026-06-15
+正式收款链接优先级：
+
+1. 小报童/知识星球：中文知识付费最短路径，需要用户实名认证和平台账号。
+2. 微信/支付宝收款码：最快成交，但需要人工确认订单。
+3. Stripe Payment Link / Lemon Squeezy：适合英文 Substack/海外用户，需要主体信息和收款账户。
+4. Gumroad：可作为海外备选，需要账号和税务信息。
+
+替换位置：`site/index.html` 中所有 `mailto:contact@ai-radar.dev?...` 链接。
+
+## 5. 广告投放前置条件
+
+未满足以下条件前不建议投放付费广告：
+
+- 公开URL 200可访问，并完成移动端检查。
+- 至少发布1份免费样例和3条真实案例内容。
+- 收款链路可用：用户能在3步内完成付款或留下联系方式。
+- 已配置追踪表：`metrics/launch_channels.csv` 每日更新曝光、点击、线索、付款。
+- 已有至少10个自然流量线索或3个付费用户，证明文案不是零转化。
+- 明确退款/交付规则，避免知识付费投诉风险。
+
+## 6. 用户账号授权清单
+
+真实上线/收款仍需用户提供：
+
+- GitHub 仓库 push 权限或 Cloudflare/Vercel 项目授权。
+- 可公开使用的联系邮箱、微信号或表单链接。
+- 微信/支付宝收款码，或小报童/知识星球/Stripe/Lemon Squeezy 链接。
+- 如需自定义域名：DNS 管理权限。
+
+阻塞已记录到 `docs/deployment_blockers.md`，不能把“缺少账号授权”伪装成已完成上线。
