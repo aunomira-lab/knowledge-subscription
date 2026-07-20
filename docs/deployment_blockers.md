@@ -1,29 +1,35 @@
-# 部署阻塞与用户授权清单
+# Deployment blockers
 
-状态：BLOCKED_BY_USER（仅阻塞“真实发布新版本/真实收款”，不阻塞本地销售页与部署文件产出）
+Status: BLOCKED_BY_USER
+Task: 24f44a36
 
-## 已完成
+## 当前状态
 
-- 已创建可上线销售页：`site/index.html`
-- 已选择部署平台：GitHub Pages
-- 已创建部署说明和部署脚本：`deploy/README.md`, `deploy/deploy_github_pages.sh`
-- 已创建7天获客计划和渠道追踪表：`docs/launch_execution_plan.md`, `metrics/launch_channels.csv`
-- 已验证历史公开URL可访问：`https://aunomira-lab.github.io/knowledge-subscription/` 返回 HTTP 200
+本地销售页、部署脚本、7天获客计划和渠道 CSV 已准备好。当前已知公开 URL 为：
 
-## 仍需用户提供/授权
+https://aunomira-lab.github.io/knowledge-subscription/
 
-1. GitHub push 权限：允许将本次 `site/index.html` 变更推送到 Pages 仓库。
-2. 真实联系入口：可公开展示的邮箱、微信号、飞书表单、Notion表单或Tally表单。
-3. 真实收款入口：微信/支付宝收款码、小报童/知识星球链接、Stripe Payment Link 或 Lemon Squeezy 链接。
-4. 如需绑定域名：域名和 DNS 管理权限。
-5. 如需投放广告：广告账户、预算上限、素材审核权限。
+但是本次运行环境无法代表用户完成平台账号授权、收款实名认证或社交平台发帖授权；因此真实生产更新若需要 push/平台发布，必须由用户授权后执行，不得把未授权上线写成完成。
 
-## 回填位置
+## 需要用户授权清单
 
-- 销售页按钮：`site/index.html` 中的 `mailto:contact@ai-radar.dev`。
-- 公开URL：`deploy/README.md`、`docs/launch_execution_plan.md`、`reports/deployment_verification.md`、`metrics/launch_channels.csv`。
-- 渠道发布链接：`metrics/launch_channels.csv` 的 `account_or_url` 字段。
+1. GitHub Pages 或 Cloudflare Pages 发布权限：
+   - GitHub：授权本机 SSH key 或执行 `gh auth login`；确认 Pages source。
+   - Cloudflare：授权账号并创建 Pages 项目，output directory=`site`。
+2. 收款入口：提供小报童、知识星球、微信/支付宝收款码、Stripe Payment Link、LemonSqueezy 或 Ko-fi 链接。
+3. 客服入口：确认 `contact@ai-radar.dev` 是否可收信；若不可用，提供真实邮箱/微信。
+4. 社交发布授权：知乎、小红书、即刻/微信群至少 3 个账号的发布或人工代发。
+5. 广告投放前置：完成实名认证、隐私政策、退款规则，并先拿到 20 个自然线索和 ≥5% 试读付费转化。
 
-## 不可伪装完成的事项
+## 授权后执行
 
-在没有上述授权前，不得声称已完成“新版本真实上线”或“真实收款接入”。当前交付为上线就绪版本，等待账号/收款授权后可执行发布。
+```bash
+cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
+bash deploy/deploy_github_pages.sh
+bash deploy/verify_public_url.sh
+```
+
+## 公开 URL 候选回填
+- Cloudflare Pages 候选：https://ai-money-radar.pages.dev/knowledge-subscription/
+- GitHub Pages 历史候选：https://aunomira-lab.github.io/knowledge-subscription/
+真实投放前必须用用户授权账号验证 200 状态并回填最终公开 URL。

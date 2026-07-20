@@ -1,8 +1,6 @@
-date,platform,account_or_url,content_angle,utm_source,target_audience,offer,planned_action,expected_impressions,expected_clicks,expected_leads,expected_paid,expected_revenue_cny,cac_cap_cny,status,next_step
-2026-07-19,GitHub Pages,https://aunomira-lab.github.io/knowledge-subscription/,sales_page,site,all,¥29/月早鸟+¥99/月专业版+¥499定制,部署销售页并检查按钮,100,30,5,1,29,0,ready,回填真实邮箱和付款链接
-2026-07-20,知乎,TBD,AI副业筛选方法,zhihu,独立开发者/AI服务商,评论领样例+¥29早鸟,发布长文和2个回答,3000,60,10,2,58,10,planned,发布后回填链接和曝光
-2026-07-21,小红书,TBD,AI机会卡图文,xiaohongshu,副业/自由职业者,私信AI商机领样例,发布3张卡片+1条案例,5000,100,20,3,87,12,planned,准备封面和评论钩子
-2026-07-22,即刻/微信群,TBD,7天AI收费挑战,jike_wechat,独立开发者社群,20个¥29早鸟名额,发挑战帖并收集邮箱,1500,80,30,5,145,8,planned,整理社群名单
-2026-07-23,X/Twitter,TBD,AI micro business opportunities,twitter,海外indie hackers,waitlist+Substack备选,发布build-in-public thread,3000,90,20,1,99,20,planned,验证英文需求
-2026-07-24,私信外呼,TBD,样例报告+低价试读,direct_dm,AI服务商/跨境运营,¥499定制报告,向30个目标用户发送私信,30,15,8,1,499,30,planned,记录回复异议
-2026-07-25,复盘,TBD,FAQ和用户反馈,all,已点击/已试读用户,¥99专业版升级,发布FAQ并跟进未付款线索,1000,50,15,3,297,15,planned,计算7天ROI决定加码
+platform,account_needed,content_type,launch_day,url_or_post_placeholder,utm_source,utm_medium,utm_campaign,daily_lead_target,paid_conversion_target,budget_before_validation,ad_prerequisite,risk,owner,status,next_action
+知乎,需要用户账号授权,回答/专栏文章,Day1,TODO_PUBLIC_POST_URL,zhihu,organic,ks_launch_24f44a36,15,2,0,自然流量20线索且试读到付费>=5%，公开URL 200，收款入口可用,内容被折叠/营销限流,dev-deploy,ready_copy_needed,发布AI副业选题回答并置顶免费试读入口
+小红书,需要用户账号授权,图文卡片/评论引导,Day1,TODO_PUBLIC_POST_URL,xiaohongshu,organic,ks_launch_24f44a36,20,2,0,自然流量20线索且试读到付费>=5%，完成客服与退款边界,引流限流/私信限制,dev-deploy,ready_copy_needed,发布3个机会拆解卡片并引导评论“雷达”
+即刻/微信群,需要用户账号授权,长帖/社群分享,Day2,TODO_PUBLIC_POST_URL,jike_wechat,community,ks_launch_24f44a36,10,1,0,先有试读包和人工收款码；社群允许分享,社群广告违规/踢群,dev-deploy,ready_copy_needed,以build-in-public方式发布试读招募
+X/Twitter,可选账号授权,Thread/DM,Day3,TODO_PUBLIC_POST_URL,x,organic,ks_launch_24f44a36,5,0,0,双语介绍完成，海外支付或邮箱交付路径清楚,低中文转化/互动弱,dev-deploy,backup,发布双语thread收集海外newsletter反馈
+Indie Hackers,可选账号授权,Build-in-public帖子,Day4,TODO_PUBLIC_POST_URL,indiehackers,community,ks_launch_24f44a36,3,0,0,有英文一句话定位和免费样例，不直接硬广,被视为纯广告,dev-deploy,backup,发布项目进展并请求反馈
