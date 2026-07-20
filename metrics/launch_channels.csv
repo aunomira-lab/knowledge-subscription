@@ -1,6 +1,8 @@
-platform,account_needed,landing_url,utm_source,content_angle,day_1_action,day_3_action,day_7_goal,lead_target,paid_target,ad_preconditions,risk_control
-知乎,需要用户或团队内容账号,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=zhihu&utm_medium=answer&utm_campaign=week1,zhihu,AI副业/自动化问答长答案,"回答3个AI副业/自动化问题，结尾引导免费样例","累计10条回答，私信回复样例和¥29早鸟",20线索,3付款,"公开URL 200;真实收款链接;内容不夸大收益;评论区不刷屏",避免硬广和收益承诺
-小红书,需要用户或团队内容账号,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=xiaohongshu&utm_medium=note&utm_campaign=week1,xiaohongshu,卡片笔记:普通人可卖AI服务报价单,"发布1篇图文：3个AI服务报价和免费样例CTA","发布¥499定制报告案例模板",15线索,2付款,"客服入口可响应;退款边界可见;至少3篇免费内容",避免违规引流词和虚假收入截图
-即刻/V2EX,需要社区账号,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=jike_v2ex&utm_medium=community&utm_campaign=week1,jike_v2ex,独立开发/工具链透明复盘,"发一条构建AI机会雷达的复盘帖","补充首批订阅反馈和样例目录",10线索,1付款,"帖子以复盘价值为主;不直接刷广告",遵守社区版规
-微信群/朋友圈,需要用户私域入口,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=wechat_private&utm_medium=private&utm_campaign=week1,wechat_private,早鸟20席人工预售,"朋友圈发布免费节选和¥29早鸟","社群内收集5个行业方向做定制诊断",5线索,2付款,"真实收款码;交付SLA;人工客服",只发相关群不骚扰
-ProductHunt/IndieHackers,后续英文账号,https://aunomira-lab.github.io/knowledge-subscription/?utm_source=indiehackers&utm_medium=post&utm_campaign=week2,indiehackers,英文版机会雷达/Newsletter build in public,"暂不投放，等待中文转化>3%","翻译最佳样例准备英文发布",0,0,"中文自然流量转化>3%;英文样例完成",避免未验证前分散精力
+date,day,platform,asset,action,url_or_location,target_exposures,target_leads,target_paid,target_revenue_cny,owner,status,notes
+2026-07-20,D1,知乎,AI机会免费样例回答,发布2个问题回答,待回填知乎链接,200,5,0,0,dev-deploy,ready,CTA=回复雷达领取试读
+2026-07-21,D2,小红书,机会卡笔记x2,发布本地商家AI脚本包与简历优化自动化,待回填小红书链接,300,5,1,29,dev-deploy,ready,首图突出今天可验证
+2026-07-22,D3,微信社群/朋友圈,免费样例+早鸟邀约,10个精准群/朋友圈发布,待回填群/朋友圈记录,250,10,2,58,dev-deploy,ready,不刷屏先给价值
+2026-07-23,D4,即刻/V2EX,公开构建复盘,发AI机会筛选流程贴,待回填帖子链接,150,3,0,0,dev-deploy,ready,招募种子用户
+2026-07-24,D5,掘金/公众号,长文拆解,发布一条机会从发现到报价,待回填文章链接,300,5,1,99,dev-deploy,ready,导流Pro等待名单
+2026-07-25,D6,私聊跟进,专业版目录+报价,跟进所有互动线索,CRM/表格待回填,0,20,3,297,dev-deploy,ready,主推Pro ¥99/月
+2026-07-26,D7,复盘帖,7天实验复盘+早鸟截止,全平台二次发布,待回填复盘链接,400,7,2,558,dev-deploy,ready,引导定制¥499/次

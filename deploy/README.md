@@ -1,94 +1,75 @@
-# 24f44a36 部署说明：知识付费订阅销售页
+# 知识付费订阅销售页部署说明（task 24f44a36）
 
-## 部署目标
+## 部署平台
+首选：GitHub Pages
 
-项目：knowledge-subscription / AI赚钱机会雷达
-平台主选：GitHub Pages（当前已有公开URL）
-备用平台：Cloudflare Pages（需要用户授权 Token）
-公开URL回填位置：
-- site/index.html 的 og:url 和页脚
-- metrics/launch_channels.csv 的 landing_url
-- reports/deployment_verification.md 的验证结果
+公开 URL 回填位置：
+- `site/index.html` 中的 `og:url` 和 footer
+- `reports/deployment_verification.md` 中的验证结果
+- 获客帖子中的落地页链接
 
-当前已验证公开URL：
-https://aunomira-lab.github.io/knowledge-subscription/
+当前建议公开 URL：`https://aunomira-lab.github.io/knowledge-subscription/`
 
-## 本次落地文件
+备用：Cloudflare Pages。当前 `wrangler whoami` 显示未登录，因此 Cloudflare 真实上线需要用户授权，清单见 `docs/deployment_blockers.md`。
 
-- site/index.html：可上线销售页，含订阅入口、价格、样例、7天获客计划、合规边界。
-- deploy/prepare_static_site.sh：打包静态站到 dist/，同步 reports/sample_pack/free_preview.md 供销售页引用。
-- deploy/deploy_github_pages.sh：GitHub Pages 部署脚本，默认只部署当前仓库根目录对应页面；不会自动提交未指定文件。
-- deploy/deploy_cloudflare_pages.sh：Cloudflare Pages 部署脚本，要求先设置 CLOUDFLARE_ACCOUNT_ID 和 CLOUDFLARE_API_TOKEN。
-- deploy/verify_deployment.sh：公开URL和本地文件冒烟验证脚本。
-- docs/launch_execution_plan.md：获客平台计划、7天执行、广告投放条件。
-- metrics/launch_channels.csv：至少3个平台的渠道计划、UTM和指标。
+## 可执行部署脚本
 
-## 运行/验证命令
-
+### 1. 本地预览
 ```bash
 cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
-bash deploy/prepare_static_site.sh
-bash -n deploy/prepare_static_site.sh deploy/deploy_github_pages.sh deploy/deploy_cloudflare_pages.sh deploy/verify_deployment.sh
-bash deploy/verify_deployment.sh https://aunomira-lab.github.io/knowledge-subscription/
-python3 -m html.parser site/index.html >/dev/null
-python3 - <<'PY'
-import csv
-rows=list(csv.DictReader(open('metrics/launch_channels.csv', encoding='utf-8')))
-assert len(rows) >= 3
-assert all(r['platform'] and r['landing_url'] for r in rows)
-print('launch_channels rows', len(rows))
-PY
+bash deploy/local_preview_24f44a36.sh
+# 打开 http://127.0.0.1:8788/site/
 ```
 
-## GitHub Pages 部署步骤（当前可用路径）
+### 2. GitHub Pages 部署
+```bash
+cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
+bash deploy/deploy_github_pages_24f44a36.sh
+```
+脚本动作：
+1. 验证 `site/index.html`、`docs/launch_execution_plan.md`、`metrics/launch_channels.csv` 存在。
+2. 静态检查 HTML 必备文案、价格、订阅入口、合规声明。
+3. 提交本轮部署相关文件到 git（只 add 本任务文件）。
+4. push 到 `origin main`。
+5. 调用 `deploy/verify_public_url_24f44a36.sh` 检查公开URL。
 
-1. 确认 GitHub SSH 权限可用：`ssh -T git@github.com`。
-2. 仅提交本任务文件，避免污染团队已有改动：
-   ```bash
-   git add site/index.html deploy/README.md deploy/prepare_static_site.sh deploy/deploy_github_pages.sh deploy/deploy_cloudflare_pages.sh deploy/verify_deployment.sh docs/launch_execution_plan.md docs/deployment_blockers.md metrics/launch_channels.csv reports/deployment_verification.md
-   git commit -m "deploy: launch subscription landing page task 24f44a36"
-   git push origin main
-   ```
-3. GitHub Pages 设置：仓库 Settings → Pages → Source 选择 `Deploy from a branch`，Branch 选择 `main` 和 `/root`（或现有 Pages 配置）。
-4. 等待 1-3 分钟后运行：
-   `bash deploy/verify_deployment.sh https://aunomira-lab.github.io/knowledge-subscription/`
-5. 若公开页未更新，检查 GitHub Actions/Pages build 日志。
+### 3. Cloudflare Pages 备用部署
+```bash
+wrangler login
+bash deploy/deploy_static_site_24f44a36.sh
+```
+需要用户提供/授权 Cloudflare 账号，并确认项目名、域名、环境变量。未授权前只能生成脚本和本地预览，不能宣称 Cloudflare 已上线。
 
-## Cloudflare Pages 部署步骤（备用，更适合后续自定义域名）
-
-用户/账号授权前置：
-1. 提供 Cloudflare 账户，创建 API Token，权限至少包含 Account:Cloudflare Pages:Edit。
-2. 在本地/CI 设置：
-   ```bash
-   export CLOUDFLARE_ACCOUNT_ID="<account_id>"
-   export CLOUDFLARE_API_TOKEN="<pages_edit_token>"
-   ```
-3. 执行：
-   ```bash
-   bash deploy/prepare_static_site.sh
-   bash deploy/deploy_cloudflare_pages.sh
-   ```
-4. 将输出中的 `https://<deployment>.pages.dev` 回填到 site/index.html、metrics/launch_channels.csv、reports/deployment_verification.md。
+## 用户账号授权步骤
+1. 提供真实客服邮箱或微信，替换 `contact@ai-radar.dev`。
+2. 提供收款入口：小报童/知识星球/微信收款码/Stripe/PayPal/支付宝当面付之一。
+3. 若用 GitHub Pages：确认 GitHub 仓库 Pages 已启用 `main` 分支或 Actions 部署。
+4. 若用 Cloudflare Pages：执行 `wrangler login`，授权后运行脚本。
+5. 提供隐私/退款政策文本；默认规则：未交付全退，已交付数字内容不承诺无条件退款。
 
 ## 收款/联系入口
+当前上线前可用兜底入口：
+- 订阅邮箱：`mailto:contact@ai-radar.dev`
+- 早鸟：¥29/月
+- Pro：¥99/月
+- 定制诊断：¥499/次
 
-当前可立即运行的低阻塞预售闭环：
-- 联系入口：mailto:contact@ai-radar.dev?subject=订阅AI赚钱机会雷达
-- 问卷占位：https://wj.qq.com/s2/AI-Radar-2026
-- 收款占位：PAYMENT_URL_TO_FILL_AFTER_USER_AUTH
+授权后需替换为真实链接：
+- `PAYMENT_URL_EARLY_BIRD`
+- `PAYMENT_URL_PRO`
+- `PAYMENT_URL_CUSTOM`
+- `LEAD_FORM_URL`
 
-自动收款需要用户提供微信/支付宝/小报童/知识星球/Stripe/Paddle 等账号授权。授权前不得在页面宣称“自动开通”，只能人工收款和交付。
+## 定时运营脚本
+```bash
+# 每天 09:00 运行线索/页面/渠道检查
+0 9 * * * /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/deploy/run_daily_launch_ops_24f44a36.sh >> /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/reports/daily_launch_ops.log 2>&1
+```
 
 ## 广告投放前置条件
-
-付费广告前必须同时满足：
-1. 公开URL返回 HTTP 200，页面含订阅CTA和退款边界。
-2. 真实收款链接可用，付款后可追踪订单号。
-3. 客服入口可响应，首响 SLA < 12h。
-4. 至少3篇免费样例内容上线。
-5. metrics/launch_channels.csv 能记录 UTM、访问、留资、付费。
-6. 页面包含“不承诺收益/非投资建议/数字内容退款边界”。
-
-## 今日赚钱动作
-
-先不等自动支付：把公开URL和 free_preview.md 发到知乎、小红书、即刻/V2EX、微信群，收集50个线索；私信高意向用户先卖 ¥29 早鸟和 ¥499 定制诊断。
+只有同时满足以下条件才允许投放广告：
+- 公开URL返回 200/301/302。
+- 真实收款链接可用，客服入口可回复。
+- `metrics/launch_channels.csv` 已连续7天记录曝光、线索、付费、CAC。
+- 自然流量累计至少 1000 曝光、50 线索、5 笔付费，或咨询转付费率 ≥10%。
+- 页面和素材无保证收益、保本、稳赚等违规承诺。
