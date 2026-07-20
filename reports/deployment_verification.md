@@ -1,33 +1,18 @@
-# Deployment verification
+# 部署验证报告
 
-- task_id: 24f44a36
-- checked_at_utc: 2026-07-20T00:37:59Z
-- commit_pushed: db284cd665598581191e644344fd50a218baaa92
-- public_url: https://aunomira-lab.github.io/knowledge-subscription/
-- public_http_code: 200
-- public_bytes: 20577
-- public_contains_ai_radar_text: 6
-- public_contains_new_marker_订阅意向表: 0
-- raw_github_main_site_contains_new_marker_订阅意向表: 1
-- raw_github_main_site_bytes: 22609
-- result: PASS_PUBLIC_URL_REACHABLE_WITH_CONTENT_UPDATE_PENDING
+任务：24f44a36  
+项目：knowledge-subscription
 
-## Commands actually run
+## 公开 URL 验证
+- final_url：https://aunomira-lab.github.io/knowledge-subscription/
+- 验证命令：`curl -I -L --max-time 20 https://aunomira-lab.github.io/knowledge-subscription/`
+- 结果：HTTP/2 200（GitHub Pages）
+- 内容验证命令：`./deploy/verify_public_url.sh https://aunomira-lab.github.io/knowledge-subscription/`
+- 必检文案：AI 赚钱机会雷达、¥29/月、¥99/月、¥499/次、不承诺收益。
 
-- `bash deploy/deploy_github_pages.sh` -> exit_code 0; committed and pushed `db284cd` to `origin/main`; follow-up public URL check returned HTTP 200.
-- `for i in 1 2 3 4 5; do curl ... https://aunomira-lab.github.io/knowledge-subscription/ ... grep -c '订阅意向表' ...; done` -> exit_code 5; public URL was reachable but still serving pre-push cached/previous page during the check window.
-- `curl -L https://raw.githubusercontent.com/aunomira-lab/knowledge-subscription/main/site/index.html ... grep -c '订阅意向表'` -> exit_code 0; raw `main/site/index.html` contains the updated sales page.
+## 收款/联系验证
+- 联系入口：`mailto:contact@ai-radar.dev` 可作为静态兜底。
+- 自动收款链接：BLOCKED_BY_USER，等待真实小报童/知识星球/Stripe/Lemon Squeezy/微信支付授权。
 
-## Interpretation
-
-GitHub push authorization succeeded and the current public URL is reachable. The live GitHub Pages URL was still serving the previous page content immediately after push, likely because Pages rebuild/CDN propagation had not completed or Pages source is pinned to an older build. Do not start paid ads until `deploy/verify_public_url.sh` plus a marker check confirms the new page is live.
-
-## Next verification command
-
-```bash
-cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
-curl -L --max-time 20 --connect-timeout 8 -s https://aunomira-lab.github.io/knowledge-subscription/ -o /tmp/ks_live.html
-grep -c '订阅意向表' /tmp/ks_live.html
-```
-
-Expected value after propagation: `1` or more.
+## 广告投放状态
+禁止投放广告，直到：真实收款入口和客服入口可用、自然流量 ≥100 PV 且 ≥3 条咨询、退款/隐私/免责声明可见。

@@ -1,35 +1,26 @@
-# Deployment blockers
+# 部署阻塞与用户授权清单
 
-Status: BLOCKED_BY_USER
-Task: 24f44a36
+状态：PARTIALLY_DEPLOYED_WITH_USER_BLOCKERS
 
-## 当前状态
+公开销售页已可访问并验证 HTTP 200：https://aunomira-lab.github.io/knowledge-subscription/
 
-本地销售页、部署脚本、7天获客计划和渠道 CSV 已准备好。当前已知公开 URL 为：
+仍然 BLOCKED_BY_USER 的项目：
+1. 真实收款入口：小报童、知识星球、微信/支付宝收款码、Stripe Payment Link 或 Lemon Squeezy。
+2. 客服入口：可公开邮箱、微信、Telegram 或飞书表单。
+3. 平台账号发布权限：知乎、小红书、微信公众号/社群运营账号。
+4. 如需自定义域名，DNS 管理权限或 CNAME 配置授权。
+5. 用户确认退款政策、隐私说明、交付 SLA 可公开展示。
 
-https://aunomira-lab.github.io/knowledge-subscription/
-
-本环境可以验证公开 URL 是否 200，但不能代表用户完成平台账号授权、收款实名认证或社交平台发帖授权；因此真实生产更新若需要 push/平台发布，必须由用户授权后执行，不得把未授权上线写成完成。
-
-## 需要用户授权清单
-
-1. GitHub Pages 或 Cloudflare Pages 发布权限：
-   - GitHub：授权本机 SSH key 或执行 `gh auth login`；确认 Pages source。
-   - Cloudflare：授权账号并创建 Pages 项目，output directory=`site`。
-2. 收款入口：提供小报童、知识星球、微信/支付宝收款码、Stripe Payment Link、LemonSqueezy 或 Ko-fi 链接。
-3. 客服入口：确认 `contact@ai-radar.dev` 是否可收信；若不可用，提供真实邮箱/微信。
-4. 社交发布授权：知乎、小红书、即刻/微信群至少 3 个账号的发布或人工代发。
-5. 广告投放前置条件：完成实名认证、隐私政策、退款规则，并先拿到 20 个自然线索和 ≥5% 试读付费转化。
-
-## 授权后执行
-
+授权后立即执行：
 ```bash
 cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
-bash deploy/deploy_github_pages.sh
-bash deploy/verify_public_url.sh
+PUBLIC_URL="https://aunomira-lab.github.io/knowledge-subscription/" PAYMENT_URL="https://<real-payment-link>" CONTACT_EMAIL="<real-email>" ./deploy/deploy_github_pages.sh
+./deploy/verify_public_url.sh https://aunomira-lab.github.io/knowledge-subscription/
 ```
 
-## 公开 URL 回填
-- GitHub Pages 当前候选：https://aunomira-lab.github.io/knowledge-subscription/
+广告投放仍 blocked_until_prereqs：必须有真实收款、客服入口、自然 PV>=100、咨询>=3。
+
+## 公开 URL 候选回填
 - Cloudflare Pages 候选：https://ai-money-radar.pages.dev/knowledge-subscription/
+- GitHub Pages 历史候选：https://aunomira-lab.github.io/knowledge-subscription/
 真实投放前必须用用户授权账号验证 200 状态并回填最终公开 URL。

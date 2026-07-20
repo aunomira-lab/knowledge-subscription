@@ -1,7 +1,8 @@
-platform,account_needed,content_type,launch_day,url_or_post_placeholder,utm_source,utm_medium,utm_campaign,daily_lead_target,paid_conversion_target,budget_before_validation,ad_prerequisite,risk,owner,status,next_action
-知乎,需要用户账号授权,回答/专栏文章,Day1,TODO_PUBLIC_POST_URL,zhihu,organic,ks_launch_24f44a36,15,2,0,"自然流量20线索且试读到付费>=5%；公开URL 200；收款入口可用",内容被折叠/营销限流,dev-deploy,ready_copy_needed,发布AI副业选题回答并置顶免费试读入口
-小红书,需要用户账号授权,图文卡片/评论引导,Day1,TODO_PUBLIC_POST_URL,xiaohongshu,organic,ks_launch_24f44a36,20,2,0,"自然流量20线索且试读到付费>=5%；完成客服与退款边界",引流限流/私信限制,dev-deploy,ready_copy_needed,发布3个机会拆解卡片并引导评论“雷达”
-即刻/微信群,需要用户账号授权,长帖/社群分享,Day2,TODO_PUBLIC_POST_URL,jike_wechat,community,ks_launch_24f44a36,10,1,0,"先有试读包和人工收款码；社群允许分享",社群广告违规/踢群,dev-deploy,ready_copy_needed,以build-in-public方式发布试读招募
-X/Twitter,可选账号授权,Thread/DM,Day3,TODO_PUBLIC_POST_URL,x,organic,ks_launch_24f44a36,5,0,0,"双语介绍完成；海外支付或邮箱交付路径清楚",低中文转化/互动弱,dev-deploy,backup,发布双语thread收集海外newsletter反馈
-Indie Hackers,可选账号授权,Build-in-public帖子,Day4,TODO_PUBLIC_POST_URL,indiehackers,community,ks_launch_24f44a36,3,0,0,"有英文一句话定位和免费样例；不直接硬广",被视为纯广告,dev-deploy,backup,发布项目进展并请求反馈
-微信公众号,需要用户账号授权,首发长文/菜单链接,Day5,TODO_PUBLIC_POST_URL,wechat_mp,owned,ks_launch_24f44a36,8,1,0,"客服和收款入口确认；文章合规不承诺收益",新号阅读低/诱导关注风险,dev-deploy,optional,把知乎长文改写为公众号沉淀页
+channel,platform,landing_url,utm_campaign,content_angle,next_action,day_1_action,day_3_action,day_7_goal,kpi_primary,kpi_secondary,budget_rmb,ad_prerequisite,status,owner_notes
+zhihu,知乎,https://aunomira-lab.github.io/knowledge-subscription/,ks_launch_24f44a36,AI副业/知识付费/自动化赚钱回答,发布首篇回答并引导私信AI雷达,发布1篇免费样例回答并评论CTA,补充案例截图并私信10个收藏用户,阅读>=300 私信>=5 付款>=1,私信数,收藏率,0,公开URL 200;真实收款入口;客服入口;退款边界;自然PV>=100,ready_after_payment_auth,主渠道承接高意图搜索
+xiaohongshu,小红书,https://aunomira-lab.github.io/knowledge-subscription/,ks_launch_24f44a36,别再收藏AI工具先卖¥49自动化模板,制作3图笔记并评论区收集试看,发布3图笔记痛点/样例/价格,复发n8n模板与定制报告案例,曝光>=1000 评论>=10 私信>=5,私信率,收藏率,0,公开URL 200;真实收款入口;客服入口;退款边界;自然PV>=100,ready_after_payment_auth,低客单早鸟引流
+wechat_groups,微信社群/朋友圈,https://aunomira-lab.github.io/knowledge-subscription/,ks_launch_24f44a36,首周7条AI机会预售,发免费机会卡并人工收款,发免费机会卡和早鸟名额,二次触达未付款线索,深聊>=10 付款>=2,深聊数,付款数,0,真实收款码;客服微信;退款边界;交付SLA,blocked_by_user_payment,最快人工成交渠道
+jike,即刻,https://aunomira-lab.github.io/knowledge-subscription/,ks_launch_24f44a36,独立开发者AI小生意复盘,发布n8n/MCP自动化机会拆解,发布n8n/MCP模板机会,征集3个行业定制案例,点击>=50 评论>=5,点击数,评论质量,0,公开URL 200;真实联系入口,ready_after_payment_auth,偏开发者适合专业版
+v2ex,V2EX,https://aunomira-lab.github.io/knowledge-subscription/,ks_launch_24f44a36,n8n自动化模板/Newsletter变现,发技术拆解帖避免硬广,发布技术拆解帖,回复评论并收集需求,点击>=80 咨询>=3,点击数,咨询数,0,公开URL 200;不夸大收益;不灌水,ready_after_payment_auth,注意社区规则
+wechat_official,微信公众号,https://aunomira-lab.github.io/knowledge-subscription/,ks_launch_24f44a36,7条AI赚钱机会周报,申请/授权公众号后发布首周汇总,发布首周汇总长文,菜单/自动回复接免费样例,阅读>=200 关注>=20,阅读完成率,关注数,0,公众号权限;公开URL;客服入口,blocked_by_user,适合沉淀私域
+paid_ads,小红书/知乎小额广告,https://aunomira-lab.github.io/knowledge-subscription/,ks_launch_24f44a36,表现最好的自然帖放大,禁止投放直到自然数据达标,禁止投放,自然跑满后复制胜出素材,CAC<=¥50 咨询>=10,CAC,付款转化,100,公开URL 200;真实收款;客服;退款;自然PV>=100;咨询>=3,blocked_until_prereqs,广告不是冷启动第一步

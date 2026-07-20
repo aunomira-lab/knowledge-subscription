@@ -1,38 +1,26 @@
 #!/usr/bin/env bash
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$ROOT"
-mkdir -p logs/daily metrics reports
-TODAY="$(date -u +%Y-%m-%d)"
-PUBLIC_URL="${PUBLIC_URL:-$(cat .deployed_url 2>/dev/null || echo https://aunomira-lab.github.io/knowledge-subscription/)}"
-HTTP_CODE="$(curl -L --max-time 20 --connect-timeout 8 -s -o /tmp/ks_daily_site.html -w '%{http_code}' "$PUBLIC_URL" || true)"
-LEADS_FILE="metrics/leads.csv"
-[ -f "$LEADS_FILE" ] || echo "date,channel,lead_name,contact,status,next_action" > "$LEADS_FILE"
-[ -f "metrics/payment_delivery_tracker.csv" ] || echo "date,customer,plan,amount,status,delivery_link,next_action" > metrics/payment_delivery_tracker.csv
-REPORT="logs/daily/${TODAY}_subscription_ops.md"
-cat > "$REPORT" <<EOF
-# Daily subscription ops - $TODAY
+DAY="$(date -u +%F)"
+OUT="$ROOT/reports/daily_launch_${DAY}.md"
+cat > "$OUT" <<EOF
+# AI 赚钱机会雷达每日获客动作 - $DAY
 
-## Site health
-- URL: $PUBLIC_URL
-- HTTP: $HTTP_CODE
+公开 URL：https://aunomira-lab.github.io/knowledge-subscription/
 
-## Today's money actions
-1. Publish one launch post from docs/launch_execution_plan.md on Zhihu, Xiaohongshu and Jike/WeChat.
-2. DM/comment 20 target prospects with the free preview offer.
-3. Record every reply in metrics/leads.csv.
-4. Send ¥29 early-bird payment/contact entry to warm leads within 24 hours.
-5. If paid, record in metrics/payment_delivery_tracker.csv and deliver sample pack.
+## 今日必须执行
+1. 检查 metrics/launch_channels.csv，选择 1 个主渠道和 1 个补充渠道。
+2. 发布或复发 1 条免费样例内容，CTA：回复“AI雷达”领取试看。
+3. 私信/触达 10 个潜在客户，记录咨询、深聊、付款。
+4. 若有付款，24 小时内交付首周内容包。
+5. 若自然 PV <100 或咨询 <3，不投广告。
 
-## Funnel targets
-- Visitors: 100/day
-- Trial leads: 8/day
-- Paid early-bird: 1/day
-- Revenue target: ¥29-499/day during validation week
-
-## Escalation
-- If checkout/contact link is broken: mark BLOCKED_BY_USER in docs/deployment_blockers.md.
-- If HTTP is not 200: rerun deploy/verify_public_url.sh and repair deployment.
+## 今日记录
+- 曝光：
+- 点击：
+- 咨询：
+- 付款：
+- 收入：
+- 阻塞：真实收款/客服入口若未授权，继续使用人工意向收集。
 EOF
-cat "$REPORT"
-[ "$HTTP_CODE" = "200" ] || exit 4
+echo "$OUT"
