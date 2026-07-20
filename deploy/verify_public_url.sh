@@ -27,7 +27,7 @@ cat > reports/deployment_verification.md <<EOF
 
 ## Important note
 
-This verifies the current public URL is reachable. If local files changed after the last successful push, rerun `bash deploy/deploy_github_pages.sh` after GitHub/Cloudflare authorization, then rerun this verifier.
+This verifies the current public URL is reachable. If local files changed after the last successful push, rerun: bash deploy/deploy_github_pages.sh after GitHub/Cloudflare authorization, then rerun this verifier.
 EOF
 echo "public_url=$PUBLIC_URL http_code=$HTTP_CODE bytes=$BYTES contains_ai_radar_text=$HAS_TITLE"
 [ "$HTTP_CODE" = "200" ] && [ "$HAS_TITLE" != "0" ]
