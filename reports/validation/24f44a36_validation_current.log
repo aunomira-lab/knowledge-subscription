@@ -1,0 +1,25 @@
+## gate
+# **GO (81/100)**
+|| verdict | `grep -c "GO" market-research/knowledge-subscription/verdict.md` | 1 | 0 |
+## prepare
+Prepared static site at /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/dist
+## bash-n
+## html
+html_ok
+## csv
+launch_channels rows 5 platforms 知乎,小红书,即刻/V2EX,微信群/朋友圈,ProductHunt/IndieHackers
+## local required needles
+found ¥29/月
+found ¥99/月
+found ¥499/次
+found contact@ai-radar.dev
+found 不承诺收益
+found 7天获客
+## public verify
+local contains: ¥29/月
+local contains: ¥99/月
+local contains: ¥499/次
+local contains: contact@ai-radar.dev
+local contains: 不承诺收益
+local contains: 7天获客
+public_url=https://aunomira-lab.github.io/knowledge-subscription/ http_code=200 bytes=22396

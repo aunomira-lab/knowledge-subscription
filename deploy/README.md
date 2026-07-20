@@ -1,81 +1,94 @@
-# AI 赚钱机会雷达：部署 README
+# 24f44a36 部署说明：知识付费订阅销售页
 
-任务：24f44a36  
-项目：knowledge-subscription  
-平台选择：GitHub Pages（主推，已验证公开 URL），备选 Cloudflare Pages / Vercel。  
-当前公开 URL：https://aunomira-lab.github.io/knowledge-subscription/
+## 部署目标
 
-## 已产出资产
-- `site/index.html`：可上线销售页，含价格、订阅入口、样例、FAQ、退款/隐私/风险边界。
-- `deploy/deploy_github_pages.sh`：生成可上传静态目录并回填 URL/支付/邮箱。
-- `deploy/verify_public_url.sh`：验证公开 URL HTTP 状态和关键页面文案。
-- `deploy/run_daily_subscription_ops.sh`：每日获客/运营记录脚本，可放入 crontab。
-- `docs/launch_execution_plan.md`：7 天获客执行计划。
-- `metrics/launch_channels.csv`：获客渠道、预算、UTM 和广告前置条件。
-- `reports/deployment_verification.md`：公开 URL 验证记录。
-- `docs/deployment_blockers.md`：用户授权阻塞清单。
+项目：knowledge-subscription / AI赚钱机会雷达
+平台主选：GitHub Pages（当前已有公开URL）
+备用平台：Cloudflare Pages（需要用户授权 Token）
+公开URL回填位置：
+- site/index.html 的 og:url 和页脚
+- metrics/launch_channels.csv 的 landing_url
+- reports/deployment_verification.md 的验证结果
 
-## 本地预览
+当前已验证公开URL：
+https://aunomira-lab.github.io/knowledge-subscription/
+
+## 本次落地文件
+
+- site/index.html：可上线销售页，含订阅入口、价格、样例、7天获客计划、合规边界。
+- deploy/prepare_static_site.sh：打包静态站到 dist/，同步 reports/sample_pack/free_preview.md 供销售页引用。
+- deploy/deploy_github_pages.sh：GitHub Pages 部署脚本，默认只部署当前仓库根目录对应页面；不会自动提交未指定文件。
+- deploy/deploy_cloudflare_pages.sh：Cloudflare Pages 部署脚本，要求先设置 CLOUDFLARE_ACCOUNT_ID 和 CLOUDFLARE_API_TOKEN。
+- deploy/verify_deployment.sh：公开URL和本地文件冒烟验证脚本。
+- docs/launch_execution_plan.md：获客平台计划、7天执行、广告投放条件。
+- metrics/launch_channels.csv：至少3个平台的渠道计划、UTM和指标。
+
+## 运行/验证命令
+
 ```bash
 cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
-python3 -m http.server 8080 --directory site
-# 打开 http://127.0.0.1:8080/
+bash deploy/prepare_static_site.sh
+bash -n deploy/prepare_static_site.sh deploy/deploy_github_pages.sh deploy/deploy_cloudflare_pages.sh deploy/verify_deployment.sh
+bash deploy/verify_deployment.sh https://aunomira-lab.github.io/knowledge-subscription/
+python3 -m html.parser site/index.html >/dev/null
+python3 - <<'PY'
+import csv
+rows=list(csv.DictReader(open('metrics/launch_channels.csv', encoding='utf-8')))
+assert len(rows) >= 3
+assert all(r['platform'] and r['landing_url'] for r in rows)
+print('launch_channels rows', len(rows))
+PY
 ```
 
-## GitHub Pages 部署
-已验证 URL：`https://aunomira-lab.github.io/knowledge-subscription/`。
+## GitHub Pages 部署步骤（当前可用路径）
 
-重新生成待上传目录：
-```bash
-cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
-PUBLIC_URL="https://aunomira-lab.github.io/knowledge-subscription/" PAYMENT_URL="https://<real-payment-link-after-user-auth>" CONTACT_EMAIL="<real-support-email>" ./deploy/deploy_github_pages.sh
-```
+1. 确认 GitHub SSH 权限可用：`ssh -T git@github.com`。
+2. 仅提交本任务文件，避免污染团队已有改动：
+   ```bash
+   git add site/index.html deploy/README.md deploy/prepare_static_site.sh deploy/deploy_github_pages.sh deploy/deploy_cloudflare_pages.sh deploy/verify_deployment.sh docs/launch_execution_plan.md docs/deployment_blockers.md metrics/launch_channels.csv reports/deployment_verification.md
+   git commit -m "deploy: launch subscription landing page task 24f44a36"
+   git push origin main
+   ```
+3. GitHub Pages 设置：仓库 Settings → Pages → Source 选择 `Deploy from a branch`，Branch 选择 `main` 和 `/root`（或现有 Pages 配置）。
+4. 等待 1-3 分钟后运行：
+   `bash deploy/verify_deployment.sh https://aunomira-lab.github.io/knowledge-subscription/`
+5. 若公开页未更新，检查 GitHub Actions/Pages build 日志。
 
-脚本会生成 `deploy/dist/index.html`，并替换：
-- `PUBLIC_URL_TO_FILL_AFTER_DEPLOY` → `PUBLIC_URL`
-- `PAYMENT_URL_TO_FILL_AFTER_USER_AUTH` → `PAYMENT_URL`
-- `contact@ai-radar.dev` → `CONTACT_EMAIL`
+## Cloudflare Pages 部署步骤（备用，更适合后续自定义域名）
 
-如果用户授权 GitHub 账号，可用 gh CLI 推送到 Pages 仓库；否则把 `deploy/dist/` 手动上传到 GitHub Pages / Cloudflare Pages / Vercel。
-
-## Cloudflare Pages
-1. 登录 Cloudflare Dashboard。
-2. Workers & Pages → Create application → Pages → Upload assets。
-3. 上传 `deploy/dist/` 或 `site/`。
-4. 回填 URL 到 `site/index.html`、`reports/deployment_verification.md`、`metrics/launch_channels.csv`。
-
-## Vercel
-```bash
-cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
-npx vercel site --prod
-```
-需要用户登录 Vercel 并授权项目。
-
-## 用户账号授权步骤
-1. GitHub / Cloudflare / Vercel 任一平台登录授权。
-2. 真实收款入口：小报童、知识星球、微信/支付宝收款码、Stripe Payment Link 或 Lemon Squeezy。
-3. 可公开客服邮箱/微信/Telegram/飞书表单。
-4. 如使用自定义域名，提供 DNS/CNAME 配置权限。
-5. 确认退款政策、隐私说明、交付 SLA 可公开展示。
+用户/账号授权前置：
+1. 提供 Cloudflare 账户，创建 API Token，权限至少包含 Account:Cloudflare Pages:Edit。
+2. 在本地/CI 设置：
+   ```bash
+   export CLOUDFLARE_ACCOUNT_ID="<account_id>"
+   export CLOUDFLARE_API_TOKEN="<pages_edit_token>"
+   ```
+3. 执行：
+   ```bash
+   bash deploy/prepare_static_site.sh
+   bash deploy/deploy_cloudflare_pages.sh
+   ```
+4. 将输出中的 `https://<deployment>.pages.dev` 回填到 site/index.html、metrics/launch_channels.csv、reports/deployment_verification.md。
 
 ## 收款/联系入口
-当前销售页可通过 `mailto:contact@ai-radar.dev` 收集意向；自动收款入口仍是 `PAYMENT_URL_TO_FILL_AFTER_USER_AUTH`，必须由用户授权后替换。付款后 24 小时内交付首周内容包或定制报告。
 
-## 定时运营脚本 / crontab
-每天 09:10 生成当日获客行动文件：
-```bash
-(crontab -l 2>/dev/null; echo '10 9 * * * cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription && ./deploy/run_daily_subscription_ops.sh') | crontab -
-```
+当前可立即运行的低阻塞预售闭环：
+- 联系入口：mailto:contact@ai-radar.dev?subject=订阅AI赚钱机会雷达
+- 问卷占位：https://wj.qq.com/s2/AI-Radar-2026
+- 收款占位：PAYMENT_URL_TO_FILL_AFTER_USER_AUTH
 
-## 验证命令
-```bash
-cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
-./deploy/verify_public_url.sh https://aunomira-lab.github.io/knowledge-subscription/
-python3 scripts/validate_24f44a36_deployment.py
-```
+自动收款需要用户提供微信/支付宝/小报童/知识星球/Stripe/Paddle 等账号授权。授权前不得在页面宣称“自动开通”，只能人工收款和交付。
 
 ## 广告投放前置条件
-禁止冷启动直接投广告。必须同时满足：公开 URL 200；真实收款入口和客服入口可用；退款/隐私/免责声明可见；自然流量 ≥100 PV 且 ≥3 条咨询；渠道表能记录曝光、点击、咨询、付款、退款。
 
-## 盈利空间判断
-市场门禁 GO，score 79/100。首周保守目标：5 单早鸟 ¥29 + 1 单专业 ¥99 + 1 单定制 ¥499 = ¥743；数字内容毛利预估 80%+。若 7 天无付款且深聊 <5，Pivot 到更垂直的 n8n 自动化模板订阅。
+付费广告前必须同时满足：
+1. 公开URL返回 HTTP 200，页面含订阅CTA和退款边界。
+2. 真实收款链接可用，付款后可追踪订单号。
+3. 客服入口可响应，首响 SLA < 12h。
+4. 至少3篇免费样例内容上线。
+5. metrics/launch_channels.csv 能记录 UTM、访问、留资、付费。
+6. 页面包含“不承诺收益/非投资建议/数字内容退款边界”。
+
+## 今日赚钱动作
+
+先不等自动支付：把公开URL和 free_preview.md 发到知乎、小红书、即刻/V2EX、微信群，收集50个线索；私信高意向用户先卖 ¥29 早鸟和 ¥499 定制诊断。

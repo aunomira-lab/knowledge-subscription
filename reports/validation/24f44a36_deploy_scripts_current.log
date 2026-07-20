@@ -1,15 +1,5 @@
-#!/usr/bin/env bash
-set -euo pipefail
-ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-cd "$ROOT"
-bash deploy/prepare_static_site.sh
-if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-  echo "ERROR: not inside git repo" >&2; exit 2
-fi
-if ! git remote get-url origin >/dev/null 2>&1; then
-  echo "ERROR: no git origin remote" >&2; exit 3
-fi
-cat <<'MSG'
+## github deploy script
+Prepared static site at /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/dist
 GitHub Pages deployment is commit/push based for this repo.
 Run these commands after reviewing the scoped diff:
   git add site/index.html deploy/README.md deploy/prepare_static_site.sh deploy/deploy_github_pages.sh deploy/deploy_cloudflare_pages.sh deploy/verify_deployment.sh docs/launch_execution_plan.md docs/deployment_blockers.md metrics/launch_channels.csv reports/deployment_verification.md
@@ -17,4 +7,7 @@ Run these commands after reviewing the scoped diff:
   git push origin main
 Then verify:
   bash deploy/verify_deployment.sh https://aunomira-lab.github.io/knowledge-subscription/
-MSG
+## cloudflare deploy script without auth
+Prepared static site at /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription/dist
+BLOCKED_BY_USER: set CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN with Pages edit permission.
+cloudflare_exit_code=42
