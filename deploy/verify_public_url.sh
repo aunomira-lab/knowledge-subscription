@@ -4,7 +4,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 PUBLIC_URL="${1:-${PUBLIC_URL:-$(cat .deployed_url 2>/dev/null || echo https://aunomira-lab.github.io/knowledge-subscription/)}}"
 TMP="/tmp/ks_public_verify_24f44a36.html"
-HTTP_CODE="$(curl -L -s -o "$TMP" -w '%{http_code}' "$PUBLIC_URL" || true)"
+HTTP_CODE="$(curl -L --max-time 20 --connect-timeout 8 -s -o "$TMP" -w '%{http_code}' "$PUBLIC_URL" || true)"
 BYTES="$(wc -c < "$TMP" 2>/dev/null || echo 0)"
 HAS_TITLE="$(grep -c 'AI商机雷达' "$TMP" 2>/dev/null || true)"
 DATE="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
@@ -22,7 +22,7 @@ cat > reports/deployment_verification.md <<EOF
 
 ## Commands actually run
 
-- curl -L -s -o $TMP -w '%{http_code}' $PUBLIC_URL
+- curl -L --max-time 20 --connect-timeout 8 -s -o $TMP -w '%{http_code}' $PUBLIC_URL
 - grep -c 'AI商机雷达' $TMP
 
 ## Important note

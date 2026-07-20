@@ -5,7 +5,7 @@ cd "$ROOT"
 mkdir -p logs/daily metrics reports
 TODAY="$(date -u +%Y-%m-%d)"
 PUBLIC_URL="${PUBLIC_URL:-$(cat .deployed_url 2>/dev/null || echo https://aunomira-lab.github.io/knowledge-subscription/)}"
-HTTP_CODE="$(curl -L -s -o /tmp/ks_daily_site.html -w '%{http_code}' "$PUBLIC_URL" || true)"
+HTTP_CODE="$(curl -L --max-time 20 --connect-timeout 8 -s -o /tmp/ks_daily_site.html -w '%{http_code}' "$PUBLIC_URL" || true)"
 LEADS_FILE="metrics/leads.csv"
 [ -f "$LEADS_FILE" ] || echo "date,channel,lead_name,contact,status,next_action" > "$LEADS_FILE"
 [ -f "metrics/payment_delivery_tracker.csv" ] || echo "date,customer,plan,amount,status,delivery_link,next_action" > metrics/payment_delivery_tracker.csv
