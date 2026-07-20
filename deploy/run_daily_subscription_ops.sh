@@ -18,7 +18,7 @@ cat > "$REPORT" <<EOF
 - HTTP: $HTTP_CODE
 
 ## Today's money actions
-1. Publish one launch post from docs/launch_execution_plan.md on Zhihu/Xiaohongshu/Jike-WeChat.
+1. Publish one launch post from docs/launch_execution_plan.md on Zhihu, Xiaohongshu and Jike/WeChat.
 2. DM/comment 20 target prospects with the free preview offer.
 3. Record every reply in metrics/leads.csv.
 4. Send ¥29 early-bird payment/contact entry to warm leads within 24 hours.

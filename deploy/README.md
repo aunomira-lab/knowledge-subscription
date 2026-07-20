@@ -1,13 +1,13 @@
 # AI商机雷达销售页部署说明（task 24f44a36）
 
-目标：把 `site/index.html` 发布为可访问销售页，承接免费试读、¥29/月早鸟订阅、¥99/月专业订阅和¥499/次定制咨询。
+目标：把 `site/index.html` 发布为可访问销售页，承接免费试读、¥29/月早鸟订阅、¥99/月专业订阅和 ¥499/次定制咨询。
 
 ## 已选部署平台
 
 首选：GitHub Pages
 - 仓库：`git@github.com:aunomira-lab/knowledge-subscription.git`
 - 静态站点目录：`site/`
-- 当前公开 URL 回填值：`https://aunomira-lab.github.io/knowledge-subscription/`
+- 当前公开 URL：`https://aunomira-lab.github.io/knowledge-subscription/`
 - 生产 URL 回填位置：`.deployed_url`、`reports/deployment_verification.md`、`site/index.html` 的 `og:url`
 
 备用：Cloudflare Pages
@@ -24,6 +24,14 @@ python3 -m http.server 8787 --directory site
 # 打开 http://127.0.0.1:8787/
 ```
 
+## 一键验证
+
+```bash
+cd /home/AgentAdmin/.hermes/shared/dev-team/projects/knowledge-subscription
+python3 scripts/validate_24f44a36_deployment.py
+bash -n deploy/deploy_github_pages.sh deploy/run_daily_subscription_ops.sh deploy/verify_public_url.sh
+```
+
 ## 部署脚本
 
 ```bash
@@ -34,7 +42,7 @@ bash deploy/deploy_github_pages.sh
 脚本会：
 1. 运行 `python3 scripts/validate_24f44a36_deployment.py` 检查销售页、收款/联系入口、渠道 CSV 和广告前置条件。
 2. 检查 GitHub remote 是否可访问。
-3. 在具备 GitHub push 权限时提交并推送 `site/ deploy/ docs/ metrics/ reports/ scripts/` 中与本任务相关文件。
+3. 在具备 GitHub push 权限时提交并推送本任务相关文件：`site/index.html`、`deploy/`、`docs/launch_execution_plan.md`、`metrics/launch_channels.csv`、`scripts/validate_24f44a36_deployment.py`、`reports/deployment_verification.md`、`.deployed_url`。
 4. 调用 `deploy/verify_public_url.sh` 验证公开 URL，并写入 `reports/deployment_verification.md`。
 5. 如果缺少账号授权，则写入 `docs/deployment_blockers.md`，状态为 `BLOCKED_BY_USER`，不得伪装为已上线。
 
@@ -56,11 +64,11 @@ Cloudflare Pages 需要用户完成：
 当前可立即冷启动的低阻塞方案：
 - 销售页统一入口：`mailto:contact@ai-radar.dev`。
 - 人工回复微信/支付宝收款码、小报童、知识星球、Stripe Payment Link、LemonSqueezy 或 Ko-fi 链接。
-- 付款备注邮箱；24小时内发送试读包和当周简报。
+- 付款备注邮箱；24 小时内发送试读包和当周简报。
 
 正式支付替换位置：
 - `site/index.html` 所有 `mailto:contact@ai-radar.dev?...`。
-- 建议替换为小报童/知识星球用于中文用户，Stripe/LemonSqueezy 用于海外用户。
+- 中文用户优先：小报童/知识星球/微信收款；海外用户优先：Stripe Payment Link/LemonSqueezy/Ko-fi。
 
 ## 定时运营脚本
 

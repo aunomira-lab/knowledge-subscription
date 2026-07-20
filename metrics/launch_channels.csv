@@ -1,6 +1,7 @@
 platform,account_needed,content_type,launch_day,url_or_post_placeholder,utm_source,utm_medium,utm_campaign,daily_lead_target,paid_conversion_target,budget_before_validation,ad_prerequisite,risk,owner,status,next_action
-知乎,需要用户账号授权,回答/专栏文章,Day1,TODO_PUBLIC_POST_URL,zhihu,organic,ks_launch_24f44a36,15,2,0,自然流量20线索且试读到付费>=5%，公开URL 200，收款入口可用,内容被折叠/营销限流,dev-deploy,ready_copy_needed,发布AI副业选题回答并置顶免费试读入口
-小红书,需要用户账号授权,图文卡片/评论引导,Day1,TODO_PUBLIC_POST_URL,xiaohongshu,organic,ks_launch_24f44a36,20,2,0,自然流量20线索且试读到付费>=5%，完成客服与退款边界,引流限流/私信限制,dev-deploy,ready_copy_needed,发布3个机会拆解卡片并引导评论“雷达”
-即刻/微信群,需要用户账号授权,长帖/社群分享,Day2,TODO_PUBLIC_POST_URL,jike_wechat,community,ks_launch_24f44a36,10,1,0,先有试读包和人工收款码；社群允许分享,社群广告违规/踢群,dev-deploy,ready_copy_needed,以build-in-public方式发布试读招募
-X/Twitter,可选账号授权,Thread/DM,Day3,TODO_PUBLIC_POST_URL,x,organic,ks_launch_24f44a36,5,0,0,双语介绍完成，海外支付或邮箱交付路径清楚,低中文转化/互动弱,dev-deploy,backup,发布双语thread收集海外newsletter反馈
-Indie Hackers,可选账号授权,Build-in-public帖子,Day4,TODO_PUBLIC_POST_URL,indiehackers,community,ks_launch_24f44a36,3,0,0,有英文一句话定位和免费样例，不直接硬广,被视为纯广告,dev-deploy,backup,发布项目进展并请求反馈
+知乎,需要用户账号授权,回答/专栏文章,Day1,TODO_PUBLIC_POST_URL,zhihu,organic,ks_launch_24f44a36,15,2,0,"自然流量20线索且试读到付费>=5%；公开URL 200；收款入口可用",内容被折叠/营销限流,dev-deploy,ready_copy_needed,发布AI副业选题回答并置顶免费试读入口
+小红书,需要用户账号授权,图文卡片/评论引导,Day1,TODO_PUBLIC_POST_URL,xiaohongshu,organic,ks_launch_24f44a36,20,2,0,"自然流量20线索且试读到付费>=5%；完成客服与退款边界",引流限流/私信限制,dev-deploy,ready_copy_needed,发布3个机会拆解卡片并引导评论“雷达”
+即刻/微信群,需要用户账号授权,长帖/社群分享,Day2,TODO_PUBLIC_POST_URL,jike_wechat,community,ks_launch_24f44a36,10,1,0,"先有试读包和人工收款码；社群允许分享",社群广告违规/踢群,dev-deploy,ready_copy_needed,以build-in-public方式发布试读招募
+X/Twitter,可选账号授权,Thread/DM,Day3,TODO_PUBLIC_POST_URL,x,organic,ks_launch_24f44a36,5,0,0,"双语介绍完成；海外支付或邮箱交付路径清楚",低中文转化/互动弱,dev-deploy,backup,发布双语thread收集海外newsletter反馈
+Indie Hackers,可选账号授权,Build-in-public帖子,Day4,TODO_PUBLIC_POST_URL,indiehackers,community,ks_launch_24f44a36,3,0,0,"有英文一句话定位和免费样例；不直接硬广",被视为纯广告,dev-deploy,backup,发布项目进展并请求反馈
+微信公众号,需要用户账号授权,首发长文/菜单链接,Day5,TODO_PUBLIC_POST_URL,wechat_mp,owned,ks_launch_24f44a36,8,1,0,"客服和收款入口确认；文章合规不承诺收益",新号阅读低/诱导关注风险,dev-deploy,optional,把知乎长文改写为公众号沉淀页

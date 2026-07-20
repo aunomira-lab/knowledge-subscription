@@ -9,7 +9,7 @@ Task: 24f44a36
 
 https://aunomira-lab.github.io/knowledge-subscription/
 
-但是本次运行环境无法代表用户完成平台账号授权、收款实名认证或社交平台发帖授权；因此真实生产更新若需要 push/平台发布，必须由用户授权后执行，不得把未授权上线写成完成。
+本环境可以验证公开 URL 是否 200，但不能代表用户完成平台账号授权、收款实名认证或社交平台发帖授权；因此真实生产更新若需要 push/平台发布，必须由用户授权后执行，不得把未授权上线写成完成。
 
 ## 需要用户授权清单
 
@@ -29,7 +29,7 @@ bash deploy/deploy_github_pages.sh
 bash deploy/verify_public_url.sh
 ```
 
-## 公开 URL 候选回填
+## 公开 URL 回填
+- GitHub Pages 当前候选：https://aunomira-lab.github.io/knowledge-subscription/
 - Cloudflare Pages 候选：https://ai-money-radar.pages.dev/knowledge-subscription/
-- GitHub Pages 历史候选：https://aunomira-lab.github.io/knowledge-subscription/
 真实投放前必须用用户授权账号验证 200 状态并回填最终公开 URL。
